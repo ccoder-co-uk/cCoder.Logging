@@ -1,0 +1,35 @@
+using cCoder.Logging.Models;
+using cCoder.Data.Models.Logging;
+using Moq;
+using Xunit;
+
+
+namespace cCoder.Core.Services.Tests.Logging.Processings;
+
+public partial class LogEntryEventProcessingServiceTests
+{
+    [Fact]
+    public async Task ShouldPassThroughCallWhenRaiseLogEntryAddEventAsync()
+    {
+        // Given
+        LogEntry entity = CreateRandomLogEntry();
+        logEntryEventServiceMock
+            .Setup(x => x.RaiseLogEntryAddEventAsync(entity))
+            .Returns(ValueTask.CompletedTask);
+
+        // When
+        await service.RaiseLogEntryAddEventAsync(entity);
+
+        // Then
+        logEntryEventServiceMock.Verify(x => x.RaiseLogEntryAddEventAsync(entity), Times.Once);
+        logEntryEventServiceMock.VerifyNoOtherCalls();
+    }
+
+}
+
+
+
+
+
+
+

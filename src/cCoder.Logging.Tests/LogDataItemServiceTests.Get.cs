@@ -1,0 +1,39 @@
+using cCoder.Logging.Models;
+using cCoder.Data.Models.Logging;
+using FluentAssertions;
+using Moq;
+using Xunit;
+using DataLogDataItem = cCoder.Data.Models.Logging.LogDataItem;
+
+
+namespace cCoder.Core.Services.Tests.Logging;
+
+public partial class LogDataItemServiceTests
+{
+    [Fact]
+    public void ShouldDelegateToBrokerWhenGet()
+    {
+        // Given
+        DataLogDataItem logDataItem = CreateRandomDataLogDataItem(id: 7);
+
+        logDataItemBrokerMock.Setup(x => x.GetAllLogDataItems(false)).Returns(new[] { logDataItem }.AsQueryable());
+
+        // When
+        LogDataItem result = logDataItemService.Get(7);
+
+        // Then
+        result.Should().BeEquivalentTo(logDataItem, options => options.ExcludingMissingMembers());
+        logDataItemBrokerMock.Verify(x => x.GetAllLogDataItems(false), Times.Once);
+        logDataItemBrokerMock.Verify(x => x.GetAppId(It.IsAny<DataLogDataItem>()), Times.AtMostOnce());
+        logDataItemBrokerMock.VerifyNoOtherCalls();
+        authorizationBrokerMock.VerifyNoOtherCalls();
+    }
+
+}
+
+
+
+
+
+
+

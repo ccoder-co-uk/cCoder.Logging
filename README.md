@@ -16,13 +16,13 @@
 ## Build
 
 ```powershell
-dotnet build cCoder.Logging.sln -v minimal
+dotnet build src/cCoder.Logging.sln -v minimal
 ```
 
 ## Test
 
 ```powershell
-dotnet test cCoder.Logging.sln -v minimal --no-build
+dotnet test src/cCoder.Logging.sln -v minimal --no-build
 ```
 
 ## Package

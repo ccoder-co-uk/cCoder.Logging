@@ -6,7 +6,7 @@ using cCoder.Logging.Services.Foundations;
 using cCoder.Logging.Services.Foundations.Events;
 using cCoder.Logging.Services.Orchestrations;
 using cCoder.Logging.Services.Processings;
-using EventLibrary;
+using cCoder.Eventing;
 using Microsoft.AspNetCore.OData;
 using Microsoft.AspNetCore.OData.Batch;
 using Microsoft.AspNetCore.Server.Kestrel.Core;

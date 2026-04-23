@@ -1,7 +1,7 @@
 using cCoder.Logging.Models;
 using cCoder.Data.Models.Logging;
-using EventLibrary;
-using EventLibrary.Models;
+using cCoder.Eventing;
+using cCoder.Eventing.Models;
 
 
 namespace cCoder.Logging.Brokers;

@@ -2,7 +2,7 @@ using cCoder.Data;
 using cCoder.Logging.Brokers;
 using cCoder.Logging.Models;
 using cCoder.Data.Models.Logging;
-using EventLibrary.Models;
+using cCoder.Eventing.Models;
 
 
 namespace cCoder.Logging.Services.Foundations.Events;

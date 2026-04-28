@@ -7,11 +7,16 @@ using cCoder.Logging.Services.Foundations;
 
 namespace cCoder.Logging;
 
-public static class WebApplicationExtensions
+public static partial class WebApplicationExtensions
 {
     private const string MetadataScope = "Logging";
 
-    public static WebApplication UseLoggingExposure(this WebApplication app, ILogger log = null)
+    public static WebApplication StartLoggingWeb(this WebApplication app, ILogger log = null) =>
+        app.UseLoggingExposure(log);
+
+    public static WebApplication StartLoggingHostedServices(this WebApplication app) => app;
+
+    private static WebApplication UseLoggingExposure(this WebApplication app, ILogger log = null)
     {
         log?.LogInformation("Initialising Logging");
         PopulateMetadataTypeCache(app);

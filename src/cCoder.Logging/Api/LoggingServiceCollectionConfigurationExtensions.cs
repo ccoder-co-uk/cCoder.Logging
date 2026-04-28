@@ -10,24 +10,24 @@ using Microsoft.OpenApi;
 
 namespace cCoder.Logging;
 
-public static class LoggingServiceCollectionConfigurationExtensions
+public static partial class IServiceCollectionExtensions
 {
-    public static LoggingConfiguration AddLogging(
+    private static LoggingConfiguration AddConfiguredLogging(
         this IServiceCollection services,
         Action<IServiceCollection, LoggingConfiguration> configure)
     {
         LoggingConfiguration configuration = CreateConfiguration(services, configure);
-        IServiceCollectionExtensions.AddLogging(services);
+        services.AddLogging();
         return configuration;
     }
 
-    public static LoggingConfiguration AddLoggingApi(
+    private static LoggingConfiguration AddConfiguredLoggingWeb(
         this IServiceCollection services,
         Action<IServiceCollection, LoggingConfiguration> configure,
         ODataConventionModelBuilder builder = null)
     {
         LoggingConfiguration configuration = CreateConfiguration(services, configure);
-        IServiceCollectionExtensions.AddLogging(services);
+        services.AddLoggingWeb(builder);
         services.AddConfiguredApi(
             configuration,
             "Logging",

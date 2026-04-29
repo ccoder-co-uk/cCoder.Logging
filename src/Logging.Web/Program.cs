@@ -44,7 +44,7 @@ public class Program
             builder.Services,
             coreConnection);
 
-        cCoder.Logging.IServiceCollectionExtensions.AddLoggingApi(builder.Services);
+        builder.Services.AddLoggingWeb();
 
         WebApplication app = builder.Build();
         log = app.Services.GetRequiredService<ILogger<Program>>();
@@ -63,7 +63,7 @@ public class Program
             .UseODataRouteDebug();
 
         app.UseDomainApiShell();
-        app.UseLoggingExposure(log);
+        app.StartLoggingWeb(log);
         app.UseDomainDefaultCors();
         app.UseDomainExceptionHandling(HandleUnhandledException);
         app.Run();

@@ -37,7 +37,7 @@ public static partial class IServiceCollectionExtensions
         return configuration;
     }
 
-    internal static void ConfigureLoggingApiModel(this ODataConventionModelBuilder builder) =>
+    public static void ConfigureLoggingApiModel(this ODataConventionModelBuilder builder) =>
         new LoggingModelBuilder(builder).Configure();
 
     private static LoggingConfiguration CreateConfiguration(

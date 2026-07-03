@@ -5,7 +5,6 @@ using cCoder.Data.Models.Logging;
 using cCoder.Logging.Services.Orchestrations;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.OData.Deltas;
 using Microsoft.AspNetCore.OData.Query;
 using Microsoft.AspNetCore.OData.Results;
 using Microsoft.AspNetCore.OData.Routing.Controllers;
@@ -80,40 +79,6 @@ public partial class LogEntryController : ODataController
         return Ok(await Service.AddAsync(entity));
     }
 
-    [HttpPut]
-    [EnableQuery(
-        AllowedArithmeticOperators = AllowedArithmeticOperators.All,
-        AllowedFunctions = AllowedFunctions.AllFunctions,
-        AllowedLogicalOperators = AllowedLogicalOperators.All,
-        AllowedQueryOptions = AllowedQueryOptions.All,
-        MaxAnyAllExpressionDepth = 5,
-        MaxExpansionDepth = 5
-    )]
-    public async Task<IActionResult> Put([FromRoute] int key, [FromBody] LogEntry entity)
-    {
-        if (!ModelState.IsValid)
-            return new cCoder.Logging.Api.OData.BadRequestResult(ModelState);
-
-        return Ok(await Service.UpdateAsync(entity));
-    }
-
-    [AcceptVerbs("PATCH", "MERGE")]
-    public async Task<IActionResult> Patch([FromRoute] int key, Delta<LogEntry> delta)
-    {
-        LogEntry originalEntity = Service.Get(key);
-        if (originalEntity == null)
-            return NotFound();
-
-        delta.Patch(originalEntity);
-        return Ok(await Service.UpdateAsync(originalEntity));
-    }
-
-    [HttpDelete]
-    public async Task<IActionResult> Delete([FromRoute] int key)
-    {
-        await Service.DeleteAsync(key);
-        return Ok();
-    }
 }
 
 

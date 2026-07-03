@@ -12,7 +12,9 @@ public interface ILogEntryBroker
     ValueTask<DataLogEntry> UpdateLogEntryAsync(DataLogEntry entity);
     ValueTask<int> DeleteLogEntryAsync(DataLogEntry entity);
     ValueTask DeleteAllLogEntriesAsync(IEnumerable<DataLogEntry> items);
+    ValueTask<int> DeleteLogEntriesBeforeAsync(DateTime cutoff);
     int? GetAppId(DataLogEntry entity);
+    int? GetAppId(string domainOrName);
 }
 
 internal class LogEntryBroker(ICoreContextFactory coreContextFactory) : ILogEntryBroker
@@ -59,11 +61,36 @@ internal class LogEntryBroker(ICoreContextFactory coreContextFactory) : ILogEntr
         _ = await coreDataContext.SaveChangesAsync();
     }
 
-    public int? GetAppId(DataLogEntry entity)
+    public async ValueTask<int> DeleteLogEntriesBeforeAsync(DateTime cutoff)
     {
         using CoreDataContext coreDataContext = coreContextFactory.CreateCoreContext();
+        DataLogEntry[] items = await coreDataContext.Logs
+            .IgnoreQueryFilters()
+            .Where(logEntry => logEntry.Date < cutoff)
+            .ToArrayAsync();
+
+        coreDataContext.Logs.RemoveRange(items);
+        return await coreDataContext.SaveChangesAsync();
+    }
+
+    public int? GetAppId(DataLogEntry entity)
+    {
+        if (entity.AppId > 0)
+            return entity.AppId;
+
+        return GetAppId(entity.AppName);
+    }
+
+    public int? GetAppId(string domainOrName)
+    {
+        using CoreDataContext coreDataContext = coreContextFactory.CreateCoreContext();
+
+        if (string.IsNullOrWhiteSpace(domainOrName))
+            return null;
+
         return coreDataContext.Apps
-            .Where(app => app.Name == entity.AppName)
+            .IgnoreQueryFilters()
+            .Where(app => app.Name == domainOrName || app.Domain == domainOrName)
             .Select(app => (int?)app.Id)
             .FirstOrDefault();
     }

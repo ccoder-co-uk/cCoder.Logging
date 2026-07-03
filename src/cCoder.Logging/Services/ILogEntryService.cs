@@ -11,6 +11,8 @@ public interface ILogEntryService
 
     ValueTask<LogEntry> AddAsync(LogEntry logEntry);
 
+    ValueTask<LogEntry> AddSystemAsync(LogEntry logEntry);
+
     ValueTask<LogEntry> UpdateAsync(LogEntry logEntry);
 
     ValueTask DeleteAsync(int id);
@@ -18,4 +20,8 @@ public interface ILogEntryService
     ValueTask<IEnumerable<Result<LogEntry>>> AddOrUpdate(IEnumerable<LogEntry> items);
 
     ValueTask DeleteAllAsync(IEnumerable<LogEntry> items);
+
+    ValueTask<int> DeleteEntriesBeforeAsync(DateTime cutoff);
+
+    int? ResolveAppId(string domainOrName);
 }

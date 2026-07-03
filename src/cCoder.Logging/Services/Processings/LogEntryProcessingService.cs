@@ -20,6 +20,11 @@ internal class LogEntryProcessingService(ILogEntryService service) : ILogEntryPr
         return service.AddAsync(logEntry);
     }
 
+    public ValueTask<LogEntry> AddSystemAsync(LogEntry logEntry)
+    {
+        return service.AddSystemAsync(logEntry);
+    }
+
     public ValueTask<LogEntry> UpdateAsync(LogEntry logEntry)
     {
         return service.UpdateAsync(logEntry);
@@ -38,5 +43,15 @@ internal class LogEntryProcessingService(ILogEntryService service) : ILogEntryPr
     public ValueTask DeleteAllAsync(IEnumerable<LogEntry> items)
     {
         return service.DeleteAllAsync(items);
+    }
+
+    public ValueTask<int> DeleteEntriesBeforeAsync(DateTime cutoff)
+    {
+        return service.DeleteEntriesBeforeAsync(cutoff);
+    }
+
+    public int? ResolveAppId(string domainOrName)
+    {
+        return service.ResolveAppId(domainOrName);
     }
 }

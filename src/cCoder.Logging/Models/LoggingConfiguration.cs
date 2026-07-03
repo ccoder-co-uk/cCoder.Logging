@@ -9,6 +9,12 @@ public class LoggingConfiguration
     public IDictionary<string, string> Services { get; set; } = new Dictionary<string, string>();
     public bool DebugInfo { get; set; }
     public bool LogSQL { get; set; }
+    public bool StoreLogEntries { get; set; }
+    public bool StreamLogEntries { get; set; } = true;
+    public int RetentionDays { get; set; } = 30;
+    public int RetentionIntervalMinutes { get; set; } = 60;
+    public int? DefaultAppId { get; set; }
+    public string DefaultAppDomain { get; set; }
     public string RootPath { get; set; } = "Api/Logging";
     public bool IncludeLegacyCoreContext { get; set; } = true;
     public EventProvider[] EventProviders { get; private set; } = [];

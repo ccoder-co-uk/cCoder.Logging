@@ -1,0 +1,429 @@
+html,
+body {
+    height: 100%;
+}
+
+body.logging-shell {
+    margin: 0;
+    overflow: hidden;
+    background: #eef2f7;
+    color: #17202a;
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 14px;
+}
+
+.logging-header {
+    height: 58px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 0 12px;
+    border-bottom: 1px solid #c8d2df;
+    background: #f8fafc;
+}
+
+.logging-brand,
+.logging-auth,
+.logging-header-actions,
+.logging-toolbar,
+.logging-section-tabs,
+.logging-tabs {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.logging-brand h1,
+.logging-toolbar h2 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.25;
+}
+
+.logging-brand span,
+.logging-toolbar span {
+    color: #607085;
+    font-size: 12px;
+}
+
+.logging-logo {
+    width: 126px;
+    height: 42px;
+    object-fit: contain;
+    border-radius: 3px;
+    background: #000;
+}
+
+.logging-auth input {
+    width: 150px;
+}
+
+.logging-auth-user,
+.logging-status {
+    max-width: 240px;
+    overflow: hidden;
+    color: #26384c;
+    font-weight: 600;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.logging-status {
+    color: #2f6f46;
+}
+
+.logging-status-error {
+    color: #a33131;
+}
+
+button,
+a {
+    min-height: 30px;
+    padding: 5px 10px;
+    border: 1px solid #b6c4d4;
+    border-radius: 3px;
+    background: #fff;
+    color: #243b53;
+    font: inherit;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+button:hover,
+a:hover {
+    background: #edf4fb;
+}
+
+.logging-workbench {
+    height: calc(100% - 58px);
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr);
+    overflow: auto;
+    padding: 10px;
+}
+
+.logging-login-gate {
+    height: calc(100% - 58px);
+    display: grid;
+    place-items: center;
+    padding: 24px;
+    text-align: center;
+}
+
+.logging-login-gate h2 {
+    margin: 0 0 8px;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.logging-login-gate p {
+    margin: 0;
+    color: #607085;
+}
+
+body.logging-shell:not(.is-authenticated) .logging-workbench,
+body.logging-shell:not(.is-authenticated) .logging-header-actions {
+    display: none;
+}
+
+body.logging-shell.is-authenticated .logging-login-gate {
+    display: none;
+}
+
+.logging-panel {
+    min-height: 100%;
+    border: 1px solid #c8d2df;
+    border-top: 0;
+    background: #fff;
+}
+
+.logging-section-tabs {
+    align-items: flex-end;
+    gap: 4px;
+    min-height: 38px;
+    border-bottom: 1px solid #c8d2df;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.logging-section-tabs button {
+    margin-bottom: -1px;
+    border-radius: 4px 4px 0 0;
+    background: transparent;
+}
+
+.logging-section-tabs button.active {
+    border-color: #b6c4d4;
+    border-bottom-color: #fff;
+    background: #fff;
+    color: #0b5cab;
+    font-weight: 600;
+}
+
+.logging-main-panel {
+    display: none;
+}
+
+.logging-main-panel.active {
+    display: block;
+}
+
+.logging-toolbar {
+    min-height: 54px;
+    justify-content: space-between;
+    padding: 8px 10px;
+    border-bottom: 1px solid #d6dee8;
+    background: #f8fafc;
+}
+
+.logging-grid {
+    overflow: auto;
+}
+
+.logging-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.logging-table th,
+.logging-table td {
+    padding: 8px;
+    border-bottom: 1px solid #d6dee8;
+    border-right: 1px solid #edf1f5;
+    text-align: left;
+    vertical-align: top;
+}
+
+.logging-table th {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background: #f8fafc;
+    color: #26384c;
+    font-weight: 600;
+}
+
+.logging-table tbody tr:hover {
+    background: #f8fbff;
+}
+
+.logging-expand-column {
+    width: 42px;
+    text-align: center;
+}
+
+.logging-actions {
+    width: 150px;
+}
+
+.logging-empty {
+    color: #607085;
+}
+
+.logging-detail-row > td {
+    padding: 0;
+    background: #fbfcfe;
+}
+
+.logging-detail {
+    padding: 10px;
+}
+
+.logging-detail-toolbar {
+    display: flex;
+    justify-content: flex-end;
+    padding-bottom: 8px;
+}
+
+.logging-stream-card {
+    display: grid;
+    gap: 10px;
+    padding: 12px;
+}
+
+.logging-stream-card label {
+    display: grid;
+    gap: 4px;
+}
+
+.logging-stream-card p {
+    margin: 0;
+    color: #607085;
+}
+
+.logging-stream-messages {
+    max-height: 420px;
+    overflow: auto;
+    border: 1px solid #d6dee8;
+    background: #fff;
+    color: #17202a;
+}
+
+.logging-stream-messages table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.logging-stream-messages th,
+.logging-stream-messages td {
+    padding: 7px 10px;
+    border-bottom: 1px solid #edf1f5;
+    text-align: left;
+    vertical-align: top;
+}
+
+.logging-stream-messages th {
+    position: sticky;
+    top: 0;
+    background: #f8fafc;
+    color: #26384c;
+}
+
+.logging-stream-time {
+    width: 150px;
+    border-right: 1px solid #d6dee8;
+    background: #f8fafc;
+    color: #607085;
+    font-family: Consolas, "Courier New", monospace;
+    white-space: nowrap;
+}
+
+.logging-stream-messages td:nth-child(2) {
+    width: 90px;
+}
+
+.logging-stream-level {
+    display: inline-block;
+    min-width: 64px;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-weight: 600;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.logging-stream-message {
+    font-family: Consolas, "Courier New", monospace;
+}
+
+.logging-stream-debug .logging-stream-level {
+    background: #e6ecf3;
+    color: #384b5f;
+}
+
+.logging-stream-info .logging-stream-level {
+    background: #dcecff;
+    color: #0b5cab;
+}
+
+.logging-stream-warning .logging-stream-level,
+.logging-stream-warn .logging-stream-level {
+    background: #fff4cf;
+    color: #8a6100;
+}
+
+.logging-stream-error .logging-stream-level {
+    background: #fde1e5;
+    color: #a33131;
+}
+
+.logging-stream-debug {
+    color: #384b5f;
+}
+
+.logging-stream-info {
+    color: #17202a;
+}
+
+.logging-stream-warning,
+.logging-stream-warn {
+    background: #fffaf0;
+    color: #5c4505;
+}
+
+.logging-stream-error {
+    background: #fff5f6;
+    color: #6f1f2a;
+}
+
+.logging-dialog {
+    width: min(720px, calc(100vw - 32px));
+    border: 1px solid #9fb0c3;
+    border-radius: 4px;
+    padding: 0;
+}
+
+.logging-dialog header,
+.logging-dialog footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 10px;
+    background: #f8fafc;
+}
+
+.logging-dialog h3 {
+    margin: 0;
+    font-size: 16px;
+}
+
+.logging-editor-fields {
+    display: grid;
+    gap: 10px;
+    padding: 12px;
+}
+
+.logging-editor-fields label {
+    display: grid;
+    gap: 4px;
+}
+
+.logging-editor-fields span,
+.logging-stream-card span {
+    color: #384b5f;
+    font-weight: 600;
+}
+
+.logging-editor-fields input,
+.logging-editor-fields textarea,
+.logging-stream-card input,
+.logging-stream-card select {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 7px;
+    border: 1px solid #b6c4d4;
+    border-radius: 3px;
+    font: inherit;
+}
+
+.logging-editor-fields textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+@media (max-width: 1000px) {
+    body.logging-shell {
+        overflow: auto;
+    }
+
+    .logging-header {
+        height: auto;
+        min-height: 58px;
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 8px 12px;
+    }
+
+    .logging-workbench {
+        height: auto;
+        min-height: calc(100vh - 58px);
+    }
+
+    .logging-toolbar {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}

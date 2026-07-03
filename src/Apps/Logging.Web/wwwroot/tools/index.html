@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Logging Management</title>
+    <link rel="stylesheet" href="/tools/styles.css?v=logging-20260703">
+</head>
+<body class="logging-shell">
+    <header class="logging-header">
+        <div class="logging-brand">
+            <img class="logging-logo" src="/tools/company-logo.png" alt="cCoder">
+            <div>
+                <h1>Logging Management</h1>
+                <span>Log entries, captured data, and live log streaming</span>
+            </div>
+        </div>
+
+        <div class="logging-auth">
+            <span id="auth-user" class="logging-auth-user">Guest</span>
+            <input id="auth-username" autocomplete="username" placeholder="User">
+            <input id="auth-password" autocomplete="current-password" placeholder="Password" type="password">
+            <button id="auth-login" type="button">Login</button>
+            <button id="auth-logout" type="button" hidden>Logout</button>
+        </div>
+
+        <div class="logging-header-actions">
+            <span id="status-message" class="logging-status">Ready</span>
+            <a href="/swagger" target="_blank" rel="noreferrer">Swagger</a>
+            <button id="health-check" type="button">Health</button>
+        </div>
+    </header>
+
+    <section class="logging-login-gate">
+        <div>
+            <h2>Sign in required</h2>
+            <p>Use the login controls above to open the Logging Management tools.</p>
+        </div>
+    </section>
+
+    <main class="logging-workbench">
+        <nav class="logging-section-tabs" aria-label="Logging Management workspace tabs">
+            <button class="active" data-main-tab="entries" type="button">Log Entries</button>
+            <button data-main-tab="stream" type="button">Live Stream</button>
+        </nav>
+
+        <section class="logging-panel">
+            <section class="logging-main-panel active" data-main-panel="entries">
+                <div class="logging-toolbar">
+                    <div>
+                        <h2>Log Entries</h2>
+                        <span>Expand an entry to inspect or add captured data items.</span>
+                    </div>
+                    <button id="create-log-entry" type="button">Create Log Entry</button>
+                </div>
+                <div id="log-entry-grid" class="logging-grid"></div>
+            </section>
+
+            <section class="logging-main-panel" data-main-panel="stream">
+                <div class="logging-toolbar">
+                    <div>
+                        <h2>Live Stream</h2>
+                        <span>SignalR endpoint available at /Api/Hubs/Logs.</span>
+                    </div>
+                    <button id="refresh-stream-info" type="button">Reconnect</button>
+                </div>
+                <div class="logging-stream-card">
+                    <p id="stream-state">Disconnected</p>
+                    <div id="stream-messages" class="logging-stream-messages" aria-live="polite"></div>
+                </div>
+            </section>
+        </section>
+    </main>
+
+    <dialog id="editor-dialog" class="logging-dialog">
+        <form method="dialog">
+            <header>
+                <h3 id="editor-title">Edit</h3>
+                <button id="editor-close" value="cancel" type="submit">Close</button>
+            </header>
+            <div id="editor-fields" class="logging-editor-fields"></div>
+            <footer>
+                <button id="editor-save" value="default" type="submit">Save</button>
+            </footer>
+        </form>
+    </dialog>
+
+    <script src="/tools/api.js?v=logging-20260703"></script>
+    <script src="/tools/signalr.min.js?v=logging-20260703"></script>
+    <script src="/tools/logs.js?v=logging-20260703"></script>
+    <script src="/tools/stream.js?v=logging-20260703"></script>
+</body>
+</html>

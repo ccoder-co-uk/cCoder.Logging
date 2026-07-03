@@ -13,6 +13,7 @@ internal class LogEntryService(ILogEntryBroker logEntryBroker, IAuthorizationBro
                 select new cCoder.Data.Models.Logging.LogEntry
                 {
                     Id = item.Id,
+                    AppId = item.AppId,
                     Level = item.Level,
                     Message = item.Message,
                     AppName = item.AppName,
@@ -37,6 +38,12 @@ internal class LogEntryService(ILogEntryBroker logEntryBroker, IAuthorizationBro
     {
         cCoder.Data.Models.Logging.LogEntry internalLogEntry = ToInternalLogEntry(logEntry);
         authorizationBroker.Authorize(logEntryBroker.GetAppId(internalLogEntry), "LogEntry_create");
+        return ToExternalLogEntry(await logEntryBroker.AddLogEntryAsync(internalLogEntry));
+    }
+
+    public async ValueTask<cCoder.Data.Models.Logging.LogEntry> AddSystemAsync(cCoder.Data.Models.Logging.LogEntry logEntry)
+    {
+        cCoder.Data.Models.Logging.LogEntry internalLogEntry = ToInternalLogEntry(logEntry);
         return ToExternalLogEntry(await logEntryBroker.AddLogEntryAsync(internalLogEntry));
     }
 
@@ -65,6 +72,12 @@ internal class LogEntryService(ILogEntryBroker logEntryBroker, IAuthorizationBro
         }
         await logEntryBroker.DeleteAllLogEntriesAsync(internalLogEntries);
     }
+
+    public ValueTask<int> DeleteEntriesBeforeAsync(DateTime cutoff) =>
+        logEntryBroker.DeleteLogEntriesBeforeAsync(cutoff);
+
+    public int? ResolveAppId(string domainOrName) =>
+        logEntryBroker.GetAppId(domainOrName);
 
     public async ValueTask<IEnumerable<Result<cCoder.Data.Models.Logging.LogEntry>>> AddOrUpdate(IEnumerable<cCoder.Data.Models.Logging.LogEntry> items)
     {
@@ -104,6 +117,7 @@ internal class LogEntryService(ILogEntryBroker logEntryBroker, IAuthorizationBro
     {
         cCoder.Data.Models.Logging.LogEntry logEntry = new cCoder.Data.Models.Logging.LogEntry();
         logEntry.Id = item.Id;
+        logEntry.AppId = item.AppId;
         logEntry.Level = item.Level;
         logEntry.Message = item.Message;
         logEntry.AppName = item.AppName;
@@ -128,6 +142,7 @@ internal class LogEntryService(ILogEntryBroker logEntryBroker, IAuthorizationBro
     {
         cCoder.Data.Models.Logging.LogEntry logEntry = new cCoder.Data.Models.Logging.LogEntry();
         logEntry.Id = item.Id;
+        logEntry.AppId = item.AppId;
         logEntry.Level = item.Level;
         logEntry.Message = item.Message;
         logEntry.AppName = item.AppName;

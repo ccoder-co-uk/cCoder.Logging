@@ -90,12 +90,6 @@ namespace cCoder.Logging.Api.OData
             HttpVerb = "GET",
             ReturnType = type,
         },
-        new()
-        {
-            Name = "Delete",
-            Url = $"{type.Category}/{type.Name}({{Left=leftKey,Right=rightKey}})",
-            HttpVerb = "DELETE",
-        },
         ];
 
         private static IEnumerable<OperationContainer> GetBaseCrudOperationsForEntity(
@@ -110,19 +104,6 @@ namespace cCoder.Logging.Api.OData
             HttpVerb = "POST",
             ReturnType = type,
             Parameters = new Dictionary<string, string> { { "body:entity", type.ServerType } },
-        },
-        new()
-        {
-            Name = "Update",
-            Url = $"{type.Category}/{type.Name}({{key}})",
-            Queryable = true,
-            HttpVerb = "PUT",
-            ReturnType = type,
-            Parameters = new Dictionary<string, string>
-            {
-                { "odata:key", Type.GetType(type.ServerType)?.GetIdProperty()?.GetType().FullName! },
-                { "body:entity", type.ServerType },
-            },
         },
         new()
         {
@@ -144,7 +125,6 @@ namespace cCoder.Logging.Api.OData
             HttpVerb = "GET",
             ReturnType = type,
         },
-        new() { Name = "Delete", Url = $"{type.Category}/{type.Name}({{key}})", HttpVerb = "DELETE" },
         ];
     }
 

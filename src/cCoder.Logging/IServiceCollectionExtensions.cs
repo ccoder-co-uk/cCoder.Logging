@@ -1,6 +1,8 @@
 using cCoder.Data.Models.Logging;
 using cCoder.Logging.Api.OData;
 using cCoder.Logging.Brokers;
+using cCoder.Logging.Exposures.HostedServices;
+using cCoder.Logging.Exposures.Logging;
 using cCoder.Logging.Models;
 using cCoder.Logging.Services;
 using cCoder.Logging.Services.Foundations;
@@ -30,8 +32,11 @@ public static partial class IServiceCollectionExtensions
 
     public static void AddLoggingHostedServices(
         this IServiceCollection services,
-        Action<LoggingConfiguration> configure = null) =>
+        Action<LoggingConfiguration> configure = null)
+    {
         services.AddConfiguredLogging((_, configuration) => configure?.Invoke(configuration));
+        services.AddHostedServiceExposures();
+    }
 
     private static void AddLogging(this IServiceCollection services)
     {
@@ -40,6 +45,7 @@ public static partial class IServiceCollectionExtensions
         services.AddFoundations();
         services.AddProcessings();
         services.AddOrchestrations();
+        services.AddSingleton<ILoggerProvider, LoggingLoggerProvider>();
     }
 
     private static void AddLoggingWeb(this IServiceCollection services, ODataConventionModelBuilder builder = null)
@@ -60,6 +66,7 @@ public static partial class IServiceCollectionExtensions
         services.AddTransient<ILogEntryEventBroker, LogEntryEventBroker>();
         services.AddTransient<ILogDataItemBroker, LogDataItemBroker>();
         services.AddTransient<ILogEntryBroker, LogEntryBroker>();
+        services.AddTransient<ILogEntryStreamBroker, LogEntryStreamBroker>();
         services.AddTransient<IAuthorizationBroker, AuthorizationBroker>();
     }
 
@@ -76,6 +83,8 @@ public static partial class IServiceCollectionExtensions
     {
         services.AddTransient<ILogDataItemOrchestrationService, LogDataItemOrchestrationService>();
         services.AddTransient<ILogEntryOrchestrationService, LogEntryOrchestrationService>();
+        services.AddTransient<ILogEntryCaptureOrchestrationService, LogEntryCaptureOrchestrationService>();
+        services.AddTransient<ILogRetentionOrchestrationService, LogRetentionOrchestrationService>();
     }
 
     private static void AddProcessings(this IServiceCollection services)
@@ -84,5 +93,11 @@ public static partial class IServiceCollectionExtensions
         services.AddTransient<ILogDataItemProcessingService, LogDataItemProcessingService>();
         services.AddTransient<ILogEntryEventProcessingService, LogEntryEventProcessingService>();
         services.AddTransient<ILogEntryProcessingService, LogEntryProcessingService>();
+    }
+
+    private static void AddHostedServiceExposures(this IServiceCollection services)
+    {
+        services.AddSingleton<ILogRetentionCleaner, LogRetentionCleaner>();
+        services.AddSingleton<IHostedService>(provider => provider.GetRequiredService<ILogRetentionCleaner>());
     }
 }

@@ -22,6 +22,36 @@ public static partial class UIBaseline
 }
 """
             },
+            new PackageItem
+            {
+                Type = "Core/PageRole",
+                Data = """
+{
+  "Path": "Documentation/CoreDocumentation/AppManagement/LogStream",
+  "Role": "Administrators"
+}
+"""
+            },
+            new PackageItem
+            {
+                Type = "Core/PageRole",
+                Data = """
+{
+  "Path": "Documentation/CoreDocumentation/AppManagement/LogStream",
+  "Role": "Users"
+}
+"""
+            },
+            new PackageItem
+            {
+                Type = "Core/PageRole",
+                Data = """
+{
+  "Path": "Documentation/CoreDocumentation/AppManagement/LogStream",
+  "Role": "Guests"
+}
+"""
+            }
         ]
     };
 }

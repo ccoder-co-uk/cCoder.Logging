@@ -30,7 +30,7 @@ public partial class LogDataItemController : ODataController
             ? Ok(
                 new cCoder.Logging.Api.OData.LoggingModelBuilder()
                     .Build()
-                    .EDMModel.GetExtendedMetadataForType("Core", typeof(LogDataItem))
+                    .EDMModel.GetExtendedMetadataForType("Logging", typeof(LogDataItem))
             )
             : Ok(new MetadataContainer(typeof(LogDataItem), true, true));
     }

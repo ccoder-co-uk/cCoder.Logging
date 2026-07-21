@@ -10,8 +10,8 @@ internal sealed class LoggingMetadataTypeService : ILoggingMetadataTypeService
     [
         new MetadataContainerSet
         {
-            Name = "Core",
-            UriBase = "Core",
+            Name = "Logging",
+            UriBase = "Logging",
             Types =
             [
                 Entity<LogDataItem>(),
@@ -23,7 +23,7 @@ internal sealed class LoggingMetadataTypeService : ILoggingMetadataTypeService
     private static ExtendedMetadataContainer Entity<T>() =>
         new(typeof(T), isEntity: true, hasEndpoint: true)
         {
-            Category = "Core",
+            Category = "Logging",
         };
 }
 

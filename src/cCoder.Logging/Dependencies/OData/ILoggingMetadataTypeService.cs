@@ -2,10 +2,7 @@
 // Copyright (c) Paul.Ward@ccoder.co.uk
 // ---------------------------------------------------------------
 
-using cCoder.Logging.Dependencies.OData;
-
-
-namespace cCoder.Logging.Services.Foundations;
+namespace cCoder.Logging.Dependencies.OData;
 
 internal interface ILoggingMetadataTypeService
 {

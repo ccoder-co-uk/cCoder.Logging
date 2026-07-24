@@ -3,7 +3,7 @@
 // ---------------------------------------------------------------
 
 using cCoder.Logging.Models;
-using cCoder.Logging.Services.Orchestrations;
+using cCoder.Logging.Services.Foundations;
 using cCoder.Logging.Services.Processings;
 using Moq;
 
@@ -11,21 +11,24 @@ namespace cCoder.Core.Services.Tests.Logging.Orchestrations;
 
 public partial class LogRetentionOrchestrationServiceTests
 {
-    private readonly Mock<ILogEntryProcessingService> logEntryProcessingServiceMock;
+    private readonly Mock<ILogEntryService> logEntryServiceMock;
     private readonly LoggingConfiguration configuration;
-    private readonly LogRetentionOrchestrationService orchestrationService;
+    private readonly LogEntryRetentionProcessingService processingService;
 
     public LogRetentionOrchestrationServiceTests()
     {
-        logEntryProcessingServiceMock = new Mock<ILogEntryProcessingService>(MockBehavior.Strict);
+        logEntryServiceMock = new Mock<ILogEntryService>(
+            behavior: MockBehavior.Strict);
+
         configuration = new LoggingConfiguration
         {
             StoreLogEntries = true,
             RetentionDays = 30,
             RetentionIntervalMinutes = 60
         };
-        orchestrationService = new LogRetentionOrchestrationService(
-            logEntryProcessingServiceMock.Object,
-            configuration);
+
+        processingService = new LogEntryRetentionProcessingService(
+            logEntryService: logEntryServiceMock.Object,
+            loggingConfiguration: configuration);
     }
 }

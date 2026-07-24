@@ -2,11 +2,12 @@
 // Copyright (c) Paul.Ward@ccoder.co.uk
 // ---------------------------------------------------------------
 
+using cCoder.Logging.Dependencies;
+
 namespace cCoder.Logging.Services.Orchestrations;
 
-public interface ILogRetentionOrchestrationService
+internal sealed partial class LogEntryCaptureOrchestrationService
 {
-    Task RunAsync(CancellationToken cancellationToken);
-
-    ValueTask<int> DeleteExpiredAsync(CancellationToken cancellationToken = default);
+    private static void ValidateInputs(params object[] inputs) =>
+        ValidationRulesEngine.Validate(inputs: inputs);
 }

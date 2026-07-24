@@ -24,16 +24,17 @@ internal sealed class LogEntryStreamBroker(
     public IHubContext<LogHub> SelectLogHubContext() =>
         serviceProvider.GetService<IHubContext<LogHub>>();
 
-    public async ValueTask SendLogEntryAsync(
+    public ValueTask SendLogEntryAsync(
         IHubContext<LogHub> hubContext,
         string thread,
         string level,
         string message) =>
-        await hubContext.Clients
-            .Group(thread)
-            .SendAsync(
-                method: "ConsoleReceive",
-                arg1: level,
-                arg2: message,
-                arg3: thread);
+        new(
+            task: hubContext.Clients
+                .Group(groupName: thread)
+                .SendAsync(
+                    method: "ConsoleReceive",
+                    arg1: level,
+                    arg2: message,
+                    arg3: thread));
 }

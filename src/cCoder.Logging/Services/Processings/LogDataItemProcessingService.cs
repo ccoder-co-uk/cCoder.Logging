@@ -4,6 +4,7 @@
 
 using cCoder.Data.Models.Logging;
 using cCoder.Logging.Models;
+using cCoder.Logging.Dependencies;
 using cCoder.Logging.Services.Foundations;
 
 namespace cCoder.Logging.Services.Processings;
@@ -60,17 +61,17 @@ internal sealed partial class LogDataItemProcessingService(
                 logDataItemId: logDataItemId);
         });
 
-    public ValueTask<IEnumerable<Result<LogDataItem>>> AddOrUpdateLogDataItemsAsync(
+    public ValueTask<IEnumerable<OperationResult<LogDataItem>>> AddOrUpdateLogDataItemResultsAsync(
         IEnumerable<LogDataItem> logDataItems) =>
         TryCatch(operation: async () =>
         {
             ValidateInputs(inputs: [logDataItems]);
 
-            List<Result<LogDataItem>> results = [];
+            List<OperationResult<LogDataItem>> results = [];
 
             foreach (LogDataItem logDataItem in logDataItems)
             {
-                Result<LogDataItem> result =
+                OperationResult<LogDataItem> result =
                     await AddOrUpdateLogDataItem(
                         logDataItem: logDataItem);
 
@@ -80,7 +81,7 @@ internal sealed partial class LogDataItemProcessingService(
             return results.AsEnumerable();
         });
 
-    public ValueTask DeleteAllLogDataItemsAsync(
+    public ValueTask DeleteAllLogDataItemAsync(
         IEnumerable<LogDataItem> deletedLogDataItems) =>
         TryCatch(operation: async () =>
         {
@@ -106,7 +107,7 @@ internal sealed partial class LogDataItemProcessingService(
         return ToExternalLogDataItem(logDataItem: savedLogDataItem);
     }
 
-    private async ValueTask<Result<LogDataItem>> AddOrUpdateLogDataItem(
+    private async ValueTask<OperationResult<LogDataItem>> AddOrUpdateLogDataItem(
         LogDataItem logDataItem)
     {
         try
@@ -123,7 +124,7 @@ internal sealed partial class LogDataItemProcessingService(
                 ? "Added Successfully"
                 : "Updated Successfully";
 
-            return new Result<LogDataItem>
+            return new OperationResult<LogDataItem>
             {
                 Success = true,
                 Item = savedLogDataItem,
@@ -132,7 +133,7 @@ internal sealed partial class LogDataItemProcessingService(
         }
         catch (Exception exception)
         {
-            return new Result<LogDataItem>
+            return new OperationResult<LogDataItem>
             {
                 Success = false,
                 Item = logDataItem,

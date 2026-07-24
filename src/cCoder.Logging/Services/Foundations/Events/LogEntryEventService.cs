@@ -19,7 +19,7 @@ internal sealed partial class LogEntryEventService(
             ValidateInputs(inputs: [entity]);
 
             EventMessage<LogEntry> message =
-                CreateEventMessage(logEntry: entity);
+                CreateLogEntryEventMessage(logEntry: entity);
 
             await logEntryEventBroker.RaiseLogEntryAddEventAsync(
                 message: message);
@@ -31,7 +31,7 @@ internal sealed partial class LogEntryEventService(
             ValidateInputs(inputs: [entity]);
 
             EventMessage<LogEntry> message =
-                CreateEventMessage(logEntry: entity);
+                CreateLogEntryEventMessage(logEntry: entity);
 
             await logEntryEventBroker.RaiseLogEntryUpdateEventAsync(
                 message: message);
@@ -43,13 +43,13 @@ internal sealed partial class LogEntryEventService(
             ValidateInputs(inputs: [entity]);
 
             EventMessage<LogEntry> message =
-                CreateEventMessage(logEntry: entity);
+                CreateLogEntryEventMessage(logEntry: entity);
 
             await logEntryEventBroker.RaiseLogEntryDeleteEventAsync(
                 message: message);
         });
 
-    private EventMessage<LogEntry> CreateEventMessage(
+    private EventMessage<LogEntry> CreateLogEntryEventMessage(
         LogEntry logEntry) =>
         new()
         {

@@ -17,7 +17,7 @@ internal sealed partial class LogDataItemService(
     public LogDataItem GetLogDataItem(int logDataItemId) =>
         TryCatch(operation: () =>
         {
-            ValidateInputs(inputs: [logDataItemId]);
+            ValidateLogDataItemOnGet(logDataItemId: logDataItemId);
 
             return SelectAllLogDataItems(ignoreFilters: false)
                 .Where(predicate: logDataItem =>
@@ -31,7 +31,7 @@ internal sealed partial class LogDataItemService(
         bool ignoreFilters = false) =>
         TryCatch(operation: () =>
         {
-            ValidateInputs(inputs: [ignoreFilters]);
+            ValidateAllLogDataItemsOnGet(ignoreFilters: ignoreFilters);
 
             return SelectAllLogDataItems(ignoreFilters: ignoreFilters);
         });
@@ -40,32 +40,50 @@ internal sealed partial class LogDataItemService(
         LogDataItem newLogDataItem) =>
         TryCatch(operation: async () =>
         {
-            ValidateInputs(inputs: [newLogDataItem]);
+            ValidateLogDataItemOnAdd(logDataItem: newLogDataItem);
+
             Authorize(
                 logDataItem: newLogDataItem,
                 privilege: "LogDataItem_create");
 
-            return await logDataItemBroker.InsertLogDataItemAsync(
-                newLogDataItem: newLogDataItem);
+            LogDataItem flatLogDataItem =
+                ToExternalLogDataItem(logDataItem: newLogDataItem);
+
+            LogDataItem savedLogDataItem =
+                await logDataItemBroker.InsertLogDataItemAsync(
+                    newLogDataItem: flatLogDataItem);
+
+            newLogDataItem.Id = savedLogDataItem.Id;
+
+            return newLogDataItem;
         });
 
     public ValueTask<LogDataItem> UpdateLogDataItemAsync(
         LogDataItem updatedLogDataItem) =>
         TryCatch(operation: async () =>
         {
-            ValidateInputs(inputs: [updatedLogDataItem]);
+            ValidateLogDataItemOnUpdate(logDataItem: updatedLogDataItem);
+
             Authorize(
                 logDataItem: updatedLogDataItem,
                 privilege: "LogDataItem_update");
 
-            return await logDataItemBroker.UpdateLogDataItemAsync(
-                updatedLogDataItem: updatedLogDataItem);
+            LogDataItem flatLogDataItem =
+                ToExternalLogDataItem(logDataItem: updatedLogDataItem);
+
+            LogDataItem savedLogDataItem =
+                await logDataItemBroker.UpdateLogDataItemAsync(
+                    updatedLogDataItem: flatLogDataItem);
+
+            updatedLogDataItem.Id = savedLogDataItem.Id;
+
+            return updatedLogDataItem;
         });
 
     public ValueTask DeleteLogDataItemAsync(int logDataItemId) =>
         TryCatch(operation: async () =>
         {
-            ValidateInputs(inputs: [logDataItemId]);
+            ValidateLogDataItemOnDelete(logDataItemId: logDataItemId);
 
             LogDataItem logDataItem =
                 SelectLogDataItem(logDataItemId: logDataItemId);
@@ -137,7 +155,7 @@ internal sealed partial class LogDataItemService(
         appId.HasValue
         && (user.Roles?.Any(predicate: role =>
             role.Role.AppId == appId.Value
-            && role.Role.Allows(user, "app_admin"))
+            && role.Role.Allows(user: user, privilege: "app_admin"))
             ?? false);
 
     private static LogDataItem ToExternalLogDataItem(

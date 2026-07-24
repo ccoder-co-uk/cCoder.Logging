@@ -5,7 +5,7 @@
 using cCoder.Logging.Brokers;
 using cCoder.Logging.Models;
 using cCoder.Data.Models.Logging;
-using cCoder.Logging.Services;
+using cCoder.Logging.Services.Foundations;
 using FizzWare.NBuilder;
 using Moq;
 using DataLogDataItem = cCoder.Data.Models.Logging.LogDataItem;

@@ -2,11 +2,9 @@
 // Copyright (c) Paul.Ward@ccoder.co.uk
 // ---------------------------------------------------------------
 
-using cCoder.Logging.Dependencies.OData;
 using cCoder.Data.Models.Logging;
 
-
-namespace cCoder.Logging.Services.Foundations;
+namespace cCoder.Logging.Dependencies.OData;
 
 internal sealed class LoggingMetadataTypeService : ILoggingMetadataTypeService
 {
@@ -19,14 +17,14 @@ internal sealed class LoggingMetadataTypeService : ILoggingMetadataTypeService
             Types =
             [
                 Entity<LogDataItem>(),
-                Entity<LogEntry>(),
-            ],
-        },
+                Entity<LogEntry>()
+            ]
+        }
     ];
 
     private static ExtendedMetadataContainer Entity<T>() =>
         new(typeof(T), isEntity: true, hasEndpoint: true)
         {
-            Category = "Logging",
+            Category = "Logging"
         };
 }

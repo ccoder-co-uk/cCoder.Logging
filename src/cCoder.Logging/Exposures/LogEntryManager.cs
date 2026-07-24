@@ -4,6 +4,7 @@
 
 using cCoder.Data.Models.Logging;
 using cCoder.Logging.Models;
+using cCoder.Logging.Dependencies;
 using cCoder.Logging.Services.Orchestrations;
 
 namespace cCoder.Logging.Exposures;
@@ -36,15 +37,27 @@ internal sealed class LogEntryManager(
         logEntryOrchestrationService.DeleteLogEntryAsync(
             logEntryId: logEntryId);
 
-    public ValueTask<IEnumerable<Result<LogEntry>>> AddOrUpdateLogEntriesAsync(
+    public async ValueTask<IEnumerable<Result<LogEntry>>> AddOrUpdateLogEntriesAsync(
         IEnumerable<LogEntry> logEntries) =>
-        logEntryOrchestrationService.AddOrUpdateLogEntriesAsync(
-            logEntries: logEntries);
+        (await logEntryOrchestrationService
+                .AddOrUpdateLogEntryResultsAsync(
+                    logEntries: logEntries))
+        .Select(
+            selector: ToResult);
 
     public ValueTask DeleteAllLogEntriesAsync(
         IEnumerable<LogEntry> deletedLogEntries) =>
-        logEntryOrchestrationService.DeleteAllLogEntriesAsync(
+        logEntryOrchestrationService.DeleteAllLogEntryAsync(
             deletedLogEntries: deletedLogEntries);
+
+    private static Result<LogEntry> ToResult(
+        OperationResult<LogEntry> operationResult) =>
+        new()
+        {
+            Success = operationResult.Success,
+            Message = operationResult.Message,
+            Item = operationResult.Item
+        };
 
     public ValueTask<int> DeleteLogEntriesBeforeAsync(DateTime cutoff) =>
         logEntryOrchestrationService.DeleteLogEntriesBeforeAsync(

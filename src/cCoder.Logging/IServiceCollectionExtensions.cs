@@ -7,6 +7,7 @@ using cCoder.Logging.Api.OData;
 using cCoder.Logging.Brokers;
 using cCoder.Logging.Exposures.HostedServices;
 using cCoder.Logging.Dependencies.Logging;
+using cCoder.Logging.Dependencies.OData;
 using cCoder.Logging.Exposures;
 using cCoder.Logging.Models;
 using cCoder.Logging.Services.Foundations;
@@ -92,7 +93,6 @@ public static partial class IServiceCollectionExtensions
         services.AddTransient<ILogDataItemOrchestrationService, LogDataItemOrchestrationService>();
         services.AddTransient<ILogEntryOrchestrationService, LogEntryOrchestrationService>();
         services.AddTransient<ILogEntryCaptureOrchestrationService, LogEntryCaptureOrchestrationService>();
-        services.AddTransient<ILogRetentionOrchestrationService, LogRetentionOrchestrationService>();
     }
 
     private static void AddProcessings(this IServiceCollection services)
@@ -100,7 +100,11 @@ public static partial class IServiceCollectionExtensions
         services.AddTransient<ILogDataItemEventProcessingService, LogDataItemEventProcessingService>();
         services.AddTransient<ILogDataItemProcessingService, LogDataItemProcessingService>();
         services.AddTransient<ILogEntryEventProcessingService, LogEntryEventProcessingService>();
+        services.AddTransient<ILogEntryCaptureProcessingService, LogEntryCaptureProcessingService>();
         services.AddTransient<ILogEntryProcessingService, LogEntryProcessingService>();
+        services.AddTransient<
+            ILogEntryRetentionProcessingService,
+            LogEntryRetentionProcessingService>();
     }
 
     private static void AddHostedServiceExposures(this IServiceCollection services)

@@ -4,6 +4,7 @@
 
 using cCoder.Data.Models.Logging;
 using cCoder.Logging.Models;
+using cCoder.Logging.Dependencies;
 using cCoder.Logging.Services.Processings;
 
 namespace cCoder.Logging.Services.Orchestrations;
@@ -83,24 +84,25 @@ internal sealed partial class LogDataItemOrchestrationService(
                 logDataItemId: logDataItemId);
         });
 
-    public ValueTask<IEnumerable<Result<LogDataItem>>> AddOrUpdateLogDataItemsAsync(
+    public ValueTask<IEnumerable<OperationResult<LogDataItem>>> AddOrUpdateLogDataItemResultsAsync(
         IEnumerable<LogDataItem> logDataItems) =>
         TryCatch(operation: async () =>
         {
             ValidateInputs(inputs: [logDataItems]);
 
             return await logDataItemProcessingService
-                .AddOrUpdateLogDataItemsAsync(
+                .AddOrUpdateLogDataItemResultsAsync(
                     logDataItems: logDataItems);
         });
 
-    public ValueTask DeleteAllLogDataItemsAsync(
+    public ValueTask DeleteAllLogDataItemAsync(
         IEnumerable<LogDataItem> deletedLogDataItems) =>
         TryCatch(operation: async () =>
         {
             ValidateInputs(inputs: [deletedLogDataItems]);
 
-            await logDataItemProcessingService.DeleteAllLogDataItemsAsync(
+            await logDataItemProcessingService.DeleteAllLogDataItemAsync(
                 deletedLogDataItems: deletedLogDataItems);
         });
+
 }

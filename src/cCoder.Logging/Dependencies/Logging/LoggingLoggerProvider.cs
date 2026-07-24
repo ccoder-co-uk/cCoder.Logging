@@ -2,7 +2,7 @@
 // Copyright (c) Paul.Ward@ccoder.co.uk
 // ---------------------------------------------------------------
 
-using cCoder.Logging.Models;
+using cCoder.Logging.Dependencies.Logging;
 using cCoder.Logging.Services.Orchestrations;
 
 namespace cCoder.Logging.Dependencies.Logging;
@@ -55,14 +55,17 @@ internal sealed class LoggingLogger(
             ILogEntryCaptureOrchestrationService captureService =
                 scope.ServiceProvider.GetRequiredService<ILogEntryCaptureOrchestrationService>();
 
-            await captureService.CaptureAsync(new LogEntryCaptureRequest
+            LogEntryCaptureRequest logEntryCaptureRequest = new()
             {
                 Level = logLevel,
                 CategoryName = categoryName,
                 Message = message,
                 Exception = exception,
                 RequestDomain = httpContextAccessor?.HttpContext?.Request?.Host.Host
-            });
+            };
+
+            await captureService.CaptureLogEntryAsync(
+                logEntryCaptureRequest: logEntryCaptureRequest);
         }
         catch (Exception ex)
         {

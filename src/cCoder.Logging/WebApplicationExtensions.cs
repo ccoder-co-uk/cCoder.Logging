@@ -6,7 +6,7 @@ using System;
 using System.Text.Json;
 using cCoder.Data.Exposures;
 using cCoder.Logging.Exposures.Hubs;
-using cCoder.Logging.Services.Foundations;
+using cCoder.Logging.Dependencies.OData;
 
 
 namespace cCoder.Logging;

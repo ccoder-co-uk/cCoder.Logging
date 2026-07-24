@@ -28,11 +28,17 @@ public partial class LogDataItemController(
 
         return isExtendedMetaRequest
             ? Ok(
-                new LoggingModelBuilder()
+                value: new LoggingModelBuilder()
                     .Build()
-                    .EDMModel.GetExtendedMetadataForType("Logging", typeof(LogDataItem))
+                    .EDMModel.GetExtendedMetadataForType(
+                        context: "Logging",
+                        type: typeof(LogDataItem))
             )
-            : Ok(new MetadataContainer(typeof(LogDataItem), true, true));
+            : Ok(
+                value: new MetadataContainer(
+                    type: typeof(LogDataItem),
+                    isEntity: true,
+                    hasEndpoint: true));
     }
 
     [HttpGet]

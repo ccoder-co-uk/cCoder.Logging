@@ -4,6 +4,7 @@
 
 using cCoder.Data.Models.Logging;
 using cCoder.Logging.Models;
+using cCoder.Logging.Dependencies;
 
 namespace cCoder.Logging.Services.Processings;
 
@@ -15,9 +16,9 @@ internal interface ILogEntryProcessingService
     ValueTask<LogEntry> AddSystemLogEntryAsync(LogEntry newLogEntry);
     ValueTask<LogEntry> UpdateLogEntryAsync(LogEntry updatedLogEntry);
     ValueTask DeleteLogEntryAsync(int logEntryId);
-    ValueTask<IEnumerable<Result<LogEntry>>> AddOrUpdateLogEntriesAsync(
+    ValueTask<IEnumerable<OperationResult<LogEntry>>> AddOrUpdateLogEntryResultsAsync(
         IEnumerable<LogEntry> logEntries);
-    ValueTask DeleteAllLogEntriesAsync(
+    ValueTask DeleteAllLogEntryAsync(
         IEnumerable<LogEntry> deletedLogEntries);
     ValueTask<int> DeleteLogEntriesBeforeAsync(DateTime cutoff);
     int? ResolveAppId(string domainOrName);

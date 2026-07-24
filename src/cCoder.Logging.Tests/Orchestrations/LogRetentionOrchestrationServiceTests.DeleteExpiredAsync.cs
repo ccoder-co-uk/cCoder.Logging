@@ -15,20 +15,25 @@ public partial class LogRetentionOrchestrationServiceTests
         // Given
         DateTime before = DateTime.UtcNow.AddDays(-30).AddSeconds(-5);
         DateTime capturedCutoff = default;
-        logEntryProcessingServiceMock
-            .Setup(service => service.DeleteEntriesBeforeAsync(It.IsAny<DateTime>()))
+        logEntryServiceMock
+            .Setup(service => service.DeleteLogEntriesBeforeAsync(
+                It.IsAny<DateTime>()))
             .Callback<DateTime>(cutoff => capturedCutoff = cutoff)
             .ReturnsAsync(3);
 
         // When
-        int result = await orchestrationService.DeleteExpiredAsync();
+        int result = await processingService.DeleteExpiredLogEntriesAsync();
         DateTime after = DateTime.UtcNow.AddDays(-30).AddSeconds(5);
 
         // Then
         Assert.Equal(3, result);
         Assert.InRange(capturedCutoff, before, after);
-        logEntryProcessingServiceMock.Verify(service => service.DeleteEntriesBeforeAsync(It.IsAny<DateTime>()), Times.Once);
-        logEntryProcessingServiceMock.VerifyNoOtherCalls();
+        logEntryServiceMock.Verify(service =>
+            service.DeleteLogEntriesBeforeAsync(
+                It.IsAny<DateTime>()),
+            Times.Once);
+
+        logEntryServiceMock.VerifyNoOtherCalls();
     }
 
     [Fact]
@@ -38,10 +43,10 @@ public partial class LogRetentionOrchestrationServiceTests
         configuration.StoreLogEntries = false;
 
         // When
-        int result = await orchestrationService.DeleteExpiredAsync();
+        int result = await processingService.DeleteExpiredLogEntriesAsync();
 
         // Then
         Assert.Equal(0, result);
-        logEntryProcessingServiceMock.VerifyNoOtherCalls();
+        logEntryServiceMock.VerifyNoOtherCalls();
     }
 }

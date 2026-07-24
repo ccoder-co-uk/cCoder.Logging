@@ -19,7 +19,7 @@ internal sealed partial class LogDataItemEventService(
             ValidateInputs(inputs: [entity]);
 
             EventMessage<LogDataItem> message =
-                CreateEventMessage(logDataItem: entity);
+                CreateLogDataItemEventMessage(logDataItem: entity);
 
             await logDataItemEventBroker.RaiseLogDataItemAddEventAsync(
                 message: message);
@@ -31,7 +31,7 @@ internal sealed partial class LogDataItemEventService(
             ValidateInputs(inputs: [entity]);
 
             EventMessage<LogDataItem> message =
-                CreateEventMessage(logDataItem: entity);
+                CreateLogDataItemEventMessage(logDataItem: entity);
 
             await logDataItemEventBroker.RaiseLogDataItemUpdateEventAsync(
                 message: message);
@@ -43,13 +43,13 @@ internal sealed partial class LogDataItemEventService(
             ValidateInputs(inputs: [entity]);
 
             EventMessage<LogDataItem> message =
-                CreateEventMessage(logDataItem: entity);
+                CreateLogDataItemEventMessage(logDataItem: entity);
 
             await logDataItemEventBroker.RaiseLogDataItemDeleteEventAsync(
                 message: message);
         });
 
-    private EventMessage<LogDataItem> CreateEventMessage(
+    private EventMessage<LogDataItem> CreateLogDataItemEventMessage(
         LogDataItem logDataItem) =>
         new()
         {

@@ -4,6 +4,7 @@
 
 using cCoder.Data.Models.Logging;
 using cCoder.Logging.Models;
+using cCoder.Logging.Dependencies;
 using cCoder.Logging.Services.Foundations;
 
 namespace cCoder.Logging.Services.Processings;
@@ -78,17 +79,17 @@ internal sealed partial class LogEntryProcessingService(
                 logEntryId: logEntryId);
         });
 
-    public ValueTask<IEnumerable<Result<LogEntry>>> AddOrUpdateLogEntriesAsync(
+    public ValueTask<IEnumerable<OperationResult<LogEntry>>> AddOrUpdateLogEntryResultsAsync(
         IEnumerable<LogEntry> logEntries) =>
         TryCatch(operation: async () =>
         {
             ValidateInputs(inputs: [logEntries]);
 
-            List<Result<LogEntry>> results = [];
+            List<OperationResult<LogEntry>> results = [];
 
             foreach (LogEntry logEntry in logEntries)
             {
-                Result<LogEntry> result =
+                OperationResult<LogEntry> result =
                     await AddOrUpdateLogEntry(logEntry: logEntry);
 
                 results.Add(item: result);
@@ -97,7 +98,7 @@ internal sealed partial class LogEntryProcessingService(
             return results.AsEnumerable();
         });
 
-    public ValueTask DeleteAllLogEntriesAsync(
+    public ValueTask DeleteAllLogEntryAsync(
         IEnumerable<LogEntry> deletedLogEntries) =>
         TryCatch(operation: async () =>
         {
@@ -144,7 +145,7 @@ internal sealed partial class LogEntryProcessingService(
         return ToExternalLogEntry(logEntry: savedLogEntry);
     }
 
-    private async ValueTask<Result<LogEntry>> AddOrUpdateLogEntry(
+    private async ValueTask<OperationResult<LogEntry>> AddOrUpdateLogEntry(
         LogEntry logEntry)
     {
         try
@@ -162,7 +163,7 @@ internal sealed partial class LogEntryProcessingService(
                 ? "Added Successfully"
                 : "Updated Successfully";
 
-            return new Result<LogEntry>
+            return new OperationResult<LogEntry>
             {
                 Success = true,
                 Item = savedLogEntry,
@@ -171,7 +172,7 @@ internal sealed partial class LogEntryProcessingService(
         }
         catch (Exception exception)
         {
-            return new Result<LogEntry>
+            return new OperationResult<LogEntry>
             {
                 Success = false,
                 Item = logEntry,

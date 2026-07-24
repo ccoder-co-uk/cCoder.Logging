@@ -18,9 +18,9 @@ internal sealed partial class LogEntryService(
     public LogEntry GetLogEntry(int logEntryId) =>
         TryCatch(operation: () =>
         {
-            ValidateInputs(inputs: [logEntryId]);
+            ValidateLogEntryOnGet(logEntryId: logEntryId);
 
-            return GetAllLogEntries(ignoreFilters: false)
+            return SelectAllLogEntries(ignoreFilters: false)
                 .Where(predicate: logEntry => logEntry.Id == logEntryId)
                 .Select(selector: logEntry => ToExternalLogEntry(logEntry: logEntry))
                 .FirstOrDefault();
@@ -29,50 +29,67 @@ internal sealed partial class LogEntryService(
     public IQueryable<LogEntry> GetAllLogEntries(bool ignoreFilters = false) =>
         TryCatch(operation: () =>
         {
-            ValidateInputs(inputs: [ignoreFilters]);
+            ValidateAllLogEntriesOnGet(ignoreFilters: ignoreFilters);
 
-            IQueryable<LogEntry> logEntries = ignoreFilters
-                ? logEntryBroker.SelectAllLogEntriesIgnoringFilters()
-                : logEntryBroker.SelectAllLogEntries();
-
-            return logEntries;
+            return SelectAllLogEntries(ignoreFilters: ignoreFilters);
         });
 
     public ValueTask<LogEntry> AddLogEntryAsync(LogEntry newLogEntry) =>
         TryCatch(operation: async () =>
         {
-            ValidateInputs(inputs: [newLogEntry]);
+            ValidateLogEntryOnAdd(logEntry: newLogEntry);
             Authorize(logEntry: newLogEntry, privilege: "LogEntry_create");
 
-            return await logEntryBroker.InsertLogEntryAsync(
-                newLogEntry: newLogEntry);
+            LogEntry flatLogEntry = ToFlatLogEntry(logEntry: newLogEntry);
+
+            LogEntry savedLogEntry =
+                await logEntryBroker.InsertLogEntryAsync(
+                    newLogEntry: flatLogEntry);
+
+            newLogEntry.Id = savedLogEntry.Id;
+
+            return newLogEntry;
         });
 
     public ValueTask<LogEntry> AddSystemLogEntryAsync(LogEntry newLogEntry) =>
         TryCatch(operation: async () =>
         {
-            ValidateInputs(inputs: [newLogEntry]);
+            ValidateSystemLogEntryOnAdd(logEntry: newLogEntry);
 
-            return await logEntryBroker.InsertLogEntryAsync(
-                newLogEntry: newLogEntry);
+            LogEntry flatLogEntry = ToFlatLogEntry(logEntry: newLogEntry);
+
+            LogEntry savedLogEntry =
+                await logEntryBroker.InsertLogEntryAsync(
+                    newLogEntry: flatLogEntry);
+
+            newLogEntry.Id = savedLogEntry.Id;
+
+            return newLogEntry;
         });
 
     public ValueTask<LogEntry> UpdateLogEntryAsync(LogEntry updatedLogEntry) =>
         TryCatch(operation: async () =>
         {
-            ValidateInputs(inputs: [updatedLogEntry]);
+            ValidateLogEntryOnUpdate(logEntry: updatedLogEntry);
             Authorize(logEntry: updatedLogEntry, privilege: "LogEntry_update");
 
-            return await logEntryBroker.UpdateLogEntryAsync(
-                updatedLogEntry: updatedLogEntry);
+            LogEntry flatLogEntry = ToFlatLogEntry(logEntry: updatedLogEntry);
+
+            LogEntry savedLogEntry =
+                await logEntryBroker.UpdateLogEntryAsync(
+                    updatedLogEntry: flatLogEntry);
+
+            updatedLogEntry.Id = savedLogEntry.Id;
+
+            return updatedLogEntry;
         });
 
     public ValueTask DeleteLogEntryAsync(int logEntryId) =>
         TryCatch(operation: async () =>
         {
-            ValidateInputs(inputs: [logEntryId]);
+            ValidateLogEntryOnDelete(logEntryId: logEntryId);
 
-            LogEntry logEntry = GetLogEntry(logEntryId: logEntryId);
+            LogEntry logEntry = SelectLogEntry(logEntryId: logEntryId);
             Authorize(logEntry: logEntry, privilege: "LogEntry_delete");
 
             _ = await logEntryBroker.DeleteLogEntryAsync(
@@ -82,7 +99,7 @@ internal sealed partial class LogEntryService(
     public ValueTask<int> DeleteLogEntriesBeforeAsync(DateTime cutoff) =>
         TryCatch(operation: async () =>
         {
-            ValidateInputs(inputs: [cutoff]);
+            ValidateLogEntriesBeforeOnDelete(cutoff: cutoff);
 
             return await logEntryBroker.DeleteLogEntriesBeforeAsync(
                 cutoff: cutoff);
@@ -91,7 +108,7 @@ internal sealed partial class LogEntryService(
     public int? ResolveAppId(string domainOrName) =>
         TryCatch(operation: () =>
         {
-            ValidateInputs(inputs: [domainOrName]);
+            ValidateAppOnResolve(domainOrName: domainOrName);
 
             return logEntryBroker.SelectAppIdByDomainOrName(
                 domainOrName: domainOrName);
@@ -103,7 +120,8 @@ internal sealed partial class LogEntryService(
     {
         int? appId = logEntry.AppId > 0
             ? logEntry.AppId
-            : ResolveAppId(domainOrName: logEntry.AppName);
+            : logEntryBroker.SelectAppIdByDomainOrName(
+                domainOrName: logEntry.AppName);
 
         User user = authorizationBroker.SelectCurrentUser();
 
@@ -142,8 +160,33 @@ internal sealed partial class LogEntryService(
         appId.HasValue
         && (user.Roles?.Any(predicate: role =>
             role.Role.AppId == appId.Value
-            && role.Role.Allows(user, "app_admin"))
+            && role.Role.Allows(user: user, privilege: "app_admin"))
             ?? false);
+
+    private IQueryable<LogEntry> SelectAllLogEntries(
+        bool ignoreFilters) =>
+        ignoreFilters
+            ? logEntryBroker.SelectAllLogEntriesIgnoringFilters()
+            : logEntryBroker.SelectAllLogEntries();
+
+    private LogEntry SelectLogEntry(int logEntryId) =>
+        SelectAllLogEntries(ignoreFilters: false)
+            .Where(predicate: logEntry => logEntry.Id == logEntryId)
+            .Select(selector: logEntry =>
+                ToExternalLogEntry(logEntry: logEntry))
+            .FirstOrDefault();
+
+    private static LogEntry ToFlatLogEntry(LogEntry logEntry) =>
+        new()
+        {
+            Id = logEntry.Id,
+            AppId = logEntry.AppId,
+            Level = logEntry.Level,
+            Message = logEntry.Message,
+            AppName = logEntry.AppName,
+            TypeName = logEntry.TypeName,
+            Date = logEntry.Date
+        };
 
     private static LogEntry ToExternalLogEntry(LogEntry logEntry) =>
         new()

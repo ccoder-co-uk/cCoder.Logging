@@ -6,25 +6,29 @@ using cCoder.Logging.Models.Exceptions;
 
 namespace cCoder.Logging.Services.Processings;
 
-internal sealed partial class LogDataItemEventProcessingService
+internal sealed partial class LogEntryCaptureProcessingService
 {
-    private static async ValueTask TryCatch(Func<ValueTask> operation)
+    private static async ValueTask<TResult> TryCatch<TResult>(
+        Func<ValueTask<TResult>> operation)
     {
         try
         {
-            await operation();
+            return await operation();
         }
         catch (LoggingValidationException innerException)
         {
-            throw new LoggingValidationException(innerException: innerException);
+            throw new LoggingValidationException(
+                innerException: innerException);
         }
         catch (LoggingDependencyException innerException)
         {
-            throw new LoggingDependencyException(innerException: innerException);
+            throw new LoggingDependencyException(
+                innerException: innerException);
         }
         catch (Exception innerException)
         {
-            throw new LoggingServiceException(innerException: innerException);
+            throw new LoggingServiceException(
+                innerException: innerException);
         }
     }
 }

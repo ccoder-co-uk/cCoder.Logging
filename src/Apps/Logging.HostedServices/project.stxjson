@@ -25,7 +25,7 @@
       "Description": "Program.cs must compose the app through IServiceCollection using SDK namespaces and one local composition namespace only.",
       "Severity": "Warning",
       "Type": "Logging.HostedServices.Program",
-      "LineNumber": 8
+      "LineNumber": 12
     }
   ]
 }

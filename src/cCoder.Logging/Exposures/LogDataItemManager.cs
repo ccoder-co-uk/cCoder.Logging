@@ -4,6 +4,7 @@
 
 using cCoder.Data.Models.Logging;
 using cCoder.Logging.Models;
+using cCoder.Logging.Dependencies;
 using cCoder.Logging.Services.Orchestrations;
 
 namespace cCoder.Logging.Exposures;
@@ -33,13 +34,25 @@ internal sealed class LogDataItemManager(
         logDataItemOrchestrationService.DeleteLogDataItemAsync(
             logDataItemId: logDataItemId);
 
-    public ValueTask<IEnumerable<Result<LogDataItem>>> AddOrUpdateLogDataItemsAsync(
+    public async ValueTask<IEnumerable<Result<LogDataItem>>> AddOrUpdateLogDataItemsAsync(
         IEnumerable<LogDataItem> logDataItems) =>
-        logDataItemOrchestrationService.AddOrUpdateLogDataItemsAsync(
-            logDataItems: logDataItems);
+        (await logDataItemOrchestrationService
+                .AddOrUpdateLogDataItemResultsAsync(
+                    logDataItems: logDataItems))
+        .Select(
+            selector: ToResult);
 
     public ValueTask DeleteAllLogDataItemsAsync(
         IEnumerable<LogDataItem> deletedLogDataItems) =>
-        logDataItemOrchestrationService.DeleteAllLogDataItemsAsync(
+        logDataItemOrchestrationService.DeleteAllLogDataItemAsync(
             deletedLogDataItems: deletedLogDataItems);
+
+    private static Result<LogDataItem> ToResult(
+        OperationResult<LogDataItem> operationResult) =>
+        new()
+        {
+            Success = operationResult.Success,
+            Message = operationResult.Message,
+            Item = operationResult.Item
+        };
 }

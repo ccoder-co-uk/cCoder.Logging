@@ -64,10 +64,16 @@ internal sealed partial class LogEntryCaptureProcessingService(
         LogEntryCaptureRequest logEntryCaptureRequest,
         string thread)
     {
-        if (loggingConfiguration.StreamLogEntries)
+        if (loggingConfiguration.StreamLogEntries
+            && !string.IsNullOrWhiteSpace(value: thread))
         {
             IHubContext<LogHub> hubContext =
                 logEntryStreamBroker.SelectLogHubContext();
+
+            if (hubContext is null)
+            {
+                return;
+            }
 
             string level = logEntryCaptureRequest.Level
                 .ToString()

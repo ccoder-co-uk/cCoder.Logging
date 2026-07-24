@@ -25,7 +25,7 @@ cutoff: It.IsAny<DateTime>()))
             .ReturnsAsync(value: 3);
 
         // When
-        int result = await processingService.DeleteExpiredLogEntriesAsync();
+        int result = await ProcessingService.DeleteExpiredLogEntriesAsync();
 
         DateTime after = DateTime.UtcNow.AddDays(value: -30)
             .AddSeconds(value: 5);
@@ -49,7 +49,7 @@ times: Times.Once);
         configuration.StoreLogEntries = false;
 
         // When
-        int result = await processingService.DeleteExpiredLogEntriesAsync();
+        int result = await ProcessingService.DeleteExpiredLogEntriesAsync();
 
         // Then
         Assert.Equal(expected: 0, actual: result);

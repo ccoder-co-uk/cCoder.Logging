@@ -11,24 +11,18 @@ namespace cCoder.Core.Services.Tests.Logging.Orchestrations;
 
 public partial class LogRetentionOrchestrationServiceTests
 {
-    private readonly Mock<ILogEntryService> logEntryServiceMock;
-    private readonly LoggingConfiguration configuration;
-    private readonly LogEntryRetentionProcessingService processingService;
+    private readonly Mock<ILogEntryService> logEntryServiceMock = new(
+        behavior: MockBehavior.Strict);
 
-    public LogRetentionOrchestrationServiceTests()
+    private readonly LoggingConfiguration configuration = new()
     {
-        logEntryServiceMock = new Mock<ILogEntryService>(
-            behavior: MockBehavior.Strict);
+        StoreLogEntries = true,
+        RetentionDays = 30,
+        RetentionIntervalMinutes = 60
+    };
 
-        configuration = new LoggingConfiguration
-        {
-            StoreLogEntries = true,
-            RetentionDays = 30,
-            RetentionIntervalMinutes = 60
-        };
-
-        processingService = new LogEntryRetentionProcessingService(
+    private LogEntryRetentionProcessingService ProcessingService =>
+        new LogEntryRetentionProcessingService(
             logEntryService: logEntryServiceMock.Object,
             loggingConfiguration: configuration);
-    }
 }

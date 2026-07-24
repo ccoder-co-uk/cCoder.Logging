@@ -2,50 +2,61 @@
 // Copyright (c) Paul.Ward@ccoder.co.uk
 // ---------------------------------------------------------------
 
-using cCoder.Data;
-using cCoder.Logging.Brokers;
-using cCoder.Logging.Models;
 using cCoder.Data.Models.Logging;
 using cCoder.Eventing.Models;
-
+using cCoder.Logging.Brokers;
 
 namespace cCoder.Logging.Services.Foundations.Events;
 
-internal class LogDataItemEventService(
+internal sealed partial class LogDataItemEventService(
     ILogDataItemEventBroker logDataItemEventBroker,
-    ICoreAuthInfo authInfo
-) : ILogDataItemEventService
+    IAuthInfoBroker authInfoBroker)
+        : ILogDataItemEventService
 {
-    public async ValueTask RaiseLogDataItemAddEventAsync(LogDataItem entity)
-    {
-        EventMessage<LogDataItem> message = new()
+    public ValueTask RaiseLogDataItemAddEventAsync(LogDataItem entity) =>
+        TryCatch(operation: async () =>
         {
-            AuthInfo = new EventAuthInfo { SSOUserId = authInfo.SSOUserId },
-            Data = entity,
-        };
+            ValidateInputs(inputs: [entity]);
 
-        await logDataItemEventBroker.RaiseLogDataItemAddEventAsync(message);
-    }
+            EventMessage<LogDataItem> message =
+                CreateEventMessage(logDataItem: entity);
 
-    public async ValueTask RaiseLogDataItemUpdateEventAsync(LogDataItem entity)
-    {
-        EventMessage<LogDataItem> message = new()
+            await logDataItemEventBroker.RaiseLogDataItemAddEventAsync(
+                message: message);
+        });
+
+    public ValueTask RaiseLogDataItemUpdateEventAsync(LogDataItem entity) =>
+        TryCatch(operation: async () =>
         {
-            AuthInfo = new EventAuthInfo { SSOUserId = authInfo.SSOUserId },
-            Data = entity,
-        };
+            ValidateInputs(inputs: [entity]);
 
-        await logDataItemEventBroker.RaiseLogDataItemUpdateEventAsync(message);
-    }
+            EventMessage<LogDataItem> message =
+                CreateEventMessage(logDataItem: entity);
 
-    public async ValueTask RaiseLogDataItemDeleteEventAsync(LogDataItem entity)
-    {
-        EventMessage<LogDataItem> message = new()
+            await logDataItemEventBroker.RaiseLogDataItemUpdateEventAsync(
+                message: message);
+        });
+
+    public ValueTask RaiseLogDataItemDeleteEventAsync(LogDataItem entity) =>
+        TryCatch(operation: async () =>
         {
-            AuthInfo = new EventAuthInfo { SSOUserId = authInfo.SSOUserId },
-            Data = entity,
-        };
+            ValidateInputs(inputs: [entity]);
 
-        await logDataItemEventBroker.RaiseLogDataItemDeleteEventAsync(message);
-    }
+            EventMessage<LogDataItem> message =
+                CreateEventMessage(logDataItem: entity);
+
+            await logDataItemEventBroker.RaiseLogDataItemDeleteEventAsync(
+                message: message);
+        });
+
+    private EventMessage<LogDataItem> CreateEventMessage(
+        LogDataItem logDataItem) =>
+        new()
+        {
+            AuthInfo = new EventAuthInfo
+            {
+                SSOUserId = authInfoBroker.SelectCurrentSsoUserId(),
+            },
+            Data = logDataItem,
+        };
 }

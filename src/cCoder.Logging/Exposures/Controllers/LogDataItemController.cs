@@ -3,10 +3,11 @@
 // ---------------------------------------------------------------
 
 using cCoder.Logging.Api.OData;
+using cCoder.Logging.Dependencies.OData;
 using cCoder.Logging.Models;
 using cCoder.Data.Extensions;
 using cCoder.Data.Models.Logging;
-using cCoder.Logging.Services.Orchestrations;
+using cCoder.Logging.Exposures;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Query;
@@ -16,15 +17,10 @@ using Microsoft.AspNetCore.OData.Routing.Controllers;
 
 namespace cCoder.Logging.Exposures.Controllers;
 
-public partial class LogDataItemController : ODataController
+public partial class LogDataItemController(
+    ILogDataItemManager logDataItemManager)
+        : ODataController
 {
-    protected ILogDataItemOrchestrationService Service { get; }
-
-    public LogDataItemController(
-        ILogDataItemOrchestrationService service,
-        ILogger<LogDataItemController> log
-    ) => Service = service;
-
     [HttpGet]
     public IActionResult GetMetadata()
     {
@@ -32,7 +28,7 @@ public partial class LogDataItemController : ODataController
 
         return isExtendedMetaRequest
             ? Ok(
-                new cCoder.Logging.Api.OData.LoggingModelBuilder()
+                new LoggingModelBuilder()
                     .Build()
                     .EDMModel.GetExtendedMetadataForType("Logging", typeof(LogDataItem))
             )
@@ -48,7 +44,8 @@ public partial class LogDataItemController : ODataController
         MaxAnyAllExpressionDepth = 5,
         MaxExpansionDepth = 5
     )]
-    public IActionResult Get(ODataQueryOptions<LogDataItem> queryOptions) => Ok(Service.GetAll());
+    public IActionResult Get(ODataQueryOptions<LogDataItem> queryOptions) =>
+        Ok(value: logDataItemManager.GetAllLogDataItems());
 
     [HttpGet]
     [AllowAnonymous]
@@ -62,8 +59,12 @@ public partial class LogDataItemController : ODataController
     )]
     public IActionResult Get([FromRoute] int key)
     {
-        IQueryable<LogDataItem> result = Service.GetAll().AsQueryable().Where(logDataItem => logDataItem.Id == key);
-        return Ok(SingleResult.Create(result));
+        IQueryable<LogDataItem> result = logDataItemManager
+            .GetAllLogDataItems()
+            .AsQueryable()
+            .Where(predicate: logDataItem => logDataItem.Id == key);
+
+        return Ok(value: SingleResult.Create(queryable: result));
     }
 
     [HttpPost]
@@ -75,12 +76,16 @@ public partial class LogDataItemController : ODataController
         MaxAnyAllExpressionDepth = 5,
         MaxExpansionDepth = 5
     )]
-    public async Task<IActionResult> Post([FromBody] LogDataItem entity)
+    public async Task<IActionResult> Post([FromBody] LogDataItem newLogDataItem)
     {
         if (!ModelState.IsValid)
+        {
             return new cCoder.Logging.Api.OData.BadRequestResult(ModelState);
+        }
 
-        return Ok(await Service.AddAsync(entity));
+        LogDataItem savedLogDataItem = await logDataItemManager.AddLogDataItemAsync(
+            newLogDataItem: newLogDataItem);
+
+        return Ok(value: savedLogDataItem);
     }
-
 }

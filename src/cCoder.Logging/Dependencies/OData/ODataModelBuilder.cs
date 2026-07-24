@@ -3,12 +3,12 @@
 // ---------------------------------------------------------------
 
 using System.Linq.Expressions;
-using cCoder.Logging.Api.OData;
 using cCoder.Logging.Models;
+using cCoder.Logging.Models.OData;
 using cCoder.Data.Models.Logging;
 using Microsoft.OData.ModelBuilder;
 
-namespace cCoder.Logging.Api.OData;
+namespace cCoder.Logging.Dependencies.OData;
 
 public abstract class ODataModelBuilder
 {

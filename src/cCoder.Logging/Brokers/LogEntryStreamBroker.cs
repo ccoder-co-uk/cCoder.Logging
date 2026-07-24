@@ -7,22 +7,33 @@ using Microsoft.AspNetCore.SignalR;
 
 namespace cCoder.Logging.Brokers;
 
-public interface ILogEntryStreamBroker
+internal interface ILogEntryStreamBroker
 {
-    ValueTask StreamAsync(string thread, string level, string message);
+    IHubContext<LogHub> SelectLogHubContext();
+    ValueTask SendLogEntryAsync(
+        IHubContext<LogHub> hubContext,
+        string thread,
+        string level,
+        string message);
 }
 
-internal class LogEntryStreamBroker(IServiceProvider serviceProvider) : ILogEntryStreamBroker
+internal sealed class LogEntryStreamBroker(
+    IServiceProvider serviceProvider)
+        : ILogEntryStreamBroker
 {
-    public async ValueTask StreamAsync(string thread, string level, string message)
-    {
-        IHubContext<LogHub> hubContext = serviceProvider.GetService<IHubContext<LogHub>>();
+    public IHubContext<LogHub> SelectLogHubContext() =>
+        serviceProvider.GetService<IHubContext<LogHub>>();
 
-        if (hubContext is null || string.IsNullOrWhiteSpace(thread))
-            return;
-
+    public async ValueTask SendLogEntryAsync(
+        IHubContext<LogHub> hubContext,
+        string thread,
+        string level,
+        string message) =>
         await hubContext.Clients
             .Group(thread)
-            .SendAsync("ConsoleReceive", level, message, thread);
-    }
+            .SendAsync(
+                method: "ConsoleReceive",
+                arg1: level,
+                arg2: message,
+                arg3: thread);
 }

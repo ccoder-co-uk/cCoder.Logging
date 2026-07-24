@@ -196,30 +196,419 @@
               "Type": "System.Boolean"
             }
           ],
-          "ReturnType": "cCoder.Logging.Api.OData.ExtendedMetadataContainer"
+          "ReturnType": "cCoder.Logging.Dependencies.OData.ExtendedMetadataContainer"
         }
       ]
     },
     {
-      "Name": "cCoder.Logging.Api.OData.ExtendedMetadataContainer",
-      "StandardElementType": "Model",
+      "Name": "cCoder.Logging.Api.OData.ODataCollectionExtensions",
+      "StandardElementType": "Dependency",
+      "Properties": [],
+      "Methods": []
+    },
+    {
+      "Name": "cCoder.Logging.Api.OData.ODataJsonExtensions",
+      "StandardElementType": "Dependency",
+      "Properties": [],
+      "Methods": []
+    },
+    {
+      "Name": "cCoder.Logging.Api.OData.ODataTypeExtensions",
+      "StandardElementType": "Dependency",
+      "Properties": [],
+      "Methods": []
+    },
+    {
+      "Name": "cCoder.Logging.Brokers.AuthInfoBroker",
+      "StandardElementType": "Broker",
+      "Properties": [],
+      "Methods": [
+        {
+          "Name": "SelectCurrentSsoUserId",
+          "Inputs": [],
+          "ReturnType": "System.String"
+        }
+      ]
+    },
+    {
+      "Name": "cCoder.Logging.Brokers.AuthorizationBroker",
+      "StandardElementType": "Broker",
+      "Properties": [],
+      "Methods": [
+        {
+          "Name": "SelectAppById",
+          "Inputs": [
+            {
+              "Name": "appId",
+              "Type": "System.Int32"
+            }
+          ],
+          "ReturnType": "cCoder.Data.Models.CMS.App"
+        },
+        {
+          "Name": "SelectCurrentUser",
+          "Inputs": [],
+          "ReturnType": "cCoder.Data.Models.Security.User"
+        },
+        {
+          "Name": "SelectUserById",
+          "Inputs": [
+            {
+              "Name": "userId",
+              "Type": "System.String"
+            }
+          ],
+          "ReturnType": "cCoder.Data.Models.Security.User"
+        }
+      ]
+    },
+    {
+      "Name": "cCoder.Logging.Brokers.LogDataItemBroker",
+      "StandardElementType": "Broker",
+      "Properties": [],
+      "Methods": [
+        {
+          "Name": "DeleteAllLogDataItemsAsync",
+          "Inputs": [
+            {
+              "Name": "deletedLogDataItems",
+              "Type": "System.Collections.Generic.IEnumerable\u003CcCoder.Data.Models.Logging.LogDataItem\u003E"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask"
+        },
+        {
+          "Name": "DeleteLogDataItemAsync",
+          "Inputs": [
+            {
+              "Name": "deletedLogDataItem",
+              "Type": "cCoder.Data.Models.Logging.LogDataItem"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask\u003CSystem.Int32\u003E"
+        },
+        {
+          "Name": "InsertLogDataItemAsync",
+          "Inputs": [
+            {
+              "Name": "newLogDataItem",
+              "Type": "cCoder.Data.Models.Logging.LogDataItem"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask\u003CcCoder.Data.Models.Logging.LogDataItem\u003E"
+        },
+        {
+          "Name": "SelectAllLogDataItems",
+          "Inputs": [],
+          "ReturnType": "System.Linq.IQueryable\u003CcCoder.Data.Models.Logging.LogDataItem\u003E"
+        },
+        {
+          "Name": "SelectAllLogDataItemsIgnoringFilters",
+          "Inputs": [],
+          "ReturnType": "System.Linq.IQueryable\u003CcCoder.Data.Models.Logging.LogDataItem\u003E"
+        },
+        {
+          "Name": "SelectAppIdByLogDataItem",
+          "Inputs": [
+            {
+              "Name": "logDataItem",
+              "Type": "cCoder.Data.Models.Logging.LogDataItem"
+            }
+          ],
+          "ReturnType": "System.Int32?"
+        },
+        {
+          "Name": "UpdateLogDataItemAsync",
+          "Inputs": [
+            {
+              "Name": "updatedLogDataItem",
+              "Type": "cCoder.Data.Models.Logging.LogDataItem"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask\u003CcCoder.Data.Models.Logging.LogDataItem\u003E"
+        }
+      ]
+    },
+    {
+      "Name": "cCoder.Logging.Brokers.LogDataItemEventBroker",
+      "StandardElementType": "Broker",
+      "Properties": [],
+      "Methods": [
+        {
+          "Name": "RaiseLogDataItemAddEventAsync",
+          "Inputs": [
+            {
+              "Name": "message",
+              "Type": "cCoder.Eventing.Models.EventMessage\u003CcCoder.Data.Models.Logging.LogDataItem\u003E"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask"
+        },
+        {
+          "Name": "RaiseLogDataItemDeleteEventAsync",
+          "Inputs": [
+            {
+              "Name": "message",
+              "Type": "cCoder.Eventing.Models.EventMessage\u003CcCoder.Data.Models.Logging.LogDataItem\u003E"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask"
+        },
+        {
+          "Name": "RaiseLogDataItemUpdateEventAsync",
+          "Inputs": [
+            {
+              "Name": "message",
+              "Type": "cCoder.Eventing.Models.EventMessage\u003CcCoder.Data.Models.Logging.LogDataItem\u003E"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask"
+        }
+      ]
+    },
+    {
+      "Name": "cCoder.Logging.Brokers.LogEntryBroker",
+      "StandardElementType": "Broker",
+      "Properties": [],
+      "Methods": [
+        {
+          "Name": "DeleteAllLogEntriesAsync",
+          "Inputs": [
+            {
+              "Name": "deletedLogEntries",
+              "Type": "System.Collections.Generic.IEnumerable\u003CcCoder.Data.Models.Logging.LogEntry\u003E"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask"
+        },
+        {
+          "Name": "DeleteLogEntriesBeforeAsync",
+          "Inputs": [
+            {
+              "Name": "cutoff",
+              "Type": "System.DateTime"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask\u003CSystem.Int32\u003E"
+        },
+        {
+          "Name": "DeleteLogEntryAsync",
+          "Inputs": [
+            {
+              "Name": "deletedLogEntry",
+              "Type": "cCoder.Data.Models.Logging.LogEntry"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask\u003CSystem.Int32\u003E"
+        },
+        {
+          "Name": "InsertLogEntryAsync",
+          "Inputs": [
+            {
+              "Name": "newLogEntry",
+              "Type": "cCoder.Data.Models.Logging.LogEntry"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask\u003CcCoder.Data.Models.Logging.LogEntry\u003E"
+        },
+        {
+          "Name": "SelectAllLogEntries",
+          "Inputs": [],
+          "ReturnType": "System.Linq.IQueryable\u003CcCoder.Data.Models.Logging.LogEntry\u003E"
+        },
+        {
+          "Name": "SelectAllLogEntriesIgnoringFilters",
+          "Inputs": [],
+          "ReturnType": "System.Linq.IQueryable\u003CcCoder.Data.Models.Logging.LogEntry\u003E"
+        },
+        {
+          "Name": "SelectAppIdByDomainOrName",
+          "Inputs": [
+            {
+              "Name": "domainOrName",
+              "Type": "System.String"
+            }
+          ],
+          "ReturnType": "System.Int32?"
+        },
+        {
+          "Name": "UpdateLogEntryAsync",
+          "Inputs": [
+            {
+              "Name": "updatedLogEntry",
+              "Type": "cCoder.Data.Models.Logging.LogEntry"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask\u003CcCoder.Data.Models.Logging.LogEntry\u003E"
+        }
+      ]
+    },
+    {
+      "Name": "cCoder.Logging.Brokers.LogEntryEventBroker",
+      "StandardElementType": "Broker",
+      "Properties": [],
+      "Methods": [
+        {
+          "Name": "RaiseLogEntryAddEventAsync",
+          "Inputs": [
+            {
+              "Name": "message",
+              "Type": "cCoder.Eventing.Models.EventMessage\u003CcCoder.Data.Models.Logging.LogEntry\u003E"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask"
+        },
+        {
+          "Name": "RaiseLogEntryDeleteEventAsync",
+          "Inputs": [
+            {
+              "Name": "message",
+              "Type": "cCoder.Eventing.Models.EventMessage\u003CcCoder.Data.Models.Logging.LogEntry\u003E"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask"
+        },
+        {
+          "Name": "RaiseLogEntryUpdateEventAsync",
+          "Inputs": [
+            {
+              "Name": "message",
+              "Type": "cCoder.Eventing.Models.EventMessage\u003CcCoder.Data.Models.Logging.LogEntry\u003E"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask"
+        }
+      ]
+    },
+    {
+      "Name": "cCoder.Logging.Brokers.LogEntryStreamBroker",
+      "StandardElementType": "Broker",
+      "Properties": [],
+      "Methods": [
+        {
+          "Name": "SelectLogHubContext",
+          "Inputs": [],
+          "ReturnType": "IHubContext\u003CcCoder.Logging.Exposures.Hubs.LogHub\u003E"
+        },
+        {
+          "Name": "SendLogEntryAsync",
+          "Inputs": [
+            {
+              "Name": "hubContext",
+              "Type": "IHubContext\u003CcCoder.Logging.Exposures.Hubs.LogHub\u003E"
+            },
+            {
+              "Name": "thread",
+              "Type": "System.String"
+            },
+            {
+              "Name": "level",
+              "Type": "System.String"
+            },
+            {
+              "Name": "message",
+              "Type": "System.String"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask"
+        }
+      ]
+    },
+    {
+      "Name": "cCoder.Logging.Dependencies.Logging.LoggingLogger",
+      "StandardElementType": "Dependency",
+      "Properties": [],
+      "Methods": [
+        {
+          "Name": "BeginScope",
+          "Inputs": [
+            {
+              "Name": "state",
+              "Type": "TState"
+            }
+          ],
+          "ReturnType": "System.IDisposable"
+        },
+        {
+          "Name": "IsEnabled",
+          "Inputs": [
+            {
+              "Name": "logLevel",
+              "Type": "LogLevel"
+            }
+          ],
+          "ReturnType": "System.Boolean"
+        },
+        {
+          "Name": "Log",
+          "Inputs": [
+            {
+              "Name": "logLevel",
+              "Type": "LogLevel"
+            },
+            {
+              "Name": "eventId",
+              "Type": "EventId"
+            },
+            {
+              "Name": "state",
+              "Type": "TState"
+            },
+            {
+              "Name": "exception",
+              "Type": "System.Exception"
+            },
+            {
+              "Name": "formatter",
+              "Type": "System.Func\u003CTState, System.Exception, System.String\u003E"
+            }
+          ],
+          "ReturnType": "System.Void"
+        }
+      ]
+    },
+    {
+      "Name": "cCoder.Logging.Dependencies.Logging.LoggingLoggerProvider",
+      "StandardElementType": "Dependency",
+      "Properties": [],
+      "Methods": [
+        {
+          "Name": "CreateLogger",
+          "Inputs": [
+            {
+              "Name": "categoryName",
+              "Type": "System.String"
+            }
+          ],
+          "ReturnType": "ILogger"
+        },
+        {
+          "Name": "Dispose",
+          "Inputs": [],
+          "ReturnType": "System.Void"
+        }
+      ]
+    },
+    {
+      "Name": "cCoder.Logging.Dependencies.OData.ExtendedMetadataContainer",
+      "StandardElementType": "Dependency",
       "Properties": [
         {
           "Name": "Operations",
-          "Type": "System.Collections.Generic.IEnumerable\u003CcCoder.Logging.Api.OData.OperationContainer\u003E"
+          "Type": "System.Collections.Generic.IEnumerable\u003CcCoder.Logging.Dependencies.OData.OperationContainer\u003E"
         }
       ],
       "Methods": []
     },
     {
-      "Name": "cCoder.Logging.Api.OData.LoggingModelBuilder",
-      "StandardElementType": "Unknown",
+      "Name": "cCoder.Logging.Dependencies.OData.LoggingModelBuilder",
+      "StandardElementType": "Dependency",
       "Properties": [],
       "Methods": [
         {
           "Name": "Build",
           "Inputs": [],
-          "ReturnType": "cCoder.Logging.Api.OData.ODataModel"
+          "ReturnType": "cCoder.Logging.Models.OData.ODataModel"
         },
         {
           "Name": "Configure",
@@ -229,8 +618,8 @@
       ]
     },
     {
-      "Name": "cCoder.Logging.Api.OData.MetadataContainer",
-      "StandardElementType": "Unknown",
+      "Name": "cCoder.Logging.Dependencies.OData.MetadataContainer",
+      "StandardElementType": "Dependency",
       "Properties": [
         {
           "Name": "Category",
@@ -270,7 +659,7 @@
         },
         {
           "Name": "Properties",
-          "Type": "System.Collections.Generic.IEnumerable\u003CcCoder.Logging.Api.OData.PropertyContainer\u003E"
+          "Type": "System.Collections.Generic.IEnumerable\u003CcCoder.Logging.Dependencies.OData.PropertyContainer\u003E"
         },
         {
           "Name": "ServerType",
@@ -288,8 +677,8 @@
       "Methods": []
     },
     {
-      "Name": "cCoder.Logging.Api.OData.MetadataContainerSet",
-      "StandardElementType": "Model",
+      "Name": "cCoder.Logging.Dependencies.OData.MetadataContainerSet",
+      "StandardElementType": "Dependency",
       "Properties": [
         {
           "Name": "Name",
@@ -297,7 +686,7 @@
         },
         {
           "Name": "Types",
-          "Type": "cCoder.Logging.Api.OData.ExtendedMetadataContainer[]"
+          "Type": "cCoder.Logging.Dependencies.OData.ExtendedMetadataContainer[]"
         },
         {
           "Name": "UriBase",
@@ -307,76 +696,20 @@
       "Methods": []
     },
     {
-      "Name": "cCoder.Logging.Api.OData.ModelStateError",
-      "StandardElementType": "Model",
-      "Properties": [
-        {
-          "Name": "Errors",
-          "Type": "System.String[]"
-        },
-        {
-          "Name": "Key",
-          "Type": "System.String"
-        },
-        {
-          "Name": "Value",
-          "Type": "System.Object"
-        }
-      ],
-      "Methods": []
-    },
-    {
-      "Name": "cCoder.Logging.Api.OData.ODataCollectionExtensions",
+      "Name": "cCoder.Logging.Dependencies.OData.ODataModelBuilder",
       "StandardElementType": "Dependency",
-      "Properties": [],
-      "Methods": []
-    },
-    {
-      "Name": "cCoder.Logging.Api.OData.ODataJsonExtensions",
-      "StandardElementType": "Dependency",
-      "Properties": [],
-      "Methods": []
-    },
-    {
-      "Name": "cCoder.Logging.Api.OData.ODataModel",
-      "StandardElementType": "Model",
-      "Properties": [
-        {
-          "Name": "Context",
-          "Type": "System.String"
-        },
-        {
-          "Name": "Description",
-          "Type": "System.String"
-        },
-        {
-          "Name": "EDMModel",
-          "Type": "Microsoft.OData.Edm.IEdmModel"
-        }
-      ],
-      "Methods": []
-    },
-    {
-      "Name": "cCoder.Logging.Api.OData.ODataModelBuilder",
-      "StandardElementType": "Unknown",
       "Properties": [],
       "Methods": [
         {
           "Name": "Build",
           "Inputs": [],
-          "ReturnType": "cCoder.Logging.Api.OData.ODataModel"
+          "ReturnType": "cCoder.Logging.Models.OData.ODataModel"
         }
       ]
     },
     {
-      "Name": "cCoder.Logging.Api.OData.ODataTypeExtensions",
+      "Name": "cCoder.Logging.Dependencies.OData.OperationContainer",
       "StandardElementType": "Dependency",
-      "Properties": [],
-      "Methods": []
-    },
-    {
-      "Name": "cCoder.Logging.Api.OData.OperationContainer",
-      "StandardElementType": "Model",
       "Properties": [
         {
           "Name": "Definition",
@@ -400,7 +733,7 @@
         },
         {
           "Name": "ReturnType",
-          "Type": "cCoder.Logging.Api.OData.MetadataContainer"
+          "Type": "cCoder.Logging.Dependencies.OData.MetadataContainer"
         },
         {
           "Name": "Url",
@@ -410,8 +743,8 @@
       "Methods": []
     },
     {
-      "Name": "cCoder.Logging.Api.OData.PropertyContainer",
-      "StandardElementType": "Model",
+      "Name": "cCoder.Logging.Dependencies.OData.PropertyContainer",
+      "StandardElementType": "Dependency",
       "Properties": [
         {
           "Name": "Description",
@@ -469,305 +802,14 @@
       "Methods": []
     },
     {
-      "Name": "cCoder.Logging.Brokers.AuthorizationBroker",
-      "StandardElementType": "Broker",
+      "Name": "cCoder.Logging.Exposures.BaselineExposure",
+      "StandardElementType": "Exposure",
       "Properties": [],
       "Methods": [
         {
-          "Name": "Authorize",
-          "Inputs": [
-            {
-              "Name": "appId",
-              "Type": "System.Int32?"
-            },
-            {
-              "Name": "privilege",
-              "Type": "System.String"
-            }
-          ],
-          "ReturnType": "System.Void"
-        },
-        {
-          "Name": "GetCurrentUser",
+          "Name": "GetBaselinePackages",
           "Inputs": [],
-          "ReturnType": "cCoder.Data.Models.Security.User"
-        },
-        {
-          "Name": "IsAdmin",
-          "Inputs": [
-            {
-              "Name": "appId",
-              "Type": "System.Int32"
-            },
-            {
-              "Name": "userName",
-              "Type": "System.String"
-            }
-          ],
-          "ReturnType": "System.Boolean"
-        },
-        {
-          "Name": "IsAdminOfApp",
-          "Inputs": [
-            {
-              "Name": "appId",
-              "Type": "System.Int32?"
-            }
-          ],
-          "ReturnType": "System.Boolean"
-        }
-      ]
-    },
-    {
-      "Name": "cCoder.Logging.Brokers.LogDataItemBroker",
-      "StandardElementType": "Broker",
-      "Properties": [],
-      "Methods": [
-        {
-          "Name": "AddLogDataItemAsync",
-          "Inputs": [
-            {
-              "Name": "entity",
-              "Type": "cCoder.Data.Models.Logging.LogDataItem"
-            }
-          ],
-          "ReturnType": "System.Threading.Tasks.ValueTask\u003CcCoder.Data.Models.Logging.LogDataItem\u003E"
-        },
-        {
-          "Name": "DeleteAllLogDataItemsAsync",
-          "Inputs": [
-            {
-              "Name": "items",
-              "Type": "System.Collections.Generic.IEnumerable\u003CcCoder.Data.Models.Logging.LogDataItem\u003E"
-            }
-          ],
-          "ReturnType": "System.Threading.Tasks.ValueTask"
-        },
-        {
-          "Name": "DeleteLogDataItemAsync",
-          "Inputs": [
-            {
-              "Name": "entity",
-              "Type": "cCoder.Data.Models.Logging.LogDataItem"
-            }
-          ],
-          "ReturnType": "System.Threading.Tasks.ValueTask\u003CSystem.Int32\u003E"
-        },
-        {
-          "Name": "GetAllLogDataItems",
-          "Inputs": [
-            {
-              "Name": "ignoreFilters",
-              "Type": "System.Boolean"
-            }
-          ],
-          "ReturnType": "System.Linq.IQueryable\u003CcCoder.Data.Models.Logging.LogDataItem\u003E"
-        },
-        {
-          "Name": "GetAppId",
-          "Inputs": [
-            {
-              "Name": "entity",
-              "Type": "cCoder.Data.Models.Logging.LogDataItem"
-            }
-          ],
-          "ReturnType": "System.Int32?"
-        },
-        {
-          "Name": "UpdateLogDataItemAsync",
-          "Inputs": [
-            {
-              "Name": "entity",
-              "Type": "cCoder.Data.Models.Logging.LogDataItem"
-            }
-          ],
-          "ReturnType": "System.Threading.Tasks.ValueTask\u003CcCoder.Data.Models.Logging.LogDataItem\u003E"
-        }
-      ]
-    },
-    {
-      "Name": "cCoder.Logging.Brokers.LogDataItemEventBroker",
-      "StandardElementType": "Broker",
-      "Properties": [],
-      "Methods": [
-        {
-          "Name": "RaiseLogDataItemAddEventAsync",
-          "Inputs": [
-            {
-              "Name": "message",
-              "Type": "cCoder.Eventing.Models.EventMessage\u003CcCoder.Data.Models.Logging.LogDataItem\u003E"
-            }
-          ],
-          "ReturnType": "System.Threading.Tasks.ValueTask"
-        },
-        {
-          "Name": "RaiseLogDataItemDeleteEventAsync",
-          "Inputs": [
-            {
-              "Name": "message",
-              "Type": "cCoder.Eventing.Models.EventMessage\u003CcCoder.Data.Models.Logging.LogDataItem\u003E"
-            }
-          ],
-          "ReturnType": "System.Threading.Tasks.ValueTask"
-        },
-        {
-          "Name": "RaiseLogDataItemUpdateEventAsync",
-          "Inputs": [
-            {
-              "Name": "message",
-              "Type": "cCoder.Eventing.Models.EventMessage\u003CcCoder.Data.Models.Logging.LogDataItem\u003E"
-            }
-          ],
-          "ReturnType": "System.Threading.Tasks.ValueTask"
-        }
-      ]
-    },
-    {
-      "Name": "cCoder.Logging.Brokers.LogEntryBroker",
-      "StandardElementType": "Broker",
-      "Properties": [],
-      "Methods": [
-        {
-          "Name": "AddLogEntryAsync",
-          "Inputs": [
-            {
-              "Name": "entity",
-              "Type": "cCoder.Data.Models.Logging.LogEntry"
-            }
-          ],
-          "ReturnType": "System.Threading.Tasks.ValueTask\u003CcCoder.Data.Models.Logging.LogEntry\u003E"
-        },
-        {
-          "Name": "DeleteAllLogEntriesAsync",
-          "Inputs": [
-            {
-              "Name": "items",
-              "Type": "System.Collections.Generic.IEnumerable\u003CcCoder.Data.Models.Logging.LogEntry\u003E"
-            }
-          ],
-          "ReturnType": "System.Threading.Tasks.ValueTask"
-        },
-        {
-          "Name": "DeleteLogEntriesBeforeAsync",
-          "Inputs": [
-            {
-              "Name": "cutoff",
-              "Type": "System.DateTime"
-            }
-          ],
-          "ReturnType": "System.Threading.Tasks.ValueTask\u003CSystem.Int32\u003E"
-        },
-        {
-          "Name": "DeleteLogEntryAsync",
-          "Inputs": [
-            {
-              "Name": "entity",
-              "Type": "cCoder.Data.Models.Logging.LogEntry"
-            }
-          ],
-          "ReturnType": "System.Threading.Tasks.ValueTask\u003CSystem.Int32\u003E"
-        },
-        {
-          "Name": "GetAllLogEntries",
-          "Inputs": [
-            {
-              "Name": "ignoreFilters",
-              "Type": "System.Boolean"
-            }
-          ],
-          "ReturnType": "System.Linq.IQueryable\u003CcCoder.Data.Models.Logging.LogEntry\u003E"
-        },
-        {
-          "Name": "GetAppId",
-          "Inputs": [
-            {
-              "Name": "entity",
-              "Type": "cCoder.Data.Models.Logging.LogEntry"
-            }
-          ],
-          "ReturnType": "System.Int32?"
-        },
-        {
-          "Name": "GetAppId",
-          "Inputs": [
-            {
-              "Name": "domainOrName",
-              "Type": "System.String"
-            }
-          ],
-          "ReturnType": "System.Int32?"
-        },
-        {
-          "Name": "UpdateLogEntryAsync",
-          "Inputs": [
-            {
-              "Name": "entity",
-              "Type": "cCoder.Data.Models.Logging.LogEntry"
-            }
-          ],
-          "ReturnType": "System.Threading.Tasks.ValueTask\u003CcCoder.Data.Models.Logging.LogEntry\u003E"
-        }
-      ]
-    },
-    {
-      "Name": "cCoder.Logging.Brokers.LogEntryEventBroker",
-      "StandardElementType": "Broker",
-      "Properties": [],
-      "Methods": [
-        {
-          "Name": "RaiseLogEntryAddEventAsync",
-          "Inputs": [
-            {
-              "Name": "message",
-              "Type": "cCoder.Eventing.Models.EventMessage\u003CcCoder.Data.Models.Logging.LogEntry\u003E"
-            }
-          ],
-          "ReturnType": "System.Threading.Tasks.ValueTask"
-        },
-        {
-          "Name": "RaiseLogEntryDeleteEventAsync",
-          "Inputs": [
-            {
-              "Name": "message",
-              "Type": "cCoder.Eventing.Models.EventMessage\u003CcCoder.Data.Models.Logging.LogEntry\u003E"
-            }
-          ],
-          "ReturnType": "System.Threading.Tasks.ValueTask"
-        },
-        {
-          "Name": "RaiseLogEntryUpdateEventAsync",
-          "Inputs": [
-            {
-              "Name": "message",
-              "Type": "cCoder.Eventing.Models.EventMessage\u003CcCoder.Data.Models.Logging.LogEntry\u003E"
-            }
-          ],
-          "ReturnType": "System.Threading.Tasks.ValueTask"
-        }
-      ]
-    },
-    {
-      "Name": "cCoder.Logging.Brokers.LogEntryStreamBroker",
-      "StandardElementType": "Broker",
-      "Properties": [],
-      "Methods": [
-        {
-          "Name": "StreamAsync",
-          "Inputs": [
-            {
-              "Name": "thread",
-              "Type": "System.String"
-            },
-            {
-              "Name": "level",
-              "Type": "System.String"
-            },
-            {
-              "Name": "message",
-              "Type": "System.String"
-            }
-          ],
-          "ReturnType": "System.Threading.Tasks.ValueTask"
+          "ReturnType": "cCoder.Data.Models.Packaging.Package[]"
         }
       ]
     },
@@ -817,7 +859,7 @@
           "Name": "Post",
           "Inputs": [
             {
-              "Name": "entity",
+              "Name": "newLogDataItem",
               "Type": "cCoder.Data.Models.Logging.LogDataItem"
             }
           ],
@@ -859,7 +901,7 @@
           "Name": "Post",
           "Inputs": [
             {
-              "Name": "entity",
+              "Name": "newLogEntry",
               "Type": "cCoder.Data.Models.Logging.LogEntry"
             }
           ],
@@ -1004,77 +1046,186 @@
       ]
     },
     {
-      "Name": "cCoder.Logging.Exposures.Logging.LoggingLogger",
-      "StandardElementType": "Dependency",
+      "Name": "cCoder.Logging.Exposures.LogDataItemManager",
+      "StandardElementType": "Exposure",
       "Properties": [],
       "Methods": [
         {
-          "Name": "BeginScope",
+          "Name": "AddLogDataItemAsync",
           "Inputs": [
             {
-              "Name": "state",
-              "Type": "TState"
+              "Name": "newLogDataItem",
+              "Type": "cCoder.Data.Models.Logging.LogDataItem"
             }
           ],
-          "ReturnType": "System.IDisposable"
+          "ReturnType": "System.Threading.Tasks.ValueTask\u003CcCoder.Data.Models.Logging.LogDataItem\u003E"
         },
         {
-          "Name": "IsEnabled",
+          "Name": "AddOrUpdateLogDataItemsAsync",
           "Inputs": [
             {
-              "Name": "logLevel",
-              "Type": "LogLevel"
+              "Name": "logDataItems",
+              "Type": "System.Collections.Generic.IEnumerable\u003CcCoder.Data.Models.Logging.LogDataItem\u003E"
             }
           ],
-          "ReturnType": "System.Boolean"
+          "ReturnType": "System.Threading.Tasks.ValueTask\u003CSystem.Collections.Generic.IEnumerable\u003CcCoder.Logging.Models.Result\u003CcCoder.Data.Models.Logging.LogDataItem\u003E\u003E\u003E"
         },
         {
-          "Name": "Log",
+          "Name": "DeleteAllLogDataItemsAsync",
           "Inputs": [
             {
-              "Name": "logLevel",
-              "Type": "LogLevel"
-            },
-            {
-              "Name": "eventId",
-              "Type": "EventId"
-            },
-            {
-              "Name": "state",
-              "Type": "TState"
-            },
-            {
-              "Name": "exception",
-              "Type": "System.Exception"
-            },
-            {
-              "Name": "formatter",
-              "Type": "System.Func\u003CTState, System.Exception, System.String\u003E"
+              "Name": "deletedLogDataItems",
+              "Type": "System.Collections.Generic.IEnumerable\u003CcCoder.Data.Models.Logging.LogDataItem\u003E"
             }
           ],
-          "ReturnType": "System.Void"
+          "ReturnType": "System.Threading.Tasks.ValueTask"
+        },
+        {
+          "Name": "DeleteLogDataItemAsync",
+          "Inputs": [
+            {
+              "Name": "logDataItemId",
+              "Type": "System.Int32"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask"
+        },
+        {
+          "Name": "GetAllLogDataItems",
+          "Inputs": [
+            {
+              "Name": "ignoreFilters",
+              "Type": "System.Boolean"
+            }
+          ],
+          "ReturnType": "System.Linq.IQueryable\u003CcCoder.Data.Models.Logging.LogDataItem\u003E"
+        },
+        {
+          "Name": "GetLogDataItem",
+          "Inputs": [
+            {
+              "Name": "logDataItemId",
+              "Type": "System.Int32"
+            }
+          ],
+          "ReturnType": "cCoder.Data.Models.Logging.LogDataItem"
+        },
+        {
+          "Name": "UpdateLogDataItemAsync",
+          "Inputs": [
+            {
+              "Name": "updatedLogDataItem",
+              "Type": "cCoder.Data.Models.Logging.LogDataItem"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask\u003CcCoder.Data.Models.Logging.LogDataItem\u003E"
         }
       ]
     },
     {
-      "Name": "cCoder.Logging.Exposures.Logging.LoggingLoggerProvider",
-      "StandardElementType": "Dependency",
+      "Name": "cCoder.Logging.Exposures.LogEntryManager",
+      "StandardElementType": "Exposure",
       "Properties": [],
       "Methods": [
         {
-          "Name": "CreateLogger",
+          "Name": "AddLogEntryAsync",
           "Inputs": [
             {
-              "Name": "categoryName",
+              "Name": "newLogEntry",
+              "Type": "cCoder.Data.Models.Logging.LogEntry"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask\u003CcCoder.Data.Models.Logging.LogEntry\u003E"
+        },
+        {
+          "Name": "AddOrUpdateLogEntriesAsync",
+          "Inputs": [
+            {
+              "Name": "logEntries",
+              "Type": "System.Collections.Generic.IEnumerable\u003CcCoder.Data.Models.Logging.LogEntry\u003E"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask\u003CSystem.Collections.Generic.IEnumerable\u003CcCoder.Logging.Models.Result\u003CcCoder.Data.Models.Logging.LogEntry\u003E\u003E\u003E"
+        },
+        {
+          "Name": "AddSystemLogEntryAsync",
+          "Inputs": [
+            {
+              "Name": "newLogEntry",
+              "Type": "cCoder.Data.Models.Logging.LogEntry"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask\u003CcCoder.Data.Models.Logging.LogEntry\u003E"
+        },
+        {
+          "Name": "DeleteAllLogEntriesAsync",
+          "Inputs": [
+            {
+              "Name": "deletedLogEntries",
+              "Type": "System.Collections.Generic.IEnumerable\u003CcCoder.Data.Models.Logging.LogEntry\u003E"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask"
+        },
+        {
+          "Name": "DeleteLogEntriesBeforeAsync",
+          "Inputs": [
+            {
+              "Name": "cutoff",
+              "Type": "System.DateTime"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask\u003CSystem.Int32\u003E"
+        },
+        {
+          "Name": "DeleteLogEntryAsync",
+          "Inputs": [
+            {
+              "Name": "logEntryId",
+              "Type": "System.Int32"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask"
+        },
+        {
+          "Name": "GetAllLogEntries",
+          "Inputs": [
+            {
+              "Name": "ignoreFilters",
+              "Type": "System.Boolean"
+            }
+          ],
+          "ReturnType": "System.Linq.IQueryable\u003CcCoder.Data.Models.Logging.LogEntry\u003E"
+        },
+        {
+          "Name": "GetLogEntry",
+          "Inputs": [
+            {
+              "Name": "logEntryId",
+              "Type": "System.Int32"
+            }
+          ],
+          "ReturnType": "cCoder.Data.Models.Logging.LogEntry"
+        },
+        {
+          "Name": "ResolveAppId",
+          "Inputs": [
+            {
+              "Name": "domainOrName",
               "Type": "System.String"
             }
           ],
-          "ReturnType": "ILogger"
+          "ReturnType": "System.Int32?"
         },
         {
-          "Name": "Dispose",
-          "Inputs": [],
-          "ReturnType": "System.Void"
+          "Name": "UpdateLogEntryAsync",
+          "Inputs": [
+            {
+              "Name": "updatedLogEntry",
+              "Type": "cCoder.Data.Models.Logging.LogEntry"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask\u003CcCoder.Data.Models.Logging.LogEntry\u003E"
         }
       ]
     },
@@ -1088,6 +1239,27 @@
         }
       ],
       "Methods": []
+    },
+    {
+      "Name": "cCoder.Logging.Extensions.LoggingConfigurationExtensions",
+      "StandardElementType": "Dependency",
+      "Properties": [],
+      "Methods": [
+        {
+          "Name": "WithEventProviders",
+          "Inputs": [
+            {
+              "Name": "configuration",
+              "Type": "cCoder.Logging.Models.LoggingConfiguration"
+            },
+            {
+              "Name": "eventProviders",
+              "Type": "cCoder.Eventing.Models.EventProvider[]"
+            }
+          ],
+          "ReturnType": "cCoder.Logging.Models.LoggingConfiguration"
+        }
+      ]
     },
     {
       "Name": "cCoder.Logging.IServiceCollectionExtensions",
@@ -1265,6 +1437,24 @@
       "Methods": []
     },
     {
+      "Name": "cCoder.Logging.Models.Exceptions.LoggingDependencyException",
+      "StandardElementType": "Dependency",
+      "Properties": [],
+      "Methods": []
+    },
+    {
+      "Name": "cCoder.Logging.Models.Exceptions.LoggingServiceException",
+      "StandardElementType": "Dependency",
+      "Properties": [],
+      "Methods": []
+    },
+    {
+      "Name": "cCoder.Logging.Models.Exceptions.LoggingValidationException",
+      "StandardElementType": "Dependency",
+      "Properties": [],
+      "Methods": []
+    },
+    {
       "Name": "cCoder.Logging.Models.LogEntryCaptureRequest",
       "StandardElementType": "Model",
       "Properties": [
@@ -1352,18 +1542,45 @@
           "Type": "System.Boolean"
         }
       ],
-      "Methods": [
+      "Methods": []
+    },
+    {
+      "Name": "cCoder.Logging.Models.OData.ModelStateError",
+      "StandardElementType": "Model",
+      "Properties": [
         {
-          "Name": "WithEventProviders",
-          "Inputs": [
-            {
-              "Name": "eventProviders",
-              "Type": "cCoder.Eventing.Models.EventProvider[]"
-            }
-          ],
-          "ReturnType": "cCoder.Logging.Models.LoggingConfiguration"
+          "Name": "Errors",
+          "Type": "System.String[]"
+        },
+        {
+          "Name": "Key",
+          "Type": "System.String"
+        },
+        {
+          "Name": "Value",
+          "Type": "System.Object"
         }
-      ]
+      ],
+      "Methods": []
+    },
+    {
+      "Name": "cCoder.Logging.Models.OData.ODataModel",
+      "StandardElementType": "Model",
+      "Properties": [
+        {
+          "Name": "Context",
+          "Type": "System.String"
+        },
+        {
+          "Name": "Description",
+          "Type": "System.String"
+        },
+        {
+          "Name": "EDMModel",
+          "Type": "Microsoft.OData.Edm.IEdmModel"
+        }
+      ],
+      "Methods": []
     },
     {
       "Name": "cCoder.Logging.Models.ODataCollection\u003CTCollectionType\u003E",
@@ -1500,74 +1717,32 @@
       ]
     },
     {
-      "Name": "cCoder.Logging.Services.Foundations.LoggingMetadataTypeService",
+      "Name": "cCoder.Logging.Services.Foundations.LogDataItemService",
       "StandardElementType": "FoundationService",
       "Properties": [],
       "Methods": [
         {
-          "Name": "GetKnownMetadata",
-          "Inputs": [],
-          "ReturnType": "System.Collections.Generic.IEnumerable\u003CcCoder.Logging.Api.OData.MetadataContainerSet\u003E"
-        }
-      ]
-    },
-    {
-      "Name": "cCoder.Logging.Services.LogDataItemService",
-      "StandardElementType": "Unknown",
-      "Properties": [],
-      "Methods": [
-        {
-          "Name": "AddAsync",
+          "Name": "AddLogDataItemAsync",
           "Inputs": [
             {
-              "Name": "logDataItem",
+              "Name": "newLogDataItem",
               "Type": "cCoder.Data.Models.Logging.LogDataItem"
             }
           ],
           "ReturnType": "System.Threading.Tasks.ValueTask\u003CcCoder.Data.Models.Logging.LogDataItem\u003E"
         },
         {
-          "Name": "AddOrUpdate",
+          "Name": "DeleteLogDataItemAsync",
           "Inputs": [
             {
-              "Name": "items",
-              "Type": "System.Collections.Generic.IEnumerable\u003CcCoder.Data.Models.Logging.LogDataItem\u003E"
-            }
-          ],
-          "ReturnType": "System.Threading.Tasks.ValueTask\u003CSystem.Collections.Generic.IEnumerable\u003CcCoder.Logging.Models.Result\u003CcCoder.Data.Models.Logging.LogDataItem\u003E\u003E\u003E"
-        },
-        {
-          "Name": "DeleteAllAsync",
-          "Inputs": [
-            {
-              "Name": "items",
-              "Type": "System.Collections.Generic.IEnumerable\u003CcCoder.Data.Models.Logging.LogDataItem\u003E"
-            }
-          ],
-          "ReturnType": "System.Threading.Tasks.ValueTask"
-        },
-        {
-          "Name": "DeleteAsync",
-          "Inputs": [
-            {
-              "Name": "id",
+              "Name": "logDataItemId",
               "Type": "System.Int32"
             }
           ],
           "ReturnType": "System.Threading.Tasks.ValueTask"
         },
         {
-          "Name": "Get",
-          "Inputs": [
-            {
-              "Name": "id",
-              "Type": "System.Int32"
-            }
-          ],
-          "ReturnType": "cCoder.Data.Models.Logging.LogDataItem"
-        },
-        {
-          "Name": "GetAll",
+          "Name": "GetAllLogDataItems",
           "Inputs": [
             {
               "Name": "ignoreFilters",
@@ -1577,10 +1752,20 @@
           "ReturnType": "System.Linq.IQueryable\u003CcCoder.Data.Models.Logging.LogDataItem\u003E"
         },
         {
-          "Name": "UpdateAsync",
+          "Name": "GetLogDataItem",
           "Inputs": [
             {
-              "Name": "logDataItem",
+              "Name": "logDataItemId",
+              "Type": "System.Int32"
+            }
+          ],
+          "ReturnType": "cCoder.Data.Models.Logging.LogDataItem"
+        },
+        {
+          "Name": "UpdateLogDataItemAsync",
+          "Inputs": [
+            {
+              "Name": "updatedLogDataItem",
               "Type": "cCoder.Data.Models.Logging.LogDataItem"
             }
           ],
@@ -1589,62 +1774,32 @@
       ]
     },
     {
-      "Name": "cCoder.Logging.Services.LogEntryService",
-      "StandardElementType": "Unknown",
+      "Name": "cCoder.Logging.Services.Foundations.LogEntryService",
+      "StandardElementType": "FoundationService",
       "Properties": [],
       "Methods": [
         {
-          "Name": "AddAsync",
+          "Name": "AddLogEntryAsync",
           "Inputs": [
             {
-              "Name": "logEntry",
+              "Name": "newLogEntry",
               "Type": "cCoder.Data.Models.Logging.LogEntry"
             }
           ],
           "ReturnType": "System.Threading.Tasks.ValueTask\u003CcCoder.Data.Models.Logging.LogEntry\u003E"
         },
         {
-          "Name": "AddOrUpdate",
+          "Name": "AddSystemLogEntryAsync",
           "Inputs": [
             {
-              "Name": "items",
-              "Type": "System.Collections.Generic.IEnumerable\u003CcCoder.Data.Models.Logging.LogEntry\u003E"
-            }
-          ],
-          "ReturnType": "System.Threading.Tasks.ValueTask\u003CSystem.Collections.Generic.IEnumerable\u003CcCoder.Logging.Models.Result\u003CcCoder.Data.Models.Logging.LogEntry\u003E\u003E\u003E"
-        },
-        {
-          "Name": "AddSystemAsync",
-          "Inputs": [
-            {
-              "Name": "logEntry",
+              "Name": "newLogEntry",
               "Type": "cCoder.Data.Models.Logging.LogEntry"
             }
           ],
           "ReturnType": "System.Threading.Tasks.ValueTask\u003CcCoder.Data.Models.Logging.LogEntry\u003E"
         },
         {
-          "Name": "DeleteAllAsync",
-          "Inputs": [
-            {
-              "Name": "items",
-              "Type": "System.Collections.Generic.IEnumerable\u003CcCoder.Data.Models.Logging.LogEntry\u003E"
-            }
-          ],
-          "ReturnType": "System.Threading.Tasks.ValueTask"
-        },
-        {
-          "Name": "DeleteAsync",
-          "Inputs": [
-            {
-              "Name": "id",
-              "Type": "System.Int32"
-            }
-          ],
-          "ReturnType": "System.Threading.Tasks.ValueTask"
-        },
-        {
-          "Name": "DeleteEntriesBeforeAsync",
+          "Name": "DeleteLogEntriesBeforeAsync",
           "Inputs": [
             {
               "Name": "cutoff",
@@ -1654,17 +1809,17 @@
           "ReturnType": "System.Threading.Tasks.ValueTask\u003CSystem.Int32\u003E"
         },
         {
-          "Name": "Get",
+          "Name": "DeleteLogEntryAsync",
           "Inputs": [
             {
-              "Name": "id",
+              "Name": "logEntryId",
               "Type": "System.Int32"
             }
           ],
-          "ReturnType": "cCoder.Data.Models.Logging.LogEntry"
+          "ReturnType": "System.Threading.Tasks.ValueTask"
         },
         {
-          "Name": "GetAll",
+          "Name": "GetAllLogEntries",
           "Inputs": [
             {
               "Name": "ignoreFilters",
@@ -1672,6 +1827,16 @@
             }
           ],
           "ReturnType": "System.Linq.IQueryable\u003CcCoder.Data.Models.Logging.LogEntry\u003E"
+        },
+        {
+          "Name": "GetLogEntry",
+          "Inputs": [
+            {
+              "Name": "logEntryId",
+              "Type": "System.Int32"
+            }
+          ],
+          "ReturnType": "cCoder.Data.Models.Logging.LogEntry"
         },
         {
           "Name": "ResolveAppId",
@@ -1684,14 +1849,26 @@
           "ReturnType": "System.Int32?"
         },
         {
-          "Name": "UpdateAsync",
+          "Name": "UpdateLogEntryAsync",
           "Inputs": [
             {
-              "Name": "logEntry",
+              "Name": "updatedLogEntry",
               "Type": "cCoder.Data.Models.Logging.LogEntry"
             }
           ],
           "ReturnType": "System.Threading.Tasks.ValueTask\u003CcCoder.Data.Models.Logging.LogEntry\u003E"
+        }
+      ]
+    },
+    {
+      "Name": "cCoder.Logging.Services.Foundations.LoggingMetadataTypeService",
+      "StandardElementType": "FoundationService",
+      "Properties": [],
+      "Methods": [
+        {
+          "Name": "GetKnownMetadata",
+          "Inputs": [],
+          "ReturnType": "System.Collections.Generic.IEnumerable\u003CcCoder.Logging.Dependencies.OData.MetadataContainerSet\u003E"
         }
       ]
     },
@@ -1701,57 +1878,47 @@
       "Properties": [],
       "Methods": [
         {
-          "Name": "AddAsync",
+          "Name": "AddLogDataItemAsync",
           "Inputs": [
             {
-              "Name": "logDataItem",
+              "Name": "newLogDataItem",
               "Type": "cCoder.Data.Models.Logging.LogDataItem"
             }
           ],
           "ReturnType": "System.Threading.Tasks.ValueTask\u003CcCoder.Data.Models.Logging.LogDataItem\u003E"
         },
         {
-          "Name": "AddOrUpdate",
+          "Name": "AddOrUpdateLogDataItemsAsync",
           "Inputs": [
             {
-              "Name": "items",
+              "Name": "logDataItems",
               "Type": "System.Collections.Generic.IEnumerable\u003CcCoder.Data.Models.Logging.LogDataItem\u003E"
             }
           ],
           "ReturnType": "System.Threading.Tasks.ValueTask\u003CSystem.Collections.Generic.IEnumerable\u003CcCoder.Logging.Models.Result\u003CcCoder.Data.Models.Logging.LogDataItem\u003E\u003E\u003E"
         },
         {
-          "Name": "DeleteAllAsync",
+          "Name": "DeleteAllLogDataItemsAsync",
           "Inputs": [
             {
-              "Name": "items",
+              "Name": "deletedLogDataItems",
               "Type": "System.Collections.Generic.IEnumerable\u003CcCoder.Data.Models.Logging.LogDataItem\u003E"
             }
           ],
           "ReturnType": "System.Threading.Tasks.ValueTask"
         },
         {
-          "Name": "DeleteAsync",
+          "Name": "DeleteLogDataItemAsync",
           "Inputs": [
             {
-              "Name": "id",
+              "Name": "logDataItemId",
               "Type": "System.Int32"
             }
           ],
           "ReturnType": "System.Threading.Tasks.ValueTask"
         },
         {
-          "Name": "Get",
-          "Inputs": [
-            {
-              "Name": "id",
-              "Type": "System.Int32"
-            }
-          ],
-          "ReturnType": "cCoder.Data.Models.Logging.LogDataItem"
-        },
-        {
-          "Name": "GetAll",
+          "Name": "GetAllLogDataItems",
           "Inputs": [
             {
               "Name": "ignoreFilters",
@@ -1761,10 +1928,20 @@
           "ReturnType": "System.Linq.IQueryable\u003CcCoder.Data.Models.Logging.LogDataItem\u003E"
         },
         {
-          "Name": "UpdateAsync",
+          "Name": "GetLogDataItem",
           "Inputs": [
             {
-              "Name": "logDataItem",
+              "Name": "logDataItemId",
+              "Type": "System.Int32"
+            }
+          ],
+          "ReturnType": "cCoder.Data.Models.Logging.LogDataItem"
+        },
+        {
+          "Name": "UpdateLogDataItemAsync",
+          "Inputs": [
+            {
+              "Name": "updatedLogDataItem",
               "Type": "cCoder.Data.Models.Logging.LogDataItem"
             }
           ],
@@ -1795,57 +1972,47 @@
       "Properties": [],
       "Methods": [
         {
-          "Name": "AddAsync",
+          "Name": "AddLogEntryAsync",
           "Inputs": [
             {
-              "Name": "logEntry",
+              "Name": "newLogEntry",
               "Type": "cCoder.Data.Models.Logging.LogEntry"
             }
           ],
           "ReturnType": "System.Threading.Tasks.ValueTask\u003CcCoder.Data.Models.Logging.LogEntry\u003E"
         },
         {
-          "Name": "AddOrUpdate",
+          "Name": "AddOrUpdateLogEntriesAsync",
           "Inputs": [
             {
-              "Name": "items",
+              "Name": "logEntries",
               "Type": "System.Collections.Generic.IEnumerable\u003CcCoder.Data.Models.Logging.LogEntry\u003E"
             }
           ],
           "ReturnType": "System.Threading.Tasks.ValueTask\u003CSystem.Collections.Generic.IEnumerable\u003CcCoder.Logging.Models.Result\u003CcCoder.Data.Models.Logging.LogEntry\u003E\u003E\u003E"
         },
         {
-          "Name": "AddSystemAsync",
+          "Name": "AddSystemLogEntryAsync",
           "Inputs": [
             {
-              "Name": "logEntry",
+              "Name": "newLogEntry",
               "Type": "cCoder.Data.Models.Logging.LogEntry"
             }
           ],
           "ReturnType": "System.Threading.Tasks.ValueTask\u003CcCoder.Data.Models.Logging.LogEntry\u003E"
         },
         {
-          "Name": "DeleteAllAsync",
+          "Name": "DeleteAllLogEntriesAsync",
           "Inputs": [
             {
-              "Name": "items",
+              "Name": "deletedLogEntries",
               "Type": "System.Collections.Generic.IEnumerable\u003CcCoder.Data.Models.Logging.LogEntry\u003E"
             }
           ],
           "ReturnType": "System.Threading.Tasks.ValueTask"
         },
         {
-          "Name": "DeleteAsync",
-          "Inputs": [
-            {
-              "Name": "id",
-              "Type": "System.Int32"
-            }
-          ],
-          "ReturnType": "System.Threading.Tasks.ValueTask"
-        },
-        {
-          "Name": "DeleteEntriesBeforeAsync",
+          "Name": "DeleteLogEntriesBeforeAsync",
           "Inputs": [
             {
               "Name": "cutoff",
@@ -1855,17 +2022,17 @@
           "ReturnType": "System.Threading.Tasks.ValueTask\u003CSystem.Int32\u003E"
         },
         {
-          "Name": "Get",
+          "Name": "DeleteLogEntryAsync",
           "Inputs": [
             {
-              "Name": "id",
+              "Name": "logEntryId",
               "Type": "System.Int32"
             }
           ],
-          "ReturnType": "cCoder.Data.Models.Logging.LogEntry"
+          "ReturnType": "System.Threading.Tasks.ValueTask"
         },
         {
-          "Name": "GetAll",
+          "Name": "GetAllLogEntries",
           "Inputs": [
             {
               "Name": "ignoreFilters",
@@ -1873,6 +2040,16 @@
             }
           ],
           "ReturnType": "System.Linq.IQueryable\u003CcCoder.Data.Models.Logging.LogEntry\u003E"
+        },
+        {
+          "Name": "GetLogEntry",
+          "Inputs": [
+            {
+              "Name": "logEntryId",
+              "Type": "System.Int32"
+            }
+          ],
+          "ReturnType": "cCoder.Data.Models.Logging.LogEntry"
         },
         {
           "Name": "ResolveAppId",
@@ -1885,10 +2062,10 @@
           "ReturnType": "System.Int32?"
         },
         {
-          "Name": "UpdateAsync",
+          "Name": "UpdateLogEntryAsync",
           "Inputs": [
             {
-              "Name": "logEntry",
+              "Name": "updatedLogEntry",
               "Type": "cCoder.Data.Models.Logging.LogEntry"
             }
           ],
@@ -1966,57 +2143,47 @@
       "Properties": [],
       "Methods": [
         {
-          "Name": "AddAsync",
+          "Name": "AddLogDataItemAsync",
           "Inputs": [
             {
-              "Name": "logDataItem",
+              "Name": "newLogDataItem",
               "Type": "cCoder.Data.Models.Logging.LogDataItem"
             }
           ],
           "ReturnType": "System.Threading.Tasks.ValueTask\u003CcCoder.Data.Models.Logging.LogDataItem\u003E"
         },
         {
-          "Name": "AddOrUpdate",
+          "Name": "AddOrUpdateLogDataItemsAsync",
           "Inputs": [
             {
-              "Name": "items",
+              "Name": "logDataItems",
               "Type": "System.Collections.Generic.IEnumerable\u003CcCoder.Data.Models.Logging.LogDataItem\u003E"
             }
           ],
           "ReturnType": "System.Threading.Tasks.ValueTask\u003CSystem.Collections.Generic.IEnumerable\u003CcCoder.Logging.Models.Result\u003CcCoder.Data.Models.Logging.LogDataItem\u003E\u003E\u003E"
         },
         {
-          "Name": "DeleteAllAsync",
+          "Name": "DeleteAllLogDataItemsAsync",
           "Inputs": [
             {
-              "Name": "items",
+              "Name": "deletedLogDataItems",
               "Type": "System.Collections.Generic.IEnumerable\u003CcCoder.Data.Models.Logging.LogDataItem\u003E"
             }
           ],
           "ReturnType": "System.Threading.Tasks.ValueTask"
         },
         {
-          "Name": "DeleteAsync",
+          "Name": "DeleteLogDataItemAsync",
           "Inputs": [
             {
-              "Name": "id",
+              "Name": "logDataItemId",
               "Type": "System.Int32"
             }
           ],
           "ReturnType": "System.Threading.Tasks.ValueTask"
         },
         {
-          "Name": "Get",
-          "Inputs": [
-            {
-              "Name": "id",
-              "Type": "System.Int32"
-            }
-          ],
-          "ReturnType": "cCoder.Data.Models.Logging.LogDataItem"
-        },
-        {
-          "Name": "GetAll",
+          "Name": "GetAllLogDataItems",
           "Inputs": [
             {
               "Name": "ignoreFilters",
@@ -2026,10 +2193,20 @@
           "ReturnType": "System.Linq.IQueryable\u003CcCoder.Data.Models.Logging.LogDataItem\u003E"
         },
         {
-          "Name": "UpdateAsync",
+          "Name": "GetLogDataItem",
           "Inputs": [
             {
-              "Name": "logDataItem",
+              "Name": "logDataItemId",
+              "Type": "System.Int32"
+            }
+          ],
+          "ReturnType": "cCoder.Data.Models.Logging.LogDataItem"
+        },
+        {
+          "Name": "UpdateLogDataItemAsync",
+          "Inputs": [
+            {
+              "Name": "updatedLogDataItem",
               "Type": "cCoder.Data.Models.Logging.LogDataItem"
             }
           ],
@@ -2080,57 +2257,47 @@
       "Properties": [],
       "Methods": [
         {
-          "Name": "AddAsync",
+          "Name": "AddLogEntryAsync",
           "Inputs": [
             {
-              "Name": "logEntry",
+              "Name": "newLogEntry",
               "Type": "cCoder.Data.Models.Logging.LogEntry"
             }
           ],
           "ReturnType": "System.Threading.Tasks.ValueTask\u003CcCoder.Data.Models.Logging.LogEntry\u003E"
         },
         {
-          "Name": "AddOrUpdate",
+          "Name": "AddOrUpdateLogEntriesAsync",
           "Inputs": [
             {
-              "Name": "items",
+              "Name": "logEntries",
               "Type": "System.Collections.Generic.IEnumerable\u003CcCoder.Data.Models.Logging.LogEntry\u003E"
             }
           ],
           "ReturnType": "System.Threading.Tasks.ValueTask\u003CSystem.Collections.Generic.IEnumerable\u003CcCoder.Logging.Models.Result\u003CcCoder.Data.Models.Logging.LogEntry\u003E\u003E\u003E"
         },
         {
-          "Name": "AddSystemAsync",
+          "Name": "AddSystemLogEntryAsync",
           "Inputs": [
             {
-              "Name": "logEntry",
+              "Name": "newLogEntry",
               "Type": "cCoder.Data.Models.Logging.LogEntry"
             }
           ],
           "ReturnType": "System.Threading.Tasks.ValueTask\u003CcCoder.Data.Models.Logging.LogEntry\u003E"
         },
         {
-          "Name": "DeleteAllAsync",
+          "Name": "DeleteAllLogEntriesAsync",
           "Inputs": [
             {
-              "Name": "items",
+              "Name": "deletedLogEntries",
               "Type": "System.Collections.Generic.IEnumerable\u003CcCoder.Data.Models.Logging.LogEntry\u003E"
             }
           ],
           "ReturnType": "System.Threading.Tasks.ValueTask"
         },
         {
-          "Name": "DeleteAsync",
-          "Inputs": [
-            {
-              "Name": "id",
-              "Type": "System.Int32"
-            }
-          ],
-          "ReturnType": "System.Threading.Tasks.ValueTask"
-        },
-        {
-          "Name": "DeleteEntriesBeforeAsync",
+          "Name": "DeleteLogEntriesBeforeAsync",
           "Inputs": [
             {
               "Name": "cutoff",
@@ -2140,17 +2307,17 @@
           "ReturnType": "System.Threading.Tasks.ValueTask\u003CSystem.Int32\u003E"
         },
         {
-          "Name": "Get",
+          "Name": "DeleteLogEntryAsync",
           "Inputs": [
             {
-              "Name": "id",
+              "Name": "logEntryId",
               "Type": "System.Int32"
             }
           ],
-          "ReturnType": "cCoder.Data.Models.Logging.LogEntry"
+          "ReturnType": "System.Threading.Tasks.ValueTask"
         },
         {
-          "Name": "GetAll",
+          "Name": "GetAllLogEntries",
           "Inputs": [
             {
               "Name": "ignoreFilters",
@@ -2158,6 +2325,16 @@
             }
           ],
           "ReturnType": "System.Linq.IQueryable\u003CcCoder.Data.Models.Logging.LogEntry\u003E"
+        },
+        {
+          "Name": "GetLogEntry",
+          "Inputs": [
+            {
+              "Name": "logEntryId",
+              "Type": "System.Int32"
+            }
+          ],
+          "ReturnType": "cCoder.Data.Models.Logging.LogEntry"
         },
         {
           "Name": "ResolveAppId",
@@ -2170,10 +2347,10 @@
           "ReturnType": "System.Int32?"
         },
         {
-          "Name": "UpdateAsync",
+          "Name": "UpdateLogEntryAsync",
           "Inputs": [
             {
-              "Name": "logEntry",
+              "Name": "updatedLogEntry",
               "Type": "cCoder.Data.Models.Logging.LogEntry"
             }
           ],
@@ -2215,16 +2392,32 @@
   ],
   "Links": [
     {
+      "FromType": "cCoder.Logging.Exposures.Controllers.BaselineController",
+      "ToType": "cCoder.Logging.Exposures.BaselineExposure"
+    },
+    {
       "FromType": "cCoder.Logging.Exposures.Controllers.LogDataItemController",
-      "ToType": "cCoder.Logging.Services.Orchestrations.LogDataItemOrchestrationService"
+      "ToType": "cCoder.Logging.Exposures.LogDataItemManager"
     },
     {
       "FromType": "cCoder.Logging.Exposures.Controllers.LogEntryController",
-      "ToType": "cCoder.Logging.Services.Orchestrations.LogEntryOrchestrationService"
+      "ToType": "cCoder.Logging.Exposures.LogEntryManager"
     },
     {
       "FromType": "cCoder.Logging.Exposures.Hubs.LogHub",
       "ToType": "cCoder.Logging.Brokers.AuthorizationBroker"
+    },
+    {
+      "FromType": "cCoder.Logging.Exposures.LogDataItemManager",
+      "ToType": "cCoder.Logging.Services.Orchestrations.LogDataItemOrchestrationService"
+    },
+    {
+      "FromType": "cCoder.Logging.Exposures.LogEntryManager",
+      "ToType": "cCoder.Logging.Services.Orchestrations.LogEntryOrchestrationService"
+    },
+    {
+      "FromType": "cCoder.Logging.Services.Foundations.Events.LogDataItemEventService",
+      "ToType": "cCoder.Logging.Brokers.AuthInfoBroker"
     },
     {
       "FromType": "cCoder.Logging.Services.Foundations.Events.LogDataItemEventService",
@@ -2232,22 +2425,26 @@
     },
     {
       "FromType": "cCoder.Logging.Services.Foundations.Events.LogEntryEventService",
+      "ToType": "cCoder.Logging.Brokers.AuthInfoBroker"
+    },
+    {
+      "FromType": "cCoder.Logging.Services.Foundations.Events.LogEntryEventService",
       "ToType": "cCoder.Logging.Brokers.LogEntryEventBroker"
     },
     {
-      "FromType": "cCoder.Logging.Services.LogDataItemService",
+      "FromType": "cCoder.Logging.Services.Foundations.LogDataItemService",
       "ToType": "cCoder.Logging.Brokers.AuthorizationBroker"
     },
     {
-      "FromType": "cCoder.Logging.Services.LogDataItemService",
+      "FromType": "cCoder.Logging.Services.Foundations.LogDataItemService",
       "ToType": "cCoder.Logging.Brokers.LogDataItemBroker"
     },
     {
-      "FromType": "cCoder.Logging.Services.LogEntryService",
+      "FromType": "cCoder.Logging.Services.Foundations.LogEntryService",
       "ToType": "cCoder.Logging.Brokers.AuthorizationBroker"
     },
     {
-      "FromType": "cCoder.Logging.Services.LogEntryService",
+      "FromType": "cCoder.Logging.Services.Foundations.LogEntryService",
       "ToType": "cCoder.Logging.Brokers.LogEntryBroker"
     },
     {
@@ -2296,7 +2493,7 @@
     },
     {
       "FromType": "cCoder.Logging.Services.Processings.LogDataItemProcessingService",
-      "ToType": "cCoder.Logging.Services.LogDataItemService"
+      "ToType": "cCoder.Logging.Services.Foundations.LogDataItemService"
     },
     {
       "FromType": "cCoder.Logging.Services.Processings.LogEntryEventProcessingService",
@@ -2304,548 +2501,100 @@
     },
     {
       "FromType": "cCoder.Logging.Services.Processings.LogEntryProcessingService",
-      "ToType": "cCoder.Logging.Services.LogEntryService"
+      "ToType": "cCoder.Logging.Services.Foundations.LogEntryService"
     }
   ],
   "AnalysisItems": [
     {
-      "Code": "STXSTRUCT001",
-      "Description": "The source file must live in the standard folder for its element type.",
+      "Code": "STXFORMAT001",
+      "Description": "Source files must not contain newline characters after the final code token.",
       "Severity": "Warning",
-      "Type": "cCoder.Logging.Api.OData.ExtendedMetadataContainer",
-      "LineNumber": 129
+      "Type": "cCoder.Logging.Brokers.AuthInfoBroker",
+      "LineNumber": 20
     },
     {
-      "Code": "STX0001",
-      "Description": "The type is not a valid Standard element type.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Api.OData.LoggingModelBuilder",
-      "LineNumber": 12
-    },
-    {
-      "Code": "STX0001",
-      "Description": "The type is not a valid Standard element type.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Api.OData.MetadataContainer",
-      "LineNumber": 21
-    },
-    {
-      "Code": "STXSTRUCT001",
-      "Description": "The source file must live in the standard folder for its element type.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Api.OData.MetadataContainerSet",
-      "LineNumber": 11
-    },
-    {
-      "Code": "STXM003",
-      "Description": "Model properties must not use framework validation attributes or the required modifier; validation belongs in service collectors.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Api.OData.MetadataContainerSet",
-      "LineNumber": 13
-    },
-    {
-      "Code": "STXSTRUCT001",
-      "Description": "The source file must live in the standard folder for its element type.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Api.OData.ModelStateError",
-      "LineNumber": 150
-    },
-    {
-      "Code": "STXM002",
-      "Description": "Model properties must not declare default values.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Api.OData.ModelStateError",
-      "LineNumber": 152
-    },
-    {
-      "Code": "STXSTRUCT001",
-      "Description": "The source file must live in the standard folder for its element type.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Api.OData.ODataModel",
-      "LineNumber": 10
-    },
-    {
-      "Code": "STXM002",
-      "Description": "Model properties must not declare default values.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Api.OData.ODataModel",
-      "LineNumber": 12
-    },
-    {
-      "Code": "STXM002",
-      "Description": "Model properties must not declare default values.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Api.OData.ODataModel",
-      "LineNumber": 13
-    },
-    {
-      "Code": "STXM002",
-      "Description": "Model properties must not declare default values.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Api.OData.ODataModel",
-      "LineNumber": 14
-    },
-    {
-      "Code": "STX0001",
-      "Description": "The type is not a valid Standard element type.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Api.OData.ODataModelBuilder",
-      "LineNumber": 13
-    },
-    {
-      "Code": "STXSTRUCT001",
-      "Description": "The source file must live in the standard folder for its element type.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Api.OData.OperationContainer",
-      "LineNumber": 156
-    },
-    {
-      "Code": "STXSTRUCT001",
-      "Description": "The source file must live in the standard folder for its element type.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Api.OData.PropertyContainer",
-      "LineNumber": 139
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
+      "Code": "STXFORMAT001",
+      "Description": "Source files must not contain newline characters after the final code token.",
       "Severity": "Warning",
       "Type": "cCoder.Logging.Brokers.AuthorizationBroker",
-      "LineNumber": 33
+      "LineNumber": 52
     },
     {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Brokers.AuthorizationBroker",
-      "LineNumber": 40
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Brokers.AuthorizationBroker",
-      "LineNumber": 40
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Brokers.AuthorizationBroker",
-      "LineNumber": 44
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Brokers.AuthorizationBroker",
-      "LineNumber": 44
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Brokers.AuthorizationBroker",
-      "LineNumber": 45
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Brokers.AuthorizationBroker",
-      "LineNumber": 48
-    },
-    {
-      "Code": "STXB002",
-      "Description": "A broker must not contain branching logic.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Brokers.AuthorizationBroker",
-      "LineNumber": 55
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Brokers.AuthorizationBroker",
-      "LineNumber": 55
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Brokers.AuthorizationBroker",
-      "LineNumber": 55
-    },
-    {
-      "Code": "STXFORMAT007",
-      "Description": "Control-flow statement bodies must always be enclosed in scope braces.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Brokers.AuthorizationBroker",
-      "LineNumber": 56
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Brokers.AuthorizationBroker",
-      "LineNumber": 63
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Brokers.AuthorizationBroker",
-      "LineNumber": 64
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Brokers.AuthorizationBroker",
-      "LineNumber": 66
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Brokers.AuthorizationBroker",
-      "LineNumber": 72
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Brokers.AuthorizationBroker",
-      "LineNumber": 72
-    },
-    {
-      "Code": "STXB002",
-      "Description": "A broker must not contain branching logic.",
+      "Code": "STXFORMAT001",
+      "Description": "Source files must not contain newline characters after the final code token.",
       "Severity": "Warning",
       "Type": "cCoder.Logging.Brokers.LogDataItemBroker",
-      "LineNumber": 27
+      "LineNumber": 105
     },
     {
-      "Code": "STXFORMAT008",
-      "Description": "Wrapped statements must be separated from adjacent method statements by an empty line.",
+      "Code": "STXFORMAT001",
+      "Description": "Source files must not contain newline characters after the final code token.",
       "Severity": "Warning",
-      "Type": "cCoder.Logging.Brokers.LogDataItemBroker",
+      "Type": "cCoder.Logging.Brokers.LogDataItemEventBroker",
+      "LineNumber": 30
+    },
+    {
+      "Code": "STXFORMAT001",
+      "Description": "Source files must not contain newline characters after the final code token.",
+      "Severity": "Warning",
+      "Type": "cCoder.Logging.Brokers.LogEntryBroker",
+      "LineNumber": 119
+    },
+    {
+      "Code": "STXFORMAT001",
+      "Description": "Source files must not contain newline characters after the final code token.",
+      "Severity": "Warning",
+      "Type": "cCoder.Logging.Brokers.LogEntryEventBroker",
+      "LineNumber": 30
+    },
+    {
+      "Code": "STXFORMAT012",
+      "Description": "Expression-bodied methods must return awaitable calls directly instead of adding redundant async and await keywords.",
+      "Severity": "Warning",
+      "Type": "cCoder.Logging.Brokers.LogEntryStreamBroker",
       "LineNumber": 27
     },
     {
       "Code": "STXFORMAT005",
       "Description": "Method call arguments must declare their parameter names.",
       "Severity": "Warning",
-      "Type": "cCoder.Logging.Brokers.LogDataItemBroker",
-      "LineNumber": 35
+      "Type": "cCoder.Logging.Brokers.LogEntryStreamBroker",
+      "LineNumber": 32
     },
     {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Brokers.LogDataItemBroker",
-      "LineNumber": 43
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Brokers.LogDataItemBroker",
-      "LineNumber": 51
-    },
-    {
-      "Code": "STXB002",
-      "Description": "A broker must not contain branching logic.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Brokers.LogDataItemBroker",
-      "LineNumber": 58
-    },
-    {
-      "Code": "STXFORMAT003",
-      "Description": "Control-flow blocks must be separated from adjacent method statements by an empty line.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Brokers.LogDataItemBroker",
-      "LineNumber": 58
-    },
-    {
-      "Code": "STXFORMAT007",
-      "Description": "Control-flow statement bodies must always be enclosed in scope braces.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Brokers.LogDataItemBroker",
-      "LineNumber": 59
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Brokers.LogDataItemBroker",
-      "LineNumber": 62
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Brokers.LogDataItemBroker",
-      "LineNumber": 69
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Brokers.LogDataItemBroker",
-      "LineNumber": 69
-    },
-    {
-      "Code": "STXFORMAT008",
-      "Description": "Wrapped statements must be separated from adjacent method statements by an empty line.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Brokers.LogDataItemBroker",
-      "LineNumber": 69
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Brokers.LogDataItemEventBroker",
-      "LineNumber": 23
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Brokers.LogDataItemEventBroker",
-      "LineNumber": 26
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Brokers.LogDataItemEventBroker",
-      "LineNumber": 29
-    },
-    {
-      "Code": "STXB002",
-      "Description": "A broker must not contain branching logic.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Brokers.LogEntryBroker",
-      "LineNumber": 29
-    },
-    {
-      "Code": "STXFORMAT008",
-      "Description": "Wrapped statements must be separated from adjacent method statements by an empty line.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Brokers.LogEntryBroker",
-      "LineNumber": 29
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Brokers.LogEntryBroker",
-      "LineNumber": 37
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Brokers.LogEntryBroker",
-      "LineNumber": 45
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Brokers.LogEntryBroker",
-      "LineNumber": 53
-    },
-    {
-      "Code": "STXB002",
-      "Description": "A broker must not contain branching logic.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Brokers.LogEntryBroker",
-      "LineNumber": 60
-    },
-    {
-      "Code": "STXFORMAT003",
-      "Description": "Control-flow blocks must be separated from adjacent method statements by an empty line.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Brokers.LogEntryBroker",
-      "LineNumber": 60
-    },
-    {
-      "Code": "STXFORMAT007",
-      "Description": "Control-flow statement bodies must always be enclosed in scope braces.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Brokers.LogEntryBroker",
-      "LineNumber": 61
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Brokers.LogEntryBroker",
-      "LineNumber": 64
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Brokers.LogEntryBroker",
-      "LineNumber": 71
-    },
-    {
-      "Code": "STXFORMAT008",
-      "Description": "Wrapped statements must be separated from adjacent method statements by an empty line.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Brokers.LogEntryBroker",
-      "LineNumber": 71
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Brokers.LogEntryBroker",
-      "LineNumber": 76
-    },
-    {
-      "Code": "STXB002",
-      "Description": "A broker must not contain branching logic.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Brokers.LogEntryBroker",
-      "LineNumber": 82
-    },
-    {
-      "Code": "STXFORMAT007",
-      "Description": "Control-flow statement bodies must always be enclosed in scope braces.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Brokers.LogEntryBroker",
-      "LineNumber": 83
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Brokers.LogEntryBroker",
-      "LineNumber": 85
-    },
-    {
-      "Code": "STXB002",
-      "Description": "A broker must not contain branching logic.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Brokers.LogEntryBroker",
-      "LineNumber": 92
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Brokers.LogEntryBroker",
-      "LineNumber": 92
-    },
-    {
-      "Code": "STXFORMAT007",
-      "Description": "Control-flow statement bodies must always be enclosed in scope braces.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Brokers.LogEntryBroker",
-      "LineNumber": 93
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Brokers.LogEntryBroker",
-      "LineNumber": 95
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Brokers.LogEntryBroker",
-      "LineNumber": 95
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Brokers.LogEntryEventBroker",
-      "LineNumber": 23
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Brokers.LogEntryEventBroker",
-      "LineNumber": 26
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Brokers.LogEntryEventBroker",
-      "LineNumber": 29
-    },
-    {
-      "Code": "STXB002",
-      "Description": "A broker must not contain branching logic.",
+      "Code": "STXFORMAT001",
+      "Description": "Source files must not contain newline characters after the final code token.",
       "Severity": "Warning",
       "Type": "cCoder.Logging.Brokers.LogEntryStreamBroker",
-      "LineNumber": 21
+      "LineNumber": 39
     },
     {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
+      "Code": "STXFORMAT001",
+      "Description": "Source files must not contain newline characters after the final code token.",
       "Severity": "Warning",
-      "Type": "cCoder.Logging.Brokers.LogEntryStreamBroker",
-      "LineNumber": 21
+      "Type": "cCoder.Logging.Exposures.BaselineExposure",
+      "LineNumber": 19
     },
     {
-      "Code": "STXFORMAT007",
-      "Description": "Control-flow statement bodies must always be enclosed in scope braces.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Brokers.LogEntryStreamBroker",
-      "LineNumber": 22
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Brokers.LogEntryStreamBroker",
-      "LineNumber": 24
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Brokers.LogEntryStreamBroker",
-      "LineNumber": 24
-    },
-    {
-      "Code": "STXAPI001",
-      "Description": "An API controller must have exactly one business dependency.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Exposures.Controllers.BaselineController",
-      "LineNumber": 10
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
+      "Code": "STXFORMAT001",
+      "Description": "Source files must not contain newline characters after the final code token.",
       "Severity": "Warning",
       "Type": "cCoder.Logging.Exposures.Controllers.BaselineController",
       "LineNumber": 16
     },
     {
-      "Code": "STX0002",
-      "Description": "Properties may only be declared on models.",
+      "Code": "STXFORMAT005",
+      "Description": "Method call arguments must declare their parameter names.",
       "Severity": "Warning",
       "Type": "cCoder.Logging.Exposures.Controllers.LogDataItemController",
-      "LineNumber": 21
+      "LineNumber": 30
     },
     {
       "Code": "STXFORMAT005",
       "Description": "Method call arguments must declare their parameter names.",
       "Severity": "Warning",
       "Type": "cCoder.Logging.Exposures.Controllers.LogDataItemController",
-      "LineNumber": 34
+      "LineNumber": 31
     },
     {
       "Code": "STXFORMAT005",
@@ -2855,102 +2604,25 @@
       "LineNumber": 35
     },
     {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
+      "Code": "STXFORMAT001",
+      "Description": "Source files must not contain newline characters after the final code token.",
       "Severity": "Warning",
       "Type": "cCoder.Logging.Exposures.Controllers.LogDataItemController",
-      "LineNumber": 39
-    },
-    {
-      "Code": "STXFORMAT002",
-      "Description": "Expression-bodied method implementations must start on the line after the =\u003E token.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Exposures.Controllers.LogDataItemController",
-      "LineNumber": 51
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Exposures.Controllers.LogDataItemController",
-      "LineNumber": 51
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Exposures.Controllers.LogDataItemController",
-      "LineNumber": 65
-    },
-    {
-      "Code": "STXFORMAT009",
-      "Description": "Every method chained from an invocation result must begin on a new line.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Exposures.Controllers.LogDataItemController",
-      "LineNumber": 65
-    },
-    {
-      "Code": "STXFORMAT009",
-      "Description": "Every method chained from an invocation result must begin on a new line.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Exposures.Controllers.LogDataItemController",
-      "LineNumber": 65
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Exposures.Controllers.LogDataItemController",
-      "LineNumber": 66
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Exposures.Controllers.LogDataItemController",
-      "LineNumber": 66
-    },
-    {
-      "Code": "STX0019",
-      "Description": "create model parameters must use the new prefix.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Exposures.Controllers.LogDataItemController",
-      "LineNumber": 78
-    },
-    {
-      "Code": "STXFORMAT007",
-      "Description": "Control-flow statement bodies must always be enclosed in scope braces.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Exposures.Controllers.LogDataItemController",
-      "LineNumber": 81
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Exposures.Controllers.LogDataItemController",
-      "LineNumber": 83
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Exposures.Controllers.LogDataItemController",
-      "LineNumber": 83
-    },
-    {
-      "Code": "STX0002",
-      "Description": "Properties may only be declared on models.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Exposures.Controllers.LogEntryController",
-      "LineNumber": 21
+      "LineNumber": 91
     },
     {
       "Code": "STXFORMAT005",
       "Description": "Method call arguments must declare their parameter names.",
       "Severity": "Warning",
       "Type": "cCoder.Logging.Exposures.Controllers.LogEntryController",
-      "LineNumber": 34
+      "LineNumber": 30
+    },
+    {
+      "Code": "STXFORMAT005",
+      "Description": "Method call arguments must declare their parameter names.",
+      "Severity": "Warning",
+      "Type": "cCoder.Logging.Exposures.Controllers.LogEntryController",
+      "LineNumber": 31
     },
     {
       "Code": "STXFORMAT005",
@@ -2960,165 +2632,25 @@
       "LineNumber": 35
     },
     {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
+      "Code": "STXFORMAT001",
+      "Description": "Source files must not contain newline characters after the final code token.",
       "Severity": "Warning",
       "Type": "cCoder.Logging.Exposures.Controllers.LogEntryController",
-      "LineNumber": 39
+      "LineNumber": 91
     },
     {
-      "Code": "STXFORMAT002",
-      "Description": "Expression-bodied method implementations must start on the line after the =\u003E token.",
+      "Code": "STXFORMAT001",
+      "Description": "Source files must not contain newline characters after the final code token.",
       "Severity": "Warning",
-      "Type": "cCoder.Logging.Exposures.Controllers.LogEntryController",
-      "LineNumber": 51
+      "Type": "cCoder.Logging.Exposures.LogDataItemManager",
+      "LineNumber": 45
     },
     {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
+      "Code": "STXFORMAT001",
+      "Description": "Source files must not contain newline characters after the final code token.",
       "Severity": "Warning",
-      "Type": "cCoder.Logging.Exposures.Controllers.LogEntryController",
-      "LineNumber": 51
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Exposures.Controllers.LogEntryController",
-      "LineNumber": 65
-    },
-    {
-      "Code": "STXFORMAT009",
-      "Description": "Every method chained from an invocation result must begin on a new line.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Exposures.Controllers.LogEntryController",
-      "LineNumber": 65
-    },
-    {
-      "Code": "STXFORMAT009",
-      "Description": "Every method chained from an invocation result must begin on a new line.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Exposures.Controllers.LogEntryController",
-      "LineNumber": 65
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Exposures.Controllers.LogEntryController",
-      "LineNumber": 66
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Exposures.Controllers.LogEntryController",
-      "LineNumber": 66
-    },
-    {
-      "Code": "STX0019",
-      "Description": "create model parameters must use the new prefix.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Exposures.Controllers.LogEntryController",
-      "LineNumber": 78
-    },
-    {
-      "Code": "STXFORMAT007",
-      "Description": "Control-flow statement bodies must always be enclosed in scope braces.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Exposures.Controllers.LogEntryController",
-      "LineNumber": 81
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Exposures.Controllers.LogEntryController",
-      "LineNumber": 83
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Exposures.Controllers.LogEntryController",
-      "LineNumber": 83
-    },
-    {
-      "Code": "STXAPP001",
-      "Description": "Program.cs, IServiceCollectionExtensions.cs, and WebApplicationExtensions.cs must live at the project root.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.IServiceCollectionExtensions",
-      "LineNumber": 17
-    },
-    {
-      "Code": "STXM002",
-      "Description": "Model properties must not declare default values.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Models.LoggingConfiguration",
-      "LineNumber": 11
-    },
-    {
-      "Code": "STXM002",
-      "Description": "Model properties must not declare default values.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Models.LoggingConfiguration",
-      "LineNumber": 12
-    },
-    {
-      "Code": "STXM002",
-      "Description": "Model properties must not declare default values.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Models.LoggingConfiguration",
-      "LineNumber": 13
-    },
-    {
-      "Code": "STXM002",
-      "Description": "Model properties must not declare default values.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Models.LoggingConfiguration",
-      "LineNumber": 17
-    },
-    {
-      "Code": "STXM002",
-      "Description": "Model properties must not declare default values.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Models.LoggingConfiguration",
-      "LineNumber": 18
-    },
-    {
-      "Code": "STXM002",
-      "Description": "Model properties must not declare default values.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Models.LoggingConfiguration",
-      "LineNumber": 19
-    },
-    {
-      "Code": "STXM002",
-      "Description": "Model properties must not declare default values.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Models.LoggingConfiguration",
-      "LineNumber": 22
-    },
-    {
-      "Code": "STXM002",
-      "Description": "Model properties must not declare default values.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Models.LoggingConfiguration",
-      "LineNumber": 23
-    },
-    {
-      "Code": "STXM002",
-      "Description": "Model properties must not declare default values.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Models.LoggingConfiguration",
-      "LineNumber": 24
-    },
-    {
-      "Code": "STXM001",
-      "Description": "Models must not declare methods.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Models.LoggingConfiguration",
-      "LineNumber": 26
+      "Type": "cCoder.Logging.Exposures.LogEntryManager",
+      "LineNumber": 56
     },
     {
       "Code": "STXFORMAT007",
@@ -3135,158 +2667,207 @@
       "LineNumber": 43
     },
     {
-      "Code": "STX0008",
-      "Description": "A service must declare its validations in a Validations partial.",
+      "Code": "STXFORMAT001",
+      "Description": "Source files must not contain newline characters after the final code token.",
       "Severity": "Warning",
       "Type": "cCoder.Logging.Services.Foundations.Events.LogDataItemEventService",
-      "LineNumber": 14
+      "LineNumber": 13
     },
     {
-      "Code": "STX0009",
-      "Description": "A service must declare TryCatch handling in an Exceptions partial.",
+      "Code": "STXFORMAT001",
+      "Description": "Source files must not contain newline characters after the final code token.",
       "Severity": "Warning",
       "Type": "cCoder.Logging.Services.Foundations.Events.LogDataItemEventService",
-      "LineNumber": 14
+      "LineNumber": 30
     },
     {
-      "Code": "STX0010",
-      "Description": "Every public service method must enter through a local TryCatch operation.",
+      "Code": "STX0022",
+      "Description": "Creation method names must include the concrete type they create.",
       "Severity": "Warning",
       "Type": "cCoder.Logging.Services.Foundations.Events.LogDataItemEventService",
-      "LineNumber": 14
+      "LineNumber": 52
     },
     {
-      "Code": "STX0011",
-      "Description": "Every service input must be validated inside TryCatch before business work.",
+      "Code": "STXFORMAT001",
+      "Description": "Source files must not contain newline characters after the final code token.",
       "Severity": "Warning",
       "Type": "cCoder.Logging.Services.Foundations.Events.LogDataItemEventService",
-      "LineNumber": 14
+      "LineNumber": 62
     },
     {
-      "Code": "STXEX001",
-      "Description": "Every TryCatch overload must classify, wrap, and preserve validation exceptions.",
+      "Code": "STXFORMAT001",
+      "Description": "Source files must not contain newline characters after the final code token.",
       "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Foundations.Events.LogDataItemEventService",
-      "LineNumber": 14
+      "Type": "cCoder.Logging.Services.Foundations.Events.LogEntryEventService",
+      "LineNumber": 13
     },
     {
-      "Code": "STXEX002",
-      "Description": "Every TryCatch overload must classify, wrap, and preserve dependency exceptions.",
+      "Code": "STXFORMAT001",
+      "Description": "Source files must not contain newline characters after the final code token.",
       "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Foundations.Events.LogDataItemEventService",
-      "LineNumber": 14
+      "Type": "cCoder.Logging.Services.Foundations.Events.LogEntryEventService",
+      "LineNumber": 30
     },
     {
-      "Code": "STXEX003",
-      "Description": "Every TryCatch overload must wrap and preserve unclassified exceptions.",
+      "Code": "STX0022",
+      "Description": "Creation method names must include the concrete type they create.",
       "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Foundations.Events.LogDataItemEventService",
-      "LineNumber": 14
+      "Type": "cCoder.Logging.Services.Foundations.Events.LogEntryEventService",
+      "LineNumber": 52
     },
     {
-      "Code": "STXF002",
-      "Description": "A foundation service may only depend on brokers, exposures, or nothing.",
+      "Code": "STXFORMAT001",
+      "Description": "Source files must not contain newline characters after the final code token.",
       "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Foundations.Events.LogDataItemEventService",
-      "LineNumber": 14
+      "Type": "cCoder.Logging.Services.Foundations.Events.LogEntryEventService",
+      "LineNumber": 62
+    },
+    {
+      "Code": "STX0012",
+      "Description": "Business-operation validation methods must evaluate their rules through a validation collector.",
+      "Severity": "Warning",
+      "Type": "cCoder.Logging.Services.Foundations.LogDataItemService",
+      "LineNumber": 12
+    },
+    {
+      "Code": "STX0023",
+      "Description": "Each business operation must call its operation-specific validation method.",
+      "Severity": "Warning",
+      "Type": "cCoder.Logging.Services.Foundations.LogDataItemService",
+      "LineNumber": 12
+    },
+    {
+      "Code": "STXFORMAT001",
+      "Description": "Source files must not contain newline characters after the final code token.",
+      "Severity": "Warning",
+      "Type": "cCoder.Logging.Services.Foundations.LogDataItemService",
+      "LineNumber": 13
+    },
+    {
+      "Code": "STXFORMAT008",
+      "Description": "Wrapped statements must be separated from adjacent method statements by an empty line.",
+      "Severity": "Warning",
+      "Type": "cCoder.Logging.Services.Foundations.LogDataItemService",
+      "LineNumber": 44
+    },
+    {
+      "Code": "STXF003",
+      "Description": "Foundation mutations must pass a flat single-row model to their broker.",
+      "Severity": "Warning",
+      "Type": "cCoder.Logging.Services.Foundations.LogDataItemService",
+      "LineNumber": 48
+    },
+    {
+      "Code": "STXFORMAT008",
+      "Description": "Wrapped statements must be separated from adjacent method statements by an empty line.",
+      "Severity": "Warning",
+      "Type": "cCoder.Logging.Services.Foundations.LogDataItemService",
+      "LineNumber": 57
+    },
+    {
+      "Code": "STXF003",
+      "Description": "Foundation mutations must pass a flat single-row model to their broker.",
+      "Severity": "Warning",
+      "Type": "cCoder.Logging.Services.Foundations.LogDataItemService",
+      "LineNumber": 61
+    },
+    {
+      "Code": "STXFORMAT001",
+      "Description": "Source files must not contain newline characters after the final code token.",
+      "Severity": "Warning",
+      "Type": "cCoder.Logging.Services.Foundations.LogDataItemService",
+      "LineNumber": 71
     },
     {
       "Code": "STXFORMAT005",
       "Description": "Method call arguments must declare their parameter names.",
       "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Foundations.Events.LogDataItemEventService",
-      "LineNumber": 27
+      "Type": "cCoder.Logging.Services.Foundations.LogDataItemService",
+      "LineNumber": 140
     },
     {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
+      "Code": "STXFORMAT001",
+      "Description": "Source files must not contain newline characters after the final code token.",
       "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Foundations.Events.LogDataItemEventService",
-      "LineNumber": 38
+      "Type": "cCoder.Logging.Services.Foundations.LogDataItemService",
+      "LineNumber": 152
     },
     {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
+      "Code": "STX0012",
+      "Description": "Business-operation validation methods must evaluate their rules through a validation collector.",
       "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Foundations.Events.LogDataItemEventService",
-      "LineNumber": 49
+      "Type": "cCoder.Logging.Services.Foundations.LogEntryService",
+      "LineNumber": 13
     },
     {
-      "Code": "STX0008",
-      "Description": "A service must declare its validations in a Validations partial.",
+      "Code": "STX0023",
+      "Description": "Each business operation must call its operation-specific validation method.",
       "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Foundations.Events.LogEntryEventService",
-      "LineNumber": 14
+      "Type": "cCoder.Logging.Services.Foundations.LogEntryService",
+      "LineNumber": 13
     },
     {
-      "Code": "STX0009",
-      "Description": "A service must declare TryCatch handling in an Exceptions partial.",
+      "Code": "STXFORMAT001",
+      "Description": "Source files must not contain newline characters after the final code token.",
       "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Foundations.Events.LogEntryEventService",
-      "LineNumber": 14
+      "Type": "cCoder.Logging.Services.Foundations.LogEntryService",
+      "LineNumber": 13
     },
     {
-      "Code": "STX0010",
-      "Description": "Every public service method must enter through a local TryCatch operation.",
+      "Code": "STX0005",
+      "Description": "A public service method must not call another public method on the same service.",
       "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Foundations.Events.LogEntryEventService",
-      "LineNumber": 14
+      "Type": "cCoder.Logging.Services.Foundations.LogEntryService",
+      "LineNumber": 23
     },
     {
-      "Code": "STX0011",
-      "Description": "Every service input must be validated inside TryCatch before business work.",
+      "Code": "STXF003",
+      "Description": "Foundation mutations must pass a flat single-row model to their broker.",
       "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Foundations.Events.LogEntryEventService",
-      "LineNumber": 14
-    },
-    {
-      "Code": "STXEX001",
-      "Description": "Every TryCatch overload must classify, wrap, and preserve validation exceptions.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Foundations.Events.LogEntryEventService",
-      "LineNumber": 14
-    },
-    {
-      "Code": "STXEX002",
-      "Description": "Every TryCatch overload must classify, wrap, and preserve dependency exceptions.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Foundations.Events.LogEntryEventService",
-      "LineNumber": 14
-    },
-    {
-      "Code": "STXEX003",
-      "Description": "Every TryCatch overload must wrap and preserve unclassified exceptions.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Foundations.Events.LogEntryEventService",
-      "LineNumber": 14
-    },
-    {
-      "Code": "STXF002",
-      "Description": "A foundation service may only depend on brokers, exposures, or nothing.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Foundations.Events.LogEntryEventService",
-      "LineNumber": 14
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Foundations.Events.LogEntryEventService",
-      "LineNumber": 25
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Foundations.Events.LogEntryEventService",
-      "LineNumber": 36
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Foundations.Events.LogEntryEventService",
+      "Type": "cCoder.Logging.Services.Foundations.LogEntryService",
       "LineNumber": 47
+    },
+    {
+      "Code": "STXF003",
+      "Description": "Foundation mutations must pass a flat single-row model to their broker.",
+      "Severity": "Warning",
+      "Type": "cCoder.Logging.Services.Foundations.LogEntryService",
+      "LineNumber": 56
+    },
+    {
+      "Code": "STXF003",
+      "Description": "Foundation mutations must pass a flat single-row model to their broker.",
+      "Severity": "Warning",
+      "Type": "cCoder.Logging.Services.Foundations.LogEntryService",
+      "LineNumber": 66
+    },
+    {
+      "Code": "STXFORMAT001",
+      "Description": "Source files must not contain newline characters after the final code token.",
+      "Severity": "Warning",
+      "Type": "cCoder.Logging.Services.Foundations.LogEntryService",
+      "LineNumber": 71
+    },
+    {
+      "Code": "STX0005",
+      "Description": "A public service method must not call another public method on the same service.",
+      "Severity": "Warning",
+      "Type": "cCoder.Logging.Services.Foundations.LogEntryService",
+      "LineNumber": 75
+    },
+    {
+      "Code": "STXFORMAT005",
+      "Description": "Method call arguments must declare their parameter names.",
+      "Severity": "Warning",
+      "Type": "cCoder.Logging.Services.Foundations.LogEntryService",
+      "LineNumber": 145
+    },
+    {
+      "Code": "STXFORMAT001",
+      "Description": "Source files must not contain newline characters after the final code token.",
+      "Severity": "Warning",
+      "Type": "cCoder.Logging.Services.Foundations.LogEntryService",
+      "LineNumber": 172
     },
     {
       "Code": "STX0008",
@@ -3336,20 +2917,6 @@
       "Severity": "Warning",
       "Type": "cCoder.Logging.Services.Foundations.LoggingMetadataTypeService",
       "LineNumber": 13
-    },
-    {
-      "Code": "STX0001",
-      "Description": "The type is not a valid Standard element type.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.LogDataItemService",
-      "LineNumber": 11
-    },
-    {
-      "Code": "STX0001",
-      "Description": "The type is not a valid Standard element type.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.LogEntryService",
-      "LineNumber": 11
     },
     {
       "Code": "STX0007",
@@ -3359,263 +2926,88 @@
       "LineNumber": 11
     },
     {
-      "Code": "STX0008",
-      "Description": "A service must declare its validations in a Validations partial.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Orchestrations.LogDataItemOrchestrationService",
-      "LineNumber": 11
-    },
-    {
-      "Code": "STX0009",
-      "Description": "A service must declare TryCatch handling in an Exceptions partial.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Orchestrations.LogDataItemOrchestrationService",
-      "LineNumber": 11
-    },
-    {
-      "Code": "STX0010",
-      "Description": "Every public service method must enter through a local TryCatch operation.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Orchestrations.LogDataItemOrchestrationService",
-      "LineNumber": 11
-    },
-    {
-      "Code": "STX0011",
-      "Description": "Every service input must be validated inside TryCatch before business work.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Orchestrations.LogDataItemOrchestrationService",
-      "LineNumber": 11
-    },
-    {
-      "Code": "STXEX001",
-      "Description": "Every TryCatch overload must classify, wrap, and preserve validation exceptions.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Orchestrations.LogDataItemOrchestrationService",
-      "LineNumber": 11
-    },
-    {
-      "Code": "STXEX002",
-      "Description": "Every TryCatch overload must classify, wrap, and preserve dependency exceptions.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Orchestrations.LogDataItemOrchestrationService",
-      "LineNumber": 11
-    },
-    {
-      "Code": "STXEX003",
-      "Description": "Every TryCatch overload must wrap and preserve unclassified exceptions.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Orchestrations.LogDataItemOrchestrationService",
-      "LineNumber": 11
-    },
-    {
-      "Code": "STX0017",
-      "Description": "Identifier parameters must be named for their type, for example studentId.",
+      "Code": "STXFORMAT001",
+      "Description": "Source files must not contain newline characters after the final code token.",
       "Severity": "Warning",
       "Type": "cCoder.Logging.Services.Orchestrations.LogDataItemOrchestrationService",
       "LineNumber": 13
     },
     {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
+      "Code": "STXFORMAT001",
+      "Description": "Source files must not contain newline characters after the final code token.",
       "Severity": "Warning",
       "Type": "cCoder.Logging.Services.Orchestrations.LogDataItemOrchestrationService",
-      "LineNumber": 15
+      "LineNumber": 71
     },
     {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
+      "Code": "STXFORMAT001",
+      "Description": "Source files must not contain newline characters after the final code token.",
       "Severity": "Warning",
       "Type": "cCoder.Logging.Services.Orchestrations.LogDataItemOrchestrationService",
-      "LineNumber": 20
-    },
-    {
-      "Code": "STX0018",
-      "Description": "Service method names must include each model type they operate on.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Orchestrations.LogDataItemOrchestrationService",
-      "LineNumber": 23
-    },
-    {
-      "Code": "STX0019",
-      "Description": "create model parameters must use the new prefix.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Orchestrations.LogDataItemOrchestrationService",
-      "LineNumber": 23
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Orchestrations.LogDataItemOrchestrationService",
-      "LineNumber": 25
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Orchestrations.LogDataItemOrchestrationService",
-      "LineNumber": 26
-    },
-    {
-      "Code": "STX0018",
-      "Description": "Service method names must include each model type they operate on.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Orchestrations.LogDataItemOrchestrationService",
-      "LineNumber": 30
-    },
-    {
-      "Code": "STX0020",
-      "Description": "update model parameters must use the updated prefix.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Orchestrations.LogDataItemOrchestrationService",
-      "LineNumber": 30
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Orchestrations.LogDataItemOrchestrationService",
-      "LineNumber": 32
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Orchestrations.LogDataItemOrchestrationService",
-      "LineNumber": 33
-    },
-    {
-      "Code": "STX0017",
-      "Description": "Identifier parameters must be named for their type, for example studentId.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Orchestrations.LogDataItemOrchestrationService",
-      "LineNumber": 37
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Orchestrations.LogDataItemOrchestrationService",
-      "LineNumber": 39
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Orchestrations.LogDataItemOrchestrationService",
-      "LineNumber": 40
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Orchestrations.LogDataItemOrchestrationService",
-      "LineNumber": 41
-    },
-    {
-      "Code": "STX0018",
-      "Description": "Service method names must include each model type they operate on.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Orchestrations.LogDataItemOrchestrationService",
-      "LineNumber": 44
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Orchestrations.LogDataItemOrchestrationService",
-      "LineNumber": 46
-    },
-    {
-      "Code": "STX0018",
-      "Description": "Service method names must include each model type they operate on.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Orchestrations.LogDataItemOrchestrationService",
-      "LineNumber": 49
-    },
-    {
-      "Code": "STX0021",
-      "Description": "delete model parameters must use the deleted prefix.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Orchestrations.LogDataItemOrchestrationService",
-      "LineNumber": 49
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Orchestrations.LogDataItemOrchestrationService",
-      "LineNumber": 51
+      "LineNumber": 106
     },
     {
       "Code": "STX0008",
       "Description": "A service must declare its validations in a Validations partial.",
       "Severity": "Warning",
       "Type": "cCoder.Logging.Services.Orchestrations.LogEntryCaptureOrchestrationService",
-      "LineNumber": 14
+      "LineNumber": 15
     },
     {
       "Code": "STX0009",
       "Description": "A service must declare TryCatch handling in an Exceptions partial.",
       "Severity": "Warning",
       "Type": "cCoder.Logging.Services.Orchestrations.LogEntryCaptureOrchestrationService",
-      "LineNumber": 14
+      "LineNumber": 15
     },
     {
       "Code": "STX0010",
       "Description": "Every public service method must enter through a local TryCatch operation.",
       "Severity": "Warning",
       "Type": "cCoder.Logging.Services.Orchestrations.LogEntryCaptureOrchestrationService",
-      "LineNumber": 14
+      "LineNumber": 15
     },
     {
       "Code": "STX0011",
       "Description": "Every service input must be validated inside TryCatch before business work.",
       "Severity": "Warning",
       "Type": "cCoder.Logging.Services.Orchestrations.LogEntryCaptureOrchestrationService",
-      "LineNumber": 14
+      "LineNumber": 15
     },
     {
       "Code": "STXEX001",
       "Description": "Every TryCatch overload must classify, wrap, and preserve validation exceptions.",
       "Severity": "Warning",
       "Type": "cCoder.Logging.Services.Orchestrations.LogEntryCaptureOrchestrationService",
-      "LineNumber": 14
+      "LineNumber": 15
     },
     {
       "Code": "STXEX002",
       "Description": "Every TryCatch overload must classify, wrap, and preserve dependency exceptions.",
       "Severity": "Warning",
       "Type": "cCoder.Logging.Services.Orchestrations.LogEntryCaptureOrchestrationService",
-      "LineNumber": 14
+      "LineNumber": 15
     },
     {
       "Code": "STXEX003",
       "Description": "Every TryCatch overload must wrap and preserve unclassified exceptions.",
       "Severity": "Warning",
       "Type": "cCoder.Logging.Services.Orchestrations.LogEntryCaptureOrchestrationService",
-      "LineNumber": 14
+      "LineNumber": 15
     },
     {
       "Code": "STXO001",
       "Description": "An orchestration must have two or three foundation or processing dependencies and must not mix them.",
       "Severity": "Warning",
       "Type": "cCoder.Logging.Services.Orchestrations.LogEntryCaptureOrchestrationService",
-      "LineNumber": 14
+      "LineNumber": 15
     },
     {
       "Code": "STX0018",
       "Description": "Service method names must include each model type they operate on.",
       "Severity": "Warning",
       "Type": "cCoder.Logging.Services.Orchestrations.LogEntryCaptureOrchestrationService",
-      "LineNumber": 20
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Orchestrations.LogEntryCaptureOrchestrationService",
-      "LineNumber": 24
+      "LineNumber": 21
     },
     {
       "Code": "STXFORMAT005",
@@ -3629,53 +3021,39 @@
       "Description": "Method call arguments must declare their parameter names.",
       "Severity": "Warning",
       "Type": "cCoder.Logging.Services.Orchestrations.LogEntryCaptureOrchestrationService",
-      "LineNumber": 30
+      "LineNumber": 26
+    },
+    {
+      "Code": "STXFORMAT005",
+      "Description": "Method call arguments must declare their parameter names.",
+      "Severity": "Warning",
+      "Type": "cCoder.Logging.Services.Orchestrations.LogEntryCaptureOrchestrationService",
+      "LineNumber": 31
     },
     {
       "Code": "STXFORMAT009",
       "Description": "Every method chained from an invocation result must begin on a new line.",
       "Severity": "Warning",
       "Type": "cCoder.Logging.Services.Orchestrations.LogEntryCaptureOrchestrationService",
-      "LineNumber": 31
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Orchestrations.LogEntryCaptureOrchestrationService",
-      "LineNumber": 34
+      "LineNumber": 32
     },
     {
       "Code": "STXFORMAT007",
       "Description": "Control-flow statement bodies must always be enclosed in scope braces.",
       "Severity": "Warning",
       "Type": "cCoder.Logging.Services.Orchestrations.LogEntryCaptureOrchestrationService",
-      "LineNumber": 34
-    },
-    {
-      "Code": "STXFORMAT007",
-      "Description": "Control-flow statement bodies must always be enclosed in scope braces.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Orchestrations.LogEntryCaptureOrchestrationService",
-      "LineNumber": 37
+      "LineNumber": 47
     },
     {
       "Code": "STXFORMAT005",
       "Description": "Method call arguments must declare their parameter names.",
       "Severity": "Warning",
       "Type": "cCoder.Logging.Services.Orchestrations.LogEntryCaptureOrchestrationService",
-      "LineNumber": 39
+      "LineNumber": 49
     },
     {
       "Code": "STXFORMAT007",
       "Description": "Control-flow statement bodies must always be enclosed in scope braces.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Orchestrations.LogEntryCaptureOrchestrationService",
-      "LineNumber": 42
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
       "Severity": "Warning",
       "Type": "cCoder.Logging.Services.Orchestrations.LogEntryCaptureOrchestrationService",
       "LineNumber": 52
@@ -3685,63 +3063,42 @@
       "Description": "Method call arguments must declare their parameter names.",
       "Severity": "Warning",
       "Type": "cCoder.Logging.Services.Orchestrations.LogEntryCaptureOrchestrationService",
-      "LineNumber": 57
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Orchestrations.LogEntryCaptureOrchestrationService",
-      "LineNumber": 58
+      "LineNumber": 62
     },
     {
       "Code": "STXFORMAT007",
       "Description": "Control-flow statement bodies must always be enclosed in scope braces.",
       "Severity": "Warning",
       "Type": "cCoder.Logging.Services.Orchestrations.LogEntryCaptureOrchestrationService",
-      "LineNumber": 64
+      "LineNumber": 78
     },
     {
       "Code": "STXFORMAT005",
       "Description": "Method call arguments must declare their parameter names.",
       "Severity": "Warning",
       "Type": "cCoder.Logging.Services.Orchestrations.LogEntryCaptureOrchestrationService",
-      "LineNumber": 66
+      "LineNumber": 80
     },
     {
       "Code": "STXFORMAT005",
       "Description": "Method call arguments must declare their parameter names.",
       "Severity": "Warning",
       "Type": "cCoder.Logging.Services.Orchestrations.LogEntryCaptureOrchestrationService",
-      "LineNumber": 67
+      "LineNumber": 81
     },
     {
       "Code": "STXFORMAT005",
       "Description": "Method call arguments must declare their parameter names.",
       "Severity": "Warning",
       "Type": "cCoder.Logging.Services.Orchestrations.LogEntryCaptureOrchestrationService",
-      "LineNumber": 68
+      "LineNumber": 82
     },
     {
       "Code": "STXFORMAT005",
       "Description": "Method call arguments must declare their parameter names.",
       "Severity": "Warning",
       "Type": "cCoder.Logging.Services.Orchestrations.LogEntryCaptureOrchestrationService",
-      "LineNumber": 72
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Orchestrations.LogEntryCaptureOrchestrationService",
-      "LineNumber": 75
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Orchestrations.LogEntryCaptureOrchestrationService",
-      "LineNumber": 75
+      "LineNumber": 86
     },
     {
       "Code": "STXFORMAT005",
@@ -3755,35 +3112,56 @@
       "Description": "Method call arguments must declare their parameter names.",
       "Severity": "Warning",
       "Type": "cCoder.Logging.Services.Orchestrations.LogEntryCaptureOrchestrationService",
-      "LineNumber": 90
+      "LineNumber": 89
     },
     {
       "Code": "STXFORMAT005",
       "Description": "Method call arguments must declare their parameter names.",
       "Severity": "Warning",
       "Type": "cCoder.Logging.Services.Orchestrations.LogEntryCaptureOrchestrationService",
-      "LineNumber": 91
+      "LineNumber": 103
     },
     {
       "Code": "STXFORMAT005",
       "Description": "Method call arguments must declare their parameter names.",
       "Severity": "Warning",
       "Type": "cCoder.Logging.Services.Orchestrations.LogEntryCaptureOrchestrationService",
-      "LineNumber": 92
+      "LineNumber": 104
     },
     {
       "Code": "STXFORMAT005",
       "Description": "Method call arguments must declare their parameter names.",
       "Severity": "Warning",
       "Type": "cCoder.Logging.Services.Orchestrations.LogEntryCaptureOrchestrationService",
-      "LineNumber": 93
+      "LineNumber": 105
     },
     {
       "Code": "STXFORMAT005",
       "Description": "Method call arguments must declare their parameter names.",
       "Severity": "Warning",
       "Type": "cCoder.Logging.Services.Orchestrations.LogEntryCaptureOrchestrationService",
-      "LineNumber": 94
+      "LineNumber": 106
+    },
+    {
+      "Code": "STXFORMAT005",
+      "Description": "Method call arguments must declare their parameter names.",
+      "Severity": "Warning",
+      "Type": "cCoder.Logging.Services.Orchestrations.LogEntryCaptureOrchestrationService",
+      "LineNumber": 107
+    },
+    {
+      "Code": "STXFORMAT005",
+      "Description": "Method call arguments must declare their parameter names.",
+      "Severity": "Warning",
+      "Type": "cCoder.Logging.Services.Orchestrations.LogEntryCaptureOrchestrationService",
+      "LineNumber": 108
+    },
+    {
+      "Code": "STXFORMAT001",
+      "Description": "Source files must not contain newline characters after the final code token.",
+      "Severity": "Warning",
+      "Type": "cCoder.Logging.Services.Orchestrations.LogEntryCaptureOrchestrationService",
+      "LineNumber": 110
     },
     {
       "Code": "STX0007",
@@ -3793,235 +3171,39 @@
       "LineNumber": 11
     },
     {
-      "Code": "STX0008",
-      "Description": "A service must declare its validations in a Validations partial.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Orchestrations.LogEntryOrchestrationService",
-      "LineNumber": 11
-    },
-    {
-      "Code": "STX0009",
-      "Description": "A service must declare TryCatch handling in an Exceptions partial.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Orchestrations.LogEntryOrchestrationService",
-      "LineNumber": 11
-    },
-    {
-      "Code": "STX0010",
-      "Description": "Every public service method must enter through a local TryCatch operation.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Orchestrations.LogEntryOrchestrationService",
-      "LineNumber": 11
-    },
-    {
-      "Code": "STX0011",
-      "Description": "Every service input must be validated inside TryCatch before business work.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Orchestrations.LogEntryOrchestrationService",
-      "LineNumber": 11
-    },
-    {
-      "Code": "STXEX001",
-      "Description": "Every TryCatch overload must classify, wrap, and preserve validation exceptions.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Orchestrations.LogEntryOrchestrationService",
-      "LineNumber": 11
-    },
-    {
-      "Code": "STXEX002",
-      "Description": "Every TryCatch overload must classify, wrap, and preserve dependency exceptions.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Orchestrations.LogEntryOrchestrationService",
-      "LineNumber": 11
-    },
-    {
-      "Code": "STXEX003",
-      "Description": "Every TryCatch overload must wrap and preserve unclassified exceptions.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Orchestrations.LogEntryOrchestrationService",
-      "LineNumber": 11
-    },
-    {
-      "Code": "STX0017",
-      "Description": "Identifier parameters must be named for their type, for example studentId.",
+      "Code": "STXFORMAT001",
+      "Description": "Source files must not contain newline characters after the final code token.",
       "Severity": "Warning",
       "Type": "cCoder.Logging.Services.Orchestrations.LogEntryOrchestrationService",
       "LineNumber": 13
     },
     {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
+      "Code": "STXFORMAT001",
+      "Description": "Source files must not contain newline characters after the final code token.",
       "Severity": "Warning",
       "Type": "cCoder.Logging.Services.Orchestrations.LogEntryOrchestrationService",
-      "LineNumber": 15
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Orchestrations.LogEntryOrchestrationService",
-      "LineNumber": 20
+      "LineNumber": 71
     },
     {
       "Code": "STX0018",
       "Description": "Service method names must include each model type they operate on.",
       "Severity": "Warning",
       "Type": "cCoder.Logging.Services.Orchestrations.LogEntryOrchestrationService",
-      "LineNumber": 23
-    },
-    {
-      "Code": "STX0019",
-      "Description": "create model parameters must use the new prefix.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Orchestrations.LogEntryOrchestrationService",
-      "LineNumber": 23
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Orchestrations.LogEntryOrchestrationService",
-      "LineNumber": 25
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Orchestrations.LogEntryOrchestrationService",
-      "LineNumber": 26
+      "LineNumber": 99
     },
     {
       "Code": "STX0018",
       "Description": "Service method names must include each model type they operate on.",
       "Severity": "Warning",
       "Type": "cCoder.Logging.Services.Orchestrations.LogEntryOrchestrationService",
-      "LineNumber": 30
+      "LineNumber": 109
     },
     {
-      "Code": "STX0019",
-      "Description": "create model parameters must use the new prefix.",
+      "Code": "STXFORMAT001",
+      "Description": "Source files must not contain newline characters after the final code token.",
       "Severity": "Warning",
       "Type": "cCoder.Logging.Services.Orchestrations.LogEntryOrchestrationService",
-      "LineNumber": 30
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Orchestrations.LogEntryOrchestrationService",
-      "LineNumber": 32
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Orchestrations.LogEntryOrchestrationService",
-      "LineNumber": 33
-    },
-    {
-      "Code": "STX0018",
-      "Description": "Service method names must include each model type they operate on.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Orchestrations.LogEntryOrchestrationService",
-      "LineNumber": 37
-    },
-    {
-      "Code": "STX0020",
-      "Description": "update model parameters must use the updated prefix.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Orchestrations.LogEntryOrchestrationService",
-      "LineNumber": 37
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Orchestrations.LogEntryOrchestrationService",
-      "LineNumber": 39
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Orchestrations.LogEntryOrchestrationService",
-      "LineNumber": 40
-    },
-    {
-      "Code": "STX0017",
-      "Description": "Identifier parameters must be named for their type, for example studentId.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Orchestrations.LogEntryOrchestrationService",
-      "LineNumber": 44
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Orchestrations.LogEntryOrchestrationService",
-      "LineNumber": 46
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Orchestrations.LogEntryOrchestrationService",
-      "LineNumber": 47
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Orchestrations.LogEntryOrchestrationService",
-      "LineNumber": 48
-    },
-    {
-      "Code": "STX0018",
-      "Description": "Service method names must include each model type they operate on.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Orchestrations.LogEntryOrchestrationService",
-      "LineNumber": 51
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Orchestrations.LogEntryOrchestrationService",
-      "LineNumber": 53
-    },
-    {
-      "Code": "STX0018",
-      "Description": "Service method names must include each model type they operate on.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Orchestrations.LogEntryOrchestrationService",
-      "LineNumber": 56
-    },
-    {
-      "Code": "STX0021",
-      "Description": "delete model parameters must use the deleted prefix.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Orchestrations.LogEntryOrchestrationService",
-      "LineNumber": 56
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Orchestrations.LogEntryOrchestrationService",
-      "LineNumber": 58
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Orchestrations.LogEntryOrchestrationService",
-      "LineNumber": 63
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Orchestrations.LogEntryOrchestrationService",
-      "LineNumber": 68
+      "LineNumber": 136
     },
     {
       "Code": "STX0008",
@@ -4115,8 +3297,8 @@
       "LineNumber": 28
     },
     {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
+      "Code": "STXFORMAT008",
+      "Description": "Wrapped statements must be separated from adjacent method statements by an empty line.",
       "Severity": "Warning",
       "Type": "cCoder.Logging.Services.Orchestrations.LogRetentionOrchestrationService",
       "LineNumber": 29
@@ -4126,588 +3308,126 @@
       "Description": "Method call arguments must declare their parameter names.",
       "Severity": "Warning",
       "Type": "cCoder.Logging.Services.Orchestrations.LogRetentionOrchestrationService",
-      "LineNumber": 36
+      "LineNumber": 37
     },
     {
-      "Code": "STX0003",
-      "Description": "A service containing only pass-through methods is redundant and should be retired.",
+      "Code": "STXFORMAT001",
+      "Description": "Source files must not contain newline characters after the final code token.",
+      "Severity": "Warning",
+      "Type": "cCoder.Logging.Services.Orchestrations.LogRetentionOrchestrationService",
+      "LineNumber": 40
+    },
+    {
+      "Code": "STXFORMAT001",
+      "Description": "Source files must not contain newline characters after the final code token.",
       "Severity": "Warning",
       "Type": "cCoder.Logging.Services.Processings.LogDataItemEventProcessingService",
-      "LineNumber": 12
+      "LineNumber": 13
     },
     {
-      "Code": "STX0008",
-      "Description": "A service must declare its validations in a Validations partial.",
+      "Code": "STXFORMAT001",
+      "Description": "Source files must not contain newline characters after the final code token.",
       "Severity": "Warning",
       "Type": "cCoder.Logging.Services.Processings.LogDataItemEventProcessingService",
-      "LineNumber": 12
+      "LineNumber": 30
     },
     {
-      "Code": "STX0009",
-      "Description": "A service must declare TryCatch handling in an Exceptions partial.",
+      "Code": "STXFORMAT001",
+      "Description": "Source files must not contain newline characters after the final code token.",
       "Severity": "Warning",
       "Type": "cCoder.Logging.Services.Processings.LogDataItemEventProcessingService",
-      "LineNumber": 12
-    },
-    {
-      "Code": "STX0010",
-      "Description": "Every public service method must enter through a local TryCatch operation.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Processings.LogDataItemEventProcessingService",
-      "LineNumber": 12
-    },
-    {
-      "Code": "STX0011",
-      "Description": "Every service input must be validated inside TryCatch before business work.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Processings.LogDataItemEventProcessingService",
-      "LineNumber": 12
-    },
-    {
-      "Code": "STXEX001",
-      "Description": "Every TryCatch overload must classify, wrap, and preserve validation exceptions.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Processings.LogDataItemEventProcessingService",
-      "LineNumber": 12
-    },
-    {
-      "Code": "STXEX002",
-      "Description": "Every TryCatch overload must classify, wrap, and preserve dependency exceptions.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Processings.LogDataItemEventProcessingService",
-      "LineNumber": 12
-    },
-    {
-      "Code": "STXEX003",
-      "Description": "Every TryCatch overload must wrap and preserve unclassified exceptions.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Processings.LogDataItemEventProcessingService",
-      "LineNumber": 12
-    },
-    {
-      "Code": "STXFORMAT002",
-      "Description": "Expression-bodied method implementations must start on the line after the =\u003E token.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Processings.LogDataItemEventProcessingService",
-      "LineNumber": 14
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Processings.LogDataItemEventProcessingService",
-      "LineNumber": 14
-    },
-    {
-      "Code": "STXFORMAT002",
-      "Description": "Expression-bodied method implementations must start on the line after the =\u003E token.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Processings.LogDataItemEventProcessingService",
-      "LineNumber": 16
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Processings.LogDataItemEventProcessingService",
-      "LineNumber": 16
-    },
-    {
-      "Code": "STXFORMAT002",
-      "Description": "Expression-bodied method implementations must start on the line after the =\u003E token.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Processings.LogDataItemEventProcessingService",
-      "LineNumber": 18
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Processings.LogDataItemEventProcessingService",
-      "LineNumber": 18
-    },
-    {
-      "Code": "STX0003",
-      "Description": "A service containing only pass-through methods is redundant and should be retired.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Processings.LogDataItemProcessingService",
-      "LineNumber": 10
+      "LineNumber": 41
     },
     {
       "Code": "STX0007",
       "Description": "A service public API must use one model contract or primitive types.",
       "Severity": "Warning",
       "Type": "cCoder.Logging.Services.Processings.LogDataItemProcessingService",
-      "LineNumber": 10
+      "LineNumber": 11
     },
     {
-      "Code": "STX0008",
-      "Description": "A service must declare its validations in a Validations partial.",
+      "Code": "STXFORMAT001",
+      "Description": "Source files must not contain newline characters after the final code token.",
       "Severity": "Warning",
       "Type": "cCoder.Logging.Services.Processings.LogDataItemProcessingService",
-      "LineNumber": 10
+      "LineNumber": 13
     },
     {
-      "Code": "STX0009",
-      "Description": "A service must declare TryCatch handling in an Exceptions partial.",
+      "Code": "STXFORMAT001",
+      "Description": "Source files must not contain newline characters after the final code token.",
       "Severity": "Warning",
       "Type": "cCoder.Logging.Services.Processings.LogDataItemProcessingService",
-      "LineNumber": 10
+      "LineNumber": 71
     },
     {
-      "Code": "STX0010",
-      "Description": "Every public service method must enter through a local TryCatch operation.",
+      "Code": "STXFORMAT001",
+      "Description": "Source files must not contain newline characters after the final code token.",
       "Severity": "Warning",
       "Type": "cCoder.Logging.Services.Processings.LogDataItemProcessingService",
-      "LineNumber": 10
+      "LineNumber": 176
     },
     {
-      "Code": "STX0011",
-      "Description": "Every service input must be validated inside TryCatch before business work.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Processings.LogDataItemProcessingService",
-      "LineNumber": 10
-    },
-    {
-      "Code": "STXEX001",
-      "Description": "Every TryCatch overload must classify, wrap, and preserve validation exceptions.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Processings.LogDataItemProcessingService",
-      "LineNumber": 10
-    },
-    {
-      "Code": "STXEX002",
-      "Description": "Every TryCatch overload must classify, wrap, and preserve dependency exceptions.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Processings.LogDataItemProcessingService",
-      "LineNumber": 10
-    },
-    {
-      "Code": "STXEX003",
-      "Description": "Every TryCatch overload must wrap and preserve unclassified exceptions.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Processings.LogDataItemProcessingService",
-      "LineNumber": 10
-    },
-    {
-      "Code": "STX0017",
-      "Description": "Identifier parameters must be named for their type, for example studentId.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Processings.LogDataItemProcessingService",
-      "LineNumber": 12
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Processings.LogDataItemProcessingService",
-      "LineNumber": 14
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Processings.LogDataItemProcessingService",
-      "LineNumber": 19
-    },
-    {
-      "Code": "STX0018",
-      "Description": "Service method names must include each model type they operate on.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Processings.LogDataItemProcessingService",
-      "LineNumber": 22
-    },
-    {
-      "Code": "STX0019",
-      "Description": "create model parameters must use the new prefix.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Processings.LogDataItemProcessingService",
-      "LineNumber": 22
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Processings.LogDataItemProcessingService",
-      "LineNumber": 24
-    },
-    {
-      "Code": "STX0018",
-      "Description": "Service method names must include each model type they operate on.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Processings.LogDataItemProcessingService",
-      "LineNumber": 27
-    },
-    {
-      "Code": "STX0020",
-      "Description": "update model parameters must use the updated prefix.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Processings.LogDataItemProcessingService",
-      "LineNumber": 27
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Processings.LogDataItemProcessingService",
-      "LineNumber": 29
-    },
-    {
-      "Code": "STX0017",
-      "Description": "Identifier parameters must be named for their type, for example studentId.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Processings.LogDataItemProcessingService",
-      "LineNumber": 32
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Processings.LogDataItemProcessingService",
-      "LineNumber": 34
-    },
-    {
-      "Code": "STX0018",
-      "Description": "Service method names must include each model type they operate on.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Processings.LogDataItemProcessingService",
-      "LineNumber": 37
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Processings.LogDataItemProcessingService",
-      "LineNumber": 39
-    },
-    {
-      "Code": "STX0018",
-      "Description": "Service method names must include each model type they operate on.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Processings.LogDataItemProcessingService",
-      "LineNumber": 42
-    },
-    {
-      "Code": "STX0021",
-      "Description": "delete model parameters must use the deleted prefix.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Processings.LogDataItemProcessingService",
-      "LineNumber": 42
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Processings.LogDataItemProcessingService",
-      "LineNumber": 44
-    },
-    {
-      "Code": "STX0003",
-      "Description": "A service containing only pass-through methods is redundant and should be retired.",
+      "Code": "STXFORMAT001",
+      "Description": "Source files must not contain newline characters after the final code token.",
       "Severity": "Warning",
       "Type": "cCoder.Logging.Services.Processings.LogEntryEventProcessingService",
-      "LineNumber": 12
+      "LineNumber": 13
     },
     {
-      "Code": "STX0008",
-      "Description": "A service must declare its validations in a Validations partial.",
+      "Code": "STXFORMAT001",
+      "Description": "Source files must not contain newline characters after the final code token.",
       "Severity": "Warning",
       "Type": "cCoder.Logging.Services.Processings.LogEntryEventProcessingService",
-      "LineNumber": 12
+      "LineNumber": 30
     },
     {
-      "Code": "STX0009",
-      "Description": "A service must declare TryCatch handling in an Exceptions partial.",
+      "Code": "STXFORMAT001",
+      "Description": "Source files must not contain newline characters after the final code token.",
       "Severity": "Warning",
       "Type": "cCoder.Logging.Services.Processings.LogEntryEventProcessingService",
-      "LineNumber": 12
-    },
-    {
-      "Code": "STX0010",
-      "Description": "Every public service method must enter through a local TryCatch operation.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Processings.LogEntryEventProcessingService",
-      "LineNumber": 12
-    },
-    {
-      "Code": "STX0011",
-      "Description": "Every service input must be validated inside TryCatch before business work.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Processings.LogEntryEventProcessingService",
-      "LineNumber": 12
-    },
-    {
-      "Code": "STXEX001",
-      "Description": "Every TryCatch overload must classify, wrap, and preserve validation exceptions.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Processings.LogEntryEventProcessingService",
-      "LineNumber": 12
-    },
-    {
-      "Code": "STXEX002",
-      "Description": "Every TryCatch overload must classify, wrap, and preserve dependency exceptions.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Processings.LogEntryEventProcessingService",
-      "LineNumber": 12
-    },
-    {
-      "Code": "STXEX003",
-      "Description": "Every TryCatch overload must wrap and preserve unclassified exceptions.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Processings.LogEntryEventProcessingService",
-      "LineNumber": 12
-    },
-    {
-      "Code": "STXFORMAT002",
-      "Description": "Expression-bodied method implementations must start on the line after the =\u003E token.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Processings.LogEntryEventProcessingService",
-      "LineNumber": 14
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Processings.LogEntryEventProcessingService",
-      "LineNumber": 14
-    },
-    {
-      "Code": "STXFORMAT002",
-      "Description": "Expression-bodied method implementations must start on the line after the =\u003E token.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Processings.LogEntryEventProcessingService",
-      "LineNumber": 16
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Processings.LogEntryEventProcessingService",
-      "LineNumber": 16
-    },
-    {
-      "Code": "STXFORMAT002",
-      "Description": "Expression-bodied method implementations must start on the line after the =\u003E token.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Processings.LogEntryEventProcessingService",
-      "LineNumber": 18
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Processings.LogEntryEventProcessingService",
-      "LineNumber": 18
-    },
-    {
-      "Code": "STX0003",
-      "Description": "A service containing only pass-through methods is redundant and should be retired.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Processings.LogEntryProcessingService",
-      "LineNumber": 10
+      "LineNumber": 41
     },
     {
       "Code": "STX0007",
       "Description": "A service public API must use one model contract or primitive types.",
       "Severity": "Warning",
       "Type": "cCoder.Logging.Services.Processings.LogEntryProcessingService",
-      "LineNumber": 10
+      "LineNumber": 11
     },
     {
-      "Code": "STX0008",
-      "Description": "A service must declare its validations in a Validations partial.",
+      "Code": "STXFORMAT001",
+      "Description": "Source files must not contain newline characters after the final code token.",
       "Severity": "Warning",
       "Type": "cCoder.Logging.Services.Processings.LogEntryProcessingService",
-      "LineNumber": 10
+      "LineNumber": 13
     },
     {
-      "Code": "STX0009",
-      "Description": "A service must declare TryCatch handling in an Exceptions partial.",
+      "Code": "STXFORMAT001",
+      "Description": "Source files must not contain newline characters after the final code token.",
       "Severity": "Warning",
       "Type": "cCoder.Logging.Services.Processings.LogEntryProcessingService",
-      "LineNumber": 10
-    },
-    {
-      "Code": "STX0010",
-      "Description": "Every public service method must enter through a local TryCatch operation.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Processings.LogEntryProcessingService",
-      "LineNumber": 10
-    },
-    {
-      "Code": "STX0011",
-      "Description": "Every service input must be validated inside TryCatch before business work.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Processings.LogEntryProcessingService",
-      "LineNumber": 10
-    },
-    {
-      "Code": "STXEX001",
-      "Description": "Every TryCatch overload must classify, wrap, and preserve validation exceptions.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Processings.LogEntryProcessingService",
-      "LineNumber": 10
-    },
-    {
-      "Code": "STXEX002",
-      "Description": "Every TryCatch overload must classify, wrap, and preserve dependency exceptions.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Processings.LogEntryProcessingService",
-      "LineNumber": 10
-    },
-    {
-      "Code": "STXEX003",
-      "Description": "Every TryCatch overload must wrap and preserve unclassified exceptions.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Processings.LogEntryProcessingService",
-      "LineNumber": 10
-    },
-    {
-      "Code": "STX0017",
-      "Description": "Identifier parameters must be named for their type, for example studentId.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Processings.LogEntryProcessingService",
-      "LineNumber": 12
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Processings.LogEntryProcessingService",
-      "LineNumber": 14
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Processings.LogEntryProcessingService",
-      "LineNumber": 19
+      "LineNumber": 71
     },
     {
       "Code": "STX0018",
       "Description": "Service method names must include each model type they operate on.",
       "Severity": "Warning",
       "Type": "cCoder.Logging.Services.Processings.LogEntryProcessingService",
-      "LineNumber": 22
-    },
-    {
-      "Code": "STX0019",
-      "Description": "create model parameters must use the new prefix.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Processings.LogEntryProcessingService",
-      "LineNumber": 22
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Processings.LogEntryProcessingService",
-      "LineNumber": 24
+      "LineNumber": 81
     },
     {
       "Code": "STX0018",
       "Description": "Service method names must include each model type they operate on.",
       "Severity": "Warning",
       "Type": "cCoder.Logging.Services.Processings.LogEntryProcessingService",
-      "LineNumber": 27
+      "LineNumber": 100
     },
     {
-      "Code": "STX0019",
-      "Description": "create model parameters must use the new prefix.",
+      "Code": "STXFORMAT001",
+      "Description": "Source files must not contain newline characters after the final code token.",
       "Severity": "Warning",
       "Type": "cCoder.Logging.Services.Processings.LogEntryProcessingService",
-      "LineNumber": 27
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Processings.LogEntryProcessingService",
-      "LineNumber": 29
-    },
-    {
-      "Code": "STX0018",
-      "Description": "Service method names must include each model type they operate on.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Processings.LogEntryProcessingService",
-      "LineNumber": 32
-    },
-    {
-      "Code": "STX0020",
-      "Description": "update model parameters must use the updated prefix.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Processings.LogEntryProcessingService",
-      "LineNumber": 32
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Processings.LogEntryProcessingService",
-      "LineNumber": 34
-    },
-    {
-      "Code": "STX0017",
-      "Description": "Identifier parameters must be named for their type, for example studentId.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Processings.LogEntryProcessingService",
-      "LineNumber": 37
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Processings.LogEntryProcessingService",
-      "LineNumber": 39
-    },
-    {
-      "Code": "STX0018",
-      "Description": "Service method names must include each model type they operate on.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Processings.LogEntryProcessingService",
-      "LineNumber": 42
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Processings.LogEntryProcessingService",
-      "LineNumber": 44
-    },
-    {
-      "Code": "STX0018",
-      "Description": "Service method names must include each model type they operate on.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Processings.LogEntryProcessingService",
-      "LineNumber": 47
-    },
-    {
-      "Code": "STX0021",
-      "Description": "delete model parameters must use the deleted prefix.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Processings.LogEntryProcessingService",
-      "LineNumber": 47
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Processings.LogEntryProcessingService",
-      "LineNumber": 49
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Processings.LogEntryProcessingService",
-      "LineNumber": 54
-    },
-    {
-      "Code": "STXFORMAT005",
-      "Description": "Method call arguments must declare their parameter names.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Services.Processings.LogEntryProcessingService",
-      "LineNumber": 59
+      "LineNumber": 245
     }
   ]
 }

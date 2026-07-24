@@ -12,7 +12,7 @@ using IAuthorizationBroker = cCoder.Logging.Brokers.IAuthorizationBroker;
 
 namespace cCoder.Logging.Exposures.Hubs;
 
-public class LogHub : Hub
+internal sealed class LogHub : Hub
 {
     private readonly ILogger log;
     private readonly CoreDataContext coreDataContext;
@@ -53,7 +53,7 @@ public class LogHub : Hub
             .Where(app => app.Domain == thread)
             .Select(app => (int?)app.Id)
             .FirstOrDefault();
-        User user = authorizationBroker.GetCurrentUser();
+        User user = authorizationBroker.SelectCurrentUser();
 
         if (app.HasValue && user.IsAdminOfApp(app.Value))
         {
@@ -100,13 +100,13 @@ public class LogHub : Hub
         if (UserCounts[thread] == 0)
             History.Remove(thread);
 
-        User user = authorizationBroker.GetCurrentUser();
+        User user = authorizationBroker.SelectCurrentUser();
         log.LogInformation($"User {user.Id} stopped listening to log stream for domain {thread}");
     }
 
     public override Task OnDisconnectedAsync(Exception exception)
     {
-        User user = authorizationBroker.GetCurrentUser();
+        User user = authorizationBroker.SelectCurrentUser();
         log.LogInformation($"User {user.Id} disconnected.");
         return Task.CompletedTask;
     }
@@ -132,6 +132,6 @@ public class LogHub : Hub
         await Clients.Group(thread).SendAsync("ConsoleReceive", level, message, thread);
     }
 
-    public virtual async Task SendTest(string message, string thread) =>
+    public async Task SendTest(string message, string thread) =>
         await Clients.Group(thread).SendAsync("ConsoleReceive", "test", message, thread);
 }

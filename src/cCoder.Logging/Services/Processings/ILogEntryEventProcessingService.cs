@@ -8,7 +8,7 @@ using cCoder.Data.Models.Logging;
 
 namespace cCoder.Logging.Services.Processings;
 
-public interface ILogEntryEventProcessingService
+internal interface ILogEntryEventProcessingService
 {
     ValueTask RaiseLogEntryAddEventAsync(LogEntry entity);
     ValueTask RaiseLogEntryUpdateEventAsync(LogEntry entity);

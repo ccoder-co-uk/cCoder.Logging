@@ -3,16 +3,17 @@
 // ---------------------------------------------------------------
 
 using cCoder.Logging.Models;
+using cCoder.Logging.Models.OData;
 using cCoder.Data.Models.Logging;
 using Microsoft.OData.Edm;
 using Microsoft.OData.ModelBuilder;
 
-namespace cCoder.Logging.Api.OData;
+namespace cCoder.Logging.Dependencies.OData;
 
 internal class LoggingModelBuilder : ODataModelBuilder
 {
     public LoggingModelBuilder(ODataConventionModelBuilder builder = null)
-        : base(builder)
+        : base(builder: builder)
     {
     }
 

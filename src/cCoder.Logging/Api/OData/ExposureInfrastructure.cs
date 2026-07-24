@@ -2,7 +2,8 @@
 // Copyright (c) Paul.Ward@ccoder.co.uk
 // ---------------------------------------------------------------
 
-using cCoder.Logging.Api.OData;
+using cCoder.Logging.Dependencies.OData;
+using cCoder.Logging.Models.OData;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.OData.Edm;
@@ -147,10 +148,4 @@ namespace cCoder.Logging.Api.OData
                 .ToJsonForOdata();
     }
 
-    public sealed class ModelStateError
-    {
-        public string Key { get; set; } = string.Empty;
-        public object Value { get; set; }
-        public string[] Errors { get; set; }
-    }
 }

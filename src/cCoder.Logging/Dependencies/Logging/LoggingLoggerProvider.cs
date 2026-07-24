@@ -5,7 +5,7 @@
 using cCoder.Logging.Models;
 using cCoder.Logging.Services.Orchestrations;
 
-namespace cCoder.Logging.Exposures.Logging;
+namespace cCoder.Logging.Dependencies.Logging;
 
 internal sealed class LoggingLoggerProvider(IServiceProvider serviceProvider) : ILoggerProvider
 {

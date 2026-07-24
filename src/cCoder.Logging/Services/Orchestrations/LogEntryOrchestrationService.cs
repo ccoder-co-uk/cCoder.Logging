@@ -2,69 +2,135 @@
 // Copyright (c) Paul.Ward@ccoder.co.uk
 // ---------------------------------------------------------------
 
-using cCoder.Logging.Models;
 using cCoder.Data.Models.Logging;
+using cCoder.Logging.Models;
 using cCoder.Logging.Services.Processings;
 
 namespace cCoder.Logging.Services.Orchestrations;
 
-internal class LogEntryOrchestrationService(ILogEntryProcessingService processingService, ILogEntryEventProcessingService eventService) : ILogEntryOrchestrationService
+internal sealed partial class LogEntryOrchestrationService(
+    ILogEntryProcessingService logEntryProcessingService,
+    ILogEntryEventProcessingService logEntryEventProcessingService)
+        : ILogEntryOrchestrationService
 {
-    public LogEntry Get(int id)
-    {
-        return processingService.Get(id);
-    }
+    public LogEntry GetLogEntry(int logEntryId) =>
+        TryCatch(operation: () =>
+        {
+            ValidateInputs(inputs: [logEntryId]);
 
-    public IQueryable<LogEntry> GetAll(bool ignoreFilters = false)
-    {
-        return processingService.GetAll(ignoreFilters);
-    }
+            return logEntryProcessingService.GetLogEntry(
+                logEntryId: logEntryId);
+        });
 
-    public async ValueTask<LogEntry> AddAsync(LogEntry logEntry)
-    {
-        LogEntry result = await processingService.AddAsync(logEntry);
-        await eventService.RaiseLogEntryAddEventAsync(result);
-        return result;
-    }
+    public IQueryable<LogEntry> GetAllLogEntries(
+        bool ignoreFilters = false) =>
+        TryCatch(operation: () =>
+        {
+            ValidateInputs(inputs: [ignoreFilters]);
 
-    public async ValueTask<LogEntry> AddSystemAsync(LogEntry logEntry)
-    {
-        LogEntry result = await processingService.AddSystemAsync(logEntry);
-        await eventService.RaiseLogEntryAddEventAsync(result);
-        return result;
-    }
+            return logEntryProcessingService.GetAllLogEntries(
+                ignoreFilters: ignoreFilters);
+        });
 
-    public async ValueTask<LogEntry> UpdateAsync(LogEntry logEntry)
-    {
-        LogEntry result = await processingService.UpdateAsync(logEntry);
-        await eventService.RaiseLogEntryUpdateEventAsync(result);
-        return result;
-    }
+    public ValueTask<LogEntry> AddLogEntryAsync(
+        LogEntry newLogEntry) =>
+        TryCatch(operation: async () =>
+        {
+            ValidateInputs(inputs: [newLogEntry]);
 
-    public async ValueTask DeleteAsync(int id)
-    {
-        LogEntry entity = processingService.Get(id);
-        await eventService.RaiseLogEntryDeleteEventAsync(entity);
-        await processingService.DeleteAsync(id);
-    }
+            LogEntry savedLogEntry =
+                await logEntryProcessingService.AddLogEntryAsync(
+                    newLogEntry: newLogEntry);
 
-    public ValueTask<IEnumerable<Result<LogEntry>>> AddOrUpdate(IEnumerable<LogEntry> items)
-    {
-        return processingService.AddOrUpdate(items);
-    }
+            await logEntryEventProcessingService.RaiseLogEntryAddEventAsync(
+                entity: savedLogEntry);
 
-    public ValueTask DeleteAllAsync(IEnumerable<LogEntry> items)
-    {
-        return processingService.DeleteAllAsync(items);
-    }
+            return savedLogEntry;
+        });
 
-    public ValueTask<int> DeleteEntriesBeforeAsync(DateTime cutoff)
-    {
-        return processingService.DeleteEntriesBeforeAsync(cutoff);
-    }
+    public ValueTask<LogEntry> AddSystemLogEntryAsync(
+        LogEntry newLogEntry) =>
+        TryCatch(operation: async () =>
+        {
+            ValidateInputs(inputs: [newLogEntry]);
 
-    public int? ResolveAppId(string domainOrName)
-    {
-        return processingService.ResolveAppId(domainOrName);
-    }
+            LogEntry savedLogEntry =
+                await logEntryProcessingService.AddSystemLogEntryAsync(
+                    newLogEntry: newLogEntry);
+
+            await logEntryEventProcessingService.RaiseLogEntryAddEventAsync(
+                entity: savedLogEntry);
+
+            return savedLogEntry;
+        });
+
+    public ValueTask<LogEntry> UpdateLogEntryAsync(
+        LogEntry updatedLogEntry) =>
+        TryCatch(operation: async () =>
+        {
+            ValidateInputs(inputs: [updatedLogEntry]);
+
+            LogEntry savedLogEntry =
+                await logEntryProcessingService.UpdateLogEntryAsync(
+                    updatedLogEntry: updatedLogEntry);
+
+            await logEntryEventProcessingService.RaiseLogEntryUpdateEventAsync(
+                entity: savedLogEntry);
+
+            return savedLogEntry;
+        });
+
+    public ValueTask DeleteLogEntryAsync(int logEntryId) =>
+        TryCatch(operation: async () =>
+        {
+            ValidateInputs(inputs: [logEntryId]);
+
+            LogEntry deletedLogEntry =
+                logEntryProcessingService.GetLogEntry(
+                    logEntryId: logEntryId);
+
+            await logEntryEventProcessingService.RaiseLogEntryDeleteEventAsync(
+                entity: deletedLogEntry);
+
+            await logEntryProcessingService.DeleteLogEntryAsync(
+                logEntryId: logEntryId);
+        });
+
+    public ValueTask<IEnumerable<Result<LogEntry>>> AddOrUpdateLogEntriesAsync(
+        IEnumerable<LogEntry> logEntries) =>
+        TryCatch(operation: async () =>
+        {
+            ValidateInputs(inputs: [logEntries]);
+
+            return await logEntryProcessingService.AddOrUpdateLogEntriesAsync(
+                logEntries: logEntries);
+        });
+
+    public ValueTask DeleteAllLogEntriesAsync(
+        IEnumerable<LogEntry> deletedLogEntries) =>
+        TryCatch(operation: async () =>
+        {
+            ValidateInputs(inputs: [deletedLogEntries]);
+
+            await logEntryProcessingService.DeleteAllLogEntriesAsync(
+                deletedLogEntries: deletedLogEntries);
+        });
+
+    public ValueTask<int> DeleteLogEntriesBeforeAsync(DateTime cutoff) =>
+        TryCatch(operation: async () =>
+        {
+            ValidateInputs(inputs: [cutoff]);
+
+            return await logEntryProcessingService.DeleteLogEntriesBeforeAsync(
+                cutoff: cutoff);
+        });
+
+    public int? ResolveAppId(string domainOrName) =>
+        TryCatch(operation: () =>
+        {
+            ValidateInputs(inputs: [domainOrName]);
+
+            return logEntryProcessingService.ResolveAppId(
+                domainOrName: domainOrName);
+        });
 }

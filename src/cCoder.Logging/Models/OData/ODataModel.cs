@@ -5,11 +5,11 @@
 using Microsoft.OData.Edm;
 
 
-namespace cCoder.Logging.Api.OData;
+namespace cCoder.Logging.Models.OData;
 
 public class ODataModel
 {
-    public string Context { get; set; } = string.Empty;
-    public string Description { get; set; } = string.Empty;
-    public IEdmModel EDMModel { get; set; } = null!;
+    public string Context { get; set; }
+    public string Description { get; set; }
+    public IEdmModel EDMModel { get; set; }
 }

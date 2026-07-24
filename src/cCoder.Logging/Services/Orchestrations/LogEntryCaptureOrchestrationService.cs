@@ -7,6 +7,7 @@ using cCoder.Logging.Brokers;
 using cCoder.Logging.Exposures.Hubs;
 using cCoder.Logging.Models;
 using cCoder.Logging.Services.Processings;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Logging;
 
 namespace cCoder.Logging.Services.Orchestrations;
@@ -31,7 +32,16 @@ internal class LogEntryCaptureOrchestrationService(
         string level = request.Level.ToString().ToLowerInvariant();
 
         if (configuration.StreamLogEntries)
-            await logEntryStreamBroker.StreamAsync(thread, level, request.Message);
+        {
+            IHubContext<LogHub> hubContext =
+                logEntryStreamBroker.SelectLogHubContext();
+
+            await logEntryStreamBroker.SendLogEntryAsync(
+                hubContext: hubContext,
+                thread: thread,
+                level: level,
+                message: request.Message);
+        }
 
         if (!configuration.StoreLogEntries)
             return;
@@ -54,8 +64,12 @@ internal class LogEntryCaptureOrchestrationService(
             Data = Array.Empty<LogDataItem>()
         };
 
-        LogEntry result = await logEntryProcessingService.AddSystemAsync(logEntry);
-        await logEntryEventProcessingService.RaiseLogEntryAddEventAsync(result);
+        LogEntry result =
+            await logEntryProcessingService.AddSystemLogEntryAsync(
+                newLogEntry: logEntry);
+
+        await logEntryEventProcessingService.RaiseLogEntryAddEventAsync(
+            entity: result);
     }
 
     private int? ResolveAppId(LogEntryCaptureRequest request, string thread)

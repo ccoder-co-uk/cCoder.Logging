@@ -26,7 +26,8 @@ internal class LogRetentionOrchestrationService(
             return new ValueTask<int>(0);
 
         DateTime cutoff = DateTime.UtcNow.AddDays(-GetRetentionDays());
-        return logEntryProcessingService.DeleteEntriesBeforeAsync(cutoff);
+        return logEntryProcessingService.DeleteLogEntriesBeforeAsync(
+            cutoff: cutoff);
     }
 
     private int GetRetentionDays() =>

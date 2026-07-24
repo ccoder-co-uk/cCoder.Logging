@@ -2,13 +2,12 @@
 // Copyright (c) Paul.Ward@ccoder.co.uk
 // ---------------------------------------------------------------
 
-using cCoder.Logging.Models;
 using cCoder.Data.Models.Logging;
 
 
 namespace cCoder.Logging.Services.Foundations.Events;
 
-public interface ILogDataItemEventService
+internal interface ILogDataItemEventService
 {
     ValueTask RaiseLogDataItemAddEventAsync(LogDataItem entity);
     ValueTask RaiseLogDataItemUpdateEventAsync(LogDataItem entity);

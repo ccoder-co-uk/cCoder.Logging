@@ -5,12 +5,12 @@
 using System.Collections;
 using System.ComponentModel.DataAnnotations;
 using System.Reflection;
+using cCoder.Logging.Api.OData;
 
-namespace cCoder.Logging.Api.OData;
+namespace cCoder.Logging.Dependencies.OData;
 
 public class MetadataContainerSet
 {
-    [Required]
     public string Name { get; set; }
 
     public string UriBase { get; set; }

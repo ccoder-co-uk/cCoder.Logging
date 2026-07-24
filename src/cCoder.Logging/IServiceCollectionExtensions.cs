@@ -6,9 +6,9 @@ using cCoder.Data.Models.Logging;
 using cCoder.Logging.Api.OData;
 using cCoder.Logging.Brokers;
 using cCoder.Logging.Exposures.HostedServices;
-using cCoder.Logging.Exposures.Logging;
+using cCoder.Logging.Dependencies.Logging;
+using cCoder.Logging.Exposures;
 using cCoder.Logging.Models;
-using cCoder.Logging.Services;
 using cCoder.Logging.Services.Foundations;
 using cCoder.Logging.Services.Foundations.Events;
 using cCoder.Logging.Services.Orchestrations;
@@ -44,6 +44,9 @@ public static partial class IServiceCollectionExtensions
 
     private static void AddLogging(this IServiceCollection services)
     {
+        services.AddTransient<IBaselineExposure, BaselineExposure>();
+        services.AddTransient<ILogDataItemManager, LogDataItemManager>();
+        services.AddTransient<ILogEntryManager, LogEntryManager>();
         services.AddEventingTypes();
         services.AddBrokers();
         services.AddFoundations();
@@ -66,6 +69,7 @@ public static partial class IServiceCollectionExtensions
 
     private static void AddBrokers(this IServiceCollection services)
     {
+        services.AddTransient<IAuthInfoBroker, AuthInfoBroker>();
         services.AddTransient<ILogDataItemEventBroker, LogDataItemEventBroker>();
         services.AddTransient<ILogEntryEventBroker, LogEntryEventBroker>();
         services.AddTransient<ILogDataItemBroker, LogDataItemBroker>();

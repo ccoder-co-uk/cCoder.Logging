@@ -13,20 +13,22 @@ internal sealed partial class LogEntryRetentionProcessingService(
         : ILogEntryRetentionProcessingService
 {
     public Task RunLogRetentionAsync(CancellationToken cancellationToken) =>
-        TryCatch(operation: async () =>
-        {
-            ValidateInputs(inputs: [cancellationToken]);
-
-            while (!cancellationToken.IsCancellationRequested)
+        TryCatch(
+            operation: async () =>
             {
-                await DeleteExpiredLogEntries(
-                    cancellationToken: cancellationToken);
+                ValidateInputs(inputs: [cancellationToken]);
 
-                await Task.Delay(
-                    delay: GetInterval(),
-                    cancellationToken: cancellationToken);
-            }
-        });
+                while (!cancellationToken.IsCancellationRequested)
+                {
+                    await DeleteExpiredLogEntries(
+                        cancellationToken: cancellationToken);
+
+                    await Task.Delay(
+                        delay: GetInterval(),
+                        cancellationToken: cancellationToken);
+                }
+            },
+            cancellationToken: cancellationToken);
 
     public ValueTask<int> DeleteExpiredLogEntriesAsync(
         CancellationToken cancellationToken = default) =>

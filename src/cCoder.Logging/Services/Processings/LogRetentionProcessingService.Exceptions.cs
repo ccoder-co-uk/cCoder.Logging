@@ -8,11 +8,17 @@ namespace cCoder.Logging.Services.Processings;
 
 internal sealed partial class LogEntryRetentionProcessingService
 {
-    private static async Task TryCatch(Func<Task> operation)
+    private static async Task TryCatch(
+        Func<Task> operation,
+        CancellationToken cancellationToken)
     {
         try
         {
             await operation();
+        }
+        catch (OperationCanceledException)
+            when (cancellationToken.IsCancellationRequested)
+        {
         }
         catch (LoggingValidationException innerException)
         {

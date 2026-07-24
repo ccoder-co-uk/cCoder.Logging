@@ -18,20 +18,24 @@ public partial class LogDataItemOrchestrationServiceTests
         // Given
         int id = 1;
         LogDataItem entity = CreateRandomLogDataItem();
-        logDataItemProcessingServiceMock.Setup(x => x.Get(id)).Returns(entity);
-        logDataItemProcessingServiceMock.Setup(x => x.DeleteAsync(id)).Returns(ValueTask.CompletedTask);
+
+        logDataItemProcessingServiceMock.Setup(expression: x => x.GetLogDataItem(logDataItemId: id))
+            .Returns(value: entity);
+
+        logDataItemProcessingServiceMock.Setup(expression: x => x.DeleteLogDataItemAsync(logDataItemId: id))
+            .Returns(value: ValueTask.CompletedTask);
 
         logDataItemEventProcessingServiceMock
-            .Setup(x => x.RaiseLogDataItemDeleteEventAsync(entity))
-            .Returns(ValueTask.CompletedTask);
+            .Setup(expression: x => x.RaiseLogDataItemDeleteEventAsync(entity: entity))
+            .Returns(value: ValueTask.CompletedTask);
 
         // When
-        await orchestrationService.DeleteAsync(id);
+        await orchestrationService.DeleteLogDataItemAsync(logDataItemId: id);
 
         // Then
-        logDataItemProcessingServiceMock.Verify(x => x.Get(id), Times.Once);
-        logDataItemProcessingServiceMock.Verify(x => x.DeleteAsync(id), Times.Once);
-        logDataItemEventProcessingServiceMock.Verify(x => x.RaiseLogDataItemDeleteEventAsync(entity), Times.Once);
+        logDataItemProcessingServiceMock.Verify(expression: x => x.GetLogDataItem(logDataItemId: id), times: Times.Once);
+        logDataItemProcessingServiceMock.Verify(expression: x => x.DeleteLogDataItemAsync(logDataItemId: id), times: Times.Once);
+        logDataItemEventProcessingServiceMock.Verify(expression: x => x.RaiseLogDataItemDeleteEventAsync(entity: entity), times: Times.Once);
     }
 
 }

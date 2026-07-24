@@ -20,14 +20,16 @@ public partial class LogDataItemOrchestrationServiceTests
 
     public LogDataItemOrchestrationServiceTests()
     {
-        logDataItemProcessingServiceMock = new Mock<ILogDataItemProcessingService>(MockBehavior.Strict);
-        logDataItemEventProcessingServiceMock = new Mock<ILogDataItemEventProcessingService>(MockBehavior.Strict);
+        logDataItemProcessingServiceMock = new Mock<ILogDataItemProcessingService>(behavior: MockBehavior.Strict);
+        logDataItemEventProcessingServiceMock = new Mock<ILogDataItemEventProcessingService>(behavior: MockBehavior.Strict);
+
         orchestrationService = new LogDataItemOrchestrationService(
-            logDataItemProcessingServiceMock.Object,
-            logDataItemEventProcessingServiceMock.Object
+logDataItemProcessingService: logDataItemProcessingServiceMock.Object,
+logDataItemEventProcessingService: logDataItemEventProcessingServiceMock.Object
         );
     }
 
     private static LogDataItem CreateRandomLogDataItem() =>
-        Builder<LogDataItem>.CreateNew().Build();
+        Builder<LogDataItem>.CreateNew()
+        .Build();
 }

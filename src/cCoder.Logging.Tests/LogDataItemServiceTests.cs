@@ -22,22 +22,22 @@ public partial class LogDataItemServiceTests
 
     public LogDataItemServiceTests()
     {
-        logDataItemBrokerMock = new Mock<ILogDataItemBroker>(MockBehavior.Strict);
-        authorizationBrokerMock = new Mock<IAuthorizationBroker>(MockBehavior.Strict);
+        logDataItemBrokerMock = new Mock<ILogDataItemBroker>(behavior: MockBehavior.Strict);
+        authorizationBrokerMock = new Mock<IAuthorizationBroker>(behavior: MockBehavior.Strict);
+
         logDataItemService = new LogDataItemService(
-            logDataItemBrokerMock.Object,
-            authorizationBrokerMock.Object
-        );
+            logDataItemBroker: logDataItemBrokerMock.Object,
+            authorizationBroker: authorizationBrokerMock.Object);
     }
 
     private static LogDataItem CreateRandomLogDataItem(int id = 42, int logEntryId = 7)
     {
         LogDataItem logDataItem = Builder<LogDataItem>
             .CreateNew()
-            .With(x => x.Id = id)
-            .With(x => x.LogEntryId = logEntryId)
-            .With(x => x.Name = $"Name-{Guid.NewGuid():N}")
-            .With(x => x.Value = $"Value-{Guid.NewGuid():N}")
+            .With(func: x => x.Id = id)
+            .With(func: x => x.LogEntryId = logEntryId)
+            .With(func: x => x.Name = $"Name-{Guid.NewGuid():N}")
+            .With(func: x => x.Value = $"Value-{Guid.NewGuid():N}")
             .Build();
 
         return logDataItem;
@@ -47,10 +47,10 @@ public partial class LogDataItemServiceTests
     {
         DataLogDataItem logDataItem = Builder<DataLogDataItem>
             .CreateNew()
-            .With(x => x.Id = id)
-            .With(x => x.LogEntryId = logEntryId)
-            .With(x => x.Name = $"Name-{Guid.NewGuid():N}")
-            .With(x => x.Value = $"Value-{Guid.NewGuid():N}")
+            .With(func: x => x.Id = id)
+            .With(func: x => x.LogEntryId = logEntryId)
+            .With(func: x => x.Name = $"Name-{Guid.NewGuid():N}")
+            .With(func: x => x.Value = $"Value-{Guid.NewGuid():N}")
             .Build();
 
         return logDataItem;

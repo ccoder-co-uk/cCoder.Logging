@@ -18,19 +18,24 @@ public partial class LogEntryOrchestrationServiceTests
     {
         // Given
         LogEntry entity = CreateRandomLogEntry();
-        logEntryProcessingServiceMock.Setup(x => x.AddAsync(entity)).ReturnsAsync(entity);
+
+        logEntryProcessingServiceMock.Setup(expression: x => x.AddLogEntryAsync(newLogEntry: entity))
+            .ReturnsAsync(value: entity);
 
         logEntryEventProcessingServiceMock
-            .Setup(x => x.RaiseLogEntryAddEventAsync(entity))
-            .Returns(ValueTask.CompletedTask);
+            .Setup(expression: x => x.RaiseLogEntryAddEventAsync(entity: entity))
+            .Returns(value: ValueTask.CompletedTask);
 
         // When
-        LogEntry result = await orchestrationService.AddAsync(entity);
+        LogEntry result = await orchestrationService.AddLogEntryAsync(newLogEntry: entity);
 
         // Then
-        result.Should().BeSameAs(entity);
-        logEntryProcessingServiceMock.Verify(x => x.AddAsync(entity), Times.Once);
-        logEntryEventProcessingServiceMock.Verify(x => x.RaiseLogEntryAddEventAsync(entity), Times.Once);
+
+        result.Should()
+            .BeSameAs(expected: entity);
+
+        logEntryProcessingServiceMock.Verify(expression: x => x.AddLogEntryAsync(newLogEntry: entity), times: Times.Once);
+        logEntryEventProcessingServiceMock.Verify(expression: x => x.RaiseLogEntryAddEventAsync(entity: entity), times: Times.Once);
     }
 
 }

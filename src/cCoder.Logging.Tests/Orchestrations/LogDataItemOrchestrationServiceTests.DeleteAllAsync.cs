@@ -17,13 +17,15 @@ public partial class LogDataItemOrchestrationServiceTests
     {
         // Given
         LogDataItem[] entities = [CreateRandomLogDataItem()];
-        logDataItemProcessingServiceMock.Setup(x => x.DeleteAllAsync(entities)).Returns(ValueTask.CompletedTask);
+
+        logDataItemProcessingServiceMock.Setup(expression: x => x.DeleteAllLogDataItemAsync(deletedLogDataItems: entities))
+            .Returns(value: ValueTask.CompletedTask);
 
         // When
-        await orchestrationService.DeleteAllAsync(entities);
+        await orchestrationService.DeleteAllLogDataItemAsync(deletedLogDataItems: entities);
 
         // Then
-        logDataItemProcessingServiceMock.Verify(x => x.DeleteAllAsync(entities), Times.Once);
+        logDataItemProcessingServiceMock.Verify(expression: x => x.DeleteAllLogDataItemAsync(deletedLogDataItems: entities), times: Times.Once);
         logDataItemProcessingServiceMock.VerifyNoOtherCalls();
         logDataItemEventProcessingServiceMock.VerifyNoOtherCalls();
     }

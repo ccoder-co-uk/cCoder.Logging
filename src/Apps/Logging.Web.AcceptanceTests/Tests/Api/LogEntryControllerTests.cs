@@ -20,14 +20,23 @@ public sealed partial class LogEntryControllerTests(WebAcceptanceFixture fixture
 
     private async Task<LogEntry> FindLogEntryAsync(string message)
     {
-        using IServiceScope scope = fixture.Factory.Services.CreateScope();
-        using CoreDataContext context = scope.ServiceProvider
+        // Given
+        IServiceScope scope = fixture.Factory.Services.CreateScope();
+
+        CoreDataContext context = scope.ServiceProvider
             .GetRequiredService<ICoreContextFactory>()
             .CreateCoreContext();
 
-        return await context.Logs
+        // When
+        LogEntry logEntry = await context.Logs
             .IgnoreQueryFilters()
-            .FirstOrDefaultAsync(logEntry => logEntry.Message == message);
+            .FirstOrDefaultAsync(predicate: logEntry => logEntry.Message == message);
+
+        // Then
+        await context.DisposeAsync();
+        scope.Dispose();
+
+        return logEntry;
     }
 
     private static LogEntry CreateLogEntry() =>

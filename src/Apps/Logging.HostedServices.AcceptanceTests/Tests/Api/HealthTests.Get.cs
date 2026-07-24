@@ -15,9 +15,11 @@ public sealed partial class HealthTests
         // Given
 
         // When
-        string response = await Client.GetStringAsync("/Health");
+        string response = await Client.GetStringAsync(requestUri: "/Health");
 
         // Then
-        response.Should().Contain("OK");
+
+        response.Should()
+            .Contain(expected: "OK");
     }
 }

@@ -17,15 +17,16 @@ public partial class LogEntryEventProcessingServiceTests
     {
         // Given
         LogEntry entity = CreateRandomLogEntry();
+
         logEntryEventServiceMock
-            .Setup(x => x.RaiseLogEntryUpdateEventAsync(entity))
-            .Returns(ValueTask.CompletedTask);
+            .Setup(expression: x => x.RaiseLogEntryUpdateEventAsync(entity: entity))
+            .Returns(value: ValueTask.CompletedTask);
 
         // When
-        await service.RaiseLogEntryUpdateEventAsync(entity);
+        await service.RaiseLogEntryUpdateEventAsync(entity: entity);
 
         // Then
-        logEntryEventServiceMock.Verify(x => x.RaiseLogEntryUpdateEventAsync(entity), Times.Once);
+        logEntryEventServiceMock.Verify(expression: x => x.RaiseLogEntryUpdateEventAsync(entity: entity), times: Times.Once);
         logEntryEventServiceMock.VerifyNoOtherCalls();
     }
 

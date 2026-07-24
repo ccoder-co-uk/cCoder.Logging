@@ -23,25 +23,25 @@ public partial class LogEntryServiceTests
 
     public LogEntryServiceTests()
     {
-        logEntryBrokerMock = new Mock<ILogEntryBroker>(MockBehavior.Strict);
-        authorizationBrokerMock = new Mock<IAuthorizationBroker>(MockBehavior.Strict);
+        logEntryBrokerMock = new Mock<ILogEntryBroker>(behavior: MockBehavior.Strict);
+        authorizationBrokerMock = new Mock<IAuthorizationBroker>(behavior: MockBehavior.Strict);
+
         logEntryService = new LogEntryService(
-            logEntryBrokerMock.Object,
-            authorizationBrokerMock.Object
-        );
+            logEntryBroker: logEntryBrokerMock.Object,
+            authorizationBroker: authorizationBrokerMock.Object);
     }
 
     private static LogEntry CreateRandomLogEntry(int id = 42)
     {
         LogEntry logEntry = Builder<LogEntry>
             .CreateNew()
-            .With(x => x.Id = id)
-            .With(x => x.Level = (int)cCoder.Logging.Models.LoggingLevel.Info)
-            .With(x => x.Message = $"Message-{Guid.NewGuid():N}")
-            .With(x => x.AppName = $"App-{Guid.NewGuid():N}")
-            .With(x => x.TypeName = $"Type-{Guid.NewGuid():N}")
-            .With(x => x.Date = DateTime.UtcNow)
-            .With(x => x.Data = Array.Empty<LogDataItem>())
+            .With(func: x => x.Id = id)
+            .With(func: x => x.Level = (int)cCoder.Logging.Models.LoggingLevel.Info)
+            .With(func: x => x.Message = $"Message-{Guid.NewGuid():N}")
+            .With(func: x => x.AppName = $"App-{Guid.NewGuid():N}")
+            .With(func: x => x.TypeName = $"Type-{Guid.NewGuid():N}")
+            .With(func: x => x.Date = DateTime.UtcNow)
+            .With(func: x => x.Data = Array.Empty<LogDataItem>())
             .Build();
 
         return logEntry;
@@ -51,13 +51,13 @@ public partial class LogEntryServiceTests
     {
         DataLogEntry logEntry = Builder<DataLogEntry>
             .CreateNew()
-            .With(x => x.Id = id)
-            .With(x => x.Level = (int)cCoder.Logging.Models.LoggingLevel.Info)
-            .With(x => x.Message = $"Message-{Guid.NewGuid():N}")
-            .With(x => x.AppName = $"App-{Guid.NewGuid():N}")
-            .With(x => x.TypeName = $"Type-{Guid.NewGuid():N}")
-            .With(x => x.Date = DateTime.UtcNow)
-            .With(x => x.Data = Array.Empty<DataLogDataItem>())
+            .With(func: x => x.Id = id)
+            .With(func: x => x.Level = (int)cCoder.Logging.Models.LoggingLevel.Info)
+            .With(func: x => x.Message = $"Message-{Guid.NewGuid():N}")
+            .With(func: x => x.AppName = $"App-{Guid.NewGuid():N}")
+            .With(func: x => x.TypeName = $"Type-{Guid.NewGuid():N}")
+            .With(func: x => x.Date = DateTime.UtcNow)
+            .With(func: x => x.Data = Array.Empty<DataLogDataItem>())
             .Build();
 
         return logEntry;

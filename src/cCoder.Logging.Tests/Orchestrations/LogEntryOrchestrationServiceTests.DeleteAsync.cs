@@ -18,20 +18,24 @@ public partial class LogEntryOrchestrationServiceTests
         // Given
         int id = 1;
         LogEntry entity = CreateRandomLogEntry();
-        logEntryProcessingServiceMock.Setup(x => x.Get(id)).Returns(entity);
-        logEntryProcessingServiceMock.Setup(x => x.DeleteAsync(id)).Returns(ValueTask.CompletedTask);
+
+        logEntryProcessingServiceMock.Setup(expression: x => x.GetLogEntry(logEntryId: id))
+            .Returns(value: entity);
+
+        logEntryProcessingServiceMock.Setup(expression: x => x.DeleteLogEntryAsync(logEntryId: id))
+            .Returns(value: ValueTask.CompletedTask);
 
         logEntryEventProcessingServiceMock
-            .Setup(x => x.RaiseLogEntryDeleteEventAsync(entity))
-            .Returns(ValueTask.CompletedTask);
+            .Setup(expression: x => x.RaiseLogEntryDeleteEventAsync(entity: entity))
+            .Returns(value: ValueTask.CompletedTask);
 
         // When
-        await orchestrationService.DeleteAsync(id);
+        await orchestrationService.DeleteLogEntryAsync(logEntryId: id);
 
         // Then
-        logEntryProcessingServiceMock.Verify(x => x.Get(id), Times.Once);
-        logEntryProcessingServiceMock.Verify(x => x.DeleteAsync(id), Times.Once);
-        logEntryEventProcessingServiceMock.Verify(x => x.RaiseLogEntryDeleteEventAsync(entity), Times.Once);
+        logEntryProcessingServiceMock.Verify(expression: x => x.GetLogEntry(logEntryId: id), times: Times.Once);
+        logEntryProcessingServiceMock.Verify(expression: x => x.DeleteLogEntryAsync(logEntryId: id), times: Times.Once);
+        logEntryEventProcessingServiceMock.Verify(expression: x => x.RaiseLogEntryDeleteEventAsync(entity: entity), times: Times.Once);
     }
 
 }

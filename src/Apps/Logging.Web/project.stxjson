@@ -167,6 +167,12 @@
       "Methods": []
     },
     {
+      "Name": "Logging.Web.Hosting.WebApplicationExtensions",
+      "StandardElementType": "Dependency",
+      "Properties": [],
+      "Methods": []
+    },
+    {
       "Name": "Logging.Web.Program",
       "StandardElementType": "App",
       "Properties": [],
@@ -185,34 +191,5 @@
     }
   ],
   "Links": [],
-  "AnalysisItems": [
-    {
-      "Code": "STXM002",
-      "Description": "Model properties must not declare default values.",
-      "Severity": "Warning",
-      "Type": "Apps.Shared.Models.Config",
-      "LineNumber": 9
-    },
-    {
-      "Code": "STXM002",
-      "Description": "Model properties must not declare default values.",
-      "Severity": "Warning",
-      "Type": "Apps.Shared.Models.Config",
-      "LineNumber": 10
-    },
-    {
-      "Code": "STXM002",
-      "Description": "Model properties must not declare default values.",
-      "Severity": "Warning",
-      "Type": "Apps.Shared.Models.Config",
-      "LineNumber": 11
-    },
-    {
-      "Code": "STXAPP005",
-      "Description": "Program.cs must compose the app through IServiceCollection using SDK namespaces and one local composition namespace only.",
-      "Severity": "Warning",
-      "Type": "Logging.Web.Program",
-      "LineNumber": 19
-    }
-  ]
+  "AnalysisItems": []
 }

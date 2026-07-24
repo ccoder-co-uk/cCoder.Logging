@@ -13,25 +13,31 @@ public partial class LogRetentionOrchestrationServiceTests
     public async Task ShouldDeleteEntriesOlderThanRetentionPeriodWhenDeleteExpiredAsync()
     {
         // Given
-        DateTime before = DateTime.UtcNow.AddDays(-30).AddSeconds(-5);
+        DateTime before = DateTime.UtcNow.AddDays(value: -30)
+            .AddSeconds(value: -5);
+
         DateTime capturedCutoff = default;
+
         logEntryServiceMock
-            .Setup(service => service.DeleteLogEntriesBeforeAsync(
-                It.IsAny<DateTime>()))
-            .Callback<DateTime>(cutoff => capturedCutoff = cutoff)
-            .ReturnsAsync(3);
+            .Setup(expression: service => service.DeleteLogEntriesBeforeAsync(
+cutoff: It.IsAny<DateTime>()))
+            .Callback<DateTime>(action: cutoff => capturedCutoff = cutoff)
+            .ReturnsAsync(value: 3);
 
         // When
         int result = await processingService.DeleteExpiredLogEntriesAsync();
-        DateTime after = DateTime.UtcNow.AddDays(-30).AddSeconds(5);
+
+        DateTime after = DateTime.UtcNow.AddDays(value: -30)
+            .AddSeconds(value: 5);
 
         // Then
-        Assert.Equal(3, result);
-        Assert.InRange(capturedCutoff, before, after);
-        logEntryServiceMock.Verify(service =>
+        Assert.Equal(expected: 3, actual: result);
+        Assert.InRange(actual: capturedCutoff, low: before, high: after);
+
+        logEntryServiceMock.Verify(expression: service =>
             service.DeleteLogEntriesBeforeAsync(
-                It.IsAny<DateTime>()),
-            Times.Once);
+cutoff: It.IsAny<DateTime>()),
+times: Times.Once);
 
         logEntryServiceMock.VerifyNoOtherCalls();
     }
@@ -46,7 +52,7 @@ public partial class LogRetentionOrchestrationServiceTests
         int result = await processingService.DeleteExpiredLogEntriesAsync();
 
         // Then
-        Assert.Equal(0, result);
+        Assert.Equal(expected: 0, actual: result);
         logEntryServiceMock.VerifyNoOtherCalls();
     }
 }

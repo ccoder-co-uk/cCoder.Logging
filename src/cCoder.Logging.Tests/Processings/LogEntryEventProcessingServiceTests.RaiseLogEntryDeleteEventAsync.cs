@@ -17,15 +17,16 @@ public partial class LogEntryEventProcessingServiceTests
     {
         // Given
         LogEntry entity = CreateRandomLogEntry();
+
         logEntryEventServiceMock
-            .Setup(x => x.RaiseLogEntryDeleteEventAsync(entity))
-            .Returns(ValueTask.CompletedTask);
+            .Setup(expression: x => x.RaiseLogEntryDeleteEventAsync(entity: entity))
+            .Returns(value: ValueTask.CompletedTask);
 
         // When
-        await service.RaiseLogEntryDeleteEventAsync(entity);
+        await service.RaiseLogEntryDeleteEventAsync(entity: entity);
 
         // Then
-        logEntryEventServiceMock.Verify(x => x.RaiseLogEntryDeleteEventAsync(entity), Times.Once);
+        logEntryEventServiceMock.Verify(expression: x => x.RaiseLogEntryDeleteEventAsync(entity: entity), times: Times.Once);
         logEntryEventServiceMock.VerifyNoOtherCalls();
     }
 

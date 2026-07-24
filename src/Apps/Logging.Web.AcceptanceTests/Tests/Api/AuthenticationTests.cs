@@ -32,9 +32,10 @@ public sealed partial class AuthenticationTests(WebAcceptanceFixture fixture)
         RegisterUser user = CreateRegisterUser();
 
         using HttpResponseMessage response = await Client.PostAsJsonAsync(
-            "/Api/Account/Register",
-            user);
-        await EnsureSuccessAsync(response);
+requestUri: "/Api/Account/Register",
+value: user);
+
+        await EnsureSuccessAsync(response: response);
 
         return user;
     }
@@ -48,9 +49,10 @@ public sealed partial class AuthenticationTests(WebAcceptanceFixture fixture)
         };
 
         using HttpResponseMessage response = await Client.PostAsJsonAsync(
-            "/Api/Account/Login",
-            auth);
-        await EnsureSuccessAsync(response);
+requestUri: "/Api/Account/Login",
+value: auth);
+
+        await EnsureSuccessAsync(response: response);
 
         return await response.Content.ReadFromJsonAsync<Token>();
     }
@@ -58,11 +60,13 @@ public sealed partial class AuthenticationTests(WebAcceptanceFixture fixture)
     private static async ValueTask EnsureSuccessAsync(HttpResponseMessage response)
     {
         if (response.IsSuccessStatusCode)
+        {
             return;
+        }
 
         string content = await response.Content.ReadAsStringAsync();
 
         throw new InvalidOperationException(
-            $"Expected success but received {(int)response.StatusCode} {response.ReasonPhrase}: {content}");
+message: $"Expected success but received {(int)response.StatusCode} {response.ReasonPhrase}: {content}");
     }
 }

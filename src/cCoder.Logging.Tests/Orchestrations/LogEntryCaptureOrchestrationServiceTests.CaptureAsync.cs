@@ -19,18 +19,19 @@ public partial class LogEntryCaptureOrchestrationServiceTests
         LogEntry savedLogEntry = CreateLogEntry();
 
         logEntryCaptureProcessingServiceMock
-            .Setup(processingService =>
+            .Setup(expression: processingService =>
                 processingService.CaptureLogEntryAsync(
-                    logEntryCaptureRequest))
-            .ReturnsAsync(savedLogEntry);
+logEntryCaptureRequest: logEntryCaptureRequest))
+            .ReturnsAsync(value: savedLogEntry);
 
         logEntryEventProcessingServiceMock
-            .Setup(processingService =>
+            .Setup(expression: processingService =>
                 processingService.RaiseLogEntryAddEventAsync(
-                    savedLogEntry))
-            .Returns(ValueTask.CompletedTask);
+entity: savedLogEntry))
+            .Returns(value: ValueTask.CompletedTask);
 
         // When
+
         await orchestrationService.CaptureLogEntryAsync(
             logEntryCaptureRequest: logEntryCaptureRequest);
 
@@ -46,12 +47,13 @@ public partial class LogEntryCaptureOrchestrationServiceTests
         LogEntryCaptureRequest logEntryCaptureRequest = CreateRequest();
 
         logEntryCaptureProcessingServiceMock
-            .Setup(processingService =>
+            .Setup(expression: processingService =>
                 processingService.CaptureLogEntryAsync(
-                    logEntryCaptureRequest))
-            .ReturnsAsync((LogEntry)null);
+logEntryCaptureRequest: logEntryCaptureRequest))
+            .ReturnsAsync(value: (LogEntry)null);
 
         // When
+
         await orchestrationService.CaptureLogEntryAsync(
             logEntryCaptureRequest: logEntryCaptureRequest);
 

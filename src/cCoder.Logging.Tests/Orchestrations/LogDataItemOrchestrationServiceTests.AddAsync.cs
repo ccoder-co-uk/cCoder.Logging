@@ -18,19 +18,24 @@ public partial class LogDataItemOrchestrationServiceTests
     {
         // Given
         LogDataItem entity = CreateRandomLogDataItem();
-        logDataItemProcessingServiceMock.Setup(x => x.AddAsync(entity)).ReturnsAsync(entity);
+
+        logDataItemProcessingServiceMock.Setup(expression: x => x.AddLogDataItemAsync(newLogDataItem: entity))
+            .ReturnsAsync(value: entity);
 
         logDataItemEventProcessingServiceMock
-            .Setup(x => x.RaiseLogDataItemAddEventAsync(entity))
-            .Returns(ValueTask.CompletedTask);
+            .Setup(expression: x => x.RaiseLogDataItemAddEventAsync(entity: entity))
+            .Returns(value: ValueTask.CompletedTask);
 
         // When
-        LogDataItem result = await orchestrationService.AddAsync(entity);
+        LogDataItem result = await orchestrationService.AddLogDataItemAsync(newLogDataItem: entity);
 
         // Then
-        result.Should().BeSameAs(entity);
-        logDataItemProcessingServiceMock.Verify(x => x.AddAsync(entity), Times.Once);
-        logDataItemEventProcessingServiceMock.Verify(x => x.RaiseLogDataItemAddEventAsync(entity), Times.Once);
+
+        result.Should()
+            .BeSameAs(expected: entity);
+
+        logDataItemProcessingServiceMock.Verify(expression: x => x.AddLogDataItemAsync(newLogDataItem: entity), times: Times.Once);
+        logDataItemEventProcessingServiceMock.Verify(expression: x => x.RaiseLogDataItemAddEventAsync(entity: entity), times: Times.Once);
     }
 
 }

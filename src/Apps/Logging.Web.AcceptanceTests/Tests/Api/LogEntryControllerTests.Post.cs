@@ -18,12 +18,19 @@ public sealed partial class LogEntryControllerTests
         LogEntry expectedLogEntry = CreateLogEntry();
 
         // When
-        using HttpResponseMessage response = await Client.PostAsJsonAsync(LogEntryRoute, expectedLogEntry);
+        using HttpResponseMessage response = await Client.PostAsJsonAsync(requestUri: LogEntryRoute, value: expectedLogEntry);
 
         // Then
-        response.IsSuccessStatusCode.Should().BeTrue();
-        LogEntry storedLogEntry = await FindLogEntryAsync(expectedLogEntry.Message);
-        storedLogEntry.Should().NotBeNull();
-        storedLogEntry.AppId.Should().Be(1);
+
+        response.IsSuccessStatusCode.Should()
+            .BeTrue();
+
+        LogEntry storedLogEntry = await FindLogEntryAsync(message: expectedLogEntry.Message);
+
+        storedLogEntry.Should()
+            .NotBeNull();
+
+        storedLogEntry.AppId.Should()
+            .Be(expected: 1);
     }
 }

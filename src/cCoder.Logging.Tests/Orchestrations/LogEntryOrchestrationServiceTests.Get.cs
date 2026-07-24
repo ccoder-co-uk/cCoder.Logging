@@ -19,14 +19,19 @@ public partial class LogEntryOrchestrationServiceTests
         // Given
         int id = 1;
         LogEntry entity = CreateRandomLogEntry();
-        logEntryProcessingServiceMock.Setup(x => x.Get(id)).Returns(entity);
+
+        logEntryProcessingServiceMock.Setup(expression: x => x.GetLogEntry(logEntryId: id))
+            .Returns(value: entity);
 
         // When
-        LogEntry result = orchestrationService.Get(id);
+        LogEntry result = orchestrationService.GetLogEntry(logEntryId: id);
 
         // Then
-        result.Should().BeSameAs(entity);
-        logEntryProcessingServiceMock.Verify(x => x.Get(id), Times.Once);
+
+        result.Should()
+            .BeSameAs(expected: entity);
+
+        logEntryProcessingServiceMock.Verify(expression: x => x.GetLogEntry(logEntryId: id), times: Times.Once);
         logEntryProcessingServiceMock.VerifyNoOtherCalls();
         logEntryEventProcessingServiceMock.VerifyNoOtherCalls();
     }

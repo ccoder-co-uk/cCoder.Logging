@@ -22,22 +22,32 @@ public partial class LogEntryEventServiceTests
         EventMessage<LogEntry> actualMessage = null;
 
         logEntryEventBrokerMock
-            .Setup(x => x.RaiseLogEntryUpdateEventAsync(It.IsAny<EventMessage<LogEntry>>()))
-            .Callback<EventMessage<LogEntry>>(message => actualMessage = message)
-            .Returns(ValueTask.CompletedTask);
+            .Setup(expression: x => x.RaiseLogEntryUpdateEventAsync(message: It.IsAny<EventMessage<LogEntry>>()))
+            .Callback<EventMessage<LogEntry>>(action: message => actualMessage = message)
+            .Returns(value: ValueTask.CompletedTask);
 
         // When
-        await service.RaiseLogEntryUpdateEventAsync(entity);
+        await service.RaiseLogEntryUpdateEventAsync(entity: entity);
 
         // Then
-        actualMessage.Should().NotBeNull();
-        actualMessage!.Data.Should().BeSameAs(entity);
-        actualMessage.AuthInfo.Should().NotBeNull();
-        actualMessage.AuthInfo.SSOUserId.Should().Be(CurrentUserId);
+
+        actualMessage.Should()
+            .NotBeNull();
+
+        actualMessage!.Data.Should()
+            .BeSameAs(expected: entity);
+
+        actualMessage.AuthInfo.Should()
+            .NotBeNull();
+
+        actualMessage.AuthInfo.SSOUserId.Should()
+            .Be(expected: CurrentUserId);
+
         logEntryEventBrokerMock.Verify(
-            x => x.RaiseLogEntryUpdateEventAsync(It.IsAny<EventMessage<LogEntry>>()),
-            Times.Once
+expression: x => x.RaiseLogEntryUpdateEventAsync(message: It.IsAny<EventMessage<LogEntry>>()),
+times: Times.Once
         );
+
         logEntryEventBrokerMock.VerifyNoOtherCalls();
     }
 

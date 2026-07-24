@@ -13,20 +13,21 @@ internal sealed class HostedServicesAcceptanceFactory : WebApplicationFactory<Pr
 {
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
-        builder.UseEnvironment("Acceptance");
-        builder.ConfigureAppConfiguration((_, config) =>
+        builder.UseEnvironment(environment: "Acceptance");
+
+        builder.ConfigureAppConfiguration(configureDelegate: (_, config) =>
         {
             IConfigurationRoot configuration = new ConfigurationBuilder()
                 .AddEnvironmentVariables()
                 .Build();
 
             config.AddInMemoryCollection(
-            [
+initialData: [
                 new KeyValuePair<string, string>(
-                    "ConnectionStrings:Core",
-                    configuration["CCODER_ACCEPTANCE_CORE_CONNECTION_STRING"] ?? string.Empty),
-                new KeyValuePair<string, string>("LoggingConfiguration:StoreLogEntries", "false"),
-                new KeyValuePair<string, string>("LoggingConfiguration:StreamLogEntries", "false"),
+key: "ConnectionStrings:Core",
+value: configuration["CCODER_ACCEPTANCE_CORE_CONNECTION_STRING"] ?? string.Empty),
+                new KeyValuePair<string, string>(key: "LoggingConfiguration:StoreLogEntries", value: "false"),
+                new KeyValuePair<string, string>(key: "LoggingConfiguration:StreamLogEntries", value: "false"),
             ]);
         });
     }

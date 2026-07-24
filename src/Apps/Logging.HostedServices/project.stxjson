@@ -1,6 +1,12 @@
 {
   "Classes": [
     {
+      "Name": "Logging.HostedServices.Hosting.WebApplicationExtensions",
+      "StandardElementType": "Dependency",
+      "Properties": [],
+      "Methods": []
+    },
+    {
       "Name": "Logging.HostedServices.Program",
       "StandardElementType": "App",
       "Properties": [],
@@ -19,13 +25,5 @@
     }
   ],
   "Links": [],
-  "AnalysisItems": [
-    {
-      "Code": "STXAPP005",
-      "Description": "Program.cs must compose the app through IServiceCollection using SDK namespaces and one local composition namespace only.",
-      "Severity": "Warning",
-      "Type": "Logging.HostedServices.Program",
-      "LineNumber": 12
-    }
-  ]
+  "AnalysisItems": []
 }

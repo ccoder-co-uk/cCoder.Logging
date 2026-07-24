@@ -1,3 +1,7 @@
+// ---------------------------------------------------------------
+// Copyright (c) Paul.Ward@ccoder.co.uk
+// ---------------------------------------------------------------
+
 using cCoder.Logging.Models;
 using cCoder.Data.Models.Logging;
 
@@ -10,12 +14,3 @@ public interface ILogDataItemEventService
     ValueTask RaiseLogDataItemUpdateEventAsync(LogDataItem entity);
     ValueTask RaiseLogDataItemDeleteEventAsync(LogDataItem entity);
 }
-
-
-
-
-
-
-
-
-

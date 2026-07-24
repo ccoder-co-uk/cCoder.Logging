@@ -1,3 +1,7 @@
+// ---------------------------------------------------------------
+// Copyright (c) Paul.Ward@ccoder.co.uk
+// ---------------------------------------------------------------
+
 using cCoder.Logging.Models;
 using cCoder.Data.Models.Logging;
 using cCoder.Eventing.Models;
@@ -38,9 +42,3 @@ public partial class LogEntryEventServiceTests
     }
 
 }
-
-
-
-
-
-

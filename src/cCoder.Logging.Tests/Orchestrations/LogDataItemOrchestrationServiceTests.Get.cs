@@ -1,3 +1,7 @@
+// ---------------------------------------------------------------
+// Copyright (c) Paul.Ward@ccoder.co.uk
+// ---------------------------------------------------------------
+
 using cCoder.Logging.Models;
 using cCoder.Data.Models.Logging;
 using FluentAssertions;
@@ -28,10 +32,3 @@ public partial class LogDataItemOrchestrationServiceTests
     }
 
 }
-
-
-
-
-
-
-

@@ -1,3 +1,7 @@
+// ---------------------------------------------------------------
+// Copyright (c) Paul.Ward@ccoder.co.uk
+// ---------------------------------------------------------------
+
 using cCoder.Data;
 using cCoder.Logging.Brokers;
 using cCoder.Logging.Models;
@@ -43,11 +47,3 @@ internal class LogEntryEventService(ILogEntryEventBroker logEntryEventBroker, IC
         await logEntryEventBroker.RaiseLogEntryDeleteEventAsync(message);
     }
 }
-
-
-
-
-
-
-
-

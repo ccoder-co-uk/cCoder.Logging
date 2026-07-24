@@ -1,3 +1,7 @@
+// ---------------------------------------------------------------
+// Copyright (c) Paul.Ward@ccoder.co.uk
+// ---------------------------------------------------------------
+
 using FluentAssertions;
 using Microsoft.AspNetCore.SignalR.Client;
 using System.Threading.Channels;
@@ -43,6 +47,3 @@ public sealed partial class LogHubTests
         }
     }
 }
-
-
-

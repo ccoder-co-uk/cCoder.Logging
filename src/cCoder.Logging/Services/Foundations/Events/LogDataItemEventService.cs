@@ -1,3 +1,7 @@
+// ---------------------------------------------------------------
+// Copyright (c) Paul.Ward@ccoder.co.uk
+// ---------------------------------------------------------------
+
 using cCoder.Data;
 using cCoder.Logging.Brokers;
 using cCoder.Logging.Models;
@@ -45,11 +49,3 @@ internal class LogDataItemEventService(
         await logDataItemEventBroker.RaiseLogDataItemDeleteEventAsync(message);
     }
 }
-
-
-
-
-
-
-
-

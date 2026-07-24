@@ -1,3 +1,7 @@
+// ---------------------------------------------------------------
+// Copyright (c) Paul.Ward@ccoder.co.uk
+// ---------------------------------------------------------------
+
 using System.Security;
 using cCoder.Logging.Models;
 using cCoder.Data.Models.Logging;
@@ -64,9 +68,3 @@ public partial class LogDataItemServiceTests
     }
 
 }
-
-
-
-
-
-

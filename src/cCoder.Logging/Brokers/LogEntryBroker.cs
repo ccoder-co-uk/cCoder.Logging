@@ -1,3 +1,7 @@
+// ---------------------------------------------------------------
+// Copyright (c) Paul.Ward@ccoder.co.uk
+// ---------------------------------------------------------------
+
 using cCoder.Data;
 using Microsoft.EntityFrameworkCore;
 using DataLogEntry = cCoder.Data.Models.Logging.LogEntry;
@@ -95,7 +99,3 @@ internal class LogEntryBroker(ICoreContextFactory coreContextFactory) : ILogEntr
             .FirstOrDefault();
     }
 }
-
-
-
-

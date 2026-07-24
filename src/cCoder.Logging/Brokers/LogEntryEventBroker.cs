@@ -1,3 +1,7 @@
+// ---------------------------------------------------------------
+// Copyright (c) Paul.Ward@ccoder.co.uk
+// ---------------------------------------------------------------
+
 using cCoder.Logging.Models;
 using cCoder.Data.Models.Logging;
 using cCoder.Eventing;
@@ -24,6 +28,3 @@ internal class LogEntryEventBroker(IEventHub eventHub) : ILogEntryEventBroker
     public ValueTask RaiseLogEntryDeleteEventAsync(EventMessage<LogEntry> message) =>
         eventHub.RaiseEventAsync("log_entry_delete", message);
 }
-
-
-

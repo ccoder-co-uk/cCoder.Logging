@@ -1,3 +1,7 @@
+// ---------------------------------------------------------------
+// Copyright (c) Paul.Ward@ccoder.co.uk
+// ---------------------------------------------------------------
+
 using cCoder.Logging.Models;
 using cCoder.Data.Models.Logging;
 using cCoder.Logging.Services.Foundations.Events;
@@ -13,11 +17,3 @@ internal class LogDataItemEventProcessingService(ILogDataItemEventService eventS
 
     public ValueTask RaiseLogDataItemDeleteEventAsync(LogDataItem entity) => eventService.RaiseLogDataItemDeleteEventAsync(entity);
 }
-
-
-
-
-
-
-
-

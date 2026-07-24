@@ -1,3 +1,7 @@
+// ---------------------------------------------------------------
+// Copyright (c) Paul.Ward@ccoder.co.uk
+// ---------------------------------------------------------------
+
 using cCoder.Data;
 using Microsoft.EntityFrameworkCore;
 using DataLogDataItem = cCoder.Data.Models.Logging.LogDataItem;
@@ -72,7 +76,3 @@ internal class LogDataItemBroker(ICoreContextFactory coreContextFactory) : ILogD
             .FirstOrDefault();
     }
 }
-
-
-
-

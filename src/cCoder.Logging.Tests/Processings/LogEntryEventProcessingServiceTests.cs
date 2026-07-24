@@ -1,3 +1,7 @@
+// ---------------------------------------------------------------
+// Copyright (c) Paul.Ward@ccoder.co.uk
+// ---------------------------------------------------------------
+
 using cCoder.Logging.Models;
 using cCoder.Data.Models.Logging;
 using cCoder.Logging.Services.Foundations.Events;
@@ -22,14 +26,3 @@ public partial class LogEntryEventProcessingServiceTests
     private static LogEntry CreateRandomLogEntry() =>
         Builder<LogEntry>.CreateNew().Build();
 }
-
-
-
-
-
-
-
-
-
-
-

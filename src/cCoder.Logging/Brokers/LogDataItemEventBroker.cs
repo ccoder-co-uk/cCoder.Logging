@@ -1,3 +1,7 @@
+// ---------------------------------------------------------------
+// Copyright (c) Paul.Ward@ccoder.co.uk
+// ---------------------------------------------------------------
+
 using cCoder.Logging.Models;
 using cCoder.Data.Models.Logging;
 using cCoder.Eventing;
@@ -24,6 +28,3 @@ internal class LogDataItemEventBroker(IEventHub eventHub) : ILogDataItemEventBro
     public ValueTask RaiseLogDataItemDeleteEventAsync(EventMessage<LogDataItem> message) =>
         eventHub.RaiseEventAsync("log_data_item_delete", message);
 }
-
-
-

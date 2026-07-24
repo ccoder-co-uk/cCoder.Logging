@@ -1,3 +1,7 @@
+// ---------------------------------------------------------------
+// Copyright (c) Paul.Ward@ccoder.co.uk
+// ---------------------------------------------------------------
+
 using System;
 using System.Text.Json;
 using cCoder.Data.Exposures;
@@ -39,7 +43,3 @@ public static partial class WebApplicationExtensions
         }
     }
 }
-
-
-
-

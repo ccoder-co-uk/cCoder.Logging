@@ -1,3 +1,7 @@
+// ---------------------------------------------------------------
+// Copyright (c) Paul.Ward@ccoder.co.uk
+// ---------------------------------------------------------------
+
 using cCoder.Data;
 using cCoder.Logging.Brokers;
 using Moq;
@@ -23,11 +27,3 @@ public partial class LogEntryEventServiceTests
         );
     }
 }
-
-
-
-
-
-
-
-

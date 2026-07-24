@@ -1,3 +1,7 @@
+// ---------------------------------------------------------------
+// Copyright (c) Paul.Ward@ccoder.co.uk
+// ---------------------------------------------------------------
+
 using Microsoft.AspNetCore.Http.Connections;
 using Microsoft.AspNetCore.SignalR.Client;
 using Logging.Web.AcceptanceTests.Infrastructure;
@@ -37,6 +41,3 @@ public sealed partial class LogHubTests(WebAcceptanceFixture fixture)
         return (int)response.StatusCode;
     }
 }
-
-
-

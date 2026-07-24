@@ -1,3 +1,7 @@
+// ---------------------------------------------------------------
+// Copyright (c) Paul.Ward@ccoder.co.uk
+// ---------------------------------------------------------------
+
 using System.Security;
 using cCoder.Data;
 using cCoder.Data.Models.CMS;
@@ -67,6 +71,3 @@ internal class AuthorizationBroker(ICoreContextFactory coreContextFactory) : IAu
         appId.HasValue
         && (user.Roles?.Any(role => role.Role.AppId == appId.Value && role.Role.Allows(user, "app_admin")) ?? false);
 }
-
-
-

@@ -1,3 +1,7 @@
+// ---------------------------------------------------------------
+// Copyright (c) Paul.Ward@ccoder.co.uk
+// ---------------------------------------------------------------
+
 using cCoder.Logging.Api.OData;
 using cCoder.Logging.Models;
 using cCoder.Data.Extensions;
@@ -80,6 +84,3 @@ public partial class LogEntryController : ODataController
     }
 
 }
-
-
-

@@ -1,3 +1,7 @@
+// ---------------------------------------------------------------
+// Copyright (c) Paul.Ward@ccoder.co.uk
+// ---------------------------------------------------------------
+
 using cCoder.Logging.Api.OData;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
@@ -150,10 +154,3 @@ namespace cCoder.Logging.Api.OData
         public string[] Errors { get; set; }
     }
 }
-
-
-
-
-
-
-

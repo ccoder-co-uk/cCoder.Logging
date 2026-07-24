@@ -1,3 +1,7 @@
+// ---------------------------------------------------------------
+// Copyright (c) Paul.Ward@ccoder.co.uk
+// ---------------------------------------------------------------
+
 using cCoder.Logging.Api.OData;
 using cCoder.Data.Models.Logging;
 
@@ -26,4 +30,3 @@ internal sealed class LoggingMetadataTypeService : ILoggingMetadataTypeService
             Category = "Logging",
         };
 }
-

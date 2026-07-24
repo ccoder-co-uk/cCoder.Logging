@@ -1,3 +1,7 @@
+// ---------------------------------------------------------------
+// Copyright (c) Paul.Ward@ccoder.co.uk
+// ---------------------------------------------------------------
+
 using cCoder.Data;
 using cCoder.Data.Models.CMS;
 using cCoder.Data.Models.Security;
@@ -131,10 +135,3 @@ public class LogHub : Hub
     public virtual async Task SendTest(string message, string thread) =>
         await Clients.Group(thread).SendAsync("ConsoleReceive", "test", message, thread);
 }
-
-
-
-
-
-
-

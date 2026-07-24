@@ -1,3 +1,7 @@
+// ---------------------------------------------------------------
+// Copyright (c) Paul.Ward@ccoder.co.uk
+// ---------------------------------------------------------------
+
 using cCoder.Logging.Api.OData;
 using cCoder.Logging.Models;
 using cCoder.Eventing;
@@ -221,4 +225,3 @@ public static partial class IServiceCollectionExtensions
         services.AddSignalR();
     }
 }
-

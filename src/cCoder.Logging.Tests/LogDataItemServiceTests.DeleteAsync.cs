@@ -1,3 +1,7 @@
+// ---------------------------------------------------------------
+// Copyright (c) Paul.Ward@ccoder.co.uk
+// ---------------------------------------------------------------
+
 using System.Security;
 using FluentAssertions;
 using Moq;
@@ -61,9 +65,3 @@ public partial class LogDataItemServiceTests
     }
 
 }
-
-
-
-
-
-

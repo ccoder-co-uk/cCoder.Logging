@@ -1,8 +1,13 @@
-using cCoder.Logging.Models;
+// ---------------------------------------------------------------
+// Copyright (c) Paul.Ward@ccoder.co.uk
+// ---------------------------------------------------------------
+
+using cCoder.Logging.Dependencies.Logging;
 
 namespace cCoder.Logging.Services.Orchestrations;
 
-public interface ILogEntryCaptureOrchestrationService
+internal interface ILogEntryCaptureOrchestrationService
 {
-    ValueTask CaptureAsync(LogEntryCaptureRequest request);
+    ValueTask CaptureLogEntryAsync(
+        LogEntryCaptureRequest logEntryCaptureRequest);
 }

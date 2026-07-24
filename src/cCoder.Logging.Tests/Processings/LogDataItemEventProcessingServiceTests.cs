@@ -1,3 +1,7 @@
+// ---------------------------------------------------------------
+// Copyright (c) Paul.Ward@ccoder.co.uk
+// ---------------------------------------------------------------
+
 using cCoder.Logging.Models;
 using cCoder.Data.Models.Logging;
 using cCoder.Logging.Services.Foundations.Events;
@@ -15,21 +19,11 @@ public partial class LogDataItemEventProcessingServiceTests
 
     public LogDataItemEventProcessingServiceTests()
     {
-        logDataItemEventServiceMock = new Mock<ILogDataItemEventService>(MockBehavior.Strict);
-        service = new LogDataItemEventProcessingService(logDataItemEventServiceMock.Object);
+        logDataItemEventServiceMock = new Mock<ILogDataItemEventService>(behavior: MockBehavior.Strict);
+        service = new LogDataItemEventProcessingService(eventService: logDataItemEventServiceMock.Object);
     }
 
     private static LogDataItem CreateRandomLogDataItem() =>
-        Builder<LogDataItem>.CreateNew().Build();
+        Builder<LogDataItem>.CreateNew()
+        .Build();
 }
-
-
-
-
-
-
-
-
-
-
-

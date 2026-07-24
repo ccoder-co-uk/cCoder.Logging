@@ -1,3 +1,7 @@
+// ---------------------------------------------------------------
+// Copyright (c) Paul.Ward@ccoder.co.uk
+// ---------------------------------------------------------------
+
 using cCoder.Logging.Models;
 using cCoder.Data.Models.Logging;
 using Moq;
@@ -13,22 +17,17 @@ public partial class LogEntryOrchestrationServiceTests
     {
         // Given
         LogEntry[] entities = [CreateRandomLogEntry()];
-        logEntryProcessingServiceMock.Setup(x => x.DeleteAllAsync(entities)).Returns(ValueTask.CompletedTask);
+
+        logEntryProcessingServiceMock.Setup(expression: x => x.DeleteAllLogEntryAsync(deletedLogEntries: entities))
+            .Returns(value: ValueTask.CompletedTask);
 
         // When
-        await orchestrationService.DeleteAllAsync(entities);
+        await orchestrationService.DeleteAllLogEntryAsync(deletedLogEntries: entities);
 
         // Then
-        logEntryProcessingServiceMock.Verify(x => x.DeleteAllAsync(entities), Times.Once);
+        logEntryProcessingServiceMock.Verify(expression: x => x.DeleteAllLogEntryAsync(deletedLogEntries: entities), times: Times.Once);
         logEntryProcessingServiceMock.VerifyNoOtherCalls();
         logEntryEventProcessingServiceMock.VerifyNoOtherCalls();
     }
 
 }
-
-
-
-
-
-
-

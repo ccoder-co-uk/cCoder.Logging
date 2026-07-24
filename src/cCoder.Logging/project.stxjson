@@ -1,0 +1,2537 @@
+{
+  "Classes": [
+    {
+      "Name": "cCoder.Logging.Api.OData.BadRequestResult",
+      "StandardElementType": "Dependency",
+      "Properties": [],
+      "Methods": []
+    },
+    {
+      "Name": "cCoder.Logging.Api.OData.CompositePropertyInfo",
+      "StandardElementType": "Dependency",
+      "Properties": [
+        {
+          "Name": "Attributes",
+          "Type": "System.Reflection.PropertyAttributes"
+        },
+        {
+          "Name": "CanRead",
+          "Type": "System.Boolean"
+        },
+        {
+          "Name": "CanWrite",
+          "Type": "System.Boolean"
+        },
+        {
+          "Name": "DeclaringType",
+          "Type": "System.Type"
+        },
+        {
+          "Name": "Name",
+          "Type": "System.String"
+        },
+        {
+          "Name": "PropertyType",
+          "Type": "System.Type"
+        },
+        {
+          "Name": "ReflectedType",
+          "Type": "System.Type"
+        }
+      ],
+      "Methods": [
+        {
+          "Name": "GetAccessors",
+          "Inputs": [
+            {
+              "Name": "nonPublic",
+              "Type": "System.Boolean"
+            }
+          ],
+          "ReturnType": "System.Reflection.MethodInfo[]"
+        },
+        {
+          "Name": "GetCustomAttributes",
+          "Inputs": [
+            {
+              "Name": "inherit",
+              "Type": "System.Boolean"
+            }
+          ],
+          "ReturnType": "System.Object[]"
+        },
+        {
+          "Name": "GetCustomAttributes",
+          "Inputs": [
+            {
+              "Name": "attributeType",
+              "Type": "System.Type"
+            },
+            {
+              "Name": "inherit",
+              "Type": "System.Boolean"
+            }
+          ],
+          "ReturnType": "System.Object[]"
+        },
+        {
+          "Name": "GetGetMethod",
+          "Inputs": [
+            {
+              "Name": "nonPublic",
+              "Type": "System.Boolean"
+            }
+          ],
+          "ReturnType": "System.Reflection.MethodInfo"
+        },
+        {
+          "Name": "GetIndexParameters",
+          "Inputs": [],
+          "ReturnType": "System.Reflection.ParameterInfo[]"
+        },
+        {
+          "Name": "GetSetMethod",
+          "Inputs": [
+            {
+              "Name": "nonPublic",
+              "Type": "System.Boolean"
+            }
+          ],
+          "ReturnType": "System.Reflection.MethodInfo"
+        },
+        {
+          "Name": "GetValue",
+          "Inputs": [
+            {
+              "Name": "obj",
+              "Type": "System.Object"
+            },
+            {
+              "Name": "invokeAttr",
+              "Type": "System.Reflection.BindingFlags"
+            },
+            {
+              "Name": "binder",
+              "Type": "System.Reflection.Binder"
+            },
+            {
+              "Name": "index",
+              "Type": "System.Object[]"
+            },
+            {
+              "Name": "culture",
+              "Type": "System.Globalization.CultureInfo"
+            }
+          ],
+          "ReturnType": "System.Object"
+        },
+        {
+          "Name": "IsDefined",
+          "Inputs": [
+            {
+              "Name": "attributeType",
+              "Type": "System.Type"
+            },
+            {
+              "Name": "inherit",
+              "Type": "System.Boolean"
+            }
+          ],
+          "ReturnType": "System.Boolean"
+        },
+        {
+          "Name": "SetValue",
+          "Inputs": [
+            {
+              "Name": "obj",
+              "Type": "System.Object"
+            },
+            {
+              "Name": "value",
+              "Type": "System.Object"
+            },
+            {
+              "Name": "invokeAttr",
+              "Type": "System.Reflection.BindingFlags"
+            },
+            {
+              "Name": "binder",
+              "Type": "System.Reflection.Binder"
+            },
+            {
+              "Name": "index",
+              "Type": "System.Object[]"
+            },
+            {
+              "Name": "culture",
+              "Type": "System.Globalization.CultureInfo"
+            }
+          ],
+          "ReturnType": "System.Void"
+        }
+      ]
+    },
+    {
+      "Name": "cCoder.Logging.Api.OData.EdmModelExtensions",
+      "StandardElementType": "Dependency",
+      "Properties": [],
+      "Methods": [
+        {
+          "Name": "GetExtendedMetadataForType",
+          "Inputs": [
+            {
+              "Name": "model",
+              "Type": "Microsoft.OData.Edm.IEdmModel"
+            },
+            {
+              "Name": "context",
+              "Type": "System.String"
+            },
+            {
+              "Name": "type",
+              "Type": "System.Type"
+            },
+            {
+              "Name": "hasEndpoint",
+              "Type": "System.Boolean"
+            }
+          ],
+          "ReturnType": "cCoder.Logging.Dependencies.OData.ExtendedMetadataContainer"
+        }
+      ]
+    },
+    {
+      "Name": "cCoder.Logging.Api.OData.ODataCollectionExtensions",
+      "StandardElementType": "Dependency",
+      "Properties": [],
+      "Methods": []
+    },
+    {
+      "Name": "cCoder.Logging.Api.OData.ODataJsonExtensions",
+      "StandardElementType": "Dependency",
+      "Properties": [],
+      "Methods": []
+    },
+    {
+      "Name": "cCoder.Logging.Api.OData.ODataTypeExtensions",
+      "StandardElementType": "Dependency",
+      "Properties": [],
+      "Methods": []
+    },
+    {
+      "Name": "cCoder.Logging.Brokers.AuthInfoBroker",
+      "StandardElementType": "Broker",
+      "Properties": [],
+      "Methods": [
+        {
+          "Name": "SelectCurrentSsoUserId",
+          "Inputs": [],
+          "ReturnType": "System.String"
+        }
+      ]
+    },
+    {
+      "Name": "cCoder.Logging.Brokers.AuthorizationBroker",
+      "StandardElementType": "Broker",
+      "Properties": [],
+      "Methods": [
+        {
+          "Name": "SelectAppById",
+          "Inputs": [
+            {
+              "Name": "appId",
+              "Type": "System.Int32"
+            }
+          ],
+          "ReturnType": "cCoder.Data.Models.CMS.App"
+        },
+        {
+          "Name": "SelectCurrentUser",
+          "Inputs": [],
+          "ReturnType": "cCoder.Data.Models.Security.User"
+        },
+        {
+          "Name": "SelectUserById",
+          "Inputs": [
+            {
+              "Name": "userId",
+              "Type": "System.String"
+            }
+          ],
+          "ReturnType": "cCoder.Data.Models.Security.User"
+        }
+      ]
+    },
+    {
+      "Name": "cCoder.Logging.Brokers.LogDataItemBroker",
+      "StandardElementType": "Broker",
+      "Properties": [],
+      "Methods": [
+        {
+          "Name": "DeleteAllLogDataItemsAsync",
+          "Inputs": [
+            {
+              "Name": "deletedLogDataItems",
+              "Type": "System.Collections.Generic.IEnumerable\u003CcCoder.Data.Models.Logging.LogDataItem\u003E"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask"
+        },
+        {
+          "Name": "DeleteLogDataItemAsync",
+          "Inputs": [
+            {
+              "Name": "deletedLogDataItem",
+              "Type": "cCoder.Data.Models.Logging.LogDataItem"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask\u003CSystem.Int32\u003E"
+        },
+        {
+          "Name": "InsertLogDataItemAsync",
+          "Inputs": [
+            {
+              "Name": "newLogDataItem",
+              "Type": "cCoder.Data.Models.Logging.LogDataItem"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask\u003CcCoder.Data.Models.Logging.LogDataItem\u003E"
+        },
+        {
+          "Name": "SelectAllLogDataItems",
+          "Inputs": [],
+          "ReturnType": "System.Linq.IQueryable\u003CcCoder.Data.Models.Logging.LogDataItem\u003E"
+        },
+        {
+          "Name": "SelectAllLogDataItemsIgnoringFilters",
+          "Inputs": [],
+          "ReturnType": "System.Linq.IQueryable\u003CcCoder.Data.Models.Logging.LogDataItem\u003E"
+        },
+        {
+          "Name": "SelectAppIdByLogDataItem",
+          "Inputs": [
+            {
+              "Name": "logDataItem",
+              "Type": "cCoder.Data.Models.Logging.LogDataItem"
+            }
+          ],
+          "ReturnType": "System.Int32?"
+        },
+        {
+          "Name": "UpdateLogDataItemAsync",
+          "Inputs": [
+            {
+              "Name": "updatedLogDataItem",
+              "Type": "cCoder.Data.Models.Logging.LogDataItem"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask\u003CcCoder.Data.Models.Logging.LogDataItem\u003E"
+        }
+      ]
+    },
+    {
+      "Name": "cCoder.Logging.Brokers.LogDataItemEventBroker",
+      "StandardElementType": "Broker",
+      "Properties": [],
+      "Methods": [
+        {
+          "Name": "RaiseLogDataItemAddEventAsync",
+          "Inputs": [
+            {
+              "Name": "message",
+              "Type": "cCoder.Eventing.Models.EventMessage\u003CcCoder.Data.Models.Logging.LogDataItem\u003E"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask"
+        },
+        {
+          "Name": "RaiseLogDataItemDeleteEventAsync",
+          "Inputs": [
+            {
+              "Name": "message",
+              "Type": "cCoder.Eventing.Models.EventMessage\u003CcCoder.Data.Models.Logging.LogDataItem\u003E"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask"
+        },
+        {
+          "Name": "RaiseLogDataItemUpdateEventAsync",
+          "Inputs": [
+            {
+              "Name": "message",
+              "Type": "cCoder.Eventing.Models.EventMessage\u003CcCoder.Data.Models.Logging.LogDataItem\u003E"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask"
+        }
+      ]
+    },
+    {
+      "Name": "cCoder.Logging.Brokers.LogEntryBroker",
+      "StandardElementType": "Broker",
+      "Properties": [],
+      "Methods": [
+        {
+          "Name": "DeleteAllLogEntriesAsync",
+          "Inputs": [
+            {
+              "Name": "deletedLogEntries",
+              "Type": "System.Collections.Generic.IEnumerable\u003CcCoder.Data.Models.Logging.LogEntry\u003E"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask"
+        },
+        {
+          "Name": "DeleteLogEntriesBeforeAsync",
+          "Inputs": [
+            {
+              "Name": "cutoff",
+              "Type": "System.DateTime"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask\u003CSystem.Int32\u003E"
+        },
+        {
+          "Name": "DeleteLogEntryAsync",
+          "Inputs": [
+            {
+              "Name": "deletedLogEntry",
+              "Type": "cCoder.Data.Models.Logging.LogEntry"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask\u003CSystem.Int32\u003E"
+        },
+        {
+          "Name": "InsertLogEntryAsync",
+          "Inputs": [
+            {
+              "Name": "newLogEntry",
+              "Type": "cCoder.Data.Models.Logging.LogEntry"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask\u003CcCoder.Data.Models.Logging.LogEntry\u003E"
+        },
+        {
+          "Name": "SelectAllLogEntries",
+          "Inputs": [],
+          "ReturnType": "System.Linq.IQueryable\u003CcCoder.Data.Models.Logging.LogEntry\u003E"
+        },
+        {
+          "Name": "SelectAllLogEntriesIgnoringFilters",
+          "Inputs": [],
+          "ReturnType": "System.Linq.IQueryable\u003CcCoder.Data.Models.Logging.LogEntry\u003E"
+        },
+        {
+          "Name": "SelectAppIdByDomainOrName",
+          "Inputs": [
+            {
+              "Name": "domainOrName",
+              "Type": "System.String"
+            }
+          ],
+          "ReturnType": "System.Int32?"
+        },
+        {
+          "Name": "UpdateLogEntryAsync",
+          "Inputs": [
+            {
+              "Name": "updatedLogEntry",
+              "Type": "cCoder.Data.Models.Logging.LogEntry"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask\u003CcCoder.Data.Models.Logging.LogEntry\u003E"
+        }
+      ]
+    },
+    {
+      "Name": "cCoder.Logging.Brokers.LogEntryEventBroker",
+      "StandardElementType": "Broker",
+      "Properties": [],
+      "Methods": [
+        {
+          "Name": "RaiseLogEntryAddEventAsync",
+          "Inputs": [
+            {
+              "Name": "message",
+              "Type": "cCoder.Eventing.Models.EventMessage\u003CcCoder.Data.Models.Logging.LogEntry\u003E"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask"
+        },
+        {
+          "Name": "RaiseLogEntryDeleteEventAsync",
+          "Inputs": [
+            {
+              "Name": "message",
+              "Type": "cCoder.Eventing.Models.EventMessage\u003CcCoder.Data.Models.Logging.LogEntry\u003E"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask"
+        },
+        {
+          "Name": "RaiseLogEntryUpdateEventAsync",
+          "Inputs": [
+            {
+              "Name": "message",
+              "Type": "cCoder.Eventing.Models.EventMessage\u003CcCoder.Data.Models.Logging.LogEntry\u003E"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask"
+        }
+      ]
+    },
+    {
+      "Name": "cCoder.Logging.Brokers.LogEntryStreamBroker",
+      "StandardElementType": "Broker",
+      "Properties": [],
+      "Methods": [
+        {
+          "Name": "SelectLogHubContext",
+          "Inputs": [],
+          "ReturnType": "IHubContext\u003CcCoder.Logging.Exposures.Hubs.LogHub\u003E"
+        },
+        {
+          "Name": "SendLogEntryAsync",
+          "Inputs": [
+            {
+              "Name": "hubContext",
+              "Type": "IHubContext\u003CcCoder.Logging.Exposures.Hubs.LogHub\u003E"
+            },
+            {
+              "Name": "thread",
+              "Type": "System.String"
+            },
+            {
+              "Name": "level",
+              "Type": "System.String"
+            },
+            {
+              "Name": "message",
+              "Type": "System.String"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask"
+        }
+      ]
+    },
+    {
+      "Name": "cCoder.Logging.Dependencies.Logging.LogEntryCaptureRequest",
+      "StandardElementType": "Dependency",
+      "Properties": [
+        {
+          "Name": "CategoryName",
+          "Type": "System.String"
+        },
+        {
+          "Name": "Exception",
+          "Type": "System.Exception"
+        },
+        {
+          "Name": "Level",
+          "Type": "Microsoft.Extensions.Logging.LogLevel"
+        },
+        {
+          "Name": "Message",
+          "Type": "System.String"
+        },
+        {
+          "Name": "RequestDomain",
+          "Type": "System.String"
+        }
+      ],
+      "Methods": []
+    },
+    {
+      "Name": "cCoder.Logging.Dependencies.Logging.LoggingLogger",
+      "StandardElementType": "Dependency",
+      "Properties": [],
+      "Methods": [
+        {
+          "Name": "BeginScope",
+          "Inputs": [
+            {
+              "Name": "state",
+              "Type": "TState"
+            }
+          ],
+          "ReturnType": "System.IDisposable"
+        },
+        {
+          "Name": "IsEnabled",
+          "Inputs": [
+            {
+              "Name": "logLevel",
+              "Type": "LogLevel"
+            }
+          ],
+          "ReturnType": "System.Boolean"
+        },
+        {
+          "Name": "Log",
+          "Inputs": [
+            {
+              "Name": "logLevel",
+              "Type": "LogLevel"
+            },
+            {
+              "Name": "eventId",
+              "Type": "EventId"
+            },
+            {
+              "Name": "state",
+              "Type": "TState"
+            },
+            {
+              "Name": "exception",
+              "Type": "System.Exception"
+            },
+            {
+              "Name": "formatter",
+              "Type": "System.Func\u003CTState, System.Exception, System.String\u003E"
+            }
+          ],
+          "ReturnType": "System.Void"
+        }
+      ]
+    },
+    {
+      "Name": "cCoder.Logging.Dependencies.Logging.LoggingLoggerProvider",
+      "StandardElementType": "Dependency",
+      "Properties": [],
+      "Methods": [
+        {
+          "Name": "CreateLogger",
+          "Inputs": [
+            {
+              "Name": "categoryName",
+              "Type": "System.String"
+            }
+          ],
+          "ReturnType": "ILogger"
+        },
+        {
+          "Name": "Dispose",
+          "Inputs": [],
+          "ReturnType": "System.Void"
+        }
+      ]
+    },
+    {
+      "Name": "cCoder.Logging.Dependencies.OData.ExtendedMetadataContainer",
+      "StandardElementType": "Dependency",
+      "Properties": [
+        {
+          "Name": "Operations",
+          "Type": "System.Collections.Generic.IEnumerable\u003CcCoder.Logging.Dependencies.OData.OperationContainer\u003E"
+        }
+      ],
+      "Methods": []
+    },
+    {
+      "Name": "cCoder.Logging.Dependencies.OData.LoggingMetadataTypeService",
+      "StandardElementType": "Dependency",
+      "Properties": [],
+      "Methods": [
+        {
+          "Name": "GetKnownMetadata",
+          "Inputs": [],
+          "ReturnType": "System.Collections.Generic.IEnumerable\u003CcCoder.Logging.Dependencies.OData.MetadataContainerSet\u003E"
+        }
+      ]
+    },
+    {
+      "Name": "cCoder.Logging.Dependencies.OData.LoggingModelBuilder",
+      "StandardElementType": "Dependency",
+      "Properties": [],
+      "Methods": [
+        {
+          "Name": "Build",
+          "Inputs": [],
+          "ReturnType": "cCoder.Logging.Models.OData.ODataModel"
+        },
+        {
+          "Name": "Configure",
+          "Inputs": [],
+          "ReturnType": "System.Void"
+        }
+      ]
+    },
+    {
+      "Name": "cCoder.Logging.Dependencies.OData.MetadataContainer",
+      "StandardElementType": "Dependency",
+      "Properties": [
+        {
+          "Name": "Category",
+          "Type": "System.String"
+        },
+        {
+          "Name": "Description",
+          "Type": "System.String"
+        },
+        {
+          "Name": "DisplayName",
+          "Type": "System.String"
+        },
+        {
+          "Name": "HasEndpoint",
+          "Type": "System.Boolean"
+        },
+        {
+          "Name": "IsEntity",
+          "Type": "System.Boolean"
+        },
+        {
+          "Name": "IsJoinEntity",
+          "Type": "System.Boolean"
+        },
+        {
+          "Name": "IsSystemManaged",
+          "Type": "System.Boolean"
+        },
+        {
+          "Name": "IsValueType",
+          "Type": "System.Boolean"
+        },
+        {
+          "Name": "Name",
+          "Type": "System.String"
+        },
+        {
+          "Name": "Properties",
+          "Type": "System.Collections.Generic.IEnumerable\u003CcCoder.Logging.Dependencies.OData.PropertyContainer\u003E"
+        },
+        {
+          "Name": "ServerType",
+          "Type": "System.String"
+        },
+        {
+          "Name": "ServerTypeName",
+          "Type": "System.String"
+        },
+        {
+          "Name": "Type",
+          "Type": "System.String"
+        }
+      ],
+      "Methods": []
+    },
+    {
+      "Name": "cCoder.Logging.Dependencies.OData.MetadataContainerSet",
+      "StandardElementType": "Dependency",
+      "Properties": [
+        {
+          "Name": "Name",
+          "Type": "System.String"
+        },
+        {
+          "Name": "Types",
+          "Type": "cCoder.Logging.Dependencies.OData.ExtendedMetadataContainer[]"
+        },
+        {
+          "Name": "UriBase",
+          "Type": "System.String"
+        }
+      ],
+      "Methods": []
+    },
+    {
+      "Name": "cCoder.Logging.Dependencies.OData.ODataModelBuilder",
+      "StandardElementType": "Dependency",
+      "Properties": [],
+      "Methods": [
+        {
+          "Name": "Build",
+          "Inputs": [],
+          "ReturnType": "cCoder.Logging.Models.OData.ODataModel"
+        }
+      ]
+    },
+    {
+      "Name": "cCoder.Logging.Dependencies.OData.OperationContainer",
+      "StandardElementType": "Dependency",
+      "Properties": [
+        {
+          "Name": "Definition",
+          "Type": "System.String"
+        },
+        {
+          "Name": "HttpVerb",
+          "Type": "System.String"
+        },
+        {
+          "Name": "Name",
+          "Type": "System.String"
+        },
+        {
+          "Name": "Parameters",
+          "Type": "System.Collections.Generic.IDictionary\u003CSystem.String, System.String\u003E"
+        },
+        {
+          "Name": "Queryable",
+          "Type": "System.Boolean"
+        },
+        {
+          "Name": "ReturnType",
+          "Type": "cCoder.Logging.Dependencies.OData.MetadataContainer"
+        },
+        {
+          "Name": "Url",
+          "Type": "System.String"
+        }
+      ],
+      "Methods": []
+    },
+    {
+      "Name": "cCoder.Logging.Dependencies.OData.PropertyContainer",
+      "StandardElementType": "Dependency",
+      "Properties": [
+        {
+          "Name": "Description",
+          "Type": "System.String"
+        },
+        {
+          "Name": "DisplayName",
+          "Type": "System.String"
+        },
+        {
+          "Name": "IsGeneric",
+          "Type": "System.Boolean"
+        },
+        {
+          "Name": "IsReadOnly",
+          "Type": "System.Boolean"
+        },
+        {
+          "Name": "IsRequired",
+          "Type": "System.Boolean"
+        },
+        {
+          "Name": "IsSystemManaged",
+          "Type": "System.Boolean"
+        },
+        {
+          "Name": "IsValueType",
+          "Type": "System.Boolean"
+        },
+        {
+          "Name": "Name",
+          "Type": "System.String"
+        },
+        {
+          "Name": "ServerType",
+          "Type": "System.String"
+        },
+        {
+          "Name": "ServerTypeName",
+          "Type": "System.String"
+        },
+        {
+          "Name": "ShortDisplayName",
+          "Type": "System.String"
+        },
+        {
+          "Name": "Template",
+          "Type": "System.String"
+        },
+        {
+          "Name": "Type",
+          "Type": "System.String"
+        }
+      ],
+      "Methods": []
+    },
+    {
+      "Name": "cCoder.Logging.Dependencies.OperationResult\u003CT\u003E",
+      "StandardElementType": "Dependency",
+      "Properties": [
+        {
+          "Name": "Item",
+          "Type": "T"
+        },
+        {
+          "Name": "Message",
+          "Type": "System.String"
+        },
+        {
+          "Name": "Success",
+          "Type": "System.Boolean"
+        }
+      ],
+      "Methods": []
+    },
+    {
+      "Name": "cCoder.Logging.Exposures.BaselineExposure",
+      "StandardElementType": "Exposure",
+      "Properties": [],
+      "Methods": [
+        {
+          "Name": "GetBaselinePackages",
+          "Inputs": [],
+          "ReturnType": "cCoder.Data.Models.Packaging.Package[]"
+        }
+      ]
+    },
+    {
+      "Name": "cCoder.Logging.Exposures.Controllers.BaselineController",
+      "StandardElementType": "Exposure",
+      "Properties": [],
+      "Methods": [
+        {
+          "Name": "Get",
+          "Inputs": [],
+          "ReturnType": "IActionResult"
+        }
+      ]
+    },
+    {
+      "Name": "cCoder.Logging.Exposures.Controllers.LogDataItemController",
+      "StandardElementType": "Exposure",
+      "Properties": [],
+      "Methods": [
+        {
+          "Name": "Get",
+          "Inputs": [
+            {
+              "Name": "queryOptions",
+              "Type": "Microsoft.AspNetCore.OData.Query.ODataQueryOptions\u003CcCoder.Data.Models.Logging.LogDataItem\u003E"
+            }
+          ],
+          "ReturnType": "IActionResult"
+        },
+        {
+          "Name": "Get",
+          "Inputs": [
+            {
+              "Name": "key",
+              "Type": "System.Int32"
+            }
+          ],
+          "ReturnType": "IActionResult"
+        },
+        {
+          "Name": "GetMetadata",
+          "Inputs": [],
+          "ReturnType": "IActionResult"
+        },
+        {
+          "Name": "Post",
+          "Inputs": [
+            {
+              "Name": "newLogDataItem",
+              "Type": "cCoder.Data.Models.Logging.LogDataItem"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.Task\u003CIActionResult\u003E"
+        }
+      ]
+    },
+    {
+      "Name": "cCoder.Logging.Exposures.Controllers.LogEntryController",
+      "StandardElementType": "Exposure",
+      "Properties": [],
+      "Methods": [
+        {
+          "Name": "Get",
+          "Inputs": [
+            {
+              "Name": "queryOptions",
+              "Type": "Microsoft.AspNetCore.OData.Query.ODataQueryOptions\u003CcCoder.Data.Models.Logging.LogEntry\u003E"
+            }
+          ],
+          "ReturnType": "IActionResult"
+        },
+        {
+          "Name": "Get",
+          "Inputs": [
+            {
+              "Name": "key",
+              "Type": "System.Int32"
+            }
+          ],
+          "ReturnType": "IActionResult"
+        },
+        {
+          "Name": "GetMetadata",
+          "Inputs": [],
+          "ReturnType": "IActionResult"
+        },
+        {
+          "Name": "Post",
+          "Inputs": [
+            {
+              "Name": "newLogEntry",
+              "Type": "cCoder.Data.Models.Logging.LogEntry"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.Task\u003CIActionResult\u003E"
+        }
+      ]
+    },
+    {
+      "Name": "cCoder.Logging.Exposures.HostedServices.LogRetentionCleaner",
+      "StandardElementType": "Dependency",
+      "Properties": [],
+      "Methods": []
+    },
+    {
+      "Name": "cCoder.Logging.Exposures.Hubs.LogHub",
+      "StandardElementType": "Dependency",
+      "Properties": [],
+      "Methods": [
+        {
+          "Name": "ConsoleSend",
+          "Inputs": [
+            {
+              "Name": "level",
+              "Type": "System.String"
+            },
+            {
+              "Name": "message",
+              "Type": "System.String"
+            },
+            {
+              "Name": "thread",
+              "Type": "System.String"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.Task"
+        },
+        {
+          "Name": "Debug",
+          "Inputs": [
+            {
+              "Name": "level",
+              "Type": "System.String"
+            },
+            {
+              "Name": "message",
+              "Type": "System.String"
+            }
+          ],
+          "ReturnType": "System.Void"
+        },
+        {
+          "Name": "Error",
+          "Inputs": [
+            {
+              "Name": "level",
+              "Type": "System.String"
+            },
+            {
+              "Name": "message",
+              "Type": "System.String"
+            }
+          ],
+          "ReturnType": "System.Void"
+        },
+        {
+          "Name": "Info",
+          "Inputs": [
+            {
+              "Name": "level",
+              "Type": "System.String"
+            },
+            {
+              "Name": "message",
+              "Type": "System.String"
+            }
+          ],
+          "ReturnType": "System.Void"
+        },
+        {
+          "Name": "Join",
+          "Inputs": [
+            {
+              "Name": "thread",
+              "Type": "System.String"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.Task"
+        },
+        {
+          "Name": "Leave",
+          "Inputs": [
+            {
+              "Name": "thread",
+              "Type": "System.String"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.Task"
+        },
+        {
+          "Name": "OnConnectedAsync",
+          "Inputs": [],
+          "ReturnType": "System.Threading.Tasks.Task"
+        },
+        {
+          "Name": "OnDisconnectedAsync",
+          "Inputs": [
+            {
+              "Name": "exception",
+              "Type": "System.Exception"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.Task"
+        },
+        {
+          "Name": "SendTest",
+          "Inputs": [
+            {
+              "Name": "message",
+              "Type": "System.String"
+            },
+            {
+              "Name": "thread",
+              "Type": "System.String"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.Task"
+        },
+        {
+          "Name": "Warn",
+          "Inputs": [
+            {
+              "Name": "level",
+              "Type": "System.String"
+            },
+            {
+              "Name": "message",
+              "Type": "System.String"
+            }
+          ],
+          "ReturnType": "System.Void"
+        }
+      ]
+    },
+    {
+      "Name": "cCoder.Logging.Exposures.LogDataItemManager",
+      "StandardElementType": "Exposure",
+      "Properties": [],
+      "Methods": [
+        {
+          "Name": "AddLogDataItemAsync",
+          "Inputs": [
+            {
+              "Name": "newLogDataItem",
+              "Type": "cCoder.Data.Models.Logging.LogDataItem"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask\u003CcCoder.Data.Models.Logging.LogDataItem\u003E"
+        },
+        {
+          "Name": "AddOrUpdateLogDataItemsAsync",
+          "Inputs": [
+            {
+              "Name": "logDataItems",
+              "Type": "System.Collections.Generic.IEnumerable\u003CcCoder.Data.Models.Logging.LogDataItem\u003E"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask\u003CSystem.Collections.Generic.IEnumerable\u003CcCoder.Logging.Models.Result\u003CcCoder.Data.Models.Logging.LogDataItem\u003E\u003E\u003E"
+        },
+        {
+          "Name": "DeleteAllLogDataItemsAsync",
+          "Inputs": [
+            {
+              "Name": "deletedLogDataItems",
+              "Type": "System.Collections.Generic.IEnumerable\u003CcCoder.Data.Models.Logging.LogDataItem\u003E"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask"
+        },
+        {
+          "Name": "DeleteLogDataItemAsync",
+          "Inputs": [
+            {
+              "Name": "logDataItemId",
+              "Type": "System.Int32"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask"
+        },
+        {
+          "Name": "GetAllLogDataItems",
+          "Inputs": [
+            {
+              "Name": "ignoreFilters",
+              "Type": "System.Boolean"
+            }
+          ],
+          "ReturnType": "System.Linq.IQueryable\u003CcCoder.Data.Models.Logging.LogDataItem\u003E"
+        },
+        {
+          "Name": "GetLogDataItem",
+          "Inputs": [
+            {
+              "Name": "logDataItemId",
+              "Type": "System.Int32"
+            }
+          ],
+          "ReturnType": "cCoder.Data.Models.Logging.LogDataItem"
+        },
+        {
+          "Name": "UpdateLogDataItemAsync",
+          "Inputs": [
+            {
+              "Name": "updatedLogDataItem",
+              "Type": "cCoder.Data.Models.Logging.LogDataItem"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask\u003CcCoder.Data.Models.Logging.LogDataItem\u003E"
+        }
+      ]
+    },
+    {
+      "Name": "cCoder.Logging.Exposures.LogEntryManager",
+      "StandardElementType": "Exposure",
+      "Properties": [],
+      "Methods": [
+        {
+          "Name": "AddLogEntryAsync",
+          "Inputs": [
+            {
+              "Name": "newLogEntry",
+              "Type": "cCoder.Data.Models.Logging.LogEntry"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask\u003CcCoder.Data.Models.Logging.LogEntry\u003E"
+        },
+        {
+          "Name": "AddOrUpdateLogEntriesAsync",
+          "Inputs": [
+            {
+              "Name": "logEntries",
+              "Type": "System.Collections.Generic.IEnumerable\u003CcCoder.Data.Models.Logging.LogEntry\u003E"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask\u003CSystem.Collections.Generic.IEnumerable\u003CcCoder.Logging.Models.Result\u003CcCoder.Data.Models.Logging.LogEntry\u003E\u003E\u003E"
+        },
+        {
+          "Name": "AddSystemLogEntryAsync",
+          "Inputs": [
+            {
+              "Name": "newLogEntry",
+              "Type": "cCoder.Data.Models.Logging.LogEntry"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask\u003CcCoder.Data.Models.Logging.LogEntry\u003E"
+        },
+        {
+          "Name": "DeleteAllLogEntriesAsync",
+          "Inputs": [
+            {
+              "Name": "deletedLogEntries",
+              "Type": "System.Collections.Generic.IEnumerable\u003CcCoder.Data.Models.Logging.LogEntry\u003E"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask"
+        },
+        {
+          "Name": "DeleteLogEntriesBeforeAsync",
+          "Inputs": [
+            {
+              "Name": "cutoff",
+              "Type": "System.DateTime"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask\u003CSystem.Int32\u003E"
+        },
+        {
+          "Name": "DeleteLogEntryAsync",
+          "Inputs": [
+            {
+              "Name": "logEntryId",
+              "Type": "System.Int32"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask"
+        },
+        {
+          "Name": "GetAllLogEntries",
+          "Inputs": [
+            {
+              "Name": "ignoreFilters",
+              "Type": "System.Boolean"
+            }
+          ],
+          "ReturnType": "System.Linq.IQueryable\u003CcCoder.Data.Models.Logging.LogEntry\u003E"
+        },
+        {
+          "Name": "GetLogEntry",
+          "Inputs": [
+            {
+              "Name": "logEntryId",
+              "Type": "System.Int32"
+            }
+          ],
+          "ReturnType": "cCoder.Data.Models.Logging.LogEntry"
+        },
+        {
+          "Name": "ResolveAppId",
+          "Inputs": [
+            {
+              "Name": "domainOrName",
+              "Type": "System.String"
+            }
+          ],
+          "ReturnType": "System.Int32?"
+        },
+        {
+          "Name": "UpdateLogEntryAsync",
+          "Inputs": [
+            {
+              "Name": "updatedLogEntry",
+              "Type": "cCoder.Data.Models.Logging.LogEntry"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask\u003CcCoder.Data.Models.Logging.LogEntry\u003E"
+        }
+      ]
+    },
+    {
+      "Name": "cCoder.Logging.Exposures.Setup.UIBaseline",
+      "StandardElementType": "Dependency",
+      "Properties": [
+        {
+          "Name": "Packages",
+          "Type": "cCoder.Data.Models.Packaging.Package[]"
+        }
+      ],
+      "Methods": []
+    },
+    {
+      "Name": "cCoder.Logging.Extensions.LoggingConfigurationExtensions",
+      "StandardElementType": "Dependency",
+      "Properties": [],
+      "Methods": [
+        {
+          "Name": "WithEventProviders",
+          "Inputs": [
+            {
+              "Name": "configuration",
+              "Type": "cCoder.Logging.Models.LoggingConfiguration"
+            },
+            {
+              "Name": "eventProviders",
+              "Type": "cCoder.Eventing.Models.EventProvider[]"
+            }
+          ],
+          "ReturnType": "cCoder.Logging.Models.LoggingConfiguration"
+        }
+      ]
+    },
+    {
+      "Name": "cCoder.Logging.IServiceCollectionExtensions",
+      "StandardElementType": "App",
+      "Properties": [],
+      "Methods": [
+        {
+          "Name": "AddLoggingHostedServices",
+          "Inputs": [
+            {
+              "Name": "services",
+              "Type": "IServiceCollection"
+            },
+            {
+              "Name": "configure",
+              "Type": "System.Action\u003CcCoder.Logging.Models.LoggingConfiguration\u003E"
+            }
+          ],
+          "ReturnType": "System.Void"
+        },
+        {
+          "Name": "AddLoggingWeb",
+          "Inputs": [
+            {
+              "Name": "services",
+              "Type": "IServiceCollection"
+            },
+            {
+              "Name": "configure",
+              "Type": "System.Action\u003CcCoder.Logging.Models.LoggingConfiguration\u003E"
+            },
+            {
+              "Name": "builder",
+              "Type": "Microsoft.OData.ModelBuilder.ODataConventionModelBuilder"
+            }
+          ],
+          "ReturnType": "System.Void"
+        },
+        {
+          "Name": "ConfigureLoggingApiModel",
+          "Inputs": [
+            {
+              "Name": "builder",
+              "Type": "Microsoft.OData.ModelBuilder.ODataConventionModelBuilder"
+            }
+          ],
+          "ReturnType": "System.Void"
+        }
+      ]
+    },
+    {
+      "Name": "cCoder.Logging.Models.AuditResultByProperty",
+      "StandardElementType": "Model",
+      "Properties": [
+        {
+          "Name": "April",
+          "Type": "System.Int32"
+        },
+        {
+          "Name": "August",
+          "Type": "System.Int32"
+        },
+        {
+          "Name": "December",
+          "Type": "System.Int32"
+        },
+        {
+          "Name": "February",
+          "Type": "System.Int32"
+        },
+        {
+          "Name": "January",
+          "Type": "System.Int32"
+        },
+        {
+          "Name": "July",
+          "Type": "System.Int32"
+        },
+        {
+          "Name": "June",
+          "Type": "System.Int32"
+        },
+        {
+          "Name": "March",
+          "Type": "System.Int32"
+        },
+        {
+          "Name": "May",
+          "Type": "System.Int32"
+        },
+        {
+          "Name": "November",
+          "Type": "System.Int32"
+        },
+        {
+          "Name": "October",
+          "Type": "System.Int32"
+        },
+        {
+          "Name": "Property",
+          "Type": "System.String"
+        },
+        {
+          "Name": "September",
+          "Type": "System.Int32"
+        },
+        {
+          "Name": "Total",
+          "Type": "System.Int32"
+        }
+      ],
+      "Methods": []
+    },
+    {
+      "Name": "cCoder.Logging.Models.AuditResultsByUser",
+      "StandardElementType": "Model",
+      "Properties": [
+        {
+          "Name": "April",
+          "Type": "System.Int32"
+        },
+        {
+          "Name": "August",
+          "Type": "System.Int32"
+        },
+        {
+          "Name": "December",
+          "Type": "System.Int32"
+        },
+        {
+          "Name": "February",
+          "Type": "System.Int32"
+        },
+        {
+          "Name": "January",
+          "Type": "System.Int32"
+        },
+        {
+          "Name": "July",
+          "Type": "System.Int32"
+        },
+        {
+          "Name": "June",
+          "Type": "System.Int32"
+        },
+        {
+          "Name": "March",
+          "Type": "System.Int32"
+        },
+        {
+          "Name": "May",
+          "Type": "System.Int32"
+        },
+        {
+          "Name": "November",
+          "Type": "System.Int32"
+        },
+        {
+          "Name": "October",
+          "Type": "System.Int32"
+        },
+        {
+          "Name": "September",
+          "Type": "System.Int32"
+        },
+        {
+          "Name": "Total",
+          "Type": "System.Int32"
+        },
+        {
+          "Name": "UserName",
+          "Type": "System.String"
+        }
+      ],
+      "Methods": []
+    },
+    {
+      "Name": "cCoder.Logging.Models.Exceptions.LoggingDependencyException",
+      "StandardElementType": "Dependency",
+      "Properties": [],
+      "Methods": []
+    },
+    {
+      "Name": "cCoder.Logging.Models.Exceptions.LoggingServiceException",
+      "StandardElementType": "Dependency",
+      "Properties": [],
+      "Methods": []
+    },
+    {
+      "Name": "cCoder.Logging.Models.Exceptions.LoggingValidationException",
+      "StandardElementType": "Dependency",
+      "Properties": [],
+      "Methods": []
+    },
+    {
+      "Name": "cCoder.Logging.Models.LoggingConfiguration",
+      "StandardElementType": "Model",
+      "Properties": [
+        {
+          "Name": "ConnectionStrings",
+          "Type": "System.Collections.Generic.IDictionary\u003CSystem.String, System.String\u003E"
+        },
+        {
+          "Name": "DebugInfo",
+          "Type": "System.Boolean"
+        },
+        {
+          "Name": "DefaultAppDomain",
+          "Type": "System.String"
+        },
+        {
+          "Name": "DefaultAppId",
+          "Type": "System.Int32?"
+        },
+        {
+          "Name": "EventProviders",
+          "Type": "cCoder.Eventing.Models.EventProvider[]"
+        },
+        {
+          "Name": "IncludeLegacyCoreContext",
+          "Type": "System.Boolean"
+        },
+        {
+          "Name": "LogSQL",
+          "Type": "System.Boolean"
+        },
+        {
+          "Name": "RetentionDays",
+          "Type": "System.Int32"
+        },
+        {
+          "Name": "RetentionIntervalMinutes",
+          "Type": "System.Int32"
+        },
+        {
+          "Name": "RootPath",
+          "Type": "System.String"
+        },
+        {
+          "Name": "Services",
+          "Type": "System.Collections.Generic.IDictionary\u003CSystem.String, System.String\u003E"
+        },
+        {
+          "Name": "Settings",
+          "Type": "System.Collections.Generic.IDictionary\u003CSystem.String, System.String\u003E"
+        },
+        {
+          "Name": "StoreLogEntries",
+          "Type": "System.Boolean"
+        },
+        {
+          "Name": "StreamLogEntries",
+          "Type": "System.Boolean"
+        }
+      ],
+      "Methods": []
+    },
+    {
+      "Name": "cCoder.Logging.Models.OData.ModelStateError",
+      "StandardElementType": "Model",
+      "Properties": [
+        {
+          "Name": "Errors",
+          "Type": "System.String[]"
+        },
+        {
+          "Name": "Key",
+          "Type": "System.String"
+        },
+        {
+          "Name": "Value",
+          "Type": "System.Object"
+        }
+      ],
+      "Methods": []
+    },
+    {
+      "Name": "cCoder.Logging.Models.OData.ODataModel",
+      "StandardElementType": "Model",
+      "Properties": [
+        {
+          "Name": "Context",
+          "Type": "System.String"
+        },
+        {
+          "Name": "Description",
+          "Type": "System.String"
+        },
+        {
+          "Name": "EDMModel",
+          "Type": "Microsoft.OData.Edm.IEdmModel"
+        }
+      ],
+      "Methods": []
+    },
+    {
+      "Name": "cCoder.Logging.Models.ODataCollection\u003CTCollectionType\u003E",
+      "StandardElementType": "Model",
+      "Properties": [
+        {
+          "Name": "ODataContext",
+          "Type": "System.String"
+        },
+        {
+          "Name": "Value",
+          "Type": "System.Collections.Generic.IEnumerable\u003CTCollectionType\u003E"
+        }
+      ],
+      "Methods": []
+    },
+    {
+      "Name": "cCoder.Logging.Models.Result",
+      "StandardElementType": "Model",
+      "Properties": [
+        {
+          "Name": "Id",
+          "Type": "System.String"
+        },
+        {
+          "Name": "Message",
+          "Type": "System.String"
+        },
+        {
+          "Name": "Success",
+          "Type": "System.Boolean"
+        }
+      ],
+      "Methods": []
+    },
+    {
+      "Name": "cCoder.Logging.Models.Result\u003CT\u003E",
+      "StandardElementType": "Model",
+      "Properties": [
+        {
+          "Name": "Id",
+          "Type": "System.String"
+        },
+        {
+          "Name": "Item",
+          "Type": "T"
+        }
+      ],
+      "Methods": []
+    },
+    {
+      "Name": "cCoder.Logging.Services.Foundations.Events.LogDataItemEventService",
+      "StandardElementType": "FoundationService",
+      "Properties": [],
+      "Methods": [
+        {
+          "Name": "RaiseLogDataItemAddEventAsync",
+          "Inputs": [
+            {
+              "Name": "entity",
+              "Type": "cCoder.Data.Models.Logging.LogDataItem"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask"
+        },
+        {
+          "Name": "RaiseLogDataItemDeleteEventAsync",
+          "Inputs": [
+            {
+              "Name": "entity",
+              "Type": "cCoder.Data.Models.Logging.LogDataItem"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask"
+        },
+        {
+          "Name": "RaiseLogDataItemUpdateEventAsync",
+          "Inputs": [
+            {
+              "Name": "entity",
+              "Type": "cCoder.Data.Models.Logging.LogDataItem"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask"
+        }
+      ]
+    },
+    {
+      "Name": "cCoder.Logging.Services.Foundations.Events.LogEntryEventService",
+      "StandardElementType": "FoundationService",
+      "Properties": [],
+      "Methods": [
+        {
+          "Name": "RaiseLogEntryAddEventAsync",
+          "Inputs": [
+            {
+              "Name": "entity",
+              "Type": "cCoder.Data.Models.Logging.LogEntry"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask"
+        },
+        {
+          "Name": "RaiseLogEntryDeleteEventAsync",
+          "Inputs": [
+            {
+              "Name": "entity",
+              "Type": "cCoder.Data.Models.Logging.LogEntry"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask"
+        },
+        {
+          "Name": "RaiseLogEntryUpdateEventAsync",
+          "Inputs": [
+            {
+              "Name": "entity",
+              "Type": "cCoder.Data.Models.Logging.LogEntry"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask"
+        }
+      ]
+    },
+    {
+      "Name": "cCoder.Logging.Services.Foundations.LogDataItemService",
+      "StandardElementType": "FoundationService",
+      "Properties": [],
+      "Methods": [
+        {
+          "Name": "AddLogDataItemAsync",
+          "Inputs": [
+            {
+              "Name": "newLogDataItem",
+              "Type": "cCoder.Data.Models.Logging.LogDataItem"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask\u003CcCoder.Data.Models.Logging.LogDataItem\u003E"
+        },
+        {
+          "Name": "DeleteLogDataItemAsync",
+          "Inputs": [
+            {
+              "Name": "logDataItemId",
+              "Type": "System.Int32"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask"
+        },
+        {
+          "Name": "GetAllLogDataItems",
+          "Inputs": [
+            {
+              "Name": "ignoreFilters",
+              "Type": "System.Boolean"
+            }
+          ],
+          "ReturnType": "System.Linq.IQueryable\u003CcCoder.Data.Models.Logging.LogDataItem\u003E"
+        },
+        {
+          "Name": "GetLogDataItem",
+          "Inputs": [
+            {
+              "Name": "logDataItemId",
+              "Type": "System.Int32"
+            }
+          ],
+          "ReturnType": "cCoder.Data.Models.Logging.LogDataItem"
+        },
+        {
+          "Name": "UpdateLogDataItemAsync",
+          "Inputs": [
+            {
+              "Name": "updatedLogDataItem",
+              "Type": "cCoder.Data.Models.Logging.LogDataItem"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask\u003CcCoder.Data.Models.Logging.LogDataItem\u003E"
+        }
+      ]
+    },
+    {
+      "Name": "cCoder.Logging.Services.Foundations.LogEntryService",
+      "StandardElementType": "FoundationService",
+      "Properties": [],
+      "Methods": [
+        {
+          "Name": "AddLogEntryAsync",
+          "Inputs": [
+            {
+              "Name": "newLogEntry",
+              "Type": "cCoder.Data.Models.Logging.LogEntry"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask\u003CcCoder.Data.Models.Logging.LogEntry\u003E"
+        },
+        {
+          "Name": "AddSystemLogEntryAsync",
+          "Inputs": [
+            {
+              "Name": "newLogEntry",
+              "Type": "cCoder.Data.Models.Logging.LogEntry"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask\u003CcCoder.Data.Models.Logging.LogEntry\u003E"
+        },
+        {
+          "Name": "DeleteLogEntriesBeforeAsync",
+          "Inputs": [
+            {
+              "Name": "cutoff",
+              "Type": "System.DateTime"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask\u003CSystem.Int32\u003E"
+        },
+        {
+          "Name": "DeleteLogEntryAsync",
+          "Inputs": [
+            {
+              "Name": "logEntryId",
+              "Type": "System.Int32"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask"
+        },
+        {
+          "Name": "GetAllLogEntries",
+          "Inputs": [
+            {
+              "Name": "ignoreFilters",
+              "Type": "System.Boolean"
+            }
+          ],
+          "ReturnType": "System.Linq.IQueryable\u003CcCoder.Data.Models.Logging.LogEntry\u003E"
+        },
+        {
+          "Name": "GetLogEntry",
+          "Inputs": [
+            {
+              "Name": "logEntryId",
+              "Type": "System.Int32"
+            }
+          ],
+          "ReturnType": "cCoder.Data.Models.Logging.LogEntry"
+        },
+        {
+          "Name": "ResolveAppId",
+          "Inputs": [
+            {
+              "Name": "domainOrName",
+              "Type": "System.String"
+            }
+          ],
+          "ReturnType": "System.Int32?"
+        },
+        {
+          "Name": "UpdateLogEntryAsync",
+          "Inputs": [
+            {
+              "Name": "updatedLogEntry",
+              "Type": "cCoder.Data.Models.Logging.LogEntry"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask\u003CcCoder.Data.Models.Logging.LogEntry\u003E"
+        }
+      ]
+    },
+    {
+      "Name": "cCoder.Logging.Services.Orchestrations.LogDataItemOrchestrationService",
+      "StandardElementType": "OrchestrationService",
+      "Properties": [],
+      "Methods": [
+        {
+          "Name": "AddLogDataItemAsync",
+          "Inputs": [
+            {
+              "Name": "newLogDataItem",
+              "Type": "cCoder.Data.Models.Logging.LogDataItem"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask\u003CcCoder.Data.Models.Logging.LogDataItem\u003E"
+        },
+        {
+          "Name": "AddOrUpdateLogDataItemResultsAsync",
+          "Inputs": [
+            {
+              "Name": "logDataItems",
+              "Type": "System.Collections.Generic.IEnumerable\u003CcCoder.Data.Models.Logging.LogDataItem\u003E"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask\u003CSystem.Collections.Generic.IEnumerable\u003CcCoder.Logging.Dependencies.OperationResult\u003CcCoder.Data.Models.Logging.LogDataItem\u003E\u003E\u003E"
+        },
+        {
+          "Name": "DeleteAllLogDataItemAsync",
+          "Inputs": [
+            {
+              "Name": "deletedLogDataItems",
+              "Type": "System.Collections.Generic.IEnumerable\u003CcCoder.Data.Models.Logging.LogDataItem\u003E"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask"
+        },
+        {
+          "Name": "DeleteLogDataItemAsync",
+          "Inputs": [
+            {
+              "Name": "logDataItemId",
+              "Type": "System.Int32"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask"
+        },
+        {
+          "Name": "GetAllLogDataItems",
+          "Inputs": [
+            {
+              "Name": "ignoreFilters",
+              "Type": "System.Boolean"
+            }
+          ],
+          "ReturnType": "System.Linq.IQueryable\u003CcCoder.Data.Models.Logging.LogDataItem\u003E"
+        },
+        {
+          "Name": "GetLogDataItem",
+          "Inputs": [
+            {
+              "Name": "logDataItemId",
+              "Type": "System.Int32"
+            }
+          ],
+          "ReturnType": "cCoder.Data.Models.Logging.LogDataItem"
+        },
+        {
+          "Name": "UpdateLogDataItemAsync",
+          "Inputs": [
+            {
+              "Name": "updatedLogDataItem",
+              "Type": "cCoder.Data.Models.Logging.LogDataItem"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask\u003CcCoder.Data.Models.Logging.LogDataItem\u003E"
+        }
+      ]
+    },
+    {
+      "Name": "cCoder.Logging.Services.Orchestrations.LogEntryCaptureOrchestrationService",
+      "StandardElementType": "OrchestrationService",
+      "Properties": [],
+      "Methods": [
+        {
+          "Name": "CaptureLogEntryAsync",
+          "Inputs": [
+            {
+              "Name": "logEntryCaptureRequest",
+              "Type": "cCoder.Logging.Dependencies.Logging.LogEntryCaptureRequest"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask"
+        }
+      ]
+    },
+    {
+      "Name": "cCoder.Logging.Services.Orchestrations.LogEntryOrchestrationService",
+      "StandardElementType": "OrchestrationService",
+      "Properties": [],
+      "Methods": [
+        {
+          "Name": "AddLogEntryAsync",
+          "Inputs": [
+            {
+              "Name": "newLogEntry",
+              "Type": "cCoder.Data.Models.Logging.LogEntry"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask\u003CcCoder.Data.Models.Logging.LogEntry\u003E"
+        },
+        {
+          "Name": "AddOrUpdateLogEntryResultsAsync",
+          "Inputs": [
+            {
+              "Name": "logEntries",
+              "Type": "System.Collections.Generic.IEnumerable\u003CcCoder.Data.Models.Logging.LogEntry\u003E"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask\u003CSystem.Collections.Generic.IEnumerable\u003CcCoder.Logging.Dependencies.OperationResult\u003CcCoder.Data.Models.Logging.LogEntry\u003E\u003E\u003E"
+        },
+        {
+          "Name": "AddSystemLogEntryAsync",
+          "Inputs": [
+            {
+              "Name": "newLogEntry",
+              "Type": "cCoder.Data.Models.Logging.LogEntry"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask\u003CcCoder.Data.Models.Logging.LogEntry\u003E"
+        },
+        {
+          "Name": "DeleteAllLogEntryAsync",
+          "Inputs": [
+            {
+              "Name": "deletedLogEntries",
+              "Type": "System.Collections.Generic.IEnumerable\u003CcCoder.Data.Models.Logging.LogEntry\u003E"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask"
+        },
+        {
+          "Name": "DeleteLogEntriesBeforeAsync",
+          "Inputs": [
+            {
+              "Name": "cutoff",
+              "Type": "System.DateTime"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask\u003CSystem.Int32\u003E"
+        },
+        {
+          "Name": "DeleteLogEntryAsync",
+          "Inputs": [
+            {
+              "Name": "logEntryId",
+              "Type": "System.Int32"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask"
+        },
+        {
+          "Name": "GetAllLogEntries",
+          "Inputs": [
+            {
+              "Name": "ignoreFilters",
+              "Type": "System.Boolean"
+            }
+          ],
+          "ReturnType": "System.Linq.IQueryable\u003CcCoder.Data.Models.Logging.LogEntry\u003E"
+        },
+        {
+          "Name": "GetLogEntry",
+          "Inputs": [
+            {
+              "Name": "logEntryId",
+              "Type": "System.Int32"
+            }
+          ],
+          "ReturnType": "cCoder.Data.Models.Logging.LogEntry"
+        },
+        {
+          "Name": "ResolveAppId",
+          "Inputs": [
+            {
+              "Name": "domainOrName",
+              "Type": "System.String"
+            }
+          ],
+          "ReturnType": "System.Int32?"
+        },
+        {
+          "Name": "UpdateLogEntryAsync",
+          "Inputs": [
+            {
+              "Name": "updatedLogEntry",
+              "Type": "cCoder.Data.Models.Logging.LogEntry"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask\u003CcCoder.Data.Models.Logging.LogEntry\u003E"
+        }
+      ]
+    },
+    {
+      "Name": "cCoder.Logging.Services.Processings.LogDataItemEventProcessingService",
+      "StandardElementType": "ProcessingService",
+      "Properties": [],
+      "Methods": [
+        {
+          "Name": "RaiseLogDataItemAddEventAsync",
+          "Inputs": [
+            {
+              "Name": "entity",
+              "Type": "cCoder.Data.Models.Logging.LogDataItem"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask"
+        },
+        {
+          "Name": "RaiseLogDataItemDeleteEventAsync",
+          "Inputs": [
+            {
+              "Name": "entity",
+              "Type": "cCoder.Data.Models.Logging.LogDataItem"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask"
+        },
+        {
+          "Name": "RaiseLogDataItemUpdateEventAsync",
+          "Inputs": [
+            {
+              "Name": "entity",
+              "Type": "cCoder.Data.Models.Logging.LogDataItem"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask"
+        }
+      ]
+    },
+    {
+      "Name": "cCoder.Logging.Services.Processings.LogDataItemProcessingService",
+      "StandardElementType": "ProcessingService",
+      "Properties": [],
+      "Methods": [
+        {
+          "Name": "AddLogDataItemAsync",
+          "Inputs": [
+            {
+              "Name": "newLogDataItem",
+              "Type": "cCoder.Data.Models.Logging.LogDataItem"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask\u003CcCoder.Data.Models.Logging.LogDataItem\u003E"
+        },
+        {
+          "Name": "AddOrUpdateLogDataItemResultsAsync",
+          "Inputs": [
+            {
+              "Name": "logDataItems",
+              "Type": "System.Collections.Generic.IEnumerable\u003CcCoder.Data.Models.Logging.LogDataItem\u003E"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask\u003CSystem.Collections.Generic.IEnumerable\u003CcCoder.Logging.Dependencies.OperationResult\u003CcCoder.Data.Models.Logging.LogDataItem\u003E\u003E\u003E"
+        },
+        {
+          "Name": "DeleteAllLogDataItemAsync",
+          "Inputs": [
+            {
+              "Name": "deletedLogDataItems",
+              "Type": "System.Collections.Generic.IEnumerable\u003CcCoder.Data.Models.Logging.LogDataItem\u003E"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask"
+        },
+        {
+          "Name": "DeleteLogDataItemAsync",
+          "Inputs": [
+            {
+              "Name": "logDataItemId",
+              "Type": "System.Int32"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask"
+        },
+        {
+          "Name": "GetAllLogDataItems",
+          "Inputs": [
+            {
+              "Name": "ignoreFilters",
+              "Type": "System.Boolean"
+            }
+          ],
+          "ReturnType": "System.Linq.IQueryable\u003CcCoder.Data.Models.Logging.LogDataItem\u003E"
+        },
+        {
+          "Name": "GetLogDataItem",
+          "Inputs": [
+            {
+              "Name": "logDataItemId",
+              "Type": "System.Int32"
+            }
+          ],
+          "ReturnType": "cCoder.Data.Models.Logging.LogDataItem"
+        },
+        {
+          "Name": "UpdateLogDataItemAsync",
+          "Inputs": [
+            {
+              "Name": "updatedLogDataItem",
+              "Type": "cCoder.Data.Models.Logging.LogDataItem"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask\u003CcCoder.Data.Models.Logging.LogDataItem\u003E"
+        }
+      ]
+    },
+    {
+      "Name": "cCoder.Logging.Services.Processings.LogEntryCaptureProcessingService",
+      "StandardElementType": "ProcessingService",
+      "Properties": [],
+      "Methods": [
+        {
+          "Name": "CaptureLogEntryAsync",
+          "Inputs": [
+            {
+              "Name": "logEntryCaptureRequest",
+              "Type": "cCoder.Logging.Dependencies.Logging.LogEntryCaptureRequest"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask\u003CcCoder.Data.Models.Logging.LogEntry\u003E"
+        }
+      ]
+    },
+    {
+      "Name": "cCoder.Logging.Services.Processings.LogEntryEventProcessingService",
+      "StandardElementType": "ProcessingService",
+      "Properties": [],
+      "Methods": [
+        {
+          "Name": "RaiseLogEntryAddEventAsync",
+          "Inputs": [
+            {
+              "Name": "entity",
+              "Type": "cCoder.Data.Models.Logging.LogEntry"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask"
+        },
+        {
+          "Name": "RaiseLogEntryDeleteEventAsync",
+          "Inputs": [
+            {
+              "Name": "entity",
+              "Type": "cCoder.Data.Models.Logging.LogEntry"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask"
+        },
+        {
+          "Name": "RaiseLogEntryUpdateEventAsync",
+          "Inputs": [
+            {
+              "Name": "entity",
+              "Type": "cCoder.Data.Models.Logging.LogEntry"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask"
+        }
+      ]
+    },
+    {
+      "Name": "cCoder.Logging.Services.Processings.LogEntryProcessingService",
+      "StandardElementType": "ProcessingService",
+      "Properties": [],
+      "Methods": [
+        {
+          "Name": "AddLogEntryAsync",
+          "Inputs": [
+            {
+              "Name": "newLogEntry",
+              "Type": "cCoder.Data.Models.Logging.LogEntry"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask\u003CcCoder.Data.Models.Logging.LogEntry\u003E"
+        },
+        {
+          "Name": "AddOrUpdateLogEntryResultsAsync",
+          "Inputs": [
+            {
+              "Name": "logEntries",
+              "Type": "System.Collections.Generic.IEnumerable\u003CcCoder.Data.Models.Logging.LogEntry\u003E"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask\u003CSystem.Collections.Generic.IEnumerable\u003CcCoder.Logging.Dependencies.OperationResult\u003CcCoder.Data.Models.Logging.LogEntry\u003E\u003E\u003E"
+        },
+        {
+          "Name": "AddSystemLogEntryAsync",
+          "Inputs": [
+            {
+              "Name": "newLogEntry",
+              "Type": "cCoder.Data.Models.Logging.LogEntry"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask\u003CcCoder.Data.Models.Logging.LogEntry\u003E"
+        },
+        {
+          "Name": "DeleteAllLogEntryAsync",
+          "Inputs": [
+            {
+              "Name": "deletedLogEntries",
+              "Type": "System.Collections.Generic.IEnumerable\u003CcCoder.Data.Models.Logging.LogEntry\u003E"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask"
+        },
+        {
+          "Name": "DeleteLogEntriesBeforeAsync",
+          "Inputs": [
+            {
+              "Name": "cutoff",
+              "Type": "System.DateTime"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask\u003CSystem.Int32\u003E"
+        },
+        {
+          "Name": "DeleteLogEntryAsync",
+          "Inputs": [
+            {
+              "Name": "logEntryId",
+              "Type": "System.Int32"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask"
+        },
+        {
+          "Name": "GetAllLogEntries",
+          "Inputs": [
+            {
+              "Name": "ignoreFilters",
+              "Type": "System.Boolean"
+            }
+          ],
+          "ReturnType": "System.Linq.IQueryable\u003CcCoder.Data.Models.Logging.LogEntry\u003E"
+        },
+        {
+          "Name": "GetLogEntry",
+          "Inputs": [
+            {
+              "Name": "logEntryId",
+              "Type": "System.Int32"
+            }
+          ],
+          "ReturnType": "cCoder.Data.Models.Logging.LogEntry"
+        },
+        {
+          "Name": "ResolveAppId",
+          "Inputs": [
+            {
+              "Name": "domainOrName",
+              "Type": "System.String"
+            }
+          ],
+          "ReturnType": "System.Int32?"
+        },
+        {
+          "Name": "UpdateLogEntryAsync",
+          "Inputs": [
+            {
+              "Name": "updatedLogEntry",
+              "Type": "cCoder.Data.Models.Logging.LogEntry"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask\u003CcCoder.Data.Models.Logging.LogEntry\u003E"
+        }
+      ]
+    },
+    {
+      "Name": "cCoder.Logging.Services.Processings.LogEntryRetentionProcessingService",
+      "StandardElementType": "ProcessingService",
+      "Properties": [],
+      "Methods": [
+        {
+          "Name": "DeleteExpiredLogEntriesAsync",
+          "Inputs": [
+            {
+              "Name": "cancellationToken",
+              "Type": "System.Threading.CancellationToken"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask\u003CSystem.Int32\u003E"
+        },
+        {
+          "Name": "RunLogRetentionAsync",
+          "Inputs": [
+            {
+              "Name": "cancellationToken",
+              "Type": "System.Threading.CancellationToken"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.Task"
+        }
+      ]
+    },
+    {
+      "Name": "cCoder.Logging.WebApplicationExtensions",
+      "StandardElementType": "Dependency",
+      "Properties": [],
+      "Methods": [
+        {
+          "Name": "StartLoggingHostedServices",
+          "Inputs": [
+            {
+              "Name": "app",
+              "Type": "WebApplication"
+            }
+          ],
+          "ReturnType": "WebApplication"
+        },
+        {
+          "Name": "StartLoggingWeb",
+          "Inputs": [
+            {
+              "Name": "app",
+              "Type": "WebApplication"
+            },
+            {
+              "Name": "log",
+              "Type": "ILogger"
+            }
+          ],
+          "ReturnType": "WebApplication"
+        }
+      ]
+    }
+  ],
+  "Links": [
+    {
+      "FromType": "cCoder.Logging.Exposures.Controllers.BaselineController",
+      "ToType": "cCoder.Logging.Exposures.BaselineExposure"
+    },
+    {
+      "FromType": "cCoder.Logging.Exposures.Controllers.LogDataItemController",
+      "ToType": "cCoder.Logging.Exposures.LogDataItemManager"
+    },
+    {
+      "FromType": "cCoder.Logging.Exposures.Controllers.LogEntryController",
+      "ToType": "cCoder.Logging.Exposures.LogEntryManager"
+    },
+    {
+      "FromType": "cCoder.Logging.Exposures.Hubs.LogHub",
+      "ToType": "cCoder.Logging.Brokers.AuthorizationBroker"
+    },
+    {
+      "FromType": "cCoder.Logging.Exposures.LogDataItemManager",
+      "ToType": "cCoder.Logging.Services.Orchestrations.LogDataItemOrchestrationService"
+    },
+    {
+      "FromType": "cCoder.Logging.Exposures.LogEntryManager",
+      "ToType": "cCoder.Logging.Services.Orchestrations.LogEntryOrchestrationService"
+    },
+    {
+      "FromType": "cCoder.Logging.Services.Foundations.Events.LogDataItemEventService",
+      "ToType": "cCoder.Logging.Brokers.AuthInfoBroker"
+    },
+    {
+      "FromType": "cCoder.Logging.Services.Foundations.Events.LogDataItemEventService",
+      "ToType": "cCoder.Logging.Brokers.LogDataItemEventBroker"
+    },
+    {
+      "FromType": "cCoder.Logging.Services.Foundations.Events.LogEntryEventService",
+      "ToType": "cCoder.Logging.Brokers.AuthInfoBroker"
+    },
+    {
+      "FromType": "cCoder.Logging.Services.Foundations.Events.LogEntryEventService",
+      "ToType": "cCoder.Logging.Brokers.LogEntryEventBroker"
+    },
+    {
+      "FromType": "cCoder.Logging.Services.Foundations.LogDataItemService",
+      "ToType": "cCoder.Logging.Brokers.AuthorizationBroker"
+    },
+    {
+      "FromType": "cCoder.Logging.Services.Foundations.LogDataItemService",
+      "ToType": "cCoder.Logging.Brokers.LogDataItemBroker"
+    },
+    {
+      "FromType": "cCoder.Logging.Services.Foundations.LogEntryService",
+      "ToType": "cCoder.Logging.Brokers.AuthorizationBroker"
+    },
+    {
+      "FromType": "cCoder.Logging.Services.Foundations.LogEntryService",
+      "ToType": "cCoder.Logging.Brokers.LogEntryBroker"
+    },
+    {
+      "FromType": "cCoder.Logging.Services.Orchestrations.LogDataItemOrchestrationService",
+      "ToType": "cCoder.Logging.Services.Processings.LogDataItemEventProcessingService"
+    },
+    {
+      "FromType": "cCoder.Logging.Services.Orchestrations.LogDataItemOrchestrationService",
+      "ToType": "cCoder.Logging.Services.Processings.LogDataItemProcessingService"
+    },
+    {
+      "FromType": "cCoder.Logging.Services.Orchestrations.LogEntryCaptureOrchestrationService",
+      "ToType": "cCoder.Logging.Services.Processings.LogEntryCaptureProcessingService"
+    },
+    {
+      "FromType": "cCoder.Logging.Services.Orchestrations.LogEntryCaptureOrchestrationService",
+      "ToType": "cCoder.Logging.Services.Processings.LogEntryEventProcessingService"
+    },
+    {
+      "FromType": "cCoder.Logging.Services.Orchestrations.LogEntryOrchestrationService",
+      "ToType": "cCoder.Logging.Services.Processings.LogEntryEventProcessingService"
+    },
+    {
+      "FromType": "cCoder.Logging.Services.Orchestrations.LogEntryOrchestrationService",
+      "ToType": "cCoder.Logging.Services.Processings.LogEntryProcessingService"
+    },
+    {
+      "FromType": "cCoder.Logging.Services.Processings.LogDataItemEventProcessingService",
+      "ToType": "cCoder.Logging.Services.Foundations.Events.LogDataItemEventService"
+    },
+    {
+      "FromType": "cCoder.Logging.Services.Processings.LogDataItemProcessingService",
+      "ToType": "cCoder.Logging.Services.Foundations.LogDataItemService"
+    },
+    {
+      "FromType": "cCoder.Logging.Services.Processings.LogEntryCaptureProcessingService",
+      "ToType": "cCoder.Logging.Brokers.LogEntryStreamBroker"
+    },
+    {
+      "FromType": "cCoder.Logging.Services.Processings.LogEntryCaptureProcessingService",
+      "ToType": "cCoder.Logging.Models.LoggingConfiguration"
+    },
+    {
+      "FromType": "cCoder.Logging.Services.Processings.LogEntryCaptureProcessingService",
+      "ToType": "cCoder.Logging.Services.Foundations.LogEntryService"
+    },
+    {
+      "FromType": "cCoder.Logging.Services.Processings.LogEntryEventProcessingService",
+      "ToType": "cCoder.Logging.Services.Foundations.Events.LogEntryEventService"
+    },
+    {
+      "FromType": "cCoder.Logging.Services.Processings.LogEntryProcessingService",
+      "ToType": "cCoder.Logging.Services.Foundations.LogEntryService"
+    },
+    {
+      "FromType": "cCoder.Logging.Services.Processings.LogEntryRetentionProcessingService",
+      "ToType": "cCoder.Logging.Models.LoggingConfiguration"
+    },
+    {
+      "FromType": "cCoder.Logging.Services.Processings.LogEntryRetentionProcessingService",
+      "ToType": "cCoder.Logging.Services.Foundations.LogEntryService"
+    }
+  ],
+  "AnalysisItems": []
+}

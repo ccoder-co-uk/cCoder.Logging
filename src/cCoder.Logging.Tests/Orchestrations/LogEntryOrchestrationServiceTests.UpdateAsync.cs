@@ -1,3 +1,7 @@
+// ---------------------------------------------------------------
+// Copyright (c) Paul.Ward@ccoder.co.uk
+// ---------------------------------------------------------------
+
 using cCoder.Logging.Models;
 using cCoder.Data.Models.Logging;
 using FluentAssertions;
@@ -14,26 +18,24 @@ public partial class LogEntryOrchestrationServiceTests
     {
         // Given
         LogEntry entity = CreateRandomLogEntry();
-        logEntryProcessingServiceMock.Setup(x => x.UpdateAsync(entity)).ReturnsAsync(entity);
+
+        logEntryProcessingServiceMock.Setup(expression: x => x.UpdateLogEntryAsync(updatedLogEntry: entity))
+            .ReturnsAsync(value: entity);
 
         logEntryEventProcessingServiceMock
-            .Setup(x => x.RaiseLogEntryUpdateEventAsync(entity))
-            .Returns(ValueTask.CompletedTask);
+            .Setup(expression: x => x.RaiseLogEntryUpdateEventAsync(entity: entity))
+            .Returns(value: ValueTask.CompletedTask);
 
         // When
-        LogEntry result = await orchestrationService.UpdateAsync(entity);
+        LogEntry result = await orchestrationService.UpdateLogEntryAsync(updatedLogEntry: entity);
 
         // Then
-        result.Should().BeSameAs(entity);
-        logEntryProcessingServiceMock.Verify(x => x.UpdateAsync(entity), Times.Once);
-        logEntryEventProcessingServiceMock.Verify(x => x.RaiseLogEntryUpdateEventAsync(entity), Times.Once);
+
+        result.Should()
+            .BeSameAs(expected: entity);
+
+        logEntryProcessingServiceMock.Verify(expression: x => x.UpdateLogEntryAsync(updatedLogEntry: entity), times: Times.Once);
+        logEntryEventProcessingServiceMock.Verify(expression: x => x.RaiseLogEntryUpdateEventAsync(entity: entity), times: Times.Once);
     }
 
 }
-
-
-
-
-
-
-

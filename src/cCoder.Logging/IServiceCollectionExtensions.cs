@@ -1,10 +1,15 @@
+// ---------------------------------------------------------------
+// Copyright (c) Paul.Ward@ccoder.co.uk
+// ---------------------------------------------------------------
+
 using cCoder.Data.Models.Logging;
 using cCoder.Logging.Api.OData;
 using cCoder.Logging.Brokers;
 using cCoder.Logging.Exposures.HostedServices;
-using cCoder.Logging.Exposures.Logging;
+using cCoder.Logging.Dependencies.Logging;
+using cCoder.Logging.Dependencies.OData;
+using cCoder.Logging.Exposures;
 using cCoder.Logging.Models;
-using cCoder.Logging.Services;
 using cCoder.Logging.Services.Foundations;
 using cCoder.Logging.Services.Foundations.Events;
 using cCoder.Logging.Services.Orchestrations;
@@ -40,6 +45,9 @@ public static partial class IServiceCollectionExtensions
 
     private static void AddLogging(this IServiceCollection services)
     {
+        services.AddTransient<IBaselineExposure, BaselineExposure>();
+        services.AddTransient<ILogDataItemManager, LogDataItemManager>();
+        services.AddTransient<ILogEntryManager, LogEntryManager>();
         services.AddEventingTypes();
         services.AddBrokers();
         services.AddFoundations();
@@ -62,6 +70,7 @@ public static partial class IServiceCollectionExtensions
 
     private static void AddBrokers(this IServiceCollection services)
     {
+        services.AddTransient<IAuthInfoBroker, AuthInfoBroker>();
         services.AddTransient<ILogDataItemEventBroker, LogDataItemEventBroker>();
         services.AddTransient<ILogEntryEventBroker, LogEntryEventBroker>();
         services.AddTransient<ILogDataItemBroker, LogDataItemBroker>();
@@ -84,7 +93,6 @@ public static partial class IServiceCollectionExtensions
         services.AddTransient<ILogDataItemOrchestrationService, LogDataItemOrchestrationService>();
         services.AddTransient<ILogEntryOrchestrationService, LogEntryOrchestrationService>();
         services.AddTransient<ILogEntryCaptureOrchestrationService, LogEntryCaptureOrchestrationService>();
-        services.AddTransient<ILogRetentionOrchestrationService, LogRetentionOrchestrationService>();
     }
 
     private static void AddProcessings(this IServiceCollection services)
@@ -92,7 +100,11 @@ public static partial class IServiceCollectionExtensions
         services.AddTransient<ILogDataItemEventProcessingService, LogDataItemEventProcessingService>();
         services.AddTransient<ILogDataItemProcessingService, LogDataItemProcessingService>();
         services.AddTransient<ILogEntryEventProcessingService, LogEntryEventProcessingService>();
+        services.AddTransient<ILogEntryCaptureProcessingService, LogEntryCaptureProcessingService>();
         services.AddTransient<ILogEntryProcessingService, LogEntryProcessingService>();
+        services.AddTransient<
+            ILogEntryRetentionProcessingService,
+            LogEntryRetentionProcessingService>();
     }
 
     private static void AddHostedServiceExposures(this IServiceCollection services)

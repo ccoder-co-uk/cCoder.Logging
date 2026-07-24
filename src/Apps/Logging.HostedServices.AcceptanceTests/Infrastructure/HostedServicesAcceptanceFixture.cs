@@ -1,3 +1,7 @@
+// ---------------------------------------------------------------
+// Copyright (c) Paul.Ward@ccoder.co.uk
+// ---------------------------------------------------------------
+
 using Microsoft.AspNetCore.Mvc.Testing;
 using Xunit;
 
@@ -12,10 +16,11 @@ public sealed class HostedServicesAcceptanceFixture : IAsyncLifetime
     public Task InitializeAsync()
     {
         Factory = new HostedServicesAcceptanceFactory();
-        Client = Factory.CreateClient(new WebApplicationFactoryClientOptions
+
+        Client = Factory.CreateClient(options: new WebApplicationFactoryClientOptions
         {
             AllowAutoRedirect = false,
-            BaseAddress = new Uri("https://localhost"),
+            BaseAddress = new Uri(uriString: "https://localhost"),
         });
 
         return Task.CompletedTask;
@@ -26,7 +31,9 @@ public sealed class HostedServicesAcceptanceFixture : IAsyncLifetime
         Client?.Dispose();
 
         if (Factory is not null)
+        {
             await Factory.DisposeAsync();
+        }
     }
 }
 

@@ -1,3 +1,7 @@
+// ---------------------------------------------------------------
+// Copyright (c) Paul.Ward@ccoder.co.uk
+// ---------------------------------------------------------------
+
 using cCoder.Data;
 using cCoder.Data.Models.Logging;
 using Microsoft.EntityFrameworkCore;
@@ -14,13 +18,14 @@ public sealed partial class LogEntryCaptureTests(WebAcceptanceFixture fixture)
     private async Task<LogEntry> FindLogEntryAsync(string message)
     {
         using IServiceScope scope = fixture.Factory.Services.CreateScope();
+
         using CoreDataContext context = scope.ServiceProvider
             .GetRequiredService<ICoreContextFactory>()
             .CreateCoreContext();
 
         return await context.Logs
             .IgnoreQueryFilters()
-            .FirstOrDefaultAsync(logEntry => logEntry.Message == message);
+            .FirstOrDefaultAsync(predicate: logEntry => logEntry.Message == message);
     }
 
     private ILogger<LogEntryCaptureTests> CreateLogger() =>

@@ -1,4 +1,7 @@
-using System.Security;
+// ---------------------------------------------------------------
+// Copyright (c) Paul.Ward@ccoder.co.uk
+// ---------------------------------------------------------------
+
 using cCoder.Data;
 using cCoder.Data.Models.CMS;
 using cCoder.Data.Models.Security;
@@ -7,66 +10,43 @@ using Microsoft.EntityFrameworkCore;
 
 namespace cCoder.Logging.Brokers;
 
-public interface IAuthorizationBroker
+internal interface IAuthorizationBroker
 {
-    User GetCurrentUser();
-    bool IsAdminOfApp(int? appId);
-    bool IsAdmin(int appId, string userName);
-    void Authorize(int? appId, string privilege);
+    User SelectCurrentUser();
+    User SelectUserById(string userId);
+    App SelectAppById(int appId);
 }
 
-internal class AuthorizationBroker(ICoreContextFactory coreContextFactory) : IAuthorizationBroker
+internal sealed class AuthorizationBroker(
+    ICoreContextFactory coreContextFactory)
+        : IAuthorizationBroker
 {
-    public User GetCurrentUser()
+    public User SelectCurrentUser()
     {
-        using CoreDataContext coreDataContext = coreContextFactory.CreateCoreContext();
+        using CoreDataContext coreDataContext =
+            coreContextFactory.CreateCoreContext();
+
         return coreDataContext.User;
     }
 
-    public bool IsAdminOfApp(int? appId)
+    public User SelectUserById(string userId)
     {
-        User user = GetCurrentUser();
-        return user != null && HasAppAdminPrivilege(user, appId);
+        using CoreDataContext coreDataContext =
+            coreContextFactory.CreateCoreContext();
+
+        return coreDataContext.Users
+            .Include(navigationPropertyPath: foundUser => foundUser.Roles)
+            .FirstOrDefault(predicate: foundUser => foundUser.Id == userId);
     }
 
-    public bool IsAdmin(int appId, string userName)
+    public App SelectAppById(int appId)
     {
-        using CoreDataContext coreDataContext = coreContextFactory.CreateCoreContext();
+        using CoreDataContext coreDataContext =
+            coreContextFactory.CreateCoreContext();
 
-        User user = coreDataContext.Users
-            .Include(foundUser => foundUser.Roles)
-            .FirstOrDefault(foundUser => foundUser.Id == userName);
-
-        App app = coreDataContext.Apps
-            .Include(foundApp => foundApp.Roles.Select(role => role.Users))
-            .FirstOrDefault(foundApp => foundApp.Id == appId);
-
-        return app?.IsAppAdmin(user) ?? false;
+        return coreDataContext.Apps
+            .Include(navigationPropertyPath: foundApp =>
+                foundApp.Roles.Select(selector: role => role.Users))
+            .FirstOrDefault(predicate: foundApp => foundApp.Id == appId);
     }
-
-    public void Authorize(int? appId, string privilege)
-    {
-        User user = GetCurrentUser();
-
-        if (user == null || !(HasAppAdminPrivilege(user, appId) || HasPrivilege(user, appId, privilege)))
-            throw new SecurityException("Access Denied!");
-    }
-
-    private static bool HasPrivilege(User user, int? appId, string privilege)
-    {
-        string normalizedPrivilege = privilege.ToLower();
-
-        return (appId != null && HasAppAdminPrivilege(user, appId.Value))
-            || (user.Roles?.Any(role =>
-                (appId == null || role.Role.AppId == appId)
-                && role.Role.Privileges.Contains(normalizedPrivilege))
-                ?? false);
-    }
-
-    private static bool HasAppAdminPrivilege(User user, int? appId) =>
-        appId.HasValue
-        && (user.Roles?.Any(role => role.Role.AppId == appId.Value && role.Role.Allows(user, "app_admin")) ?? false);
 }
-
-
-

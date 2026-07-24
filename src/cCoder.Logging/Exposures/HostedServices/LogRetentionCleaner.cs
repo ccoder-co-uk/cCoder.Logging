@@ -1,4 +1,8 @@
-using cCoder.Logging.Services.Orchestrations;
+// ---------------------------------------------------------------
+// Copyright (c) Paul.Ward@ccoder.co.uk
+// ---------------------------------------------------------------
+
+using cCoder.Logging.Services.Processings;
 
 namespace cCoder.Logging.Exposures.HostedServices;
 
@@ -12,9 +16,11 @@ internal sealed class LogRetentionCleaner(
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
         using IServiceScope scope = serviceScopeFactory.CreateScope();
-        ILogRetentionOrchestrationService logRetentionOrchestrationService =
-            scope.ServiceProvider.GetRequiredService<ILogRetentionOrchestrationService>();
+        ILogEntryRetentionProcessingService logRetentionProcessingService =
+            scope.ServiceProvider
+                .GetRequiredService<ILogEntryRetentionProcessingService>();
 
-        await logRetentionOrchestrationService.RunAsync(stoppingToken);
+        await logRetentionProcessingService.RunLogRetentionAsync(
+            cancellationToken: stoppingToken);
     }
 }

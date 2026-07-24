@@ -1,3 +1,7 @@
+// ---------------------------------------------------------------
+// Copyright (c) Paul.Ward@ccoder.co.uk
+// ---------------------------------------------------------------
+
 using FluentAssertions;
 using Xunit;
 
@@ -11,9 +15,11 @@ public sealed partial class RootTests
         // Given
 
         // When
-        string response = await Client.GetStringAsync("/");
+        string response = await Client.GetStringAsync(requestUri: "/");
 
         // Then
-        response.Should().Contain("/tools/index.html");
+
+        response.Should()
+            .Contain(expected: "/tools/index.html");
     }
 }

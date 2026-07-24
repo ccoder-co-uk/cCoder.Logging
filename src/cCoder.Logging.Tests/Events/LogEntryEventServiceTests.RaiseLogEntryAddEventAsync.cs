@@ -1,3 +1,7 @@
+// ---------------------------------------------------------------
+// Copyright (c) Paul.Ward@ccoder.co.uk
+// ---------------------------------------------------------------
+
 using cCoder.Logging.Models;
 using cCoder.Data.Models.Logging;
 using cCoder.Eventing.Models;
@@ -18,29 +22,33 @@ public partial class LogEntryEventServiceTests
         EventMessage<LogEntry> actualMessage = null;
 
         logEntryEventBrokerMock
-            .Setup(x => x.RaiseLogEntryAddEventAsync(It.IsAny<EventMessage<LogEntry>>()))
-            .Callback<EventMessage<LogEntry>>(message => actualMessage = message)
-            .Returns(ValueTask.CompletedTask);
+            .Setup(expression: x => x.RaiseLogEntryAddEventAsync(message: It.IsAny<EventMessage<LogEntry>>()))
+            .Callback<EventMessage<LogEntry>>(action: message => actualMessage = message)
+            .Returns(value: ValueTask.CompletedTask);
 
         // When
-        await service.RaiseLogEntryAddEventAsync(entity);
+        await service.RaiseLogEntryAddEventAsync(entity: entity);
 
         // Then
-        actualMessage.Should().NotBeNull();
-        actualMessage!.Data.Should().BeSameAs(entity);
-        actualMessage.AuthInfo.Should().NotBeNull();
-        actualMessage.AuthInfo.SSOUserId.Should().Be(CurrentUserId);
+
+        actualMessage.Should()
+            .NotBeNull();
+
+        actualMessage!.Data.Should()
+            .BeSameAs(expected: entity);
+
+        actualMessage.AuthInfo.Should()
+            .NotBeNull();
+
+        actualMessage.AuthInfo.SSOUserId.Should()
+            .Be(expected: CurrentUserId);
+
         logEntryEventBrokerMock.Verify(
-            x => x.RaiseLogEntryAddEventAsync(It.IsAny<EventMessage<LogEntry>>()),
-            Times.Once
+expression: x => x.RaiseLogEntryAddEventAsync(message: It.IsAny<EventMessage<LogEntry>>()),
+times: Times.Once
         );
+
         logEntryEventBrokerMock.VerifyNoOtherCalls();
     }
 
 }
-
-
-
-
-
-

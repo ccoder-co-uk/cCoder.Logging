@@ -1,27 +1,25 @@
-using cCoder.Logging.Models;
+// ---------------------------------------------------------------
+// Copyright (c) Paul.Ward@ccoder.co.uk
+// ---------------------------------------------------------------
+
 using cCoder.Data.Models.Logging;
+using cCoder.Logging.Models;
+using cCoder.Logging.Dependencies;
 
 namespace cCoder.Logging.Services.Processings;
 
-public interface ILogEntryProcessingService
+internal interface ILogEntryProcessingService
 {
-    LogEntry Get(int id);
-
-    IQueryable<LogEntry> GetAll(bool ignoreFilters = false);
-
-    ValueTask<LogEntry> AddAsync(LogEntry logEntry);
-
-    ValueTask<LogEntry> AddSystemAsync(LogEntry logEntry);
-
-    ValueTask<LogEntry> UpdateAsync(LogEntry logEntry);
-
-    ValueTask DeleteAsync(int id);
-
-    ValueTask<IEnumerable<Result<LogEntry>>> AddOrUpdate(IEnumerable<LogEntry> items);
-
-    ValueTask DeleteAllAsync(IEnumerable<LogEntry> items);
-
-    ValueTask<int> DeleteEntriesBeforeAsync(DateTime cutoff);
-
+    LogEntry GetLogEntry(int logEntryId);
+    IQueryable<LogEntry> GetAllLogEntries(bool ignoreFilters = false);
+    ValueTask<LogEntry> AddLogEntryAsync(LogEntry newLogEntry);
+    ValueTask<LogEntry> AddSystemLogEntryAsync(LogEntry newLogEntry);
+    ValueTask<LogEntry> UpdateLogEntryAsync(LogEntry updatedLogEntry);
+    ValueTask DeleteLogEntryAsync(int logEntryId);
+    ValueTask<IEnumerable<OperationResult<LogEntry>>> AddOrUpdateLogEntryResultsAsync(
+        IEnumerable<LogEntry> logEntries);
+    ValueTask DeleteAllLogEntryAsync(
+        IEnumerable<LogEntry> deletedLogEntries);
+    ValueTask<int> DeleteLogEntriesBeforeAsync(DateTime cutoff);
     int? ResolveAppId(string domainOrName);
 }

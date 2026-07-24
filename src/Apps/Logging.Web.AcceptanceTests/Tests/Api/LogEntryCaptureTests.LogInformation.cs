@@ -1,3 +1,7 @@
+// ---------------------------------------------------------------
+// Copyright (c) Paul.Ward@ccoder.co.uk
+// ---------------------------------------------------------------
+
 using cCoder.Data.Models.Logging;
 using FluentAssertions;
 using Microsoft.Extensions.Logging;
@@ -15,25 +19,33 @@ public sealed partial class LogEntryCaptureTests
         ILogger<LogEntryCaptureTests> logger = CreateLogger();
 
         // When
-        logger.LogInformation("{Message}", expectedMessage);
-        LogEntry storedLogEntry = await WaitForLogEntryAsync(expectedMessage);
+        logger.LogInformation(message: "{Message}", args: expectedMessage);
+        LogEntry storedLogEntry = await WaitForLogEntryAsync(message: expectedMessage);
 
         // Then
-        storedLogEntry.Should().NotBeNull();
-        storedLogEntry.AppId.Should().Be(1);
-        storedLogEntry.AppName.Should().Be("localhost");
+
+        storedLogEntry.Should()
+            .NotBeNull();
+
+        storedLogEntry.AppId.Should()
+            .Be(expected: 1);
+
+        storedLogEntry.AppName.Should()
+            .Be(expected: "localhost");
     }
 
     private async Task<LogEntry> WaitForLogEntryAsync(string message)
     {
         for (int attempt = 0; attempt < 20; attempt++)
         {
-            LogEntry logEntry = await FindLogEntryAsync(message);
+            LogEntry logEntry = await FindLogEntryAsync(message: message);
 
             if (logEntry is not null)
+            {
                 return logEntry;
+            }
 
-            await Task.Delay(100);
+            await Task.Delay(millisecondsDelay: 100);
         }
 
         return null;

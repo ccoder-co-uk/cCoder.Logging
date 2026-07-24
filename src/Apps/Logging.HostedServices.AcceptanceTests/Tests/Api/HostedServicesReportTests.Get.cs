@@ -1,3 +1,7 @@
+// ---------------------------------------------------------------
+// Copyright (c) Paul.Ward@ccoder.co.uk
+// ---------------------------------------------------------------
+
 using FluentAssertions;
 using Xunit;
 
@@ -11,10 +15,14 @@ public sealed partial class HostedServicesReportTests
         // Given
 
         // When
-        string response = await Client.GetStringAsync("/");
+        string response = await Client.GetStringAsync(requestUri: "/");
 
         // Then
-        response.Should().Contain("Logging Hosted Services");
-        response.Should().Contain("LogRetentionCleaner");
+
+        response.Should()
+            .Contain(expected: "Logging Hosted Services");
+
+        response.Should()
+            .Contain(expected: "LogRetentionCleaner");
     }
 }

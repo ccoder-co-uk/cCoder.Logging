@@ -1,3 +1,7 @@
+// ---------------------------------------------------------------
+// Copyright (c) Paul.Ward@ccoder.co.uk
+// ---------------------------------------------------------------
+
 using cCoder.Logging.Models;
 using cCoder.Data.Models.Logging;
 using FluentAssertions;
@@ -14,23 +18,21 @@ public partial class LogDataItemOrchestrationServiceTests
     {
         // Given
         IQueryable<LogDataItem> entities = new[] { CreateRandomLogDataItem() }.AsQueryable();
-        logDataItemProcessingServiceMock.Setup(x => x.GetAll(true)).Returns(entities);
+
+        logDataItemProcessingServiceMock.Setup(expression: x => x.GetAllLogDataItems(ignoreFilters: true))
+            .Returns(value: entities);
 
         // When
-        IQueryable<LogDataItem> result = orchestrationService.GetAll(true);
+        IQueryable<LogDataItem> result = orchestrationService.GetAllLogDataItems(ignoreFilters: true);
 
         // Then
-        result.Should().BeSameAs(entities);
-        logDataItemProcessingServiceMock.Verify(x => x.GetAll(true), Times.Once);
+
+        result.Should()
+            .BeSameAs(expected: entities);
+
+        logDataItemProcessingServiceMock.Verify(expression: x => x.GetAllLogDataItems(ignoreFilters: true), times: Times.Once);
         logDataItemProcessingServiceMock.VerifyNoOtherCalls();
         logDataItemEventProcessingServiceMock.VerifyNoOtherCalls();
     }
 
 }
-
-
-
-
-
-
-

@@ -1,3 +1,7 @@
+// ---------------------------------------------------------------
+// Copyright (c) Paul.Ward@ccoder.co.uk
+// ---------------------------------------------------------------
+
 using cCoder.Logging.Models;
 using cCoder.Data.Models.Logging;
 using FluentAssertions;
@@ -14,23 +18,21 @@ public partial class LogEntryOrchestrationServiceTests
     {
         // Given
         IQueryable<LogEntry> entities = new[] { CreateRandomLogEntry() }.AsQueryable();
-        logEntryProcessingServiceMock.Setup(x => x.GetAll(true)).Returns(entities);
+
+        logEntryProcessingServiceMock.Setup(expression: x => x.GetAllLogEntries(ignoreFilters: true))
+            .Returns(value: entities);
 
         // When
-        IQueryable<LogEntry> result = orchestrationService.GetAll(true);
+        IQueryable<LogEntry> result = orchestrationService.GetAllLogEntries(ignoreFilters: true);
 
         // Then
-        result.Should().BeSameAs(entities);
-        logEntryProcessingServiceMock.Verify(x => x.GetAll(true), Times.Once);
+
+        result.Should()
+            .BeSameAs(expected: entities);
+
+        logEntryProcessingServiceMock.Verify(expression: x => x.GetAllLogEntries(ignoreFilters: true), times: Times.Once);
         logEntryProcessingServiceMock.VerifyNoOtherCalls();
         logEntryEventProcessingServiceMock.VerifyNoOtherCalls();
     }
 
 }
-
-
-
-
-
-
-

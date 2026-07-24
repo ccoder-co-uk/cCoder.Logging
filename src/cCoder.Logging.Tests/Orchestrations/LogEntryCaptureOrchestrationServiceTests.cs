@@ -1,6 +1,9 @@
+// ---------------------------------------------------------------
+// Copyright (c) Paul.Ward@ccoder.co.uk
+// ---------------------------------------------------------------
+
 using cCoder.Data.Models.Logging;
-using cCoder.Logging.Brokers;
-using cCoder.Logging.Models;
+using cCoder.Logging.Dependencies.Logging;
 using cCoder.Logging.Services.Orchestrations;
 using cCoder.Logging.Services.Processings;
 using Microsoft.Extensions.Logging;
@@ -10,28 +13,29 @@ namespace cCoder.Core.Services.Tests.Logging.Orchestrations;
 
 public partial class LogEntryCaptureOrchestrationServiceTests
 {
-    private readonly Mock<ILogEntryProcessingService> logEntryProcessingServiceMock;
-    private readonly Mock<ILogEntryEventProcessingService> logEntryEventProcessingServiceMock;
-    private readonly Mock<ILogEntryStreamBroker> logEntryStreamBrokerMock;
-    private readonly LoggingConfiguration configuration;
+    private readonly Mock<ILogEntryCaptureProcessingService>
+        logEntryCaptureProcessingServiceMock;
+
+    private readonly Mock<ILogEntryEventProcessingService>
+        logEntryEventProcessingServiceMock;
+
     private readonly LogEntryCaptureOrchestrationService orchestrationService;
 
     public LogEntryCaptureOrchestrationServiceTests()
     {
-        logEntryProcessingServiceMock = new Mock<ILogEntryProcessingService>(MockBehavior.Strict);
-        logEntryEventProcessingServiceMock = new Mock<ILogEntryEventProcessingService>(MockBehavior.Strict);
-        logEntryStreamBrokerMock = new Mock<ILogEntryStreamBroker>(MockBehavior.Strict);
-        configuration = new LoggingConfiguration
-        {
-            StoreLogEntries = true,
-            StreamLogEntries = true,
-            DefaultAppDomain = "localhost"
-        };
+        logEntryCaptureProcessingServiceMock =
+            new Mock<ILogEntryCaptureProcessingService>(
+                behavior: MockBehavior.Strict);
+
+        logEntryEventProcessingServiceMock =
+            new Mock<ILogEntryEventProcessingService>(
+                behavior: MockBehavior.Strict);
+
         orchestrationService = new LogEntryCaptureOrchestrationService(
-            logEntryProcessingServiceMock.Object,
-            logEntryEventProcessingServiceMock.Object,
-            logEntryStreamBrokerMock.Object,
-            configuration);
+            logEntryCaptureProcessingService:
+                logEntryCaptureProcessingServiceMock.Object,
+            logEntryEventProcessingService:
+                logEntryEventProcessingServiceMock.Object);
     }
 
     private static LogEntryCaptureRequest CreateRequest() =>
@@ -41,5 +45,14 @@ public partial class LogEntryCaptureOrchestrationServiceTests
             CategoryName = "cCoder.Tests.LoggingBroker",
             Message = $"message-{Guid.NewGuid():N}",
             RequestDomain = "localhost"
+        };
+
+    private static LogEntry CreateLogEntry() =>
+        new()
+        {
+            Id = 7,
+            AppId = 3,
+            AppName = "localhost",
+            Message = $"message-{Guid.NewGuid():N}"
         };
 }

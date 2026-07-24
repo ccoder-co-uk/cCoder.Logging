@@ -1,3 +1,7 @@
+// ---------------------------------------------------------------
+// Copyright (c) Paul.Ward@ccoder.co.uk
+// ---------------------------------------------------------------
+
 using cCoder.Logging.Models;
 using cCoder.Data.Models.Logging;
 using Moq;
@@ -13,23 +17,17 @@ public partial class LogDataItemEventProcessingServiceTests
     {
         // Given
         LogDataItem entity = CreateRandomLogDataItem();
+
         logDataItemEventServiceMock
-            .Setup(x => x.RaiseLogDataItemUpdateEventAsync(entity))
-            .Returns(ValueTask.CompletedTask);
+            .Setup(expression: x => x.RaiseLogDataItemUpdateEventAsync(entity: entity))
+            .Returns(value: ValueTask.CompletedTask);
 
         // When
-        await service.RaiseLogDataItemUpdateEventAsync(entity);
+        await service.RaiseLogDataItemUpdateEventAsync(entity: entity);
 
         // Then
-        logDataItemEventServiceMock.Verify(x => x.RaiseLogDataItemUpdateEventAsync(entity), Times.Once);
+        logDataItemEventServiceMock.Verify(expression: x => x.RaiseLogDataItemUpdateEventAsync(entity: entity), times: Times.Once);
         logDataItemEventServiceMock.VerifyNoOtherCalls();
     }
 
 }
-
-
-
-
-
-
-

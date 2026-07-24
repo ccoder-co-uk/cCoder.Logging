@@ -1,3 +1,7 @@
+// ---------------------------------------------------------------
+// Copyright (c) Paul.Ward@ccoder.co.uk
+// ---------------------------------------------------------------
+
 using cCoder.Logging.Models;
 using cCoder.Data.Models.Logging;
 using cCoder.Logging.Services.Orchestrations;
@@ -16,22 +20,16 @@ public partial class LogEntryOrchestrationServiceTests
 
     public LogEntryOrchestrationServiceTests()
     {
-        logEntryProcessingServiceMock = new Mock<ILogEntryProcessingService>(MockBehavior.Strict);
-        logEntryEventProcessingServiceMock = new Mock<ILogEntryEventProcessingService>(MockBehavior.Strict);
+        logEntryProcessingServiceMock = new Mock<ILogEntryProcessingService>(behavior: MockBehavior.Strict);
+        logEntryEventProcessingServiceMock = new Mock<ILogEntryEventProcessingService>(behavior: MockBehavior.Strict);
+
         orchestrationService = new LogEntryOrchestrationService(
-            logEntryProcessingServiceMock.Object,
-            logEntryEventProcessingServiceMock.Object
+logEntryProcessingService: logEntryProcessingServiceMock.Object,
+logEntryEventProcessingService: logEntryEventProcessingServiceMock.Object
         );
     }
 
-    private static LogEntry CreateRandomLogEntry() => Builder<LogEntry>.CreateNew().Build();
+    private static LogEntry CreateRandomLogEntry() =>
+        Builder<LogEntry>.CreateNew()
+        .Build();
 }
-
-
-
-
-
-
-
-
-

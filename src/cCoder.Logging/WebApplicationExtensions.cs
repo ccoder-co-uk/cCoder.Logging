@@ -1,8 +1,12 @@
+// ---------------------------------------------------------------
+// Copyright (c) Paul.Ward@ccoder.co.uk
+// ---------------------------------------------------------------
+
 using System;
 using System.Text.Json;
 using cCoder.Data.Exposures;
 using cCoder.Logging.Exposures.Hubs;
-using cCoder.Logging.Services.Foundations;
+using cCoder.Logging.Dependencies.OData;
 
 
 namespace cCoder.Logging;
@@ -39,7 +43,3 @@ public static partial class WebApplicationExtensions
         }
     }
 }
-
-
-
-

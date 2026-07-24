@@ -1,3 +1,7 @@
+// ---------------------------------------------------------------
+// Copyright (c) Paul.Ward@ccoder.co.uk
+// ---------------------------------------------------------------
+
 using cCoder.Logging.Models;
 using cCoder.Data.Models.Logging;
 using cCoder.Eventing.Models;
@@ -18,29 +22,33 @@ public partial class LogDataItemEventServiceTests
         EventMessage<LogDataItem> actualMessage = null;
 
         logDataItemEventBrokerMock
-            .Setup(x => x.RaiseLogDataItemDeleteEventAsync(It.IsAny<EventMessage<LogDataItem>>()))
-            .Callback<EventMessage<LogDataItem>>(message => actualMessage = message)
-            .Returns(ValueTask.CompletedTask);
+            .Setup(expression: x => x.RaiseLogDataItemDeleteEventAsync(message: It.IsAny<EventMessage<LogDataItem>>()))
+            .Callback<EventMessage<LogDataItem>>(action: message => actualMessage = message)
+            .Returns(value: ValueTask.CompletedTask);
 
         // When
-        await service.RaiseLogDataItemDeleteEventAsync(entity);
+        await service.RaiseLogDataItemDeleteEventAsync(entity: entity);
 
         // Then
-        actualMessage.Should().NotBeNull();
-        actualMessage!.Data.Should().BeSameAs(entity);
-        actualMessage.AuthInfo.Should().NotBeNull();
-        actualMessage.AuthInfo.SSOUserId.Should().Be(CurrentUserId);
+
+        actualMessage.Should()
+            .NotBeNull();
+
+        actualMessage!.Data.Should()
+            .BeSameAs(expected: entity);
+
+        actualMessage.AuthInfo.Should()
+            .NotBeNull();
+
+        actualMessage.AuthInfo.SSOUserId.Should()
+            .Be(expected: CurrentUserId);
+
         logDataItemEventBrokerMock.Verify(
-            x => x.RaiseLogDataItemDeleteEventAsync(It.IsAny<EventMessage<LogDataItem>>()),
-            Times.Once
+expression: x => x.RaiseLogDataItemDeleteEventAsync(message: It.IsAny<EventMessage<LogDataItem>>()),
+times: Times.Once
         );
+
         logDataItemEventBrokerMock.VerifyNoOtherCalls();
     }
 
 }
-
-
-
-
-
-

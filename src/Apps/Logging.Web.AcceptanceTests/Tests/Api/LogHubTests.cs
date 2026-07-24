@@ -1,3 +1,7 @@
+// ---------------------------------------------------------------
+// Copyright (c) Paul.Ward@ccoder.co.uk
+// ---------------------------------------------------------------
+
 using Microsoft.AspNetCore.Http.Connections;
 using Microsoft.AspNetCore.SignalR.Client;
 using Logging.Web.AcceptanceTests.Infrastructure;
@@ -16,27 +20,27 @@ public sealed partial class LogHubTests(WebAcceptanceFixture fixture)
     private async Task<HubConnection> ConnectAsync()
     {
         HubConnection connection = new HubConnectionBuilder()
-            .WithUrl(new Uri(Client.BaseAddress!, HubRoute), options =>
+            .WithUrl(url: new Uri(baseUri: Client.BaseAddress!, relativeUri: HubRoute), configureHttpConnection: options =>
             {
                 options.HttpMessageHandlerFactory = _ => fixture.Factory.Server.CreateHandler();
                 options.Transports = HttpTransportType.LongPolling;
             })
             .Build();
 
-        await connection.StartAsync().WaitAsync(TimeSpan.FromSeconds(10));
+        await connection.StartAsync()
+            .WaitAsync(timeout: TimeSpan.FromSeconds(seconds: 10));
+
         return connection;
     }
 
     private async Task<int> NegotiateAsync()
     {
         using HttpRequestMessage request = new(
-            HttpMethod.Post,
-            $"{HubRoute}/negotiate?negotiateVersion=1"
+method: HttpMethod.Post,
+requestUri: $"{HubRoute}/negotiate?negotiateVersion=1"
         );
-        using HttpResponseMessage response = await Client.SendAsync(request);
+
+        using HttpResponseMessage response = await Client.SendAsync(request: request);
         return (int)response.StatusCode;
     }
 }
-
-
-

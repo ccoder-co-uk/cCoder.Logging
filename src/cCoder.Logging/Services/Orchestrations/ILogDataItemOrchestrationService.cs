@@ -1,21 +1,22 @@
-using cCoder.Logging.Models;
+// ---------------------------------------------------------------
+// Copyright (c) Paul.Ward@ccoder.co.uk
+// ---------------------------------------------------------------
+
 using cCoder.Data.Models.Logging;
+using cCoder.Logging.Models;
+using cCoder.Logging.Dependencies;
 
 namespace cCoder.Logging.Services.Orchestrations;
 
-public interface ILogDataItemOrchestrationService
+internal interface ILogDataItemOrchestrationService
 {
-    LogDataItem Get(int id);
-
-    IQueryable<LogDataItem> GetAll(bool ignoreFilters = false);
-
-    ValueTask<LogDataItem> AddAsync(LogDataItem logDataItem);
-
-    ValueTask<LogDataItem> UpdateAsync(LogDataItem logDataItem);
-
-    ValueTask DeleteAsync(int id);
-
-    ValueTask<IEnumerable<Result<LogDataItem>>> AddOrUpdate(IEnumerable<LogDataItem> items);
-
-    ValueTask DeleteAllAsync(IEnumerable<LogDataItem> items);
+    LogDataItem GetLogDataItem(int logDataItemId);
+    IQueryable<LogDataItem> GetAllLogDataItems(bool ignoreFilters = false);
+    ValueTask<LogDataItem> AddLogDataItemAsync(LogDataItem newLogDataItem);
+    ValueTask<LogDataItem> UpdateLogDataItemAsync(LogDataItem updatedLogDataItem);
+    ValueTask DeleteLogDataItemAsync(int logDataItemId);
+    ValueTask<IEnumerable<OperationResult<LogDataItem>>> AddOrUpdateLogDataItemResultsAsync(
+        IEnumerable<LogDataItem> logDataItems);
+    ValueTask DeleteAllLogDataItemAsync(
+        IEnumerable<LogDataItem> deletedLogDataItems);
 }

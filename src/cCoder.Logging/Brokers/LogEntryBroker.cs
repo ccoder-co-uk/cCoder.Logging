@@ -1,3 +1,7 @@
+// ---------------------------------------------------------------
+// Copyright (c) Paul.Ward@ccoder.co.uk
+// ---------------------------------------------------------------
+
 using cCoder.Data;
 using Microsoft.EntityFrameworkCore;
 using DataLogEntry = cCoder.Data.Models.Logging.LogEntry;
@@ -5,97 +9,111 @@ using DataLogEntry = cCoder.Data.Models.Logging.LogEntry;
 
 namespace cCoder.Logging.Brokers;
 
-public interface ILogEntryBroker
+internal interface ILogEntryBroker
 {
-    IQueryable<DataLogEntry> GetAllLogEntries(bool ignoreFilters);
-    ValueTask<DataLogEntry> AddLogEntryAsync(DataLogEntry entity);
-    ValueTask<DataLogEntry> UpdateLogEntryAsync(DataLogEntry entity);
-    ValueTask<int> DeleteLogEntryAsync(DataLogEntry entity);
-    ValueTask DeleteAllLogEntriesAsync(IEnumerable<DataLogEntry> items);
+    IQueryable<DataLogEntry> SelectAllLogEntries();
+    IQueryable<DataLogEntry> SelectAllLogEntriesIgnoringFilters();
+    ValueTask<DataLogEntry> InsertLogEntryAsync(DataLogEntry newLogEntry);
+    ValueTask<DataLogEntry> UpdateLogEntryAsync(DataLogEntry updatedLogEntry);
+    ValueTask<int> DeleteLogEntryAsync(DataLogEntry deletedLogEntry);
+    ValueTask DeleteAllLogEntriesAsync(IEnumerable<DataLogEntry> deletedLogEntries);
     ValueTask<int> DeleteLogEntriesBeforeAsync(DateTime cutoff);
-    int? GetAppId(DataLogEntry entity);
-    int? GetAppId(string domainOrName);
+    int? SelectAppIdByDomainOrName(string domainOrName);
 }
 
-internal class LogEntryBroker(ICoreContextFactory coreContextFactory) : ILogEntryBroker
+internal sealed class LogEntryBroker(
+    ICoreContextFactory coreContextFactory)
+        : ILogEntryBroker
 {
-    public IQueryable<DataLogEntry> GetAllLogEntries(bool ignoreFilters)
+    public IQueryable<DataLogEntry> SelectAllLogEntries()
     {
-        CoreDataContext coreDataContext = coreContextFactory.CreateCoreContext();
-        return ignoreFilters
-            ? coreDataContext.Logs.IgnoreQueryFilters()
-            : coreDataContext.Logs;
+        CoreDataContext coreDataContext =
+            coreContextFactory.CreateCoreContext();
+
+        return coreDataContext.Logs;
     }
 
-    public async ValueTask<DataLogEntry> AddLogEntryAsync(DataLogEntry entity)
+    public IQueryable<DataLogEntry> SelectAllLogEntriesIgnoringFilters()
     {
-        using CoreDataContext coreDataContext = coreContextFactory.CreateCoreContext();
-        DataLogEntry result = (await coreDataContext.Logs.AddAsync(entity)).Entity;
+        CoreDataContext coreDataContext =
+            coreContextFactory.CreateCoreContext();
+
+        return coreDataContext.Logs.IgnoreQueryFilters();
+    }
+
+    public async ValueTask<DataLogEntry> InsertLogEntryAsync(
+        DataLogEntry newLogEntry)
+    {
+        using CoreDataContext coreDataContext =
+            coreContextFactory.CreateCoreContext();
+
+        DataLogEntry result = (
+            await coreDataContext.Logs.AddAsync(entity: newLogEntry)).Entity;
+
         _ = await coreDataContext.SaveChangesAsync();
         return result;
     }
 
-    public async ValueTask<DataLogEntry> UpdateLogEntryAsync(DataLogEntry entity)
+    public async ValueTask<DataLogEntry> UpdateLogEntryAsync(
+        DataLogEntry updatedLogEntry)
     {
-        using CoreDataContext coreDataContext = coreContextFactory.CreateCoreContext();
-        DataLogEntry result = coreDataContext.Logs.Update(entity).Entity;
+        using CoreDataContext coreDataContext =
+            coreContextFactory.CreateCoreContext();
+
+        DataLogEntry result =
+            coreDataContext.Logs.Update(entity: updatedLogEntry).Entity;
+
         _ = await coreDataContext.SaveChangesAsync();
         return result;
     }
 
-    public async ValueTask<int> DeleteLogEntryAsync(DataLogEntry entity)
+    public async ValueTask<int> DeleteLogEntryAsync(
+        DataLogEntry deletedLogEntry)
     {
-        using CoreDataContext coreDataContext = coreContextFactory.CreateCoreContext();
-        coreDataContext.Logs.Remove(entity);
+        using CoreDataContext coreDataContext =
+            coreContextFactory.CreateCoreContext();
+
+        coreDataContext.Logs.Remove(entity: deletedLogEntry);
         return await coreDataContext.SaveChangesAsync();
     }
 
-    public async ValueTask DeleteAllLogEntriesAsync(IEnumerable<DataLogEntry> items)
+    public async ValueTask DeleteAllLogEntriesAsync(
+        IEnumerable<DataLogEntry> deletedLogEntries)
     {
-        DataLogEntry[] itemArray = [.. items];
-        if (itemArray.Length == 0)
-            return;
+        DataLogEntry[] logEntries = [.. deletedLogEntries];
 
-        using CoreDataContext coreDataContext = coreContextFactory.CreateCoreContext();
-        coreDataContext.Logs.RemoveRange(itemArray);
+        using CoreDataContext coreDataContext =
+            coreContextFactory.CreateCoreContext();
+
+        coreDataContext.Logs.RemoveRange(entities: logEntries);
         _ = await coreDataContext.SaveChangesAsync();
     }
 
     public async ValueTask<int> DeleteLogEntriesBeforeAsync(DateTime cutoff)
     {
-        using CoreDataContext coreDataContext = coreContextFactory.CreateCoreContext();
+        using CoreDataContext coreDataContext =
+            coreContextFactory.CreateCoreContext();
+
         DataLogEntry[] items = await coreDataContext.Logs
             .IgnoreQueryFilters()
-            .Where(logEntry => logEntry.Date < cutoff)
+            .Where(predicate: logEntry => logEntry.Date < cutoff)
             .ToArrayAsync();
 
-        coreDataContext.Logs.RemoveRange(items);
+        coreDataContext.Logs.RemoveRange(entities: items);
         return await coreDataContext.SaveChangesAsync();
     }
 
-    public int? GetAppId(DataLogEntry entity)
+    public int? SelectAppIdByDomainOrName(string domainOrName)
     {
-        if (entity.AppId > 0)
-            return entity.AppId;
-
-        return GetAppId(entity.AppName);
-    }
-
-    public int? GetAppId(string domainOrName)
-    {
-        using CoreDataContext coreDataContext = coreContextFactory.CreateCoreContext();
-
-        if (string.IsNullOrWhiteSpace(domainOrName))
-            return null;
+        using CoreDataContext coreDataContext =
+            coreContextFactory.CreateCoreContext();
 
         return coreDataContext.Apps
             .IgnoreQueryFilters()
-            .Where(app => app.Name == domainOrName || app.Domain == domainOrName)
-            .Select(app => (int?)app.Id)
+            .Where(predicate: app =>
+                app.Name == domainOrName
+                || app.Domain == domainOrName)
+            .Select(selector: app => (int?)app.Id)
             .FirstOrDefault();
     }
 }
-
-
-
-

@@ -1,3 +1,7 @@
+// ---------------------------------------------------------------
+// Copyright (c) Paul.Ward@ccoder.co.uk
+// ---------------------------------------------------------------
+
 using Logging.HostedServices.AcceptanceTests.Infrastructure;
 using Xunit;
 

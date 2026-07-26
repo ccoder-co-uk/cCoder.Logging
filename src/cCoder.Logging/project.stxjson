@@ -860,30 +860,6 @@
       "Methods": []
     },
     {
-      "Name": "cCoder.Logging.Exposures.BaselineExposure",
-      "StandardElementType": "Exposure",
-      "Properties": [],
-      "Methods": [
-        {
-          "Name": "GetBaselinePackages",
-          "Inputs": [],
-          "ReturnType": "cCoder.Data.Models.Packaging.Package[]"
-        }
-      ]
-    },
-    {
-      "Name": "cCoder.Logging.Exposures.Controllers.BaselineController",
-      "StandardElementType": "Exposure",
-      "Properties": [],
-      "Methods": [
-        {
-          "Name": "Get",
-          "Inputs": [],
-          "ReturnType": "IActionResult"
-        }
-      ]
-    },
-    {
       "Name": "cCoder.Logging.Exposures.Controllers.LogDataItemController",
       "StandardElementType": "Exposure",
       "Properties": [],
@@ -1286,17 +1262,6 @@
           "ReturnType": "System.Threading.Tasks.ValueTask\u003CcCoder.Data.Models.Logging.LogEntry\u003E"
         }
       ]
-    },
-    {
-      "Name": "cCoder.Logging.Exposures.Setup.UIBaseline",
-      "StandardElementType": "Dependency",
-      "Properties": [
-        {
-          "Name": "Packages",
-          "Type": "cCoder.Data.Models.Packaging.Package[]"
-        }
-      ],
-      "Methods": []
     },
     {
       "Name": "cCoder.Logging.Extensions.LoggingConfigurationExtensions",
@@ -2416,10 +2381,6 @@
     }
   ],
   "Links": [
-    {
-      "FromType": "cCoder.Logging.Exposures.Controllers.BaselineController",
-      "ToType": "cCoder.Logging.Exposures.BaselineExposure"
-    },
     {
       "FromType": "cCoder.Logging.Exposures.Controllers.LogDataItemController",
       "ToType": "cCoder.Logging.Exposures.LogDataItemManager"

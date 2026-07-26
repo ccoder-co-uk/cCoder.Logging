@@ -45,7 +45,6 @@ public static partial class IServiceCollectionExtensions
 
     private static void AddLogging(this IServiceCollection services)
     {
-        services.AddTransient<IBaselineExposure, BaselineExposure>();
         services.AddTransient<ILogDataItemManager, LogDataItemManager>();
         services.AddTransient<ILogEntryManager, LogEntryManager>();
         services.AddEventingTypes();

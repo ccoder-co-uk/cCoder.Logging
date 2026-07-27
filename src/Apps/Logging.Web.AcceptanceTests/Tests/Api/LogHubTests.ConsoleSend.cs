@@ -30,22 +30,18 @@ handler: (level, message, receivedThread) => receivedMessages.Writer.TryWrite(it
             await connection.InvokeAsync(methodName: "Join", arg1: Thread)
                 .WaitAsync(timeout: TimeSpan.FromSeconds(seconds: 10));
 
-            _ = await receivedMessages.Reader.ReadAsync()
-                .AsTask()
-                .WaitAsync(timeout: TimeSpan.FromSeconds(seconds: 10));
-
-            _ = await receivedMessages.Reader.ReadAsync()
-                .AsTask()
-                .WaitAsync(timeout: TimeSpan.FromSeconds(seconds: 10));
-
             await connection
                 .InvokeAsync(methodName: "ConsoleSend", arg1: "info", arg2: expectedMessage, arg3: Thread)
                 .WaitAsync(timeout: TimeSpan.FromSeconds(seconds: 10));
 
-            (string level, string message, string receivedThread) actual = await receivedMessages.Reader
-                .ReadAsync()
-                .AsTask()
-                .WaitAsync(timeout: TimeSpan.FromSeconds(seconds: 10));
+            using CancellationTokenSource timeout = new(delay: TimeSpan.FromSeconds(seconds: 10));
+            (string level, string message, string receivedThread) actual;
+
+            do
+            {
+                actual = await receivedMessages.Reader.ReadAsync(cancellationToken: timeout.Token);
+            }
+            while (!string.Equals(a: actual.message, b: expectedMessage, comparisonType: StringComparison.Ordinal));
 
             // Then
 

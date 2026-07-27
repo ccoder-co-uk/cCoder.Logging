@@ -25,7 +25,7 @@ internal sealed class HostedServicesAcceptanceFactory : WebApplicationFactory<Pr
 initialData: [
                 new KeyValuePair<string, string>(
 key: "ConnectionStrings:Core",
-value: configuration["CCODER_ACCEPTANCE_CORE_CONNECTION_STRING"] ?? string.Empty),
+value: configuration["ConnectionStrings__Core"] ?? string.Empty),
                 new KeyValuePair<string, string>(key: "LoggingConfiguration:StoreLogEntries", value: "false"),
                 new KeyValuePair<string, string>(key: "LoggingConfiguration:StreamLogEntries", value: "false"),
             ]);

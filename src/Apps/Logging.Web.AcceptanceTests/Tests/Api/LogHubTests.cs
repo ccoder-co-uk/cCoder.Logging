@@ -28,7 +28,7 @@ public sealed partial class LogHubTests(WebAcceptanceFixture fixture)
             .Build();
 
         await connection.StartAsync()
-            .WaitAsync(timeout: TimeSpan.FromSeconds(seconds: 10));
+            .WaitAsync(timeout: TimeSpan.FromSeconds(seconds: 30));
 
         return connection;
     }

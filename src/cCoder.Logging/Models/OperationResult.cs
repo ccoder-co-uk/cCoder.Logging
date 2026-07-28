@@ -2,7 +2,7 @@
 // Copyright (c) Paul.Ward@ccoder.co.uk
 // ---------------------------------------------------------------
 
-namespace cCoder.Logging.Dependencies;
+namespace cCoder.Logging.Models;
 
 internal sealed class OperationResult<T>
 {

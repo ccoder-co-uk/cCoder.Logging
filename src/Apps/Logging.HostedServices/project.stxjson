@@ -1,9 +1,47 @@
 {
   "Classes": [
     {
-      "Name": "Logging.HostedServices.Hosting.WebApplicationExtensions",
-      "StandardElementType": "Dependency",
+      "Name": "Logging.HostedServices.IServiceCollectionExtensions",
+      "StandardElementType": "App",
       "Properties": [],
+      "Methods": [
+        {
+          "Name": "AddLoggingHostedServices",
+          "Inputs": [
+            {
+              "Name": "services",
+              "Type": "IServiceCollection"
+            },
+            {
+              "Name": "configuration",
+              "Type": "IConfiguration"
+            },
+            {
+              "Name": "configure",
+              "Type": "System.Action\u003CLogging.HostedServices.Models.LoggingHostedServicesConfiguration\u003E"
+            }
+          ],
+          "ReturnType": "IServiceCollection"
+        }
+      ]
+    },
+    {
+      "Name": "Logging.HostedServices.Models.LoggingHostedServicesConfiguration",
+      "StandardElementType": "Model",
+      "Properties": [
+        {
+          "Name": "Data",
+          "Type": "cCoder.Data.Models.DataConfiguration"
+        },
+        {
+          "Name": "Eventing",
+          "Type": "cCoder.Eventing.Models.EventingConfiguration"
+        },
+        {
+          "Name": "Logging",
+          "Type": "cCoder.Logging.Models.LoggingConfiguration"
+        }
+      ],
       "Methods": []
     },
     {
@@ -20,6 +58,23 @@
             }
           ],
           "ReturnType": "System.Void"
+        }
+      ]
+    },
+    {
+      "Name": "Logging.HostedServices.WebApplicationExtensions",
+      "StandardElementType": "App",
+      "Properties": [],
+      "Methods": [
+        {
+          "Name": "UseLoggingHostedServicesApplication",
+          "Inputs": [
+            {
+              "Name": "app",
+              "Type": "WebApplication"
+            }
+          ],
+          "ReturnType": "WebApplication"
         }
       ]
     }

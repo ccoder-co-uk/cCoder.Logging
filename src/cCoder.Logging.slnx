@@ -1,0 +1,15 @@
+<Solution>
+  <Configurations>
+    <Platform Name="Any CPU" />
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Folder Name="/Apps/">
+    <Project Path="Apps/Logging.HostedServices.AcceptanceTests/Logging.HostedServices.AcceptanceTests.csproj" />
+    <Project Path="Apps/Logging.HostedServices/Logging.HostedServices.csproj" />
+    <Project Path="Apps/Logging.Web.AcceptanceTests/Logging.Web.AcceptanceTests.csproj" />
+    <Project Path="Apps/Logging.Web/Logging.Web.csproj" />
+  </Folder>
+  <Project Path="cCoder.Logging.Tests/cCoder.Logging.Tests.csproj" />
+  <Project Path="cCoder.Logging/cCoder.Logging.csproj" />
+</Solution>

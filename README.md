@@ -2,6 +2,14 @@
 
 `cCoder.Logging` contains the Logging domain for the cCoder platform.
 
+## Local Configuration
+
+Configuration binds directly into `LoggingConfiguration`. Leave the connection
+string empty in appsettings and define `Logging__ConnectionString` as a
+user-level or machine-level environment variable. Restart Visual Studio, select
+the Web and HostedServices startup projects, and press F5. No configuration
+conversion step is required.
+
 ## Functionality
 
 The Logging domain provides:
@@ -35,29 +43,25 @@ There is no integration test project currently because Logging does not initiate
 ## Build
 
 ```powershell
-dotnet build src/cCoder.Logging.sln -v minimal
+dotnet build src/cCoder.Logging.slnx -v minimal
 ```
 
 ## Test
 
 ```powershell
-dotnet test src/cCoder.Logging.sln -v minimal --no-build
+dotnet test src/cCoder.Logging.slnx -v minimal --no-build
 ```
 
-## Local Configuration
+The standalone apps bind their structured configuration directly. Leave secrets
+blank in `appsettings.json`, define these user-level or machine-level environment
+variables, restart Visual Studio, and press F5:
 
-The standalone web host reads local secrets from environment variables rather than committed config.
+- `Logging__ConnectionString`
+- `Data__ConnectionString`
+- `Security__ConnectionString` (Web only)
+- `Security__DecryptionKey` (Web only)
 
-Before running `src/Apps/Logging.Web` or `src/Apps/Logging.HostedServices`, set:
-
-- `ConnectionStrings__Core`
-
-Before running `src/Apps/Logging.Web`, also set:
-
-- `ConnectionStrings__SSO`
-- `Settings__DecryptionKey`
-
-The committed `appsettings.json` keeps these values blank so user or machine environment variables can supply them during local development.
+No `.env` file or configuration conversion step is required.
 
 Logging behavior is configured through `LoggingConfiguration`:
 
@@ -74,10 +78,10 @@ Logging behavior is configured through `LoggingConfiguration`:
 - `DefaultAppDomain`
   Fallback app/domain thread name for captured logs and stream messages.
 
-Acceptance tests require these environment variables or equivalent values in `src/Apps/Logging.Web.AcceptanceTests/appsettings.testing.json`:
-
-- `CCODER_ACCEPTANCE_CORE_CONNECTION_STRING`
-- `CCODER_ACCEPTANCE_SSO_CONNECTION_STRING`
+Acceptance tests read the same structured environment variables. A single shared
+test configuration source derives isolated database names by appending
+`-acceptance-{guid}`; tests never use the configured development databases
+directly.
 
 ## Package
 

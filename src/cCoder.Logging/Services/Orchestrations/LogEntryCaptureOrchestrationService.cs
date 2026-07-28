@@ -4,6 +4,7 @@
 
 using cCoder.Data.Models.Logging;
 using cCoder.Logging.Dependencies.Logging;
+using cCoder.Logging.Models;
 using cCoder.Logging.Services.Processings;
 
 namespace cCoder.Logging.Services.Orchestrations;
@@ -13,21 +14,25 @@ internal sealed partial class LogEntryCaptureOrchestrationService(
     ILogEntryEventProcessingService logEntryEventProcessingService)
         : ILogEntryCaptureOrchestrationService
 {
-    public ValueTask CaptureLogEntryAsync(
+    public ValueTask CaptureLogEntryCaptureRequestAsync(
         LogEntryCaptureRequest logEntryCaptureRequest) =>
         TryCatch(operation: async () =>
         {
             ValidateInputs(inputs: [logEntryCaptureRequest]);
 
-            LogEntry savedLogEntry =
-                await logEntryCaptureProcessingService.CaptureLogEntryAsync(
-                    logEntryCaptureRequest: logEntryCaptureRequest);
+            LogEntryCaptureOperation operation =
+                await logEntryCaptureProcessingService
+                    .CaptureLogEntryCaptureOperationAsync(
+                        operation: new LogEntryCaptureOperation
+                        {
+                            Request = logEntryCaptureRequest,
+                        });
 
-            if (savedLogEntry is not null)
+            if (operation.Result is not null)
             {
                 await logEntryEventProcessingService
                     .RaiseLogEntryAddEventAsync(
-                        entity: savedLogEntry);
+                        entity: operation.Result);
             }
         });
 }

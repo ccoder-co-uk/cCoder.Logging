@@ -44,8 +44,11 @@ public partial class LogEntryCaptureProcessingServiceTests
             loggingConfiguration: loggingConfiguration);
 
         // When
-        await processingService.CaptureLogEntryAsync(
-            logEntryCaptureRequest: logEntryCaptureRequest);
+        await processingService.CaptureLogEntryCaptureOperationAsync(
+            operation: new LogEntryCaptureOperation
+            {
+                Request = logEntryCaptureRequest
+            });
 
         // Then
         logEntryStreamBrokerMock.VerifyNoOtherCalls();

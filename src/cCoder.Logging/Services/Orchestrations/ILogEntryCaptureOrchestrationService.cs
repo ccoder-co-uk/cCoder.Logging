@@ -8,6 +8,6 @@ namespace cCoder.Logging.Services.Orchestrations;
 
 internal interface ILogEntryCaptureOrchestrationService
 {
-    ValueTask CaptureLogEntryAsync(
+    ValueTask CaptureLogEntryCaptureRequestAsync(
         LogEntryCaptureRequest logEntryCaptureRequest);
 }

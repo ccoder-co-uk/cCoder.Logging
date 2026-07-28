@@ -4,6 +4,7 @@
 
 using cCoder.Data.Models.Logging;
 using cCoder.Logging.Dependencies.Logging;
+using cCoder.Logging.Models;
 using Moq;
 using Xunit;
 
@@ -12,7 +13,7 @@ namespace cCoder.Core.Services.Tests.Logging.Orchestrations;
 public partial class LogEntryCaptureOrchestrationServiceTests
 {
     [Fact]
-    public async Task ShouldRaiseEventWhenCaptureLogEntryAsync()
+    public async Task ShouldRaiseEventWhenCaptureLogEntryCaptureRequestAsync()
     {
         // Given
         LogEntryCaptureRequest logEntryCaptureRequest = CreateRequest();
@@ -20,9 +21,16 @@ public partial class LogEntryCaptureOrchestrationServiceTests
 
         logEntryCaptureProcessingServiceMock
             .Setup(expression: processingService =>
-                processingService.CaptureLogEntryAsync(
-logEntryCaptureRequest: logEntryCaptureRequest))
-            .ReturnsAsync(value: savedLogEntry);
+                processingService.CaptureLogEntryCaptureOperationAsync(
+                    operation: It.Is<LogEntryCaptureOperation>(
+                        match: operation =>
+                            operation.Request == logEntryCaptureRequest)))
+            .ReturnsAsync(
+                value: new LogEntryCaptureOperation
+                {
+                    Request = logEntryCaptureRequest,
+                    Result = savedLogEntry
+                });
 
         logEntryEventProcessingServiceMock
             .Setup(expression: processingService =>
@@ -32,7 +40,7 @@ entity: savedLogEntry))
 
         // When
 
-        await orchestrationService.CaptureLogEntryAsync(
+        await orchestrationService.CaptureLogEntryCaptureRequestAsync(
             logEntryCaptureRequest: logEntryCaptureRequest);
 
         // Then
@@ -48,13 +56,19 @@ entity: savedLogEntry))
 
         logEntryCaptureProcessingServiceMock
             .Setup(expression: processingService =>
-                processingService.CaptureLogEntryAsync(
-logEntryCaptureRequest: logEntryCaptureRequest))
-            .ReturnsAsync(value: (LogEntry)null);
+                processingService.CaptureLogEntryCaptureOperationAsync(
+                    operation: It.Is<LogEntryCaptureOperation>(
+                        match: operation =>
+                            operation.Request == logEntryCaptureRequest)))
+            .ReturnsAsync(
+                value: new LogEntryCaptureOperation
+                {
+                    Request = logEntryCaptureRequest
+                });
 
         // When
 
-        await orchestrationService.CaptureLogEntryAsync(
+        await orchestrationService.CaptureLogEntryCaptureRequestAsync(
             logEntryCaptureRequest: logEntryCaptureRequest);
 
         // Then

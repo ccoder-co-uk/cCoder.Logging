@@ -2,8 +2,9 @@
 // Copyright (c) Paul.Ward@ccoder.co.uk
 // ---------------------------------------------------------------
 
-using cCoder.Logging.Api.OData;
-using cCoder.Logging.Dependencies.OData;
+using cCoder.Logging.Extensions.OData;
+using cCoder.Logging.Brokers.OData;
+using cCoder.Logging.Models.OData;
 using cCoder.Logging.Models;
 using cCoder.Data.Extensions;
 using cCoder.Data.Models.Logging;
@@ -28,7 +29,7 @@ public partial class LogEntryController(
 
         return isExtendedMetaRequest
             ? Ok(
-                value: new LoggingModelBuilder()
+                value: new LoggingModelBroker()
                     .Build()
                     .EDMModel.GetExtendedMetadataForType(
                         context: "Logging",
@@ -86,7 +87,7 @@ public partial class LogEntryController(
     {
         if (!ModelState.IsValid)
         {
-            return new cCoder.Logging.Api.OData.BadRequestResult(ModelState);
+            return new cCoder.Logging.Extensions.OData.BadRequestResult(ModelState);
         }
 
         LogEntry savedLogEntry = await logEntryManager.AddLogEntryAsync(

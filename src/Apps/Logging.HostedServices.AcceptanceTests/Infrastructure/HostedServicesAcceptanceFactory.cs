@@ -2,6 +2,7 @@
 // Copyright (c) Paul.Ward@ccoder.co.uk
 // ---------------------------------------------------------------
 
+using Apps.Shared.Testing;
 using Logging.HostedServices;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
@@ -17,17 +18,23 @@ internal sealed class HostedServicesAcceptanceFactory : WebApplicationFactory<Pr
 
         builder.ConfigureAppConfiguration(configureDelegate: (_, config) =>
         {
-            IConfigurationRoot configuration = new ConfigurationBuilder()
-                .AddEnvironmentVariables()
-                .Build();
+            AcceptanceTestConfiguration configuration =
+                AcceptanceTestConfiguration.Load();
 
             config.AddInMemoryCollection(
 initialData: [
                 new KeyValuePair<string, string>(
-key: "ConnectionStrings:Core",
-value: configuration["ConnectionStrings__Core"] ?? string.Empty),
-                new KeyValuePair<string, string>(key: "LoggingConfiguration:StoreLogEntries", value: "false"),
-                new KeyValuePair<string, string>(key: "LoggingConfiguration:StreamLogEntries", value: "false"),
+key: "Logging:ConnectionString",
+value: configuration.CoreConnectionString),
+                new KeyValuePair<string, string>(
+                    key: "Data:ConnectionString",
+                    value: configuration.CoreConnectionString),
+                new KeyValuePair<string, string>(
+                    key: "Logging:StoreLogEntries",
+                    value: "false"),
+                new KeyValuePair<string, string>(
+                    key: "Logging:StreamLogEntries",
+                    value: "false"),
             ]);
         });
     }

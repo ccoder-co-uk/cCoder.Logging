@@ -1,224 +1,6 @@
 {
   "Classes": [
     {
-      "Name": "cCoder.Logging.Api.OData.BadRequestResult",
-      "StandardElementType": "Dependency",
-      "Properties": [],
-      "Methods": []
-    },
-    {
-      "Name": "cCoder.Logging.Api.OData.CompositePropertyInfo",
-      "StandardElementType": "Dependency",
-      "Properties": [
-        {
-          "Name": "Attributes",
-          "Type": "System.Reflection.PropertyAttributes"
-        },
-        {
-          "Name": "CanRead",
-          "Type": "System.Boolean"
-        },
-        {
-          "Name": "CanWrite",
-          "Type": "System.Boolean"
-        },
-        {
-          "Name": "DeclaringType",
-          "Type": "System.Type"
-        },
-        {
-          "Name": "Name",
-          "Type": "System.String"
-        },
-        {
-          "Name": "PropertyType",
-          "Type": "System.Type"
-        },
-        {
-          "Name": "ReflectedType",
-          "Type": "System.Type"
-        }
-      ],
-      "Methods": [
-        {
-          "Name": "GetAccessors",
-          "Inputs": [
-            {
-              "Name": "nonPublic",
-              "Type": "System.Boolean"
-            }
-          ],
-          "ReturnType": "System.Reflection.MethodInfo[]"
-        },
-        {
-          "Name": "GetCustomAttributes",
-          "Inputs": [
-            {
-              "Name": "inherit",
-              "Type": "System.Boolean"
-            }
-          ],
-          "ReturnType": "System.Object[]"
-        },
-        {
-          "Name": "GetCustomAttributes",
-          "Inputs": [
-            {
-              "Name": "attributeType",
-              "Type": "System.Type"
-            },
-            {
-              "Name": "inherit",
-              "Type": "System.Boolean"
-            }
-          ],
-          "ReturnType": "System.Object[]"
-        },
-        {
-          "Name": "GetGetMethod",
-          "Inputs": [
-            {
-              "Name": "nonPublic",
-              "Type": "System.Boolean"
-            }
-          ],
-          "ReturnType": "System.Reflection.MethodInfo"
-        },
-        {
-          "Name": "GetIndexParameters",
-          "Inputs": [],
-          "ReturnType": "System.Reflection.ParameterInfo[]"
-        },
-        {
-          "Name": "GetSetMethod",
-          "Inputs": [
-            {
-              "Name": "nonPublic",
-              "Type": "System.Boolean"
-            }
-          ],
-          "ReturnType": "System.Reflection.MethodInfo"
-        },
-        {
-          "Name": "GetValue",
-          "Inputs": [
-            {
-              "Name": "obj",
-              "Type": "System.Object"
-            },
-            {
-              "Name": "invokeAttr",
-              "Type": "System.Reflection.BindingFlags"
-            },
-            {
-              "Name": "binder",
-              "Type": "System.Reflection.Binder"
-            },
-            {
-              "Name": "index",
-              "Type": "System.Object[]"
-            },
-            {
-              "Name": "culture",
-              "Type": "System.Globalization.CultureInfo"
-            }
-          ],
-          "ReturnType": "System.Object"
-        },
-        {
-          "Name": "IsDefined",
-          "Inputs": [
-            {
-              "Name": "attributeType",
-              "Type": "System.Type"
-            },
-            {
-              "Name": "inherit",
-              "Type": "System.Boolean"
-            }
-          ],
-          "ReturnType": "System.Boolean"
-        },
-        {
-          "Name": "SetValue",
-          "Inputs": [
-            {
-              "Name": "obj",
-              "Type": "System.Object"
-            },
-            {
-              "Name": "value",
-              "Type": "System.Object"
-            },
-            {
-              "Name": "invokeAttr",
-              "Type": "System.Reflection.BindingFlags"
-            },
-            {
-              "Name": "binder",
-              "Type": "System.Reflection.Binder"
-            },
-            {
-              "Name": "index",
-              "Type": "System.Object[]"
-            },
-            {
-              "Name": "culture",
-              "Type": "System.Globalization.CultureInfo"
-            }
-          ],
-          "ReturnType": "System.Void"
-        }
-      ]
-    },
-    {
-      "Name": "cCoder.Logging.Api.OData.EdmModelExtensions",
-      "StandardElementType": "Dependency",
-      "Properties": [],
-      "Methods": [
-        {
-          "Name": "GetExtendedMetadataForType",
-          "Inputs": [
-            {
-              "Name": "model",
-              "Type": "Microsoft.OData.Edm.IEdmModel"
-            },
-            {
-              "Name": "context",
-              "Type": "System.String"
-            },
-            {
-              "Name": "type",
-              "Type": "System.Type"
-            },
-            {
-              "Name": "hasEndpoint",
-              "Type": "System.Boolean"
-            }
-          ],
-          "ReturnType": "cCoder.Logging.Dependencies.OData.ExtendedMetadataContainer"
-        }
-      ]
-    },
-    {
-      "Name": "cCoder.Logging.Api.OData.ODataCollectionExtensions",
-      "StandardElementType": "Dependency",
-      "Properties": [],
-      "Methods": []
-    },
-    {
-      "Name": "cCoder.Logging.Api.OData.ODataJsonExtensions",
-      "StandardElementType": "Dependency",
-      "Properties": [],
-      "Methods": []
-    },
-    {
-      "Name": "cCoder.Logging.Api.OData.ODataTypeExtensions",
-      "StandardElementType": "Dependency",
-      "Properties": [],
-      "Methods": []
-    },
-    {
       "Name": "cCoder.Logging.Brokers.AuthInfoBroker",
       "StandardElementType": "Broker",
       "Properties": [],
@@ -515,8 +297,54 @@
       ]
     },
     {
+      "Name": "cCoder.Logging.Brokers.LogHubBroker",
+      "StandardElementType": "Broker",
+      "Properties": [],
+      "Methods": [
+        {
+          "Name": "SelectAppIdByDomain",
+          "Inputs": [
+            {
+              "Name": "domain",
+              "Type": "System.String"
+            }
+          ],
+          "ReturnType": "System.Int32?"
+        }
+      ]
+    },
+    {
+      "Name": "cCoder.Logging.Brokers.OData.LoggingModelBroker",
+      "StandardElementType": "Broker",
+      "Properties": [],
+      "Methods": [
+        {
+          "Name": "Build",
+          "Inputs": [],
+          "ReturnType": "cCoder.Logging.Models.OData.ODataModel"
+        },
+        {
+          "Name": "Configure",
+          "Inputs": [],
+          "ReturnType": "System.Void"
+        }
+      ]
+    },
+    {
+      "Name": "cCoder.Logging.Brokers.OData.ODataModelBroker",
+      "StandardElementType": "Broker",
+      "Properties": [],
+      "Methods": [
+        {
+          "Name": "Build",
+          "Inputs": [],
+          "ReturnType": "cCoder.Logging.Models.OData.ODataModel"
+        }
+      ]
+    },
+    {
       "Name": "cCoder.Logging.Dependencies.Logging.LogEntryCaptureRequest",
-      "StandardElementType": "Dependency",
+      "StandardElementType": "Model",
       "Properties": [
         {
           "Name": "CategoryName",
@@ -617,249 +445,6 @@
       ]
     },
     {
-      "Name": "cCoder.Logging.Dependencies.OData.ExtendedMetadataContainer",
-      "StandardElementType": "Dependency",
-      "Properties": [
-        {
-          "Name": "Operations",
-          "Type": "System.Collections.Generic.IEnumerable\u003CcCoder.Logging.Dependencies.OData.OperationContainer\u003E"
-        }
-      ],
-      "Methods": []
-    },
-    {
-      "Name": "cCoder.Logging.Dependencies.OData.LoggingMetadataTypeService",
-      "StandardElementType": "Dependency",
-      "Properties": [],
-      "Methods": [
-        {
-          "Name": "GetKnownMetadata",
-          "Inputs": [],
-          "ReturnType": "System.Collections.Generic.IEnumerable\u003CcCoder.Logging.Dependencies.OData.MetadataContainerSet\u003E"
-        }
-      ]
-    },
-    {
-      "Name": "cCoder.Logging.Dependencies.OData.LoggingModelBuilder",
-      "StandardElementType": "Dependency",
-      "Properties": [],
-      "Methods": [
-        {
-          "Name": "Build",
-          "Inputs": [],
-          "ReturnType": "cCoder.Logging.Models.OData.ODataModel"
-        },
-        {
-          "Name": "Configure",
-          "Inputs": [],
-          "ReturnType": "System.Void"
-        }
-      ]
-    },
-    {
-      "Name": "cCoder.Logging.Dependencies.OData.MetadataContainer",
-      "StandardElementType": "Dependency",
-      "Properties": [
-        {
-          "Name": "Category",
-          "Type": "System.String"
-        },
-        {
-          "Name": "Description",
-          "Type": "System.String"
-        },
-        {
-          "Name": "DisplayName",
-          "Type": "System.String"
-        },
-        {
-          "Name": "HasEndpoint",
-          "Type": "System.Boolean"
-        },
-        {
-          "Name": "IsEntity",
-          "Type": "System.Boolean"
-        },
-        {
-          "Name": "IsJoinEntity",
-          "Type": "System.Boolean"
-        },
-        {
-          "Name": "IsSystemManaged",
-          "Type": "System.Boolean"
-        },
-        {
-          "Name": "IsValueType",
-          "Type": "System.Boolean"
-        },
-        {
-          "Name": "Name",
-          "Type": "System.String"
-        },
-        {
-          "Name": "Properties",
-          "Type": "System.Collections.Generic.IEnumerable\u003CcCoder.Logging.Dependencies.OData.PropertyContainer\u003E"
-        },
-        {
-          "Name": "ServerType",
-          "Type": "System.String"
-        },
-        {
-          "Name": "ServerTypeName",
-          "Type": "System.String"
-        },
-        {
-          "Name": "Type",
-          "Type": "System.String"
-        }
-      ],
-      "Methods": []
-    },
-    {
-      "Name": "cCoder.Logging.Dependencies.OData.MetadataContainerSet",
-      "StandardElementType": "Dependency",
-      "Properties": [
-        {
-          "Name": "Name",
-          "Type": "System.String"
-        },
-        {
-          "Name": "Types",
-          "Type": "cCoder.Logging.Dependencies.OData.ExtendedMetadataContainer[]"
-        },
-        {
-          "Name": "UriBase",
-          "Type": "System.String"
-        }
-      ],
-      "Methods": []
-    },
-    {
-      "Name": "cCoder.Logging.Dependencies.OData.ODataModelBuilder",
-      "StandardElementType": "Dependency",
-      "Properties": [],
-      "Methods": [
-        {
-          "Name": "Build",
-          "Inputs": [],
-          "ReturnType": "cCoder.Logging.Models.OData.ODataModel"
-        }
-      ]
-    },
-    {
-      "Name": "cCoder.Logging.Dependencies.OData.OperationContainer",
-      "StandardElementType": "Dependency",
-      "Properties": [
-        {
-          "Name": "Definition",
-          "Type": "System.String"
-        },
-        {
-          "Name": "HttpVerb",
-          "Type": "System.String"
-        },
-        {
-          "Name": "Name",
-          "Type": "System.String"
-        },
-        {
-          "Name": "Parameters",
-          "Type": "System.Collections.Generic.IDictionary\u003CSystem.String, System.String\u003E"
-        },
-        {
-          "Name": "Queryable",
-          "Type": "System.Boolean"
-        },
-        {
-          "Name": "ReturnType",
-          "Type": "cCoder.Logging.Dependencies.OData.MetadataContainer"
-        },
-        {
-          "Name": "Url",
-          "Type": "System.String"
-        }
-      ],
-      "Methods": []
-    },
-    {
-      "Name": "cCoder.Logging.Dependencies.OData.PropertyContainer",
-      "StandardElementType": "Dependency",
-      "Properties": [
-        {
-          "Name": "Description",
-          "Type": "System.String"
-        },
-        {
-          "Name": "DisplayName",
-          "Type": "System.String"
-        },
-        {
-          "Name": "IsGeneric",
-          "Type": "System.Boolean"
-        },
-        {
-          "Name": "IsReadOnly",
-          "Type": "System.Boolean"
-        },
-        {
-          "Name": "IsRequired",
-          "Type": "System.Boolean"
-        },
-        {
-          "Name": "IsSystemManaged",
-          "Type": "System.Boolean"
-        },
-        {
-          "Name": "IsValueType",
-          "Type": "System.Boolean"
-        },
-        {
-          "Name": "Name",
-          "Type": "System.String"
-        },
-        {
-          "Name": "ServerType",
-          "Type": "System.String"
-        },
-        {
-          "Name": "ServerTypeName",
-          "Type": "System.String"
-        },
-        {
-          "Name": "ShortDisplayName",
-          "Type": "System.String"
-        },
-        {
-          "Name": "Template",
-          "Type": "System.String"
-        },
-        {
-          "Name": "Type",
-          "Type": "System.String"
-        }
-      ],
-      "Methods": []
-    },
-    {
-      "Name": "cCoder.Logging.Dependencies.OperationResult\u003CT\u003E",
-      "StandardElementType": "Dependency",
-      "Properties": [
-        {
-          "Name": "Item",
-          "Type": "T"
-        },
-        {
-          "Name": "Message",
-          "Type": "System.String"
-        },
-        {
-          "Name": "Success",
-          "Type": "System.Boolean"
-        }
-      ],
-      "Methods": []
-    },
-    {
       "Name": "cCoder.Logging.Exposures.Controllers.LogDataItemController",
       "StandardElementType": "Exposure",
       "Properties": [],
@@ -945,13 +530,13 @@
     },
     {
       "Name": "cCoder.Logging.Exposures.HostedServices.LogRetentionCleaner",
-      "StandardElementType": "Dependency",
+      "StandardElementType": "Exposure",
       "Properties": [],
       "Methods": []
     },
     {
       "Name": "cCoder.Logging.Exposures.Hubs.LogHub",
-      "StandardElementType": "Dependency",
+      "StandardElementType": "Exposure",
       "Properties": [],
       "Methods": [
         {
@@ -1265,7 +850,7 @@
     },
     {
       "Name": "cCoder.Logging.Extensions.LoggingConfigurationExtensions",
-      "StandardElementType": "Dependency",
+      "StandardElementType": "Exposure",
       "Properties": [],
       "Methods": [
         {
@@ -1285,6 +870,236 @@
       ]
     },
     {
+      "Name": "cCoder.Logging.Extensions.OData.BadRequestResult",
+      "StandardElementType": "Dependency",
+      "Properties": [],
+      "Methods": []
+    },
+    {
+      "Name": "cCoder.Logging.Extensions.OData.CompositePropertyInfo",
+      "StandardElementType": "Dependency",
+      "Properties": [
+        {
+          "Name": "Attributes",
+          "Type": "System.Reflection.PropertyAttributes"
+        },
+        {
+          "Name": "CanRead",
+          "Type": "System.Boolean"
+        },
+        {
+          "Name": "CanWrite",
+          "Type": "System.Boolean"
+        },
+        {
+          "Name": "DeclaringType",
+          "Type": "System.Type"
+        },
+        {
+          "Name": "Name",
+          "Type": "System.String"
+        },
+        {
+          "Name": "PropertyType",
+          "Type": "System.Type"
+        },
+        {
+          "Name": "ReflectedType",
+          "Type": "System.Type"
+        }
+      ],
+      "Methods": [
+        {
+          "Name": "GetAccessors",
+          "Inputs": [
+            {
+              "Name": "nonPublic",
+              "Type": "System.Boolean"
+            }
+          ],
+          "ReturnType": "System.Reflection.MethodInfo[]"
+        },
+        {
+          "Name": "GetCustomAttributes",
+          "Inputs": [
+            {
+              "Name": "inherit",
+              "Type": "System.Boolean"
+            }
+          ],
+          "ReturnType": "System.Object[]"
+        },
+        {
+          "Name": "GetCustomAttributes",
+          "Inputs": [
+            {
+              "Name": "attributeType",
+              "Type": "System.Type"
+            },
+            {
+              "Name": "inherit",
+              "Type": "System.Boolean"
+            }
+          ],
+          "ReturnType": "System.Object[]"
+        },
+        {
+          "Name": "GetGetMethod",
+          "Inputs": [
+            {
+              "Name": "nonPublic",
+              "Type": "System.Boolean"
+            }
+          ],
+          "ReturnType": "System.Reflection.MethodInfo"
+        },
+        {
+          "Name": "GetIndexParameters",
+          "Inputs": [],
+          "ReturnType": "System.Reflection.ParameterInfo[]"
+        },
+        {
+          "Name": "GetSetMethod",
+          "Inputs": [
+            {
+              "Name": "nonPublic",
+              "Type": "System.Boolean"
+            }
+          ],
+          "ReturnType": "System.Reflection.MethodInfo"
+        },
+        {
+          "Name": "GetValue",
+          "Inputs": [
+            {
+              "Name": "obj",
+              "Type": "System.Object"
+            },
+            {
+              "Name": "invokeAttr",
+              "Type": "System.Reflection.BindingFlags"
+            },
+            {
+              "Name": "binder",
+              "Type": "System.Reflection.Binder"
+            },
+            {
+              "Name": "index",
+              "Type": "System.Object[]"
+            },
+            {
+              "Name": "culture",
+              "Type": "System.Globalization.CultureInfo"
+            }
+          ],
+          "ReturnType": "System.Object"
+        },
+        {
+          "Name": "IsDefined",
+          "Inputs": [
+            {
+              "Name": "attributeType",
+              "Type": "System.Type"
+            },
+            {
+              "Name": "inherit",
+              "Type": "System.Boolean"
+            }
+          ],
+          "ReturnType": "System.Boolean"
+        },
+        {
+          "Name": "SetValue",
+          "Inputs": [
+            {
+              "Name": "obj",
+              "Type": "System.Object"
+            },
+            {
+              "Name": "value",
+              "Type": "System.Object"
+            },
+            {
+              "Name": "invokeAttr",
+              "Type": "System.Reflection.BindingFlags"
+            },
+            {
+              "Name": "binder",
+              "Type": "System.Reflection.Binder"
+            },
+            {
+              "Name": "index",
+              "Type": "System.Object[]"
+            },
+            {
+              "Name": "culture",
+              "Type": "System.Globalization.CultureInfo"
+            }
+          ],
+          "ReturnType": "System.Void"
+        }
+      ]
+    },
+    {
+      "Name": "cCoder.Logging.Extensions.OData.EdmModelExtensions",
+      "StandardElementType": "Exposure",
+      "Properties": [],
+      "Methods": [
+        {
+          "Name": "GetExtendedMetadataForType",
+          "Inputs": [
+            {
+              "Name": "model",
+              "Type": "Microsoft.OData.Edm.IEdmModel"
+            },
+            {
+              "Name": "context",
+              "Type": "System.String"
+            },
+            {
+              "Name": "type",
+              "Type": "System.Type"
+            },
+            {
+              "Name": "hasEndpoint",
+              "Type": "System.Boolean"
+            }
+          ],
+          "ReturnType": "cCoder.Logging.Models.OData.ExtendedMetadataContainer"
+        }
+      ]
+    },
+    {
+      "Name": "cCoder.Logging.Extensions.OData.LoggingApiModelExtensions",
+      "StandardElementType": "Exposure",
+      "Properties": [],
+      "Methods": []
+    },
+    {
+      "Name": "cCoder.Logging.Extensions.OData.MetadataTypeExtensions",
+      "StandardElementType": "Exposure",
+      "Properties": [],
+      "Methods": []
+    },
+    {
+      "Name": "cCoder.Logging.Extensions.OData.ODataCollectionExtensions",
+      "StandardElementType": "Exposure",
+      "Properties": [],
+      "Methods": []
+    },
+    {
+      "Name": "cCoder.Logging.Extensions.OData.ODataJsonExtensions",
+      "StandardElementType": "Exposure",
+      "Properties": [],
+      "Methods": []
+    },
+    {
+      "Name": "cCoder.Logging.Extensions.OData.ODataTypeExtensions",
+      "StandardElementType": "Exposure",
+      "Properties": [],
+      "Methods": []
+    },
+    {
       "Name": "cCoder.Logging.IServiceCollectionExtensions",
       "StandardElementType": "App",
       "Properties": [],
@@ -1299,6 +1114,20 @@
             {
               "Name": "configure",
               "Type": "System.Action\u003CcCoder.Logging.Models.LoggingConfiguration\u003E"
+            }
+          ],
+          "ReturnType": "System.Void"
+        },
+        {
+          "Name": "AddLoggingHostedServices",
+          "Inputs": [
+            {
+              "Name": "services",
+              "Type": "IServiceCollection"
+            },
+            {
+              "Name": "configuration",
+              "Type": "cCoder.Logging.Models.LoggingConfiguration"
             }
           ],
           "ReturnType": "System.Void"
@@ -1322,8 +1151,16 @@
           "ReturnType": "System.Void"
         },
         {
-          "Name": "ConfigureLoggingApiModel",
+          "Name": "AddLoggingWeb",
           "Inputs": [
+            {
+              "Name": "services",
+              "Type": "IServiceCollection"
+            },
+            {
+              "Name": "configuration",
+              "Type": "cCoder.Logging.Models.LoggingConfiguration"
+            },
             {
               "Name": "builder",
               "Type": "Microsoft.OData.ModelBuilder.ODataConventionModelBuilder"
@@ -1332,6 +1169,12 @@
           "ReturnType": "System.Void"
         }
       ]
+    },
+    {
+      "Name": "cCoder.Logging.LoggingServiceCollectionConfigurationExtensions",
+      "StandardElementType": "Exposure",
+      "Properties": [],
+      "Methods": []
     },
     {
       "Name": "cCoder.Logging.Models.AuditResultByProperty",
@@ -1478,12 +1321,30 @@
       "Methods": []
     },
     {
+      "Name": "cCoder.Logging.Models.HistoryItem",
+      "StandardElementType": "Model",
+      "Properties": [],
+      "Methods": []
+    },
+    {
+      "Name": "cCoder.Logging.Models.LogEntryCaptureOperation",
+      "StandardElementType": "Model",
+      "Properties": [],
+      "Methods": []
+    },
+    {
+      "Name": "cCoder.Logging.Models.LogHubSession",
+      "StandardElementType": "Model",
+      "Properties": [],
+      "Methods": []
+    },
+    {
       "Name": "cCoder.Logging.Models.LoggingConfiguration",
       "StandardElementType": "Model",
       "Properties": [
         {
-          "Name": "ConnectionStrings",
-          "Type": "System.Collections.Generic.IDictionary\u003CSystem.String, System.String\u003E"
+          "Name": "ConnectionString",
+          "Type": "System.String"
         },
         {
           "Name": "DebugInfo",
@@ -1502,10 +1363,6 @@
           "Type": "cCoder.Eventing.Models.EventProvider[]"
         },
         {
-          "Name": "IncludeLegacyCoreContext",
-          "Type": "System.Boolean"
-        },
-        {
           "Name": "LogSQL",
           "Type": "System.Boolean"
         },
@@ -1522,20 +1379,101 @@
           "Type": "System.String"
         },
         {
-          "Name": "Services",
-          "Type": "System.Collections.Generic.IDictionary\u003CSystem.String, System.String\u003E"
-        },
-        {
-          "Name": "Settings",
-          "Type": "System.Collections.Generic.IDictionary\u003CSystem.String, System.String\u003E"
-        },
-        {
           "Name": "StoreLogEntries",
           "Type": "System.Boolean"
         },
         {
           "Name": "StreamLogEntries",
           "Type": "System.Boolean"
+        }
+      ],
+      "Methods": []
+    },
+    {
+      "Name": "cCoder.Logging.Models.OData.ExtendedMetadataContainer",
+      "StandardElementType": "Model",
+      "Properties": [
+        {
+          "Name": "Operations",
+          "Type": "System.Collections.Generic.IEnumerable\u003CcCoder.Logging.Models.OData.OperationContainer\u003E"
+        }
+      ],
+      "Methods": []
+    },
+    {
+      "Name": "cCoder.Logging.Models.OData.MetadataContainer",
+      "StandardElementType": "Model",
+      "Properties": [
+        {
+          "Name": "Category",
+          "Type": "System.String"
+        },
+        {
+          "Name": "Description",
+          "Type": "System.String"
+        },
+        {
+          "Name": "DisplayName",
+          "Type": "System.String"
+        },
+        {
+          "Name": "HasEndpoint",
+          "Type": "System.Boolean"
+        },
+        {
+          "Name": "IsEntity",
+          "Type": "System.Boolean"
+        },
+        {
+          "Name": "IsJoinEntity",
+          "Type": "System.Boolean"
+        },
+        {
+          "Name": "IsSystemManaged",
+          "Type": "System.Boolean"
+        },
+        {
+          "Name": "IsValueType",
+          "Type": "System.Boolean"
+        },
+        {
+          "Name": "Name",
+          "Type": "System.String"
+        },
+        {
+          "Name": "Properties",
+          "Type": "System.Collections.Generic.IEnumerable\u003CcCoder.Logging.Models.OData.PropertyContainer\u003E"
+        },
+        {
+          "Name": "ServerType",
+          "Type": "System.String"
+        },
+        {
+          "Name": "ServerTypeName",
+          "Type": "System.String"
+        },
+        {
+          "Name": "Type",
+          "Type": "System.String"
+        }
+      ],
+      "Methods": []
+    },
+    {
+      "Name": "cCoder.Logging.Models.OData.MetadataContainerSet",
+      "StandardElementType": "Model",
+      "Properties": [
+        {
+          "Name": "Name",
+          "Type": "System.String"
+        },
+        {
+          "Name": "Types",
+          "Type": "cCoder.Logging.Models.OData.ExtendedMetadataContainer[]"
+        },
+        {
+          "Name": "UriBase",
+          "Type": "System.String"
         }
       ],
       "Methods": []
@@ -1579,6 +1517,100 @@
       "Methods": []
     },
     {
+      "Name": "cCoder.Logging.Models.OData.OperationContainer",
+      "StandardElementType": "Model",
+      "Properties": [
+        {
+          "Name": "Definition",
+          "Type": "System.String"
+        },
+        {
+          "Name": "HttpVerb",
+          "Type": "System.String"
+        },
+        {
+          "Name": "Name",
+          "Type": "System.String"
+        },
+        {
+          "Name": "Parameters",
+          "Type": "System.Collections.Generic.IDictionary\u003CSystem.String, System.String\u003E"
+        },
+        {
+          "Name": "Queryable",
+          "Type": "System.Boolean"
+        },
+        {
+          "Name": "ReturnType",
+          "Type": "cCoder.Logging.Models.OData.MetadataContainer"
+        },
+        {
+          "Name": "Url",
+          "Type": "System.String"
+        }
+      ],
+      "Methods": []
+    },
+    {
+      "Name": "cCoder.Logging.Models.OData.PropertyContainer",
+      "StandardElementType": "Model",
+      "Properties": [
+        {
+          "Name": "Description",
+          "Type": "System.String"
+        },
+        {
+          "Name": "DisplayName",
+          "Type": "System.String"
+        },
+        {
+          "Name": "IsGeneric",
+          "Type": "System.Boolean"
+        },
+        {
+          "Name": "IsReadOnly",
+          "Type": "System.Boolean"
+        },
+        {
+          "Name": "IsRequired",
+          "Type": "System.Boolean"
+        },
+        {
+          "Name": "IsSystemManaged",
+          "Type": "System.Boolean"
+        },
+        {
+          "Name": "IsValueType",
+          "Type": "System.Boolean"
+        },
+        {
+          "Name": "Name",
+          "Type": "System.String"
+        },
+        {
+          "Name": "ServerType",
+          "Type": "System.String"
+        },
+        {
+          "Name": "ServerTypeName",
+          "Type": "System.String"
+        },
+        {
+          "Name": "ShortDisplayName",
+          "Type": "System.String"
+        },
+        {
+          "Name": "Template",
+          "Type": "System.String"
+        },
+        {
+          "Name": "Type",
+          "Type": "System.String"
+        }
+      ],
+      "Methods": []
+    },
+    {
       "Name": "cCoder.Logging.Models.ODataCollection\u003CTCollectionType\u003E",
       "StandardElementType": "Model",
       "Properties": [
@@ -1589,6 +1621,25 @@
         {
           "Name": "Value",
           "Type": "System.Collections.Generic.IEnumerable\u003CTCollectionType\u003E"
+        }
+      ],
+      "Methods": []
+    },
+    {
+      "Name": "cCoder.Logging.Models.OperationResult\u003CT\u003E",
+      "StandardElementType": "Model",
+      "Properties": [
+        {
+          "Name": "Item",
+          "Type": "T"
+        },
+        {
+          "Name": "Message",
+          "Type": "System.String"
+        },
+        {
+          "Name": "Success",
+          "Type": "System.Boolean"
         }
       ],
       "Methods": []
@@ -1846,6 +1897,18 @@
       ]
     },
     {
+      "Name": "cCoder.Logging.Services.Foundations.LoggingMetadataTypeService",
+      "StandardElementType": "FoundationService",
+      "Properties": [],
+      "Methods": [
+        {
+          "Name": "GetKnownMetadata",
+          "Inputs": [],
+          "ReturnType": "System.Collections.Generic.IEnumerable\u003CcCoder.Logging.Models.OData.MetadataContainerSet\u003E"
+        }
+      ]
+    },
+    {
       "Name": "cCoder.Logging.Services.Orchestrations.LogDataItemOrchestrationService",
       "StandardElementType": "OrchestrationService",
       "Properties": [],
@@ -1868,7 +1931,7 @@
               "Type": "System.Collections.Generic.IEnumerable\u003CcCoder.Data.Models.Logging.LogDataItem\u003E"
             }
           ],
-          "ReturnType": "System.Threading.Tasks.ValueTask\u003CSystem.Collections.Generic.IEnumerable\u003CcCoder.Logging.Dependencies.OperationResult\u003CcCoder.Data.Models.Logging.LogDataItem\u003E\u003E\u003E"
+          "ReturnType": "System.Threading.Tasks.ValueTask\u003CSystem.Collections.Generic.IEnumerable\u003CcCoder.Logging.Models.OperationResult\u003CcCoder.Data.Models.Logging.LogDataItem\u003E\u003E\u003E"
         },
         {
           "Name": "DeleteAllLogDataItemAsync",
@@ -1928,7 +1991,7 @@
       "Properties": [],
       "Methods": [
         {
-          "Name": "CaptureLogEntryAsync",
+          "Name": "CaptureLogEntryCaptureRequestAsync",
           "Inputs": [
             {
               "Name": "logEntryCaptureRequest",
@@ -1962,7 +2025,7 @@
               "Type": "System.Collections.Generic.IEnumerable\u003CcCoder.Data.Models.Logging.LogEntry\u003E"
             }
           ],
-          "ReturnType": "System.Threading.Tasks.ValueTask\u003CSystem.Collections.Generic.IEnumerable\u003CcCoder.Logging.Dependencies.OperationResult\u003CcCoder.Data.Models.Logging.LogEntry\u003E\u003E\u003E"
+          "ReturnType": "System.Threading.Tasks.ValueTask\u003CSystem.Collections.Generic.IEnumerable\u003CcCoder.Logging.Models.OperationResult\u003CcCoder.Data.Models.Logging.LogEntry\u003E\u003E\u003E"
         },
         {
           "Name": "AddSystemLogEntryAsync",
@@ -2106,7 +2169,7 @@
               "Type": "System.Collections.Generic.IEnumerable\u003CcCoder.Data.Models.Logging.LogDataItem\u003E"
             }
           ],
-          "ReturnType": "System.Threading.Tasks.ValueTask\u003CSystem.Collections.Generic.IEnumerable\u003CcCoder.Logging.Dependencies.OperationResult\u003CcCoder.Data.Models.Logging.LogDataItem\u003E\u003E\u003E"
+          "ReturnType": "System.Threading.Tasks.ValueTask\u003CSystem.Collections.Generic.IEnumerable\u003CcCoder.Logging.Models.OperationResult\u003CcCoder.Data.Models.Logging.LogDataItem\u003E\u003E\u003E"
         },
         {
           "Name": "DeleteAllLogDataItemAsync",
@@ -2166,14 +2229,14 @@
       "Properties": [],
       "Methods": [
         {
-          "Name": "CaptureLogEntryAsync",
+          "Name": "CaptureLogEntryCaptureOperationAsync",
           "Inputs": [
             {
-              "Name": "logEntryCaptureRequest",
-              "Type": "cCoder.Logging.Dependencies.Logging.LogEntryCaptureRequest"
+              "Name": "operation",
+              "Type": "cCoder.Logging.Models.LogEntryCaptureOperation"
             }
           ],
-          "ReturnType": "System.Threading.Tasks.ValueTask\u003CcCoder.Data.Models.Logging.LogEntry\u003E"
+          "ReturnType": "System.Threading.Tasks.ValueTask\u003CcCoder.Logging.Models.LogEntryCaptureOperation\u003E"
         }
       ]
     },
@@ -2237,7 +2300,7 @@
               "Type": "System.Collections.Generic.IEnumerable\u003CcCoder.Data.Models.Logging.LogEntry\u003E"
             }
           ],
-          "ReturnType": "System.Threading.Tasks.ValueTask\u003CSystem.Collections.Generic.IEnumerable\u003CcCoder.Logging.Dependencies.OperationResult\u003CcCoder.Data.Models.Logging.LogEntry\u003E\u003E\u003E"
+          "ReturnType": "System.Threading.Tasks.ValueTask\u003CSystem.Collections.Generic.IEnumerable\u003CcCoder.Logging.Models.OperationResult\u003CcCoder.Data.Models.Logging.LogEntry\u003E\u003E\u003E"
         },
         {
           "Name": "AddSystemLogEntryAsync",
@@ -2349,8 +2412,115 @@
       ]
     },
     {
+      "Name": "cCoder.Logging.Services.Processings.LogHubProcessingService",
+      "StandardElementType": "ProcessingService",
+      "Properties": [],
+      "Methods": [
+        {
+          "Name": "ConnectLogHubSessionAsync",
+          "Inputs": [
+            {
+              "Name": "session",
+              "Type": "cCoder.Logging.Models.LogHubSession"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask"
+        },
+        {
+          "Name": "DebugLogHubSession",
+          "Inputs": [
+            {
+              "Name": "session",
+              "Type": "cCoder.Logging.Models.LogHubSession"
+            }
+          ],
+          "ReturnType": "System.Void"
+        },
+        {
+          "Name": "DisconnectLogHubSessionAsync",
+          "Inputs": [
+            {
+              "Name": "session",
+              "Type": "cCoder.Logging.Models.LogHubSession"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask"
+        },
+        {
+          "Name": "ErrorLogHubSession",
+          "Inputs": [
+            {
+              "Name": "session",
+              "Type": "cCoder.Logging.Models.LogHubSession"
+            }
+          ],
+          "ReturnType": "System.Void"
+        },
+        {
+          "Name": "InfoLogHubSession",
+          "Inputs": [
+            {
+              "Name": "session",
+              "Type": "cCoder.Logging.Models.LogHubSession"
+            }
+          ],
+          "ReturnType": "System.Void"
+        },
+        {
+          "Name": "JoinLogHubSessionAsync",
+          "Inputs": [
+            {
+              "Name": "session",
+              "Type": "cCoder.Logging.Models.LogHubSession"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask"
+        },
+        {
+          "Name": "LeaveLogHubSessionAsync",
+          "Inputs": [
+            {
+              "Name": "session",
+              "Type": "cCoder.Logging.Models.LogHubSession"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask"
+        },
+        {
+          "Name": "SendConsoleLogHubSessionAsync",
+          "Inputs": [
+            {
+              "Name": "session",
+              "Type": "cCoder.Logging.Models.LogHubSession"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask"
+        },
+        {
+          "Name": "SendTestLogHubSessionAsync",
+          "Inputs": [
+            {
+              "Name": "session",
+              "Type": "cCoder.Logging.Models.LogHubSession"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask"
+        },
+        {
+          "Name": "WarnLogHubSession",
+          "Inputs": [
+            {
+              "Name": "session",
+              "Type": "cCoder.Logging.Models.LogHubSession"
+            }
+          ],
+          "ReturnType": "System.Void"
+        }
+      ]
+    },
+    {
       "Name": "cCoder.Logging.WebApplicationExtensions",
-      "StandardElementType": "Dependency",
+      "StandardElementType": "App",
       "Properties": [],
       "Methods": [
         {
@@ -2390,8 +2560,12 @@
       "ToType": "cCoder.Logging.Exposures.LogEntryManager"
     },
     {
+      "FromType": "cCoder.Logging.Exposures.HostedServices.LogRetentionCleaner",
+      "ToType": "cCoder.Logging.Services.Processings.LogEntryRetentionProcessingService"
+    },
+    {
       "FromType": "cCoder.Logging.Exposures.Hubs.LogHub",
-      "ToType": "cCoder.Logging.Brokers.AuthorizationBroker"
+      "ToType": "cCoder.Logging.Services.Processings.LogHubProcessingService"
     },
     {
       "FromType": "cCoder.Logging.Exposures.LogDataItemManager",
@@ -2492,6 +2666,14 @@
     {
       "FromType": "cCoder.Logging.Services.Processings.LogEntryRetentionProcessingService",
       "ToType": "cCoder.Logging.Services.Foundations.LogEntryService"
+    },
+    {
+      "FromType": "cCoder.Logging.Services.Processings.LogHubProcessingService",
+      "ToType": "cCoder.Logging.Brokers.AuthorizationBroker"
+    },
+    {
+      "FromType": "cCoder.Logging.Services.Processings.LogHubProcessingService",
+      "ToType": "cCoder.Logging.Brokers.LogHubBroker"
     }
   ],
   "AnalysisItems": []

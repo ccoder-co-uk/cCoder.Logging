@@ -64,7 +64,7 @@ internal sealed class LoggingLogger(
                 RequestDomain = httpContextAccessor?.HttpContext?.Request?.Host.Host
             };
 
-            await captureService.CaptureLogEntryAsync(
+            await captureService.CaptureLogEntryCaptureRequestAsync(
                 logEntryCaptureRequest: logEntryCaptureRequest);
         }
         catch (Exception ex)

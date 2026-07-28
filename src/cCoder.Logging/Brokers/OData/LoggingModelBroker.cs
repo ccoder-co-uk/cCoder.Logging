@@ -8,11 +8,13 @@ using cCoder.Data.Models.Logging;
 using Microsoft.OData.Edm;
 using Microsoft.OData.ModelBuilder;
 
-namespace cCoder.Logging.Dependencies.OData;
+namespace cCoder.Logging.Brokers.OData;
 
-internal class LoggingModelBuilder : ODataModelBuilder
+internal class LoggingModelBroker
+    : ODataModelBroker,
+      ILoggingModelBroker
 {
-    public LoggingModelBuilder(ODataConventionModelBuilder builder = null)
+    public LoggingModelBroker(ODataConventionModelBuilder builder = null)
         : base(builder: builder)
     {
     }
@@ -35,7 +37,7 @@ internal class LoggingModelBuilder : ODataModelBuilder
     private IEdmModel BuildEdmModel()
     {
         ConfigureModel();
-        return base.Builder.GetEdmModel();
+        return builder.GetEdmModel();
     }
 
     private void ConfigureModel()
@@ -43,6 +45,6 @@ internal class LoggingModelBuilder : ODataModelBuilder
         AddCommonComplextypes();
         AddSet<LogEntry, int>();
         AddSet<LogDataItem, int>();
-        base.Builder.Namespace = "";
+        builder.Namespace = "";
     }
 }

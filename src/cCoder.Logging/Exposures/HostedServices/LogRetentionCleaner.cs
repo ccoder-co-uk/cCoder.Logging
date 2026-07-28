@@ -11,16 +11,11 @@ public interface ILogRetentionCleaner : IHostedService
 }
 
 internal sealed class LogRetentionCleaner(
-    IServiceScopeFactory serviceScopeFactory) : BackgroundService, ILogRetentionCleaner
+    ILogEntryRetentionProcessingService logRetentionProcessingService)
+        : BackgroundService, ILogRetentionCleaner
 {
-    protected override async Task ExecuteAsync(CancellationToken stoppingToken)
-    {
-        using IServiceScope scope = serviceScopeFactory.CreateScope();
-        ILogEntryRetentionProcessingService logRetentionProcessingService =
-            scope.ServiceProvider
-                .GetRequiredService<ILogEntryRetentionProcessingService>();
-
-        await logRetentionProcessingService.RunLogRetentionAsync(
+    protected override Task ExecuteAsync(
+        CancellationToken stoppingToken) =>
+        logRetentionProcessingService.RunLogRetentionAsync(
             cancellationToken: stoppingToken);
-    }
 }

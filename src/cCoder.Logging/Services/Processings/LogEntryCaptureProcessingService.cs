@@ -19,15 +19,19 @@ internal sealed partial class LogEntryCaptureProcessingService(
     LoggingConfiguration loggingConfiguration)
         : ILogEntryCaptureProcessingService
 {
-    public ValueTask<LogEntry> CaptureLogEntryAsync(
-        LogEntryCaptureRequest logEntryCaptureRequest) =>
+    public ValueTask<LogEntryCaptureOperation>
+        CaptureLogEntryCaptureOperationAsync(
+            LogEntryCaptureOperation operation) =>
         TryCatch(operation: async () =>
         {
-            ValidateInputs(inputs: [logEntryCaptureRequest]);
+            ValidateInputs(inputs: [operation]);
+
+            LogEntryCaptureRequest logEntryCaptureRequest =
+                operation.Request;
 
             if (ShouldIgnore(logEntryCaptureRequest: logEntryCaptureRequest))
             {
-                return null;
+                return operation;
             }
 
             string thread = GetThread(
@@ -39,7 +43,7 @@ internal sealed partial class LogEntryCaptureProcessingService(
 
             if (!loggingConfiguration.StoreLogEntries)
             {
-                return null;
+                return operation;
             }
 
             int? appId = ResolveAppId(
@@ -48,7 +52,7 @@ internal sealed partial class LogEntryCaptureProcessingService(
 
             if (!appId.HasValue)
             {
-                return null;
+                return operation;
             }
 
             LogEntry newLogEntry = CreateLogEntry(
@@ -56,8 +60,11 @@ internal sealed partial class LogEntryCaptureProcessingService(
                 thread: thread,
                 appId: appId.Value);
 
-            return await logEntryService.AddSystemLogEntryAsync(
+            operation.Result =
+                await logEntryService.AddSystemLogEntryAsync(
                 newLogEntry: newLogEntry);
+
+            return operation;
         });
 
     private async ValueTask StreamLogEntryAsync(

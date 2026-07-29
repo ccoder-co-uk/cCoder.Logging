@@ -4,7 +4,7 @@
 
 using Microsoft.Extensions.Logging;
 
-namespace cCoder.Logging.Dependencies.Logging;
+namespace cCoder.Logging.Models;
 
 public sealed class LogEntryCaptureRequest
 {

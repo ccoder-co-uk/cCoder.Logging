@@ -343,33 +343,6 @@
       ]
     },
     {
-      "Name": "cCoder.Logging.Dependencies.Logging.LogEntryCaptureRequest",
-      "StandardElementType": "Model",
-      "Properties": [
-        {
-          "Name": "CategoryName",
-          "Type": "System.String"
-        },
-        {
-          "Name": "Exception",
-          "Type": "System.Exception"
-        },
-        {
-          "Name": "Level",
-          "Type": "Microsoft.Extensions.Logging.LogLevel"
-        },
-        {
-          "Name": "Message",
-          "Type": "System.String"
-        },
-        {
-          "Name": "RequestDomain",
-          "Type": "System.String"
-        }
-      ],
-      "Methods": []
-    },
-    {
       "Name": "cCoder.Logging.Dependencies.Logging.LoggingLogger",
       "StandardElementType": "Dependency",
       "Properties": [],
@@ -1327,6 +1300,33 @@
       "Methods": []
     },
     {
+      "Name": "cCoder.Logging.Models.LogEntryCaptureRequest",
+      "StandardElementType": "Model",
+      "Properties": [
+        {
+          "Name": "CategoryName",
+          "Type": "System.String"
+        },
+        {
+          "Name": "Exception",
+          "Type": "System.Exception"
+        },
+        {
+          "Name": "Level",
+          "Type": "Microsoft.Extensions.Logging.LogLevel"
+        },
+        {
+          "Name": "Message",
+          "Type": "System.String"
+        },
+        {
+          "Name": "RequestDomain",
+          "Type": "System.String"
+        }
+      ],
+      "Methods": []
+    },
+    {
       "Name": "cCoder.Logging.Models.LogHubSession",
       "StandardElementType": "Model",
       "Properties": [],
@@ -1989,7 +1989,7 @@
           "Inputs": [
             {
               "Name": "logEntryCaptureRequest",
-              "Type": "cCoder.Logging.Dependencies.Logging.LogEntryCaptureRequest"
+              "Type": "cCoder.Logging.Models.LogEntryCaptureRequest"
             }
           ],
           "ReturnType": "System.Threading.Tasks.ValueTask"

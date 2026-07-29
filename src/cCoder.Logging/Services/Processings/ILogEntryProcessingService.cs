@@ -4,7 +4,6 @@
 
 using cCoder.Data.Models.Logging;
 using cCoder.Logging.Models;
-using cCoder.Logging.Dependencies;
 
 namespace cCoder.Logging.Services.Processings;
 

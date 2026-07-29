@@ -18,7 +18,7 @@ internal sealed partial class LogEntryService(
     public LogEntry GetLogEntry(int logEntryId) =>
         TryCatch(operation: () =>
         {
-            ValidateLogEntryOnGet(logEntryId: logEntryId);
+            ValidateLogEntryOnGet(inputs: [logEntryId]);
 
             return SelectAllLogEntries(ignoreFilters: false)
                 .Where(predicate: logEntry => logEntry.Id == logEntryId)
@@ -29,7 +29,7 @@ internal sealed partial class LogEntryService(
     public IQueryable<LogEntry> GetAllLogEntries(bool ignoreFilters = false) =>
         TryCatch(operation: () =>
         {
-            ValidateAllLogEntriesOnGet(ignoreFilters: ignoreFilters);
+            ValidateAllLogEntriesOnGet(inputs: [ignoreFilters]);
 
             return SelectAllLogEntries(ignoreFilters: ignoreFilters);
         });
@@ -37,7 +37,7 @@ internal sealed partial class LogEntryService(
     public ValueTask<LogEntry> AddLogEntryAsync(LogEntry newLogEntry) =>
         TryCatch(operation: async () =>
         {
-            ValidateLogEntryOnAdd(logEntry: newLogEntry);
+            ValidateLogEntryOnAdd(inputs: [newLogEntry]);
             Authorize(logEntry: newLogEntry, privilege: "LogEntry_create");
 
             LogEntry flatLogEntry = ToFlatLogEntry(logEntry: newLogEntry);
@@ -54,7 +54,7 @@ internal sealed partial class LogEntryService(
     public ValueTask<LogEntry> AddSystemLogEntryAsync(LogEntry newLogEntry) =>
         TryCatch(operation: async () =>
         {
-            ValidateSystemLogEntryOnAdd(logEntry: newLogEntry);
+            ValidateSystemLogEntryOnAdd(inputs: [newLogEntry]);
 
             LogEntry flatLogEntry = ToFlatLogEntry(logEntry: newLogEntry);
 
@@ -70,7 +70,7 @@ internal sealed partial class LogEntryService(
     public ValueTask<LogEntry> UpdateLogEntryAsync(LogEntry updatedLogEntry) =>
         TryCatch(operation: async () =>
         {
-            ValidateLogEntryOnUpdate(logEntry: updatedLogEntry);
+            ValidateLogEntryOnUpdate(inputs: [updatedLogEntry]);
             Authorize(logEntry: updatedLogEntry, privilege: "LogEntry_update");
 
             LogEntry flatLogEntry = ToFlatLogEntry(logEntry: updatedLogEntry);
@@ -87,7 +87,7 @@ internal sealed partial class LogEntryService(
     public ValueTask DeleteLogEntryAsync(int logEntryId) =>
         TryCatch(operation: async () =>
         {
-            ValidateLogEntryOnDelete(logEntryId: logEntryId);
+            ValidateLogEntryOnDelete(inputs: [logEntryId]);
 
             LogEntry logEntry = SelectLogEntry(logEntryId: logEntryId);
             Authorize(logEntry: logEntry, privilege: "LogEntry_delete");
@@ -99,7 +99,7 @@ internal sealed partial class LogEntryService(
     public ValueTask<int> DeleteLogEntriesBeforeAsync(DateTime cutoff) =>
         TryCatch(operation: async () =>
         {
-            ValidateLogEntriesBeforeOnDelete(cutoff: cutoff);
+            ValidateLogEntriesBeforeOnDelete(inputs: [cutoff]);
 
             return await logEntryBroker.DeleteLogEntriesBeforeAsync(
                 cutoff: cutoff);
@@ -108,7 +108,7 @@ internal sealed partial class LogEntryService(
     public int? ResolveAppId(string domainOrName) =>
         TryCatch(operation: () =>
         {
-            ValidateAppOnResolve(domainOrName: domainOrName);
+            ValidateAppOnResolve(inputs: [domainOrName]);
 
             return logEntryBroker.SelectAppIdByDomainOrName(
                 domainOrName: domainOrName);

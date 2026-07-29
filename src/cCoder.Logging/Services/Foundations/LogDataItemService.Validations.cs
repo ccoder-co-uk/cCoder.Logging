@@ -2,24 +2,31 @@
 // Copyright (c) Paul.Ward@ccoder.co.uk
 // ---------------------------------------------------------------
 
-using cCoder.Logging.Dependencies;
 
 namespace cCoder.Logging.Services.Foundations;
 
 internal sealed partial class LogDataItemService
 {
-    private static void ValidateLogDataItemOnGet(int logDataItemId) =>
-        ValidationRulesEngine.Validate(inputs: [logDataItemId]);
+    private static void ValidateLogDataItemOnGet(object[] inputs) =>
+        Validate(inputs: inputs);
 
-    private static void ValidateAllLogDataItemsOnGet(bool ignoreFilters) =>
-        ValidationRulesEngine.Validate(inputs: [ignoreFilters]);
+    private static void ValidateAllLogDataItemsOnGet(object[] inputs) =>
+        Validate(inputs: inputs);
 
-    private static void ValidateLogDataItemOnAdd(object logDataItem) =>
-        ValidationRulesEngine.Validate(inputs: [logDataItem]);
+    private static void ValidateLogDataItemOnAdd(object[] inputs) =>
+        Validate(inputs: inputs);
 
-    private static void ValidateLogDataItemOnUpdate(object logDataItem) =>
-        ValidationRulesEngine.Validate(inputs: [logDataItem]);
+    private static void ValidateLogDataItemOnUpdate(object[] inputs) =>
+        Validate(inputs: inputs);
 
-    private static void ValidateLogDataItemOnDelete(int logDataItemId) =>
-        ValidationRulesEngine.Validate(inputs: [logDataItemId]);
+    private static void ValidateLogDataItemOnDelete(object[] inputs) =>
+        Validate(inputs: inputs);
+
+    private static void Validate(params object[] inputs)
+    {
+        foreach (object input in inputs)
+        {
+            ArgumentNullException.ThrowIfNull(argument: input);
+        }
+    }
 }

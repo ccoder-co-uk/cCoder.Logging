@@ -2,7 +2,7 @@
 // Copyright (c) Paul.Ward@ccoder.co.uk
 // ---------------------------------------------------------------
 
-using cCoder.Logging.Dependencies.Logging;
+using cCoder.Logging.Models;
 using cCoder.Logging.Services.Orchestrations;
 
 namespace cCoder.Logging.Dependencies.Logging;

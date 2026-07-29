@@ -17,7 +17,7 @@ internal sealed partial class LogDataItemService(
     public LogDataItem GetLogDataItem(int logDataItemId) =>
         TryCatch(operation: () =>
         {
-            ValidateLogDataItemOnGet(logDataItemId: logDataItemId);
+            ValidateLogDataItemOnGet(inputs: [logDataItemId]);
 
             return SelectAllLogDataItems(ignoreFilters: false)
                 .Where(predicate: logDataItem =>
@@ -31,7 +31,7 @@ internal sealed partial class LogDataItemService(
         bool ignoreFilters = false) =>
         TryCatch(operation: () =>
         {
-            ValidateAllLogDataItemsOnGet(ignoreFilters: ignoreFilters);
+            ValidateAllLogDataItemsOnGet(inputs: [ignoreFilters]);
 
             return SelectAllLogDataItems(ignoreFilters: ignoreFilters);
         });
@@ -40,7 +40,7 @@ internal sealed partial class LogDataItemService(
         LogDataItem newLogDataItem) =>
         TryCatch(operation: async () =>
         {
-            ValidateLogDataItemOnAdd(logDataItem: newLogDataItem);
+            ValidateLogDataItemOnAdd(inputs: [newLogDataItem]);
 
             Authorize(
                 logDataItem: newLogDataItem,
@@ -62,7 +62,7 @@ internal sealed partial class LogDataItemService(
         LogDataItem updatedLogDataItem) =>
         TryCatch(operation: async () =>
         {
-            ValidateLogDataItemOnUpdate(logDataItem: updatedLogDataItem);
+            ValidateLogDataItemOnUpdate(inputs: [updatedLogDataItem]);
 
             Authorize(
                 logDataItem: updatedLogDataItem,
@@ -83,7 +83,7 @@ internal sealed partial class LogDataItemService(
     public ValueTask DeleteLogDataItemAsync(int logDataItemId) =>
         TryCatch(operation: async () =>
         {
-            ValidateLogDataItemOnDelete(logDataItemId: logDataItemId);
+            ValidateLogDataItemOnDelete(inputs: [logDataItemId]);
 
             LogDataItem logDataItem =
                 SelectLogDataItem(logDataItemId: logDataItemId);

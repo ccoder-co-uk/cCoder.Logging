@@ -2,7 +2,6 @@
 // Copyright (c) Paul.Ward@ccoder.co.uk
 // ---------------------------------------------------------------
 
-using cCoder.Data;
 using cCoder.Eventing;
 using cCoder.Security;
 using Logging.Web.Models;
@@ -20,12 +19,11 @@ public static class IServiceCollectionExtensions
         configuration.Bind(instance: webConfiguration);
         configure?.Invoke(obj: webConfiguration);
 
-        services.AddEventingWeb(configuration: webConfiguration.Eventing);
-        services.AddData(configuration: webConfiguration.Data);
-        services.AddSecurityWeb(configuration: webConfiguration.Security);
         cCoder.Logging.IServiceCollectionExtensions.AddLoggingWeb(
             services: services,
             configuration: webConfiguration.Logging);
+        services.AddEventingWeb(configuration: webConfiguration.Eventing);
+        services.AddSecurityWeb(configuration: webConfiguration.Security);
 
         return services;
     }

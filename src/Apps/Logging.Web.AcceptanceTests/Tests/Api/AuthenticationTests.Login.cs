@@ -13,10 +13,10 @@ public sealed partial class AuthenticationTests
     public async Task ShouldLoginThroughSecurityAccountApi()
     {
         // Given
-        cCoder.Security.Objects.DTOs.RegisterUser user = await RegisterUserAsync();
+        cCoder.Security.Models.DTOs.RegisterUser user = await RegisterUserAsync();
 
         // When
-        cCoder.Security.Objects.Entities.Token token = await LoginAsync(user: user);
+        cCoder.Security.Models.Entities.Token token = await LoginAsync(user: user);
 
         // Then
 

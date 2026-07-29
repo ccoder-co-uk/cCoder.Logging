@@ -1070,31 +1070,31 @@
       ]
     },
     {
-      "Name": "cCoder.Logging.Extensions.OData.LoggingApiModelExtensions",
+      "Name": "cCoder.Logging.Extensions.OData.IEnumerableExtensions",
       "StandardElementType": "Exposure",
       "Properties": [],
       "Methods": []
     },
     {
-      "Name": "cCoder.Logging.Extensions.OData.MetadataTypeExtensions",
+      "Name": "cCoder.Logging.Extensions.OData.ODataConventionModelBuilderExtensions",
       "StandardElementType": "Exposure",
       "Properties": [],
       "Methods": []
     },
     {
-      "Name": "cCoder.Logging.Extensions.OData.ODataCollectionExtensions",
+      "Name": "cCoder.Logging.Extensions.OData.ObjectExtensions",
       "StandardElementType": "Exposure",
       "Properties": [],
       "Methods": []
     },
     {
-      "Name": "cCoder.Logging.Extensions.OData.ODataJsonExtensions",
+      "Name": "cCoder.Logging.Extensions.OData.PropertyInfoExtensions",
       "StandardElementType": "Exposure",
       "Properties": [],
       "Methods": []
     },
     {
-      "Name": "cCoder.Logging.Extensions.OData.ODataTypeExtensions",
+      "Name": "cCoder.Logging.Extensions.OData.TypeExtensions",
       "StandardElementType": "Exposure",
       "Properties": [],
       "Methods": []
@@ -1169,12 +1169,6 @@
           "ReturnType": "System.Void"
         }
       ]
-    },
-    {
-      "Name": "cCoder.Logging.LoggingServiceCollectionConfigurationExtensions",
-      "StandardElementType": "Exposure",
-      "Properties": [],
-      "Methods": []
     },
     {
       "Name": "cCoder.Logging.Models.AuditResultByProperty",
@@ -2558,10 +2552,6 @@
     {
       "FromType": "cCoder.Logging.Exposures.Controllers.LogEntryController",
       "ToType": "cCoder.Logging.Exposures.LogEntryManager"
-    },
-    {
-      "FromType": "cCoder.Logging.Exposures.HostedServices.LogRetentionCleaner",
-      "ToType": "cCoder.Logging.Services.Processings.LogEntryRetentionProcessingService"
     },
     {
       "FromType": "cCoder.Logging.Exposures.Hubs.LogHub",

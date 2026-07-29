@@ -36,7 +36,7 @@ public class MetadataContainer
     public MetadataContainer(Type type)
     {
         IsValueType = type.IsValueType || type == typeof(string);
-        Type = MetadataTypeExtensions.GetTypeName(type: type);
+        Type = PropertyInfoExtensions.GetTypeName(type: type);
         Name = type.Name;
         DisplayName = type.Name;
         Description = type.Name;
@@ -45,7 +45,7 @@ public class MetadataContainer
         Properties = type.IsValueType || type == typeof(string)
             ? []
             : type.GetProperties()
-            .Select(selector: MetadataTypeExtensions.CreatePropertyContainer)
+            .Select(selector: PropertyInfoExtensions.CreatePropertyContainer)
             .ToArray();
     }
 

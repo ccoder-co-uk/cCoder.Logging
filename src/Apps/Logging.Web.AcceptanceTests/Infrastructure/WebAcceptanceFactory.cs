@@ -7,12 +7,11 @@ using cCoder.Data.Models;
 using cCoder.Security.Data.EF;
 using cCoder.Security.Data.EF.Dependencies;
 using cCoder.Security.Data.EF.Interfaces;
-using cCoder.Security.Objects;
+using cCoder.Security.Models;
 using Logging.Web;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
@@ -21,9 +20,24 @@ using Logging.Web.AcceptanceTests.Models;
 
 namespace Logging.Web.AcceptanceTests.Infrastructure;
 
-internal sealed class WebAcceptanceFactory(AcceptanceSettings settings)
+internal sealed class WebAcceptanceFactory
     : WebApplicationFactory<Program>
 {
+    private readonly string previousDecryptionKey;
+    private readonly AcceptanceSettings settings;
+
+    internal WebAcceptanceFactory(AcceptanceSettings settings)
+    {
+        this.settings = settings;
+        previousDecryptionKey =
+            Environment.GetEnvironmentVariable(
+                variable: "Security__DecryptionKey");
+
+        Environment.SetEnvironmentVariable(
+            variable: "Security__DecryptionKey",
+            value: settings.DecryptionKey);
+    }
+
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
         builder.UseEnvironment(environment: "Acceptance");
@@ -33,7 +47,6 @@ internal sealed class WebAcceptanceFactory(AcceptanceSettings settings)
             config.AddInMemoryCollection(
 initialData: [
                 new KeyValuePair<string, string>(key: "Logging:ConnectionString", value: settings.CoreConnectionString),
-                new KeyValuePair<string, string>(key: "Data:ConnectionString", value: settings.CoreConnectionString),
                 new KeyValuePair<string, string>(key: "Security:ConnectionString", value: settings.SsoConnectionString),
                 new KeyValuePair<string, string>(key: "Security:DecryptionKey", value: settings.DecryptionKey),
                 new KeyValuePair<string, string>(key: "Eventing:ProviderType", value: string.Empty),
@@ -42,9 +55,6 @@ initialData: [
 
         builder.ConfigureTestServices(servicesConfiguration: services =>
         {
-            services.RemoveAll<ICoreContextFactory>();
-            services.RemoveAll<CoreDataContext>();
-            services.RemoveAll<IDbContextFactory<CoreDataContext>>();
             services.RemoveAll<ISecurityDbContextFactory>();
             services.RemoveAll<DataConfiguration>();
 
@@ -58,5 +68,19 @@ implementationFactory: _ => new MSSQLSecurityDbContextFactory(connectionString: 
                     ConnectionString = settings.CoreConnectionString
                 });
         });
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        base.Dispose(disposing: disposing);
+
+        if (disposing)
+        {
+            Environment.SetEnvironmentVariable(
+                variable: "Security__DecryptionKey",
+                value: string.IsNullOrEmpty(value: previousDecryptionKey)
+                    ? null
+                    : previousDecryptionKey);
+        }
     }
 }

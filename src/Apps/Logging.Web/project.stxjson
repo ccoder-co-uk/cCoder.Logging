@@ -128,10 +128,6 @@
       "StandardElementType": "Model",
       "Properties": [
         {
-          "Name": "Data",
-          "Type": "cCoder.Data.Models.DataConfiguration"
-        },
-        {
           "Name": "Eventing",
           "Type": "cCoder.Eventing.Models.EventingConfiguration"
         },
@@ -141,7 +137,7 @@
         },
         {
           "Name": "Security",
-          "Type": "cCoder.Security.Objects.SecurityConfiguration"
+          "Type": "cCoder.Security.Models.SecurityConfiguration"
         }
       ],
       "Methods": []

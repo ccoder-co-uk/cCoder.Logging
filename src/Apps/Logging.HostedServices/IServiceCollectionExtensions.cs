@@ -2,7 +2,6 @@
 // Copyright (c) Paul.Ward@ccoder.co.uk
 // ---------------------------------------------------------------
 
-using cCoder.Data;
 using cCoder.Eventing;
 using Logging.HostedServices.Models;
 
@@ -21,7 +20,6 @@ public static class IServiceCollectionExtensions
 
         services.AddEventingHostedServices(
             configuration: hostedConfiguration.Eventing);
-        services.AddData(configuration: hostedConfiguration.Data);
         cCoder.Logging.IServiceCollectionExtensions
             .AddLoggingHostedServices(
                 services: services,

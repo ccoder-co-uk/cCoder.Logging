@@ -1,0 +1,13 @@
+// ---------------------------------------------------------------
+// Copyright (c) Paul.Ward@ccoder.co.uk
+// ---------------------------------------------------------------
+
+using Xunit;
+
+namespace Logging.HostedServices.AcceptanceTests.Infrastructure;
+
+[CollectionDefinition(Name)]
+public sealed class HostedServicesAcceptanceCollection : ICollectionFixture<HostedServicesAcceptanceFixture>
+{
+    public const string Name = "Hosted Services acceptance";
+}

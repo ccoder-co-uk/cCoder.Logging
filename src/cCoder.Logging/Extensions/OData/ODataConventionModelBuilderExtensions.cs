@@ -7,7 +7,7 @@ using Microsoft.OData.ModelBuilder;
 
 namespace cCoder.Logging.Extensions.OData;
 
-internal static class LoggingApiModelExtensions
+internal static class ODataConventionModelBuilderExtensions
 {
     internal static void ConfigureLoggingApiModel(
         this ODataConventionModelBuilder builder) =>

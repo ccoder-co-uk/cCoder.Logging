@@ -16,7 +16,7 @@ using Microsoft.OpenApi;
 
 namespace cCoder.Logging;
 
-internal static class LoggingServiceCollectionConfigurationExtensions
+public static partial class IServiceCollectionExtensions
 {
     internal static void RegisterLoggingConfiguration(
         this IServiceCollection services,
@@ -25,17 +25,13 @@ internal static class LoggingServiceCollectionConfigurationExtensions
         ArgumentNullException.ThrowIfNull(argument: configuration);
         services.AddSingleton(implementationInstance: configuration);
 
-        if (!string.IsNullOrWhiteSpace(
-            value: configuration.ConnectionString))
-        {
-            services.AddData(
-                configuration: new cCoder.Data.Models.DataConfiguration
-                {
-                    ConnectionString = configuration.ConnectionString,
-                    DebugInfo = configuration.DebugInfo,
-                    LogSQL = configuration.LogSQL,
-                });
-        }
+        services.AddData(
+            configuration: new cCoder.Data.Models.DataConfiguration
+            {
+                ConnectionString = configuration.ConnectionString,
+                DebugInfo = configuration.DebugInfo,
+                LogSQL = configuration.LogSQL,
+            });
 
         services.AddEventProviders(eventProviders: configuration.EventProviders);
     }
@@ -58,25 +54,27 @@ internal static class LoggingServiceCollectionConfigurationExtensions
             configureModel(obj: builder);
         }
 
-        AddAspNet(services: services);
+        services.AddAspNet();
 
         if (builder is null)
         {
-            AddApiDocumentation(
-                services: services,
+            services.AddApiDocumentation(
                 documentName: documentName,
                 configuration: configuration);
         }
 
-        IEdmModel routeModel = BuildRouteModel(configureModel: configureModel);
+        IEdmModel routeModel =
+            services.BuildRouteModel(
+                configureModel: configureModel);
         DefaultODataBatchHandler batchHandler = new();
 
         string rootPath = string.IsNullOrWhiteSpace(value: configuration.RootPath)
             ? $"Api/{documentName}"
             : configuration.RootPath;
 
-        services.AddControllers()
-            .AddOData(setupAction: options =>
+        IMvcBuilder mvcBuilder = services.AddControllers();
+
+        mvcBuilder.AddOData(setupAction: options =>
         {
             options.RouteOptions.EnableQualifiedOperationCall = false;
             options.EnableAttributeRouting = true;
@@ -93,17 +91,19 @@ internal static class LoggingServiceCollectionConfigurationExtensions
     }
 
     private static void AddApiDocumentation(
-        IServiceCollection services,
+        this IServiceCollection services,
         string documentName,
         LoggingConfiguration configuration) =>
         services.AddSwaggerGen(setupAction: options =>
         {
             options.ResolveConflictingActions(resolver: apiDescriptions => apiDescriptions.First());
-            AddSwaggerDocument(options: options, documentName: documentName);
+            services.AddSwaggerDocument(
+                options: options,
+                documentName: documentName);
 
             options.DocInclusionPredicate(
                 predicate: (swaggerDocumentName, apiDescription) =>
-                    ShouldIncludeInDocument(
+                    services.ShouldIncludeInDocument(
                         swaggerDocumentName: swaggerDocumentName,
                         relativePath: apiDescription.RelativePath,
                         documentName: documentName,
@@ -120,6 +120,7 @@ internal static class LoggingServiceCollectionConfigurationExtensions
         });
 
     private static void AddSwaggerDocument(
+        this IServiceCollection services,
         Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenOptions options,
         string documentName) =>
         options.SwaggerDoc(name: documentName, info: new OpenApiInfo
@@ -129,6 +130,7 @@ internal static class LoggingServiceCollectionConfigurationExtensions
         });
 
     private static bool ShouldIncludeInDocument(
+        this IServiceCollection services,
         string swaggerDocumentName,
         string relativePath,
         string documentName,
@@ -139,7 +141,9 @@ internal static class LoggingServiceCollectionConfigurationExtensions
             return false;
         }
 
-        string path = NormalizePath(relativePath: relativePath);
+        string path =
+            services.NormalizePath(
+                relativePath: relativePath);
 
         string rootPath = string.IsNullOrWhiteSpace(value: configuration.RootPath)
             ? $"Api/{documentName}"
@@ -149,28 +153,40 @@ internal static class LoggingServiceCollectionConfigurationExtensions
                 a: swaggerDocumentName,
                 b: documentName,
                 comparisonType: StringComparison.OrdinalIgnoreCase)
-            && MatchesContextRoute(path: path, rootPath: rootPath);
+            && services.MatchesContextRoute(
+                path: path,
+                rootPath: rootPath);
     }
 
-    private static bool MatchesContextRoute(string path, string rootPath)
+    private static bool MatchesContextRoute(
+        this IServiceCollection services,
+        string path,
+        string rootPath)
     {
-        string normalizedPath = NormalizePath(relativePath: rootPath);
+        string normalizedPath =
+            services.NormalizePath(
+                relativePath: rootPath);
 
         return path.Equals(value: normalizedPath, comparisonType: StringComparison.OrdinalIgnoreCase)
             || path.StartsWith(value: $"{normalizedPath}/", comparisonType: StringComparison.OrdinalIgnoreCase);
     }
 
-    private static string NormalizePath(string relativePath) =>
+    private static string NormalizePath(
+        this IServiceCollection services,
+        string relativePath) =>
         relativePath.StartsWith(value: '/') ? relativePath : $"/{relativePath}";
 
-    private static IEdmModel BuildRouteModel(Action<ODataConventionModelBuilder> configureModel)
+    private static IEdmModel BuildRouteModel(
+        this IServiceCollection services,
+        Action<ODataConventionModelBuilder> configureModel)
     {
         ODataConventionModelBuilder builder = new();
         configureModel(obj: builder);
         return builder.GetEdmModel();
     }
 
-    private static void AddAspNet(IServiceCollection services)
+    private static void AddAspNet(
+        this IServiceCollection services)
     {
         services.AddRouting();
         services.AddResponseCompression();

@@ -27,9 +27,6 @@ initialData: [
 key: "Logging:ConnectionString",
 value: configuration.CoreConnectionString),
                 new KeyValuePair<string, string>(
-                    key: "Data:ConnectionString",
-                    value: configuration.CoreConnectionString),
-                new KeyValuePair<string, string>(
                     key: "Logging:StoreLogEntries",
                     value: "false"),
                 new KeyValuePair<string, string>(

@@ -30,10 +30,6 @@
       "StandardElementType": "Model",
       "Properties": [
         {
-          "Name": "Data",
-          "Type": "cCoder.Data.Models.DataConfiguration"
-        },
-        {
           "Name": "Eventing",
           "Type": "cCoder.Eventing.Models.EventingConfiguration"
         },

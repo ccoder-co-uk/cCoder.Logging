@@ -9,7 +9,7 @@ using cCoder.Logging.Models.OData;
 
 namespace cCoder.Logging.Extensions.OData;
 
-internal static class MetadataTypeExtensions
+internal static class PropertyInfoExtensions
 {
     private static readonly Dictionary<Type, string> TypeNames = new()
     {
@@ -46,7 +46,8 @@ internal static class MetadataTypeExtensions
         { typeof(float?), "number" }
     };
 
-    internal static PropertyContainer CreatePropertyContainer(PropertyInfo property) =>
+    internal static PropertyContainer CreatePropertyContainer(
+        this PropertyInfo property) =>
         new()
         {
             Name = property.Name,

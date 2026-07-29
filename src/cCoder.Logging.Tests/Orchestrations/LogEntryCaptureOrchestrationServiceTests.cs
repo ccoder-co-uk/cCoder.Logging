@@ -3,7 +3,7 @@
 // ---------------------------------------------------------------
 
 using cCoder.Data.Models.Logging;
-using cCoder.Logging.Dependencies.Logging;
+using cCoder.Logging.Models;
 using cCoder.Logging.Services.Orchestrations;
 using cCoder.Logging.Services.Processings;
 using Microsoft.Extensions.Logging;

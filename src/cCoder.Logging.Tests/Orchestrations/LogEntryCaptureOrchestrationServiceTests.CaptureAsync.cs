@@ -3,7 +3,6 @@
 // ---------------------------------------------------------------
 
 using cCoder.Data.Models.Logging;
-using cCoder.Logging.Dependencies.Logging;
 using cCoder.Logging.Models;
 using Moq;
 using Xunit;

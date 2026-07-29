@@ -3,7 +3,6 @@
 // ---------------------------------------------------------------
 
 using cCoder.Logging.Brokers;
-using cCoder.Logging.Dependencies.Logging;
 using cCoder.Logging.Models;
 using cCoder.Logging.Services.Foundations;
 using cCoder.Logging.Services.Processings;

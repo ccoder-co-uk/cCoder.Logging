@@ -3,7 +3,6 @@
 // ---------------------------------------------------------------
 
 using Microsoft.Data.SqlClient;
-using Microsoft.Extensions.Configuration;
 
 namespace Apps.Shared.Testing;
 
@@ -25,42 +24,25 @@ internal sealed class AcceptanceTestConfiguration
 
     internal static AcceptanceTestConfiguration Load()
     {
-        IConfigurationRoot configuration = new ConfigurationBuilder()
-            .SetBasePath(basePath: AppContext.BaseDirectory)
-            .AddJsonFile(
-                path: "appsettings.testing.json",
-                optional: true)
-            .AddEnvironmentVariables()
-            .Build();
-
         string runSuffix = $"-acceptance-{Guid.NewGuid():N}";
 
         return new AcceptanceTestConfiguration(
             coreConnectionString: AddDatabaseSuffix(
-                connectionString:
-                    configuration["Logging:ConnectionString"]
-                    ?? configuration["Data:ConnectionString"]
-                    ?? string.Empty,
+                connectionString: ReadRequiredValue(
+                    variableName: "Logging__ConnectionString"),
                 suffix: runSuffix),
             securityConnectionString: AddDatabaseSuffix(
-                connectionString:
-                    configuration["Security:ConnectionString"]
-                    ?? string.Empty,
+                connectionString: ReadRequiredValue(
+                    variableName: "Security__ConnectionString"),
                 suffix: runSuffix),
-            securityDecryptionKey:
-                configuration["Security:DecryptionKey"]
-                ?? string.Empty);
+            securityDecryptionKey: ReadRequiredValue(
+                variableName: "Security__DecryptionKey"));
     }
 
     private static string AddDatabaseSuffix(
         string connectionString,
         string suffix)
     {
-        if (string.IsNullOrWhiteSpace(value: connectionString))
-        {
-            return string.Empty;
-        }
-
         SqlConnectionStringBuilder builder =
             new(connectionString: connectionString)
             {
@@ -72,10 +54,31 @@ internal sealed class AcceptanceTestConfiguration
 
         if (string.IsNullOrWhiteSpace(value: databaseName))
         {
-            return connectionString;
+            throw new InvalidOperationException(
+                "Acceptance test connection strings must name a database.");
         }
 
         builder.InitialCatalog = $"{databaseName}{suffix}";
         return builder.ConnectionString;
+    }
+
+    private static string ReadRequiredValue(string variableName)
+    {
+        string value =
+            Environment.GetEnvironmentVariable(variable: variableName)
+            ?? Environment.GetEnvironmentVariable(
+                variable: variableName,
+                target: EnvironmentVariableTarget.User)
+            ?? Environment.GetEnvironmentVariable(
+                variable: variableName,
+                target: EnvironmentVariableTarget.Machine);
+
+        if (!string.IsNullOrWhiteSpace(value: value))
+        {
+            return value;
+        }
+
+        throw new InvalidOperationException(
+            $"Required configuration environment variable '{variableName}' was not found.");
     }
 }

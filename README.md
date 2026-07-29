@@ -57,7 +57,6 @@ blank in `appsettings.json`, define these user-level or machine-level environmen
 variables, restart Visual Studio, and press F5:
 
 - `Logging__ConnectionString`
-- `Data__ConnectionString`
 - `Security__ConnectionString` (Web only)
 - `Security__DecryptionKey` (Web only)
 

@@ -6,13 +6,13 @@ using cCoder.Logging.Extensions.OData;
 using cCoder.Logging.Brokers.OData;
 using cCoder.Logging.Models.OData;
 using cCoder.Logging.Models;
+using cCoder.Logging.Models.Exceptions;
 using cCoder.Data.Extensions;
 using cCoder.Data.Models.Logging;
 using cCoder.Logging.Exposures;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Query;
-using Microsoft.AspNetCore.OData.Results;
 using Microsoft.AspNetCore.OData.Routing.Controllers;
 
 
@@ -25,21 +25,30 @@ public partial class LogEntryController(
     [HttpGet]
     public IActionResult GetMetadata()
     {
-        bool isExtendedMetaRequest = Request.Query["extend"] == "true";
+        try
+        {
+            bool isExtendedMetaRequest = Request.Query["extend"] == "true";
 
-        return isExtendedMetaRequest
-            ? Ok(
-                value: new LoggingModelBroker()
-                    .Build()
-                    .EDMModel.GetExtendedMetadataForType(
-                        context: "Logging",
-                        type: typeof(LogEntry))
-            )
-            : Ok(
-                value: new MetadataContainer(
-                    type: typeof(LogEntry),
-                    isEntity: true,
-                    hasEndpoint: true));
+            return isExtendedMetaRequest
+                ? Ok(
+                    value: new LoggingModelBroker()
+                        .Build()
+                        .EDMModel.GetExtendedMetadataForType(
+                            context: "Logging",
+                            type: typeof(LogEntry))
+                )
+                : Ok(
+                    value: new MetadataContainer(
+                        type: typeof(LogEntry),
+                        isEntity: true,
+                        hasEndpoint: true));
+        }
+        catch (Exception)
+        {
+            return StatusCode(
+                statusCode: StatusCodes.Status500InternalServerError,
+                value: "The log entry metadata request failed.");
+        }
     }
 
     [HttpGet]
@@ -51,8 +60,29 @@ public partial class LogEntryController(
         MaxAnyAllExpressionDepth = 5,
         MaxExpansionDepth = 5
     )]
-    public IActionResult Get(ODataQueryOptions<LogEntry> queryOptions) =>
-        Ok(value: logEntryManager.GetAllLogEntries());
+    public IActionResult Get()
+    {
+        try
+        {
+            return Ok(value: logEntryManager.GetAllLogEntries());
+        }
+        catch (LoggingValidationException)
+        {
+            return BadRequest(error: "The log entry request is invalid.");
+        }
+        catch (System.Security.SecurityException)
+        {
+            return StatusCode(
+                statusCode: StatusCodes.Status403Forbidden,
+                value: "The log entry request is forbidden.");
+        }
+        catch (Exception)
+        {
+            return StatusCode(
+                statusCode: StatusCodes.Status500InternalServerError,
+                value: "The log entry request failed.");
+        }
+    }
 
     [HttpGet]
     [AllowAnonymous]
@@ -66,12 +96,34 @@ public partial class LogEntryController(
     )]
     public IActionResult Get([FromRoute] int key)
     {
-        IQueryable<LogEntry> result = logEntryManager
-            .GetAllLogEntries()
-            .AsQueryable()
-            .Where(predicate: logEntry => logEntry.Id == key);
+        try
+        {
+            LogEntry logEntry = logEntryManager.GetLogEntry(
+                logEntryId: key);
 
-        return Ok(value: SingleResult.Create(queryable: result));
+            if (logEntry is null)
+            {
+                return NotFound();
+            }
+
+            return Ok(value: logEntry);
+        }
+        catch (LoggingValidationException)
+        {
+            return BadRequest(error: "The log entry request is invalid.");
+        }
+        catch (System.Security.SecurityException)
+        {
+            return StatusCode(
+                statusCode: StatusCodes.Status403Forbidden,
+                value: "The log entry request is forbidden.");
+        }
+        catch (Exception)
+        {
+            return StatusCode(
+                statusCode: StatusCodes.Status500InternalServerError,
+                value: "The log entry request failed.");
+        }
     }
 
     [HttpPost]
@@ -85,14 +137,35 @@ public partial class LogEntryController(
     )]
     public async Task<IActionResult> Post([FromBody] LogEntry newLogEntry)
     {
-        if (!ModelState.IsValid)
+        try
         {
-            return new cCoder.Logging.Extensions.OData.BadRequestResult(ModelState);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(modelState: ModelState);
+            }
+
+            LogEntry savedLogEntry = await logEntryManager.AddLogEntryAsync(
+                newLogEntry: newLogEntry);
+
+            return StatusCode(
+                statusCode: StatusCodes.Status201Created,
+                value: savedLogEntry);
         }
-
-        LogEntry savedLogEntry = await logEntryManager.AddLogEntryAsync(
-            newLogEntry: newLogEntry);
-
-        return Ok(value: savedLogEntry);
+        catch (LoggingValidationException)
+        {
+            return BadRequest(error: "The log entry request is invalid.");
+        }
+        catch (System.Security.SecurityException)
+        {
+            return StatusCode(
+                statusCode: StatusCodes.Status403Forbidden,
+                value: "The log entry request is forbidden.");
+        }
+        catch (Exception)
+        {
+            return StatusCode(
+                statusCode: StatusCodes.Status500InternalServerError,
+                value: "The log entry request failed.");
+        }
     }
 }

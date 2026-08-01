@@ -6,13 +6,13 @@ using cCoder.Logging.Extensions.OData;
 using cCoder.Logging.Brokers.OData;
 using cCoder.Logging.Models.OData;
 using cCoder.Logging.Models;
+using cCoder.Logging.Models.Exceptions;
 using cCoder.Data.Extensions;
 using cCoder.Data.Models.Logging;
 using cCoder.Logging.Exposures;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Query;
-using Microsoft.AspNetCore.OData.Results;
 using Microsoft.AspNetCore.OData.Routing.Controllers;
 
 
@@ -25,21 +25,30 @@ public partial class LogDataItemController(
     [HttpGet]
     public IActionResult GetMetadata()
     {
-        bool isExtendedMetaRequest = Request.Query["extend"] == "true";
+        try
+        {
+            bool isExtendedMetaRequest = Request.Query["extend"] == "true";
 
-        return isExtendedMetaRequest
-            ? Ok(
-                value: new LoggingModelBroker()
-                    .Build()
-                    .EDMModel.GetExtendedMetadataForType(
-                        context: "Logging",
-                        type: typeof(LogDataItem))
-            )
-            : Ok(
-                value: new MetadataContainer(
-                    type: typeof(LogDataItem),
-                    isEntity: true,
-                    hasEndpoint: true));
+            return isExtendedMetaRequest
+                ? Ok(
+                    value: new LoggingModelBroker()
+                        .Build()
+                        .EDMModel.GetExtendedMetadataForType(
+                            context: "Logging",
+                            type: typeof(LogDataItem))
+                )
+                : Ok(
+                    value: new MetadataContainer(
+                        type: typeof(LogDataItem),
+                        isEntity: true,
+                        hasEndpoint: true));
+        }
+        catch (Exception)
+        {
+            return StatusCode(
+                statusCode: StatusCodes.Status500InternalServerError,
+                value: "The log data item metadata request failed.");
+        }
     }
 
     [HttpGet]
@@ -51,8 +60,29 @@ public partial class LogDataItemController(
         MaxAnyAllExpressionDepth = 5,
         MaxExpansionDepth = 5
     )]
-    public IActionResult Get(ODataQueryOptions<LogDataItem> queryOptions) =>
-        Ok(value: logDataItemManager.GetAllLogDataItems());
+    public IActionResult Get()
+    {
+        try
+        {
+            return Ok(value: logDataItemManager.GetAllLogDataItems());
+        }
+        catch (LoggingValidationException)
+        {
+            return BadRequest(error: "The log data item request is invalid.");
+        }
+        catch (System.Security.SecurityException)
+        {
+            return StatusCode(
+                statusCode: StatusCodes.Status403Forbidden,
+                value: "The log data item request is forbidden.");
+        }
+        catch (Exception)
+        {
+            return StatusCode(
+                statusCode: StatusCodes.Status500InternalServerError,
+                value: "The log data item request failed.");
+        }
+    }
 
     [HttpGet]
     [AllowAnonymous]
@@ -66,12 +96,34 @@ public partial class LogDataItemController(
     )]
     public IActionResult Get([FromRoute] int key)
     {
-        IQueryable<LogDataItem> result = logDataItemManager
-            .GetAllLogDataItems()
-            .AsQueryable()
-            .Where(predicate: logDataItem => logDataItem.Id == key);
+        try
+        {
+            LogDataItem logDataItem = logDataItemManager.GetLogDataItem(
+                logDataItemId: key);
 
-        return Ok(value: SingleResult.Create(queryable: result));
+            if (logDataItem is null)
+            {
+                return NotFound();
+            }
+
+            return Ok(value: logDataItem);
+        }
+        catch (LoggingValidationException)
+        {
+            return BadRequest(error: "The log data item request is invalid.");
+        }
+        catch (System.Security.SecurityException)
+        {
+            return StatusCode(
+                statusCode: StatusCodes.Status403Forbidden,
+                value: "The log data item request is forbidden.");
+        }
+        catch (Exception)
+        {
+            return StatusCode(
+                statusCode: StatusCodes.Status500InternalServerError,
+                value: "The log data item request failed.");
+        }
     }
 
     [HttpPost]
@@ -85,14 +137,35 @@ public partial class LogDataItemController(
     )]
     public async Task<IActionResult> Post([FromBody] LogDataItem newLogDataItem)
     {
-        if (!ModelState.IsValid)
+        try
         {
-            return new cCoder.Logging.Extensions.OData.BadRequestResult(ModelState);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(modelState: ModelState);
+            }
+
+            LogDataItem savedLogDataItem = await logDataItemManager.AddLogDataItemAsync(
+                newLogDataItem: newLogDataItem);
+
+            return StatusCode(
+                statusCode: StatusCodes.Status201Created,
+                value: savedLogDataItem);
         }
-
-        LogDataItem savedLogDataItem = await logDataItemManager.AddLogDataItemAsync(
-            newLogDataItem: newLogDataItem);
-
-        return Ok(value: savedLogDataItem);
+        catch (LoggingValidationException)
+        {
+            return BadRequest(error: "The log data item request is invalid.");
+        }
+        catch (System.Security.SecurityException)
+        {
+            return StatusCode(
+                statusCode: StatusCodes.Status403Forbidden,
+                value: "The log data item request is forbidden.");
+        }
+        catch (Exception)
+        {
+            return StatusCode(
+                statusCode: StatusCodes.Status500InternalServerError,
+                value: "The log data item request failed.");
+        }
     }
 }

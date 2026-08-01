@@ -4,6 +4,7 @@
 
 using cCoder.Data.Models.Logging;
 using FluentAssertions;
+using System.Net;
 using System.Net.Http.Json;
 using Xunit;
 
@@ -22,8 +23,8 @@ public sealed partial class LogEntryControllerTests
 
         // Then
 
-        response.IsSuccessStatusCode.Should()
-            .BeTrue();
+        response.StatusCode.Should()
+            .Be(expected: HttpStatusCode.Created);
 
         LogEntry storedLogEntry = await FindLogEntryAsync(message: expectedLogEntry.Message);
 

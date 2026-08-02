@@ -39,7 +39,7 @@ jobs:
         run: dotnet build src/cCoder.Logging.slnx -c Release --no-restore -m:1 /p:Version="${{ steps.version.outputs.value }}"
 
       - name: Test
-        run: dotnet test src/cCoder.Logging.slnx -c Release --no-build
+        run: dotnet test src/cCoder.Logging.slnx -c Release --no-build -m:1
 
       - name: Pack
         run: |

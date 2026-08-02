@@ -40,7 +40,8 @@ internal sealed partial class LogEntryCaptureProcessingService(
                 logEntryCaptureRequest: logEntryCaptureRequest,
                 thread: thread);
 
-            if (!loggingConfiguration.StoreLogEntries)
+            if (!loggingConfiguration.StoreLogEntries
+                || !logEntryCaptureRequest.Persist)
             {
                 return operation;
             }

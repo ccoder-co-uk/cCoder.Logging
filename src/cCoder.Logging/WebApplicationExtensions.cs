@@ -9,6 +9,7 @@ using cCoder.Logging.Exposures.Hubs;
 using cCoder.Logging.Brokers.OData;
 using cCoder.Logging.Models.OData;
 using cCoder.Logging.Services.Foundations;
+using cCoder.Logging.Exposures;
 
 
 namespace cCoder.Logging;
@@ -25,6 +26,7 @@ public static partial class WebApplicationExtensions
     private static WebApplication UseLoggingExposure(this WebApplication app, ILogger log = null)
     {
         log?.LogInformation("Initialising Logging");
+        app.UseMiddleware<RequestLoggingMiddleware>();
         PopulateMetadataTypeCache(app);
         app.MapHub<LogHub>("/Api/Hubs/Logs");
         return app;

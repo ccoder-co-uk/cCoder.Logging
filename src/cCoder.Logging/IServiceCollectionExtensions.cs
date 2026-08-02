@@ -22,6 +22,7 @@ using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.OData.Edm;
 using Microsoft.OData.ModelBuilder;
 using Microsoft.OpenApi;
+using System.Threading.Channels;
 using AuthorizationBroker = cCoder.Logging.Brokers.AuthorizationBroker;
 using IAuthorizationBroker = cCoder.Logging.Brokers.IAuthorizationBroker;
 
@@ -85,6 +86,33 @@ public static partial class IServiceCollectionExtensions
     private static void AddExposures(
         this IServiceCollection services)
     {
+        services.AddSingleton<ILogEntryCaptureQueue>(
+            implementationFactory: provider =>
+            {
+                LoggingConfiguration configuration =
+                    provider.GetRequiredService<LoggingConfiguration>();
+
+                BoundedChannelFullMode fullMode =
+                    configuration.RequestLoggingQueueFullBehavior == RequestLoggingQueueFullBehavior.DropOldest
+                        ? BoundedChannelFullMode.DropOldest
+                        : BoundedChannelFullMode.Wait;
+
+                Channel<LogEntryCaptureRequest> channel =
+                    Channel.CreateBounded<LogEntryCaptureRequest>(
+                        options: new BoundedChannelOptions(configuration.RequestLoggingQueueCapacity)
+                        {
+                            AllowSynchronousContinuations = false,
+                            FullMode = fullMode,
+                            SingleReader = true,
+                            SingleWriter = false
+                        });
+
+                return new LogEntryCaptureQueue(channel: channel);
+            });
+        services.AddSingleton<IRequestLoggingCoordinator, RequestLoggingCoordinator>();
+        services.AddSingleton<IRequestLogQueueCoordinator, RequestLogQueueCoordinator>();
+        services.AddTransient<RequestLoggingMiddleware>();
+        services.AddHostedService<LogEntryCaptureWorker>();
         services.AddTransient<ILogDataItemManager, LogDataItemManager>();
         services.AddTransient<ILogEntryManager, LogEntryManager>();
         services.AddSingleton<ILoggerProvider, LoggingLoggerProvider>();

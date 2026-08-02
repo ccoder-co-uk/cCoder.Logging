@@ -15,6 +15,10 @@ public class LoggingConfiguration
         RetentionDays = 30;
         RetentionIntervalMinutes = 60;
         RootPath = "Api/Logging";
+        RequestLoggingEnabled = true;
+        RequestLoggingQueueCapacity = 1024;
+        RequestLoggingQueueFullBehavior = RequestLoggingQueueFullBehavior.DropNewest;
+        DatabaseMinimumLogLevel = LogLevel.Warning;
         EventProviders = [];
     }
 
@@ -28,5 +32,9 @@ public class LoggingConfiguration
     public int? DefaultAppId { get; set; }
     public string DefaultAppDomain { get; set; }
     public string RootPath { get; set; }
+    public bool RequestLoggingEnabled { get; set; }
+    public int RequestLoggingQueueCapacity { get; set; }
+    public RequestLoggingQueueFullBehavior RequestLoggingQueueFullBehavior { get; set; }
+    public LogLevel DatabaseMinimumLogLevel { get; set; }
     public EventProvider[] EventProviders { get; set; }
 }

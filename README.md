@@ -76,6 +76,14 @@ Logging behavior is configured through `LoggingConfiguration`:
   Fallback App aggregate root id for captured logs when the app cannot be resolved from the request domain.
 - `DefaultAppDomain`
   Fallback app/domain thread name for captured logs and stream messages.
+- `RequestLoggingEnabled`
+  Enables automatic HTTP request capture from `StartLoggingWeb`. Defaults to `true`.
+- `RequestLoggingQueueCapacity`
+  Maximum number of request and application log snapshots awaiting background storage. Defaults to `1024`.
+- `RequestLoggingQueueFullBehavior`
+  Selects whether queue pressure drops the newest or oldest snapshot. Defaults to `DropNewest`; request processing never waits for queue capacity.
+- `DatabaseMinimumLogLevel`
+  Minimum `ILogger` level persisted to SQL. Defaults to `Warning`. Useful entries below the threshold remain available to LogHub streaming. HTTP request summaries are unaffected by this threshold.
 
 Acceptance tests read the same structured environment variables. A single shared
 test configuration source derives isolated database names by appending

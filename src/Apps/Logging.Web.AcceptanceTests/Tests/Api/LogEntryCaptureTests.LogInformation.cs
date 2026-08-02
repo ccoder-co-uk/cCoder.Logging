@@ -5,6 +5,8 @@
 using cCoder.Data.Models.Logging;
 using FluentAssertions;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
 using Xunit;
 
 namespace Logging.Web.AcceptanceTests.Tests.Api;
@@ -12,7 +14,26 @@ namespace Logging.Web.AcceptanceTests.Tests.Api;
 public sealed partial class LogEntryCaptureTests
 {
     [Fact]
-    public async Task ShouldPersistLogEntryWhenLogInformation()
+    public async Task ShouldPersistExactlyOneLogEntryForCompletedHttpRequest()
+    {
+        // Given
+        string requestPath = $"/request-log-{Guid.NewGuid():N}";
+
+        // When
+        using HttpResponseMessage response = await fixture.Client.GetAsync(
+            requestUri: requestPath);
+
+        int storedCount = await WaitForRequestLogCountAsync(
+            requestPath: requestPath);
+
+        // Then
+
+        storedCount.Should()
+            .Be(expected: 1);
+    }
+
+    [Fact]
+    public async Task ShouldNotPersistLogEntryWhenLogInformation()
     {
         // Given
         string expectedMessage = $"captured-log-{Guid.NewGuid():N}";
@@ -20,34 +41,38 @@ public sealed partial class LogEntryCaptureTests
 
         // When
         logger.LogInformation(message: "{Message}", args: expectedMessage);
-        LogEntry storedLogEntry = await WaitForLogEntryAsync(message: expectedMessage);
+        await Task.Delay(millisecondsDelay: 250);
+        LogEntry storedLogEntry = await FindLogEntryAsync(message: expectedMessage);
 
         // Then
 
         storedLogEntry.Should()
-            .NotBeNull();
-
-        storedLogEntry.AppId.Should()
-            .Be(expected: 1);
-
-        storedLogEntry.AppName.Should()
-            .Be(expected: "localhost");
+            .BeNull();
     }
 
-    private async Task<LogEntry> WaitForLogEntryAsync(string message)
+    private async Task<int> WaitForRequestLogCountAsync(string requestPath)
     {
-        for (int attempt = 0; attempt < 20; attempt++)
+        for (int attempt = 0; attempt < 40; attempt++)
         {
-            LogEntry logEntry = await FindLogEntryAsync(message: message);
+            using IServiceScope scope = fixture.Factory.Services.CreateScope();
 
-            if (logEntry is not null)
+            using cCoder.Data.CoreDataContext context = scope.ServiceProvider
+                .GetRequiredService<cCoder.Data.ICoreContextFactory>()
+                .CreateCoreContext();
+
+            int storedCount = await context.Logs
+                .IgnoreQueryFilters()
+                .CountAsync(predicate: entry =>
+                    entry.Message.Contains(value: requestPath));
+
+            if (storedCount > 0)
             {
-                return logEntry;
+                return storedCount;
             }
 
-            await Task.Delay(millisecondsDelay: 100);
+            await Task.Delay(millisecondsDelay: 250);
         }
 
-        return null;
+        return 0;
     }
 }

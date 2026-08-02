@@ -1153,6 +1153,124 @@
       ]
     },
     {
+      "Name": "cCoder.Logging.Brokers.LogEntryCaptureQueue",
+      "StandardElementType": "Broker",
+      "LineNumber": 10,
+      "IsPublic": false,
+      "Kind": "Class",
+      "BaseType": null,
+      "Interfaces": [
+        {
+          "Id": "cCoder.Logging:cCoder.Logging.Brokers.ILogEntryCaptureQueue",
+          "FullName": "cCoder.Logging.Brokers.ILogEntryCaptureQueue",
+          "Name": "ILogEntryCaptureQueue",
+          "Namespace": "cCoder.Logging.Brokers",
+          "AssemblyName": "cCoder.Logging",
+          "Kind": "Interface",
+          "IsInCurrentProject": true,
+          "StandardElementType": "Broker"
+        }
+      ],
+      "Properties": [],
+      "Methods": [
+        {
+          "Id": "cCoder.Logging.Brokers.LogEntryCaptureQueue.Complete()",
+          "Name": "Complete",
+          "LineNumber": 23,
+          "Inputs": [],
+          "ReturnType": "System.Void",
+          "Implements": [
+            "cCoder.Logging.Brokers.ILogEntryCaptureQueue.Complete()"
+          ],
+          "Calls": [
+            {
+              "TypeName": "System.Threading.Channels.ChannelWriter\u003CT\u003E",
+              "MethodName": "TryComplete",
+              "MethodId": "System.Threading.Channels.ChannelWriter\u003CT\u003E.TryComplete(System.Exception?)",
+              "StandardElementType": "Dependency",
+              "IsDependencyBoundary": true
+            }
+          ],
+          "PossibleExceptionTypes": [],
+          "IncomingExceptionTypes": [],
+          "ThrowsExceptionTypes": [],
+          "HttpMethods": [],
+          "HttpResponses": [],
+          "IsHttpRequestHandler": false,
+          "IsODataControllerAction": false,
+          "HasFromBodyParameter": false,
+          "HasKeyParameter": false,
+          "HandlesNullWithNotFound": false,
+          "HasTryCatch": false
+        },
+        {
+          "Id": "cCoder.Logging.Brokers.LogEntryCaptureQueue.ReadAllAsync()",
+          "Name": "ReadAllAsync",
+          "LineNumber": 20,
+          "Inputs": [],
+          "ReturnType": "System.Collections.Generic.IAsyncEnumerable\u003CcCoder.Logging.Models.LogEntryCaptureRequest\u003E",
+          "Implements": [
+            "cCoder.Logging.Brokers.ILogEntryCaptureQueue.ReadAllAsync()"
+          ],
+          "Calls": [
+            {
+              "TypeName": "System.Threading.Channels.ChannelReader\u003CT\u003E",
+              "MethodName": "ReadAllAsync",
+              "MethodId": "System.Threading.Channels.ChannelReader\u003CT\u003E.ReadAllAsync(System.Threading.CancellationToken)",
+              "StandardElementType": "Dependency",
+              "IsDependencyBoundary": true
+            }
+          ],
+          "PossibleExceptionTypes": [],
+          "IncomingExceptionTypes": [],
+          "ThrowsExceptionTypes": [],
+          "HttpMethods": [],
+          "HttpResponses": [],
+          "IsHttpRequestHandler": false,
+          "IsODataControllerAction": false,
+          "HasFromBodyParameter": false,
+          "HasKeyParameter": false,
+          "HandlesNullWithNotFound": false,
+          "HasTryCatch": false
+        },
+        {
+          "Id": "cCoder.Logging.Brokers.LogEntryCaptureQueue.TryEnqueue(cCoder.Logging.Models.LogEntryCaptureRequest)",
+          "Name": "TryEnqueue",
+          "LineNumber": 17,
+          "Inputs": [
+            {
+              "Name": "request",
+              "Type": "cCoder.Logging.Models.LogEntryCaptureRequest"
+            }
+          ],
+          "ReturnType": "System.Boolean",
+          "Implements": [
+            "cCoder.Logging.Brokers.ILogEntryCaptureQueue.TryEnqueue(cCoder.Logging.Models.LogEntryCaptureRequest)"
+          ],
+          "Calls": [
+            {
+              "TypeName": "System.Threading.Channels.ChannelWriter\u003CT\u003E",
+              "MethodName": "TryWrite",
+              "MethodId": "System.Threading.Channels.ChannelWriter\u003CT\u003E.TryWrite(T)",
+              "StandardElementType": "Dependency",
+              "IsDependencyBoundary": true
+            }
+          ],
+          "PossibleExceptionTypes": [],
+          "IncomingExceptionTypes": [],
+          "ThrowsExceptionTypes": [],
+          "HttpMethods": [],
+          "HttpResponses": [],
+          "IsHttpRequestHandler": false,
+          "IsODataControllerAction": false,
+          "HasFromBodyParameter": false,
+          "HasKeyParameter": false,
+          "HandlesNullWithNotFound": false,
+          "HasTryCatch": false
+        }
+      ]
+    },
+    {
       "Name": "cCoder.Logging.Brokers.LogEntryEventBroker",
       "StandardElementType": "Broker",
       "LineNumber": 20,
@@ -1590,7 +1708,7 @@
     {
       "Name": "cCoder.Logging.Dependencies.Logging.LoggingLogger",
       "StandardElementType": "Dependency",
-      "LineNumber": 18,
+      "LineNumber": 23,
       "IsPublic": false,
       "Kind": "Class",
       "BaseType": {
@@ -1609,7 +1727,7 @@
         {
           "Id": "cCoder.Logging.Dependencies.Logging.LoggingLogger.BeginScope(TState)",
           "Name": "BeginScope",
-          "LineNumber": 24,
+          "LineNumber": 28,
           "Inputs": [
             {
               "Name": "state",
@@ -1634,7 +1752,7 @@
         {
           "Id": "cCoder.Logging.Dependencies.Logging.LoggingLogger.IsEnabled(LogLevel)",
           "Name": "IsEnabled",
-          "LineNumber": 27,
+          "LineNumber": 31,
           "Inputs": [
             {
               "Name": "logLevel",
@@ -1659,7 +1777,7 @@
         {
           "Id": "cCoder.Logging.Dependencies.Logging.LoggingLogger.Log(LogLevel,EventId,TState,System.Exception,System.Func\u003CTState, System.Exception, System.String\u003E)",
           "Name": "Log",
-          "LineNumber": 29,
+          "LineNumber": 33,
           "Inputs": [
             {
               "Name": "logLevel",
@@ -1698,14 +1816,23 @@
               "MethodId": "System.String.IsNullOrWhiteSpace(System.String?)",
               "StandardElementType": "Dependency",
               "IsDependencyBoundary": true
+            },
+            {
+              "TypeName": "System.String",
+              "MethodName": "StartsWith",
+              "MethodId": "System.String.StartsWith(System.String,System.StringComparison)",
+              "StandardElementType": "Dependency",
+              "IsDependencyBoundary": true
+            },
+            {
+              "TypeName": "cCoder.Logging.Brokers.ILogEntryCaptureQueue",
+              "MethodName": "TryEnqueue",
+              "MethodId": "cCoder.Logging.Brokers.ILogEntryCaptureQueue.TryEnqueue(cCoder.Logging.Models.LogEntryCaptureRequest)",
+              "StandardElementType": "Broker",
+              "IsDependencyBoundary": false
             }
           ],
-          "PossibleExceptionTypes": [
-            "Microsoft.EntityFrameworkCore.DbUpdateConcurrencyException",
-            "cCoder.Logging.Models.Exceptions.LoggingDependencyException",
-            "cCoder.Logging.Models.Exceptions.LoggingServiceException",
-            "cCoder.Logging.Models.Exceptions.LoggingValidationException"
-          ],
+          "PossibleExceptionTypes": [],
           "IncomingExceptionTypes": [],
           "ThrowsExceptionTypes": [],
           "HttpMethods": [],
@@ -1741,7 +1868,7 @@
         {
           "Id": "cCoder.Logging.Dependencies.Logging.LoggingLoggerProvider.CreateLogger(System.String)",
           "Name": "CreateLogger",
-          "LineNumber": 12,
+          "LineNumber": 14,
           "Inputs": [
             {
               "Name": "categoryName",
@@ -1766,7 +1893,7 @@
         {
           "Id": "cCoder.Logging.Dependencies.Logging.LoggingLoggerProvider.Dispose()",
           "Name": "Dispose",
-          "LineNumber": 15,
+          "LineNumber": 20,
           "Inputs": [],
           "ReturnType": "System.Void",
           "Implements": [],
@@ -2366,6 +2493,60 @@
           "HasKeyParameter": false,
           "HandlesNullWithNotFound": false,
           "HasTryCatch": true
+        }
+      ]
+    },
+    {
+      "Name": "cCoder.Logging.Exposures.HostedServices.LogEntryCaptureWorker",
+      "StandardElementType": "Exposure",
+      "LineNumber": 8,
+      "IsPublic": false,
+      "Kind": "Class",
+      "BaseType": {
+        "Id": "cCoder.Logging:BackgroundService",
+        "FullName": "BackgroundService",
+        "Name": "BackgroundService",
+        "Namespace": "\u003Cglobal namespace\u003E",
+        "AssemblyName": "cCoder.Logging",
+        "Kind": "Class",
+        "IsInCurrentProject": true,
+        "StandardElementType": "Dependency"
+      },
+      "Interfaces": [],
+      "Properties": [],
+      "Methods": [
+        {
+          "Id": "cCoder.Logging.Exposures.HostedServices.LogEntryCaptureWorker.StopAsync(System.Threading.CancellationToken)",
+          "Name": "StopAsync",
+          "LineNumber": 15,
+          "Inputs": [
+            {
+              "Name": "cancellationToken",
+              "Type": "System.Threading.CancellationToken"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.Task",
+          "Implements": [],
+          "Calls": [
+            {
+              "TypeName": "cCoder.Logging.IRequestLogQueueCoordinator",
+              "MethodName": "Complete",
+              "MethodId": "cCoder.Logging.IRequestLogQueueCoordinator.Complete()",
+              "StandardElementType": "Unknown",
+              "IsDependencyBoundary": false
+            }
+          ],
+          "PossibleExceptionTypes": [],
+          "IncomingExceptionTypes": [],
+          "ThrowsExceptionTypes": [],
+          "HttpMethods": [],
+          "HttpResponses": [],
+          "IsHttpRequestHandler": false,
+          "IsODataControllerAction": false,
+          "HasFromBodyParameter": false,
+          "HasKeyParameter": false,
+          "HandlesNullWithNotFound": false,
+          "HasTryCatch": false
         }
       ]
     },
@@ -3819,6 +4000,26 @@
       ]
     },
     {
+      "Name": "cCoder.Logging.Exposures.RequestLoggingMiddleware",
+      "StandardElementType": "Exposure",
+      "LineNumber": 8,
+      "IsPublic": false,
+      "Kind": "Class",
+      "BaseType": {
+        "Id": "cCoder.Logging:IMiddleware",
+        "FullName": "IMiddleware",
+        "Name": "IMiddleware",
+        "Namespace": "\u003Cglobal namespace\u003E",
+        "AssemblyName": "cCoder.Logging",
+        "Kind": "Class",
+        "IsInCurrentProject": true,
+        "StandardElementType": "Dependency"
+      },
+      "Interfaces": [],
+      "Properties": [],
+      "Methods": []
+    },
+    {
       "Name": "cCoder.Logging.Extensions.LoggingConfigurationExtensions",
       "StandardElementType": "Exposure",
       "LineNumber": 10,
@@ -4489,7 +4690,7 @@
         {
           "Id": "cCoder.Logging.IServiceCollectionExtensions.AddLoggingHostedServices(IServiceCollection,System.Action\u003CcCoder.Logging.Models.LoggingConfiguration\u003E)",
           "Name": "AddLoggingHostedServices",
-          "LineNumber": 61,
+          "LineNumber": 62,
           "Inputs": [
             {
               "Name": "services",
@@ -4533,7 +4734,7 @@
         {
           "Id": "cCoder.Logging.IServiceCollectionExtensions.AddLoggingHostedServices(IServiceCollection,cCoder.Logging.Models.LoggingConfiguration)",
           "Name": "AddLoggingHostedServices",
-          "LineNumber": 70,
+          "LineNumber": 71,
           "Inputs": [
             {
               "Name": "services",
@@ -4562,7 +4763,7 @@
         {
           "Id": "cCoder.Logging.IServiceCollectionExtensions.AddLoggingWeb(IServiceCollection,System.Action\u003CcCoder.Logging.Models.LoggingConfiguration\u003E,Microsoft.OData.ModelBuilder.ODataConventionModelBuilder)",
           "Name": "AddLoggingWeb",
-          "LineNumber": 33,
+          "LineNumber": 34,
           "Inputs": [
             {
               "Name": "services",
@@ -4610,7 +4811,7 @@
         {
           "Id": "cCoder.Logging.IServiceCollectionExtensions.AddLoggingWeb(IServiceCollection,cCoder.Logging.Models.LoggingConfiguration,Microsoft.OData.ModelBuilder.ODataConventionModelBuilder)",
           "Name": "AddLoggingWeb",
-          "LineNumber": 43,
+          "LineNumber": 44,
           "Inputs": [
             {
               "Name": "services",
@@ -4886,6 +5087,10 @@
           "Type": "System.String"
         },
         {
+          "Name": "Persist",
+          "Type": "System.Boolean"
+        },
+        {
           "Name": "RequestDomain",
           "Type": "System.String"
         }
@@ -4917,6 +5122,10 @@
           "Type": "System.String"
         },
         {
+          "Name": "DatabaseMinimumLogLevel",
+          "Type": "LogLevel"
+        },
+        {
           "Name": "DebugInfo",
           "Type": "System.Boolean"
         },
@@ -4935,6 +5144,18 @@
         {
           "Name": "LogSQL",
           "Type": "System.Boolean"
+        },
+        {
+          "Name": "RequestLoggingEnabled",
+          "Type": "System.Boolean"
+        },
+        {
+          "Name": "RequestLoggingQueueCapacity",
+          "Type": "System.Int32"
+        },
+        {
+          "Name": "RequestLoggingQueueFullBehavior",
+          "Type": "cCoder.Logging.Models.RequestLoggingQueueFullBehavior"
         },
         {
           "Name": "RetentionDays",
@@ -5320,6 +5541,170 @@
         }
       ],
       "Methods": []
+    },
+    {
+      "Name": "cCoder.Logging.RequestLogQueueCoordinator",
+      "StandardElementType": "Unknown",
+      "LineNumber": 11,
+      "IsPublic": false,
+      "Kind": "Class",
+      "BaseType": null,
+      "Interfaces": [
+        {
+          "Id": "cCoder.Logging:cCoder.Logging.IRequestLogQueueCoordinator",
+          "FullName": "cCoder.Logging.IRequestLogQueueCoordinator",
+          "Name": "IRequestLogQueueCoordinator",
+          "Namespace": "cCoder.Logging",
+          "AssemblyName": "cCoder.Logging",
+          "Kind": "Interface",
+          "IsInCurrentProject": true,
+          "StandardElementType": "Unknown"
+        }
+      ],
+      "Properties": [],
+      "Methods": [
+        {
+          "Id": "cCoder.Logging.RequestLogQueueCoordinator.Complete()",
+          "Name": "Complete",
+          "LineNumber": 26,
+          "Inputs": [],
+          "ReturnType": "System.Void",
+          "Implements": [
+            "cCoder.Logging.IRequestLogQueueCoordinator.Complete()"
+          ],
+          "Calls": [
+            {
+              "TypeName": "cCoder.Logging.Brokers.ILogEntryCaptureQueue",
+              "MethodName": "Complete",
+              "MethodId": "cCoder.Logging.Brokers.ILogEntryCaptureQueue.Complete()",
+              "StandardElementType": "Broker",
+              "IsDependencyBoundary": false
+            }
+          ],
+          "PossibleExceptionTypes": [],
+          "IncomingExceptionTypes": [],
+          "ThrowsExceptionTypes": [],
+          "HttpMethods": [],
+          "HttpResponses": [],
+          "IsHttpRequestHandler": false,
+          "IsODataControllerAction": false,
+          "HasFromBodyParameter": false,
+          "HasKeyParameter": false,
+          "HandlesNullWithNotFound": false,
+          "HasTryCatch": false
+        },
+        {
+          "Id": "cCoder.Logging.RequestLogQueueCoordinator.RunAsync()",
+          "Name": "RunAsync",
+          "LineNumber": 18,
+          "Inputs": [],
+          "ReturnType": "System.Threading.Tasks.Task",
+          "Implements": [
+            "cCoder.Logging.IRequestLogQueueCoordinator.RunAsync()"
+          ],
+          "Calls": [
+            {
+              "TypeName": "cCoder.Logging.Brokers.ILogEntryCaptureQueue",
+              "MethodName": "ReadAllAsync",
+              "MethodId": "cCoder.Logging.Brokers.ILogEntryCaptureQueue.ReadAllAsync()",
+              "StandardElementType": "Broker",
+              "IsDependencyBoundary": false
+            }
+          ],
+          "PossibleExceptionTypes": [
+            "Microsoft.EntityFrameworkCore.DbUpdateConcurrencyException",
+            "cCoder.Logging.Models.Exceptions.LoggingDependencyException",
+            "cCoder.Logging.Models.Exceptions.LoggingServiceException",
+            "cCoder.Logging.Models.Exceptions.LoggingValidationException"
+          ],
+          "IncomingExceptionTypes": [],
+          "ThrowsExceptionTypes": [],
+          "HttpMethods": [],
+          "HttpResponses": [],
+          "IsHttpRequestHandler": false,
+          "IsODataControllerAction": false,
+          "HasFromBodyParameter": false,
+          "HasKeyParameter": false,
+          "HandlesNullWithNotFound": false,
+          "HasTryCatch": false
+        }
+      ]
+    },
+    {
+      "Name": "cCoder.Logging.RequestLoggingCoordinator",
+      "StandardElementType": "Unknown",
+      "LineNumber": 14,
+      "IsPublic": false,
+      "Kind": "Class",
+      "BaseType": null,
+      "Interfaces": [
+        {
+          "Id": "cCoder.Logging:cCoder.Logging.IRequestLoggingCoordinator",
+          "FullName": "cCoder.Logging.IRequestLoggingCoordinator",
+          "Name": "IRequestLoggingCoordinator",
+          "Namespace": "cCoder.Logging",
+          "AssemblyName": "cCoder.Logging",
+          "Kind": "Interface",
+          "IsInCurrentProject": true,
+          "StandardElementType": "Unknown"
+        }
+      ],
+      "Properties": [],
+      "Methods": [
+        {
+          "Id": "cCoder.Logging.RequestLoggingCoordinator.CaptureRequestAsync(HttpContext,RequestDelegate)",
+          "Name": "CaptureRequestAsync",
+          "LineNumber": 21,
+          "Inputs": [
+            {
+              "Name": "context",
+              "Type": "HttpContext"
+            },
+            {
+              "Name": "next",
+              "Type": "RequestDelegate"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.Task",
+          "Implements": [
+            "cCoder.Logging.IRequestLoggingCoordinator.CaptureRequestAsync(HttpContext,RequestDelegate)"
+          ],
+          "Calls": [
+            {
+              "TypeName": "System.Diagnostics.Stopwatch",
+              "MethodName": "GetElapsedTime",
+              "MethodId": "System.Diagnostics.Stopwatch.GetElapsedTime(System.Int64)",
+              "StandardElementType": "Dependency",
+              "IsDependencyBoundary": true
+            },
+            {
+              "TypeName": "System.Diagnostics.Stopwatch",
+              "MethodName": "GetTimestamp",
+              "MethodId": "System.Diagnostics.Stopwatch.GetTimestamp()",
+              "StandardElementType": "Dependency",
+              "IsDependencyBoundary": true
+            },
+            {
+              "TypeName": "cCoder.Logging.Brokers.ILogEntryCaptureQueue",
+              "MethodName": "TryEnqueue",
+              "MethodId": "cCoder.Logging.Brokers.ILogEntryCaptureQueue.TryEnqueue(cCoder.Logging.Models.LogEntryCaptureRequest)",
+              "StandardElementType": "Broker",
+              "IsDependencyBoundary": false
+            }
+          ],
+          "PossibleExceptionTypes": [],
+          "IncomingExceptionTypes": [],
+          "ThrowsExceptionTypes": [],
+          "HttpMethods": [],
+          "HttpResponses": [],
+          "IsHttpRequestHandler": false,
+          "IsODataControllerAction": false,
+          "HasFromBodyParameter": false,
+          "HasKeyParameter": false,
+          "HandlesNullWithNotFound": false,
+          "HasTryCatch": false
+        }
+      ]
     },
     {
       "Name": "cCoder.Logging.Services.Foundations.Events.LogDataItemEventService",
@@ -9201,7 +9586,7 @@
     {
       "Name": "cCoder.Logging.WebApplicationExtensions",
       "StandardElementType": "App",
-      "LineNumber": 16,
+      "LineNumber": 17,
       "IsPublic": true,
       "Kind": "Class",
       "BaseType": null,
@@ -9211,7 +9596,7 @@
         {
           "Id": "cCoder.Logging.WebApplicationExtensions.StartLoggingHostedServices(WebApplication)",
           "Name": "StartLoggingHostedServices",
-          "LineNumber": 23,
+          "LineNumber": 24,
           "Inputs": [
             {
               "Name": "app",
@@ -9236,7 +9621,7 @@
         {
           "Id": "cCoder.Logging.WebApplicationExtensions.StartLoggingWeb(WebApplication,ILogger)",
           "Name": "StartLoggingWeb",
-          "LineNumber": 20,
+          "LineNumber": 21,
           "Inputs": [
             {
               "Name": "app",
@@ -9830,6 +10215,83 @@
             }
           ],
           "ReturnType": "System.Threading.Tasks.ValueTask\u003CcCoder.Data.Models.Logging.LogEntry\u003E",
+          "Implements": [],
+          "Calls": [],
+          "PossibleExceptionTypes": [],
+          "IncomingExceptionTypes": [],
+          "ThrowsExceptionTypes": [],
+          "HttpMethods": [],
+          "HttpResponses": [],
+          "IsHttpRequestHandler": false,
+          "IsODataControllerAction": false,
+          "HasFromBodyParameter": false,
+          "HasKeyParameter": false,
+          "HandlesNullWithNotFound": false,
+          "HasTryCatch": false
+        }
+      ]
+    },
+    {
+      "Name": "cCoder.Logging.Brokers.ILogEntryCaptureQueue",
+      "StandardElementType": "Broker",
+      "LineNumber": 9,
+      "IsPublic": false,
+      "Kind": "Interface",
+      "BaseType": null,
+      "Interfaces": [],
+      "Properties": [],
+      "Methods": [
+        {
+          "Id": "cCoder.Logging.Brokers.ILogEntryCaptureQueue.Complete()",
+          "Name": "Complete",
+          "LineNumber": 13,
+          "Inputs": [],
+          "ReturnType": "System.Void",
+          "Implements": [],
+          "Calls": [],
+          "PossibleExceptionTypes": [],
+          "IncomingExceptionTypes": [],
+          "ThrowsExceptionTypes": [],
+          "HttpMethods": [],
+          "HttpResponses": [],
+          "IsHttpRequestHandler": false,
+          "IsODataControllerAction": false,
+          "HasFromBodyParameter": false,
+          "HasKeyParameter": false,
+          "HandlesNullWithNotFound": false,
+          "HasTryCatch": false
+        },
+        {
+          "Id": "cCoder.Logging.Brokers.ILogEntryCaptureQueue.ReadAllAsync()",
+          "Name": "ReadAllAsync",
+          "LineNumber": 12,
+          "Inputs": [],
+          "ReturnType": "System.Collections.Generic.IAsyncEnumerable\u003CcCoder.Logging.Models.LogEntryCaptureRequest\u003E",
+          "Implements": [],
+          "Calls": [],
+          "PossibleExceptionTypes": [],
+          "IncomingExceptionTypes": [],
+          "ThrowsExceptionTypes": [],
+          "HttpMethods": [],
+          "HttpResponses": [],
+          "IsHttpRequestHandler": false,
+          "IsODataControllerAction": false,
+          "HasFromBodyParameter": false,
+          "HasKeyParameter": false,
+          "HandlesNullWithNotFound": false,
+          "HasTryCatch": false
+        },
+        {
+          "Id": "cCoder.Logging.Brokers.ILogEntryCaptureQueue.TryEnqueue(cCoder.Logging.Models.LogEntryCaptureRequest)",
+          "Name": "TryEnqueue",
+          "LineNumber": 11,
+          "Inputs": [
+            {
+              "Name": "request",
+              "Type": "cCoder.Logging.Models.LogEntryCaptureRequest"
+            }
+          ],
+          "ReturnType": "System.Boolean",
           "Implements": [],
           "Calls": [],
           "PossibleExceptionTypes": [],
@@ -10578,6 +11040,99 @@
             }
           ],
           "ReturnType": "System.Threading.Tasks.ValueTask\u003CcCoder.Data.Models.Logging.LogEntry\u003E",
+          "Implements": [],
+          "Calls": [],
+          "PossibleExceptionTypes": [],
+          "IncomingExceptionTypes": [],
+          "ThrowsExceptionTypes": [],
+          "HttpMethods": [],
+          "HttpResponses": [],
+          "IsHttpRequestHandler": false,
+          "IsODataControllerAction": false,
+          "HasFromBodyParameter": false,
+          "HasKeyParameter": false,
+          "HandlesNullWithNotFound": false,
+          "HasTryCatch": false
+        }
+      ]
+    },
+    {
+      "Name": "cCoder.Logging.IRequestLogQueueCoordinator",
+      "StandardElementType": "Unknown",
+      "LineNumber": 7,
+      "IsPublic": false,
+      "Kind": "Interface",
+      "BaseType": null,
+      "Interfaces": [],
+      "Properties": [],
+      "Methods": [
+        {
+          "Id": "cCoder.Logging.IRequestLogQueueCoordinator.Complete()",
+          "Name": "Complete",
+          "LineNumber": 10,
+          "Inputs": [],
+          "ReturnType": "System.Void",
+          "Implements": [],
+          "Calls": [],
+          "PossibleExceptionTypes": [],
+          "IncomingExceptionTypes": [],
+          "ThrowsExceptionTypes": [],
+          "HttpMethods": [],
+          "HttpResponses": [],
+          "IsHttpRequestHandler": false,
+          "IsODataControllerAction": false,
+          "HasFromBodyParameter": false,
+          "HasKeyParameter": false,
+          "HandlesNullWithNotFound": false,
+          "HasTryCatch": false
+        },
+        {
+          "Id": "cCoder.Logging.IRequestLogQueueCoordinator.RunAsync()",
+          "Name": "RunAsync",
+          "LineNumber": 9,
+          "Inputs": [],
+          "ReturnType": "System.Threading.Tasks.Task",
+          "Implements": [],
+          "Calls": [],
+          "PossibleExceptionTypes": [],
+          "IncomingExceptionTypes": [],
+          "ThrowsExceptionTypes": [],
+          "HttpMethods": [],
+          "HttpResponses": [],
+          "IsHttpRequestHandler": false,
+          "IsODataControllerAction": false,
+          "HasFromBodyParameter": false,
+          "HasKeyParameter": false,
+          "HandlesNullWithNotFound": false,
+          "HasTryCatch": false
+        }
+      ]
+    },
+    {
+      "Name": "cCoder.Logging.IRequestLoggingCoordinator",
+      "StandardElementType": "Unknown",
+      "LineNumber": 7,
+      "IsPublic": false,
+      "Kind": "Interface",
+      "BaseType": null,
+      "Interfaces": [],
+      "Properties": [],
+      "Methods": [
+        {
+          "Id": "cCoder.Logging.IRequestLoggingCoordinator.CaptureRequestAsync(HttpContext,RequestDelegate)",
+          "Name": "CaptureRequestAsync",
+          "LineNumber": 9,
+          "Inputs": [
+            {
+              "Name": "context",
+              "Type": "HttpContext"
+            },
+            {
+              "Name": "next",
+              "Type": "RequestDelegate"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.Task",
           "Implements": [],
           "Calls": [],
           "PossibleExceptionTypes": [],
@@ -12622,12 +13177,32 @@
   ],
   "Links": [
     {
+      "FromType": "cCoder.Logging.Dependencies.Logging.LoggingLogger",
+      "ToType": "cCoder.Logging.Brokers.LogEntryCaptureQueue"
+    },
+    {
+      "FromType": "cCoder.Logging.Dependencies.Logging.LoggingLogger",
+      "ToType": "cCoder.Logging.Models.LoggingConfiguration"
+    },
+    {
+      "FromType": "cCoder.Logging.Dependencies.Logging.LoggingLoggerProvider",
+      "ToType": "cCoder.Logging.Brokers.LogEntryCaptureQueue"
+    },
+    {
+      "FromType": "cCoder.Logging.Dependencies.Logging.LoggingLoggerProvider",
+      "ToType": "cCoder.Logging.Models.LoggingConfiguration"
+    },
+    {
       "FromType": "cCoder.Logging.Exposures.Controllers.LogDataItemController",
       "ToType": "cCoder.Logging.Exposures.LogDataItemManager"
     },
     {
       "FromType": "cCoder.Logging.Exposures.Controllers.LogEntryController",
       "ToType": "cCoder.Logging.Exposures.LogEntryManager"
+    },
+    {
+      "FromType": "cCoder.Logging.Exposures.HostedServices.LogEntryCaptureWorker",
+      "ToType": "cCoder.Logging.RequestLogQueueCoordinator"
     },
     {
       "FromType": "cCoder.Logging.Exposures.Hubs.LogHub",
@@ -12640,6 +13215,22 @@
     {
       "FromType": "cCoder.Logging.Exposures.LogEntryManager",
       "ToType": "cCoder.Logging.Services.Orchestrations.LogEntryOrchestrationService"
+    },
+    {
+      "FromType": "cCoder.Logging.Exposures.RequestLoggingMiddleware",
+      "ToType": "cCoder.Logging.RequestLoggingCoordinator"
+    },
+    {
+      "FromType": "cCoder.Logging.RequestLogQueueCoordinator",
+      "ToType": "cCoder.Logging.Brokers.LogEntryCaptureQueue"
+    },
+    {
+      "FromType": "cCoder.Logging.RequestLoggingCoordinator",
+      "ToType": "cCoder.Logging.Brokers.LogEntryCaptureQueue"
+    },
+    {
+      "FromType": "cCoder.Logging.RequestLoggingCoordinator",
+      "ToType": "cCoder.Logging.Models.LoggingConfiguration"
     },
     {
       "FromType": "cCoder.Logging.Services.Foundations.Events.LogDataItemEventService",
@@ -12765,13 +13356,6 @@
       "LineNumber": 97
     },
     {
-      "Code": "ODATA0001",
-      "Description": "An OData entity creation must return the created resource in a 201 response.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Exposures.Controllers.LogDataItemController",
-      "LineNumber": 138
-    },
-    {
       "Code": "STXAPI005",
       "Description": "Every public HTTP handler must map success and caught failure paths to 2xx, 4xx, or 5xx responses.",
       "Severity": "Warning",
@@ -12800,18 +13384,32 @@
       "LineNumber": 97
     },
     {
-      "Code": "ODATA0001",
-      "Description": "An OData entity creation must return the created resource in a 201 response.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Exposures.Controllers.LogEntryController",
-      "LineNumber": 138
-    },
-    {
       "Code": "STXAPI005",
       "Description": "Every public HTTP handler must map success and caught failure paths to 2xx, 4xx, or 5xx responses.",
       "Severity": "Warning",
       "Type": "cCoder.Logging.Exposures.Controllers.LogEntryController",
       "LineNumber": 138
+    },
+    {
+      "Code": "STXE005",
+      "Description": "An exposure must not sequence multiple routine calls.",
+      "Severity": "Warning",
+      "Type": "cCoder.Logging.Exposures.HostedServices.LogEntryCaptureWorker",
+      "LineNumber": 15
+    },
+    {
+      "Code": "STX0001",
+      "Description": "The type is not a valid Standard element type.",
+      "Severity": "Warning",
+      "Type": "cCoder.Logging.RequestLogQueueCoordinator",
+      "LineNumber": 11
+    },
+    {
+      "Code": "STX0001",
+      "Description": "The type is not a valid Standard element type.",
+      "Severity": "Warning",
+      "Type": "cCoder.Logging.RequestLoggingCoordinator",
+      "LineNumber": 14
     }
   ]
 }

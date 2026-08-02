@@ -2,25 +2,29 @@
 // Copyright (c) Paul.Ward@ccoder.co.uk
 // ---------------------------------------------------------------
 
+using cCoder.Logging.Brokers;
 using cCoder.Logging.Models;
-using cCoder.Logging.Services.Orchestrations;
 
 namespace cCoder.Logging.Dependencies.Logging;
 
-internal sealed class LoggingLoggerProvider(IServiceProvider serviceProvider) : ILoggerProvider
+internal sealed class LoggingLoggerProvider(
+    ILogEntryCaptureQueue queue,
+    LoggingConfiguration configuration) : ILoggerProvider
 {
     public ILogger CreateLogger(string categoryName) =>
-        new LoggingLogger(serviceProvider, categoryName);
+        new LoggingLogger(
+            queue: queue,
+            configuration: configuration,
+            categoryName: categoryName);
 
     public void Dispose() => GC.SuppressFinalize(this);
 }
 
 internal sealed class LoggingLogger(
-    IServiceProvider serviceProvider,
+    ILogEntryCaptureQueue queue,
+    LoggingConfiguration configuration,
     string categoryName) : ILogger
 {
-    private static readonly AsyncLocal<bool> IsCapturing = new();
-
     public IDisposable BeginScope<TState>(TState state)
         where TState : notnull => null;
 
@@ -33,47 +37,27 @@ internal sealed class LoggingLogger(
         Exception exception,
         Func<TState, Exception, string> formatter)
     {
-        if (formatter is null || IsCapturing.Value)
+        if (formatter is null
+            || categoryName.StartsWith(
+                value: "cCoder.Logging.",
+                comparisonType: StringComparison.Ordinal))
+        {
             return;
-
-        string message = formatter(state, exception);
-
-        if (string.IsNullOrWhiteSpace(message))
-            return;
-
-        _ = CaptureAsync(logLevel, message, exception);
-    }
-
-    private async Task CaptureAsync(LogLevel logLevel, string message, Exception exception)
-    {
-        try
-        {
-            IsCapturing.Value = true;
-
-            using IServiceScope scope = serviceProvider.CreateScope();
-            IHttpContextAccessor httpContextAccessor = scope.ServiceProvider.GetService<IHttpContextAccessor>();
-            ILogEntryCaptureOrchestrationService captureService =
-                scope.ServiceProvider.GetRequiredService<ILogEntryCaptureOrchestrationService>();
-
-            LogEntryCaptureRequest logEntryCaptureRequest = new()
-            {
-                Level = logLevel,
-                CategoryName = categoryName,
-                Message = message,
-                Exception = exception,
-                RequestDomain = httpContextAccessor?.HttpContext?.Request?.Host.Host
-            };
-
-            await captureService.CaptureLogEntryCaptureRequestAsync(
-                logEntryCaptureRequest: logEntryCaptureRequest);
         }
-        catch (Exception ex)
+
+        string message = formatter(arg1: state, arg2: exception);
+
+        if (!string.IsNullOrWhiteSpace(value: message))
         {
-            Console.WriteLine(ex);
-        }
-        finally
-        {
-            IsCapturing.Value = false;
+            queue.TryEnqueue(
+                request: new LogEntryCaptureRequest
+                {
+                    Level = logLevel,
+                    CategoryName = categoryName,
+                    Message = message,
+                    Exception = exception,
+                    Persist = logLevel >= configuration.DatabaseMinimumLogLevel
+                });
         }
     }
 }

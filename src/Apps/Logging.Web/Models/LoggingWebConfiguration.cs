@@ -10,13 +10,6 @@ namespace Logging.Web.Models;
 
 public sealed class LoggingWebConfiguration
 {
-    public LoggingWebConfiguration()
-    {
-        Logging = new LoggingConfiguration();
-        Security = new SecurityConfiguration();
-        Eventing = new EventingConfiguration();
-    }
-
     public LoggingConfiguration Logging { get; set; }
     public SecurityConfiguration Security { get; set; }
     public EventingConfiguration Eventing { get; set; }

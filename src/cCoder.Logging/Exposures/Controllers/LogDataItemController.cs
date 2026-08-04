@@ -38,7 +38,7 @@ public partial class LogDataItemController(
                             type: typeof(LogDataItem))
                 )
                 : Ok(
-                    value: new MetadataContainer(
+                    value: PropertyInfoExtensions.CreateMetadataContainer(
                         type: typeof(LogDataItem),
                         isEntity: true,
                         hasEndpoint: true));

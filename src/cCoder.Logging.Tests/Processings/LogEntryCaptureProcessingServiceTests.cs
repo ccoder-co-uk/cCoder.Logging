@@ -44,7 +44,8 @@ public partial class LogEntryCaptureProcessingServiceTests
             RequestDomain = "example.test",
             Url = "https://example.test/orders?status=open",
             UserId = "user-7",
-            SessionId = "session-9"
+            SessionId = "session-9",
+            Persist = true
         };
 
         logEntryServiceMock

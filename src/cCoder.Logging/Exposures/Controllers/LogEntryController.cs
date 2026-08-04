@@ -38,7 +38,7 @@ public partial class LogEntryController(
                             type: typeof(LogEntry))
                 )
                 : Ok(
-                    value: new MetadataContainer(
+                    value: PropertyInfoExtensions.CreateMetadataContainer(
                         type: typeof(LogEntry),
                         isEntity: true,
                         hasEndpoint: true));

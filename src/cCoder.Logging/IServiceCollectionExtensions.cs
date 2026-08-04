@@ -36,7 +36,7 @@ public static partial class IServiceCollectionExtensions
         Action<LoggingConfiguration> configure = null,
         ODataConventionModelBuilder builder = null)
     {
-        LoggingConfiguration configuration = new();
+        LoggingConfiguration configuration = services.CreateLoggingConfiguration();
         configure?.Invoke(obj: configuration);
         services.AddLoggingWeb(configuration: configuration, builder: builder);
     }
@@ -63,7 +63,7 @@ public static partial class IServiceCollectionExtensions
         this IServiceCollection services,
         Action<LoggingConfiguration> configure = null)
     {
-        LoggingConfiguration configuration = new();
+        LoggingConfiguration configuration = services.CreateLoggingConfiguration();
         configure?.Invoke(obj: configuration);
         services.AddLoggingHostedServices(configuration: configuration);
     }
@@ -174,4 +174,20 @@ public static partial class IServiceCollectionExtensions
             implementationFactory: provider =>
                 provider.GetRequiredService<ILogRetentionCleaner>());
     }
+
+    private static LoggingConfiguration CreateLoggingConfiguration(
+        this IServiceCollection services) =>
+        new()
+        {
+            ConnectionString = string.Empty,
+            StreamLogEntries = true,
+            RetentionDays = 30,
+            RetentionIntervalMinutes = 60,
+            RootPath = "Api/Logging",
+            RequestLoggingEnabled = true,
+            RequestLoggingQueueCapacity = 1024,
+            RequestLoggingQueueFullBehavior = RequestLoggingQueueFullBehavior.DropNewest,
+            DatabaseMinimumLogLevel = LogLevel.Warning,
+            EventProviders = []
+        };
 }

@@ -58,7 +58,9 @@ internal sealed partial class LogEntryCaptureProcessingService(
             LogEntry newLogEntry = CreateLogEntry(
                 logEntryCaptureRequest: logEntryCaptureRequest,
                 thread: thread,
-                appId: appId.Value);
+                appId: appId.Value,
+                tenantId: logEntryService.ResolveTenantId(
+                    appId: appId.Value));
 
             operation.Result =
                 await logEntryService.AddSystemLogEntryAsync(
@@ -123,7 +125,8 @@ internal sealed partial class LogEntryCaptureProcessingService(
     private static LogEntry CreateLogEntry(
         LogEntryCaptureRequest logEntryCaptureRequest,
         string thread,
-        int appId)
+        int appId,
+        string tenantId)
     {
         string message = logEntryCaptureRequest.Exception is null
             ? logEntryCaptureRequest.Message
@@ -138,9 +141,23 @@ internal sealed partial class LogEntryCaptureProcessingService(
             Message = message,
             Level = ToLoggingLevel(logLevel: logEntryCaptureRequest.Level),
             Date = DateTime.UtcNow,
-            Data = []
+            Data =
+            [
+                CreateLogDataItem(name: "Url", value: logEntryCaptureRequest.Url),
+                CreateLogDataItem(name: "UserId", value: logEntryCaptureRequest.UserId),
+                CreateLogDataItem(name: "SessionId", value: logEntryCaptureRequest.SessionId),
+                CreateLogDataItem(name: "TenantId", value: tenantId),
+                CreateLogDataItem(name: "AppId", value: appId.ToString())
+            ]
         };
     }
+
+    private static LogDataItem CreateLogDataItem(string name, string value) =>
+        new()
+        {
+            Name = name,
+            Value = value ?? string.Empty
+        };
 
     private static string FirstValue(params string[] values) =>
         values.FirstOrDefault(

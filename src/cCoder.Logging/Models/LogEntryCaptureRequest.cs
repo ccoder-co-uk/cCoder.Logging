@@ -20,5 +20,11 @@ public sealed class LogEntryCaptureRequest
 
     public string RequestDomain { get; set; }
 
+    public string Url { get; set; }
+
+    public string UserId { get; set; }
+
+    public string SessionId { get; set; }
+
     public bool Persist { get; set; }
 }

@@ -3,11 +3,12 @@
 // ---------------------------------------------------------------
 
 using System.Diagnostics;
-using System.Security.Claims;
 using cCoder.Logging.Brokers;
 using cCoder.Logging.Exposures;
 using cCoder.Logging.Models;
+using cCoder.Security.Models.Configurations;
 using Microsoft.AspNetCore.Http.Extensions;
+using Microsoft.AspNetCore.Http.Features;
 
 namespace cCoder.Logging;
 
@@ -28,9 +29,14 @@ internal sealed class RequestLoggingCoordinator(
 
         string domain = context.Request.Host.Host;
         string remoteAddress = context.Connection.RemoteIpAddress?.ToString() ?? "Unknown";
-        string userId = context.User?.FindFirstValue(claimType: ClaimTypes.NameIdentifier)
-            ?? context.User?.Identity?.Name
-            ?? "Guest";
+        ISSOAuthInfo authInfo = context.RequestServices
+            .GetService<ISSOAuthInfo>();
+
+        string userId = authInfo?.SSOUserId ?? "Guest";
+        string sessionId = context.Features
+            .Get<ISessionFeature>()
+            ?.Session
+            ?.Id;
         string method = context.Request.Method;
         string url = context.Request.GetDisplayUrl();
         string correlationId = context.TraceIdentifier;
@@ -48,6 +54,9 @@ internal sealed class RequestLoggingCoordinator(
                 + $"({context.Response.StatusCode}) in {duration.TotalMilliseconds:F1}ms "
                 + $"[{correlationId}]",
             RequestDomain = domain,
+            Url = url,
+            UserId = userId,
+            SessionId = sessionId,
             Persist = true
         };
 

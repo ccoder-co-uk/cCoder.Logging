@@ -706,7 +706,7 @@
     {
       "Name": "cCoder.Logging.Brokers.LogEntryBroker",
       "StandardElementType": "Broker",
-      "LineNumber": 24,
+      "LineNumber": 25,
       "IsPublic": false,
       "Kind": "Class",
       "BaseType": null,
@@ -727,7 +727,7 @@
         {
           "Id": "cCoder.Logging.Brokers.LogEntryBroker.DeleteAllLogEntriesAsync(System.Collections.Generic.IEnumerable\u003CcCoder.Data.Models.Logging.LogEntry\u003E)",
           "Name": "DeleteAllLogEntriesAsync",
-          "LineNumber": 80,
+          "LineNumber": 81,
           "Inputs": [
             {
               "Name": "deletedLogEntries",
@@ -782,7 +782,7 @@
         {
           "Id": "cCoder.Logging.Brokers.LogEntryBroker.DeleteLogEntriesBeforeAsync(System.DateTime)",
           "Name": "DeleteLogEntriesBeforeAsync",
-          "LineNumber": 92,
+          "LineNumber": 93,
           "Inputs": [
             {
               "Name": "cutoff",
@@ -858,7 +858,7 @@
         {
           "Id": "cCoder.Logging.Brokers.LogEntryBroker.DeleteLogEntryAsync(cCoder.Data.Models.Logging.LogEntry)",
           "Name": "DeleteLogEntryAsync",
-          "LineNumber": 70,
+          "LineNumber": 71,
           "Inputs": [
             {
               "Name": "deletedLogEntry",
@@ -913,7 +913,7 @@
         {
           "Id": "cCoder.Logging.Brokers.LogEntryBroker.InsertLogEntryAsync(cCoder.Data.Models.Logging.LogEntry)",
           "Name": "InsertLogEntryAsync",
-          "LineNumber": 44,
+          "LineNumber": 45,
           "Inputs": [
             {
               "Name": "newLogEntry",
@@ -968,7 +968,7 @@
         {
           "Id": "cCoder.Logging.Brokers.LogEntryBroker.SelectAllLogEntries()",
           "Name": "SelectAllLogEntries",
-          "LineNumber": 28,
+          "LineNumber": 29,
           "Inputs": [],
           "ReturnType": "System.Linq.IQueryable\u003CcCoder.Data.Models.Logging.LogEntry\u003E",
           "Implements": [
@@ -998,7 +998,7 @@
         {
           "Id": "cCoder.Logging.Brokers.LogEntryBroker.SelectAllLogEntriesIgnoringFilters()",
           "Name": "SelectAllLogEntriesIgnoringFilters",
-          "LineNumber": 36,
+          "LineNumber": 37,
           "Inputs": [],
           "ReturnType": "System.Linq.IQueryable\u003CcCoder.Data.Models.Logging.LogEntry\u003E",
           "Implements": [
@@ -1035,7 +1035,7 @@
         {
           "Id": "cCoder.Logging.Brokers.LogEntryBroker.SelectAppIdByDomainOrName(System.String)",
           "Name": "SelectAppIdByDomainOrName",
-          "LineNumber": 106,
+          "LineNumber": 107,
           "Inputs": [
             {
               "Name": "domainOrName",
@@ -1096,9 +1096,72 @@
           "HasTryCatch": false
         },
         {
+          "Id": "cCoder.Logging.Brokers.LogEntryBroker.SelectTenantIdByAppId(System.Int32)",
+          "Name": "SelectTenantIdByAppId",
+          "LineNumber": 121,
+          "Inputs": [
+            {
+              "Name": "appId",
+              "Type": "System.Int32"
+            }
+          ],
+          "ReturnType": "System.String",
+          "Implements": [
+            "cCoder.Logging.Brokers.ILogEntryBroker.SelectTenantIdByAppId(System.Int32)"
+          ],
+          "Calls": [
+            {
+              "TypeName": "Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions",
+              "MethodName": "IgnoreQueryFilters",
+              "MethodId": "Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.IgnoreQueryFilters(System.Linq.IQueryable\u003CTEntity\u003E)",
+              "StandardElementType": "Dependency",
+              "IsDependencyBoundary": true
+            },
+            {
+              "TypeName": "System.Linq.Queryable",
+              "MethodName": "FirstOrDefault",
+              "MethodId": "System.Linq.Queryable.FirstOrDefault(System.Linq.IQueryable\u003CTSource\u003E)",
+              "StandardElementType": "Dependency",
+              "IsDependencyBoundary": true
+            },
+            {
+              "TypeName": "System.Linq.Queryable",
+              "MethodName": "Select",
+              "MethodId": "System.Linq.Queryable.Select(System.Linq.IQueryable\u003CTSource\u003E,System.Linq.Expressions.Expression\u003CSystem.Func\u003CTSource, TResult\u003E\u003E)",
+              "StandardElementType": "Dependency",
+              "IsDependencyBoundary": true
+            },
+            {
+              "TypeName": "System.Linq.Queryable",
+              "MethodName": "Where",
+              "MethodId": "System.Linq.Queryable.Where(System.Linq.IQueryable\u003CTSource\u003E,System.Linq.Expressions.Expression\u003CSystem.Func\u003CTSource, System.Boolean\u003E\u003E)",
+              "StandardElementType": "Dependency",
+              "IsDependencyBoundary": true
+            },
+            {
+              "TypeName": "cCoder.Data.ICoreContextFactory",
+              "MethodName": "CreateCoreContext",
+              "MethodId": "cCoder.Data.ICoreContextFactory.CreateCoreContext()",
+              "StandardElementType": "Dependency",
+              "IsDependencyBoundary": true
+            }
+          ],
+          "PossibleExceptionTypes": [],
+          "IncomingExceptionTypes": [],
+          "ThrowsExceptionTypes": [],
+          "HttpMethods": [],
+          "HttpResponses": [],
+          "IsHttpRequestHandler": false,
+          "IsODataControllerAction": false,
+          "HasFromBodyParameter": false,
+          "HasKeyParameter": false,
+          "HandlesNullWithNotFound": false,
+          "HasTryCatch": false
+        },
+        {
           "Id": "cCoder.Logging.Brokers.LogEntryBroker.UpdateLogEntryAsync(cCoder.Data.Models.Logging.LogEntry)",
           "Name": "UpdateLogEntryAsync",
-          "LineNumber": 57,
+          "LineNumber": 58,
           "Inputs": [
             {
               "Name": "updatedLogEntry",
@@ -5093,6 +5156,18 @@
         {
           "Name": "RequestDomain",
           "Type": "System.String"
+        },
+        {
+          "Name": "SessionId",
+          "Type": "System.String"
+        },
+        {
+          "Name": "Url",
+          "Type": "System.String"
+        },
+        {
+          "Name": "UserId",
+          "Type": "System.String"
         }
       ],
       "Methods": []
@@ -5633,7 +5708,7 @@
     {
       "Name": "cCoder.Logging.RequestLoggingCoordinator",
       "StandardElementType": "Unknown",
-      "LineNumber": 14,
+      "LineNumber": 15,
       "IsPublic": false,
       "Kind": "Class",
       "BaseType": null,
@@ -5654,7 +5729,7 @@
         {
           "Id": "cCoder.Logging.RequestLoggingCoordinator.CaptureRequestAsync(HttpContext,RequestDelegate)",
           "Name": "CaptureRequestAsync",
-          "LineNumber": 21,
+          "LineNumber": 22,
           "Inputs": [
             {
               "Name": "context",
@@ -6616,6 +6691,51 @@
               "TypeName": "cCoder.Logging.Brokers.ILogEntryBroker",
               "MethodName": "SelectAppIdByDomainOrName",
               "MethodId": "cCoder.Logging.Brokers.ILogEntryBroker.SelectAppIdByDomainOrName(System.String)",
+              "StandardElementType": "Broker",
+              "IsDependencyBoundary": false
+            }
+          ],
+          "PossibleExceptionTypes": [
+            "cCoder.Logging.Models.Exceptions.LoggingDependencyException",
+            "cCoder.Logging.Models.Exceptions.LoggingServiceException",
+            "cCoder.Logging.Models.Exceptions.LoggingValidationException"
+          ],
+          "IncomingExceptionTypes": [
+            "cCoder.Logging.Models.Exceptions.LoggingDependencyException",
+            "cCoder.Logging.Models.Exceptions.LoggingServiceException"
+          ],
+          "ThrowsExceptionTypes": [
+            "cCoder.Logging.Models.Exceptions.LoggingDependencyException",
+            "cCoder.Logging.Models.Exceptions.LoggingServiceException"
+          ],
+          "HttpMethods": [],
+          "HttpResponses": [],
+          "IsHttpRequestHandler": false,
+          "IsODataControllerAction": false,
+          "HasFromBodyParameter": false,
+          "HasKeyParameter": false,
+          "HandlesNullWithNotFound": false,
+          "HasTryCatch": false
+        },
+        {
+          "Id": "cCoder.Logging.Services.Foundations.LogEntryService.ResolveTenantId(System.Int32)",
+          "Name": "ResolveTenantId",
+          "LineNumber": 117,
+          "Inputs": [
+            {
+              "Name": "appId",
+              "Type": "System.Int32"
+            }
+          ],
+          "ReturnType": "System.String",
+          "Implements": [
+            "cCoder.Logging.Services.Foundations.ILogEntryService.ResolveTenantId(System.Int32)"
+          ],
+          "Calls": [
+            {
+              "TypeName": "cCoder.Logging.Brokers.ILogEntryBroker",
+              "MethodName": "SelectTenantIdByAppId",
+              "MethodId": "cCoder.Logging.Brokers.ILogEntryBroker.SelectTenantIdByAppId(System.Int32)",
               "StandardElementType": "Broker",
               "IsDependencyBoundary": false
             }
@@ -8314,6 +8434,13 @@
               "TypeName": "cCoder.Logging.Services.Foundations.ILogEntryService",
               "MethodName": "AddSystemLogEntryAsync",
               "MethodId": "cCoder.Logging.Services.Foundations.ILogEntryService.AddSystemLogEntryAsync(cCoder.Data.Models.Logging.LogEntry)",
+              "StandardElementType": "FoundationService",
+              "IsDependencyBoundary": false
+            },
+            {
+              "TypeName": "cCoder.Logging.Services.Foundations.ILogEntryService",
+              "MethodName": "ResolveTenantId",
+              "MethodId": "cCoder.Logging.Services.Foundations.ILogEntryService.ResolveTenantId(System.Int32)",
               "StandardElementType": "FoundationService",
               "IsDependencyBoundary": false
             }
@@ -10205,6 +10332,31 @@
           "HasTryCatch": false
         },
         {
+          "Id": "cCoder.Logging.Brokers.ILogEntryBroker.SelectTenantIdByAppId(System.Int32)",
+          "Name": "SelectTenantIdByAppId",
+          "LineNumber": 22,
+          "Inputs": [
+            {
+              "Name": "appId",
+              "Type": "System.Int32"
+            }
+          ],
+          "ReturnType": "System.String",
+          "Implements": [],
+          "Calls": [],
+          "PossibleExceptionTypes": [],
+          "IncomingExceptionTypes": [],
+          "ThrowsExceptionTypes": [],
+          "HttpMethods": [],
+          "HttpResponses": [],
+          "IsHttpRequestHandler": false,
+          "IsODataControllerAction": false,
+          "HasFromBodyParameter": false,
+          "HasKeyParameter": false,
+          "HandlesNullWithNotFound": false,
+          "HasTryCatch": false
+        },
+        {
           "Id": "cCoder.Logging.Brokers.ILogEntryBroker.UpdateLogEntryAsync(cCoder.Data.Models.Logging.LogEntry)",
           "Name": "UpdateLogEntryAsync",
           "LineNumber": 17,
@@ -11631,6 +11783,31 @@
             }
           ],
           "ReturnType": "System.Int32?",
+          "Implements": [],
+          "Calls": [],
+          "PossibleExceptionTypes": [],
+          "IncomingExceptionTypes": [],
+          "ThrowsExceptionTypes": [],
+          "HttpMethods": [],
+          "HttpResponses": [],
+          "IsHttpRequestHandler": false,
+          "IsODataControllerAction": false,
+          "HasFromBodyParameter": false,
+          "HasKeyParameter": false,
+          "HandlesNullWithNotFound": false,
+          "HasTryCatch": false
+        },
+        {
+          "Id": "cCoder.Logging.Services.Foundations.ILogEntryService.ResolveTenantId(System.Int32)",
+          "Name": "ResolveTenantId",
+          "LineNumber": 19,
+          "Inputs": [
+            {
+              "Name": "appId",
+              "Type": "System.Int32"
+            }
+          ],
+          "ReturnType": "System.String",
           "Implements": [],
           "Calls": [],
           "PossibleExceptionTypes": [],
@@ -13409,7 +13586,7 @@
       "Description": "The type is not a valid Standard element type.",
       "Severity": "Warning",
       "Type": "cCoder.Logging.RequestLoggingCoordinator",
-      "LineNumber": 14
+      "LineNumber": 15
     }
   ]
 }

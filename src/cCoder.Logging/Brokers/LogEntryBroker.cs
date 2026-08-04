@@ -19,6 +19,7 @@ internal interface ILogEntryBroker
     ValueTask DeleteAllLogEntriesAsync(IEnumerable<DataLogEntry> deletedLogEntries);
     ValueTask<int> DeleteLogEntriesBeforeAsync(DateTime cutoff);
     int? SelectAppIdByDomainOrName(string domainOrName);
+    string SelectTenantIdByAppId(int appId);
 }
 
 internal sealed class LogEntryBroker(
@@ -114,6 +115,18 @@ internal sealed class LogEntryBroker(
                 app.Name == domainOrName
                 || app.Domain == domainOrName)
             .Select(selector: app => (int?)app.Id)
+            .FirstOrDefault();
+    }
+
+    public string SelectTenantIdByAppId(int appId)
+    {
+        using CoreDataContext coreDataContext =
+            coreContextFactory.CreateCoreContext();
+
+        return coreDataContext.Apps
+            .IgnoreQueryFilters()
+            .Where(predicate: app => app.Id == appId)
+            .Select(selector: app => app.TenantId)
             .FirstOrDefault();
     }
 }

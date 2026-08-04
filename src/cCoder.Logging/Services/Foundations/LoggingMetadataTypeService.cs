@@ -30,9 +30,16 @@ internal sealed partial class LoggingMetadataTypeService : ILoggingMetadataTypeS
         ];
         });
 
-    private static ExtendedMetadataContainer Entity<T>() =>
-        new(type: typeof(T), isEntity: true, hasEndpoint: true)
-        {
-            Category = "Logging",
-        };
+    private static ExtendedMetadataContainer Entity<T>()
+    {
+        ExtendedMetadataContainer metadata =
+            PropertyInfoExtensions.CreateExtendedMetadataContainer(
+                type: typeof(T),
+                isEntity: true,
+                hasEndpoint: true);
+
+        metadata.Category = "Logging";
+
+        return metadata;
+    }
 }

@@ -68,7 +68,10 @@ public sealed partial class RequestLoggingCoordinatorTests
 
         RequestCoordinator coordinator = new(
             queue: queueMock.Object,
-            configuration: new LoggingConfiguration(),
+            configuration: new LoggingConfiguration
+            {
+                RequestLoggingEnabled = true
+            },
             logger: Mock.Of<ILogger<RequestCoordinator>>());
 
         // When

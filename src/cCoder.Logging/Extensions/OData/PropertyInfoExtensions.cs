@@ -68,6 +68,26 @@ internal static class PropertyInfoExtensions
                 || property.GetCustomAttribute<RequiredAttribute>() is not null
         };
 
+    internal static MetadataContainer CreateMetadataContainer(
+        Type type,
+        bool isEntity = false,
+        bool hasEndpoint = false) =>
+        PopulateMetadataContainer(
+            metadata: new MetadataContainer(),
+            type: type,
+            isEntity: isEntity,
+            hasEndpoint: hasEndpoint);
+
+    internal static ExtendedMetadataContainer CreateExtendedMetadataContainer(
+        Type type,
+        bool isEntity = false,
+        bool hasEndpoint = false) =>
+        PopulateMetadataContainer(
+            metadata: new ExtendedMetadataContainer(),
+            type: type,
+            isEntity: isEntity,
+            hasEndpoint: hasEndpoint);
+
     internal static string GetTypeName(Type type)
     {
         if (type == typeof(string))
@@ -83,5 +103,35 @@ internal static class PropertyInfoExtensions
         return TypeNames.TryGetValue(key: type, value: out string name)
             ? name
             : "object";
+    }
+
+    private static TMetadata PopulateMetadataContainer<TMetadata>(
+        TMetadata metadata,
+        Type type,
+        bool isEntity,
+        bool hasEndpoint)
+        where TMetadata : MetadataContainer
+    {
+        bool isValueType = type.IsValueType || type == typeof(string);
+
+        metadata.IsValueType = isValueType;
+        metadata.Type = GetTypeName(type: type);
+        metadata.Name = type.Name;
+        metadata.DisplayName = type.Name;
+        metadata.Description = type.Name;
+        metadata.ServerType = type.AssemblyQualifiedName;
+        metadata.ServerTypeName = type.GetCSharpTypeName();
+
+        metadata.Properties = isValueType
+            ? []
+            : type.GetProperties()
+                .Select(selector: CreatePropertyContainer)
+                .ToArray();
+
+        metadata.IsEntity = isEntity;
+        metadata.IsJoinEntity = isEntity && type.IsJoinType();
+        metadata.HasEndpoint = hasEndpoint;
+
+        return metadata;
     }
 }

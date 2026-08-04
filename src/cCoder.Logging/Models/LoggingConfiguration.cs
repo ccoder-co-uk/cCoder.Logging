@@ -8,20 +8,6 @@ namespace cCoder.Logging.Models;
 
 public class LoggingConfiguration
 {
-    public LoggingConfiguration()
-    {
-        ConnectionString = string.Empty;
-        StreamLogEntries = true;
-        RetentionDays = 30;
-        RetentionIntervalMinutes = 60;
-        RootPath = "Api/Logging";
-        RequestLoggingEnabled = true;
-        RequestLoggingQueueCapacity = 1024;
-        RequestLoggingQueueFullBehavior = RequestLoggingQueueFullBehavior.DropNewest;
-        DatabaseMinimumLogLevel = LogLevel.Warning;
-        EventProviders = [];
-    }
-
     public string ConnectionString { get; set; }
     public bool DebugInfo { get; set; }
     public bool LogSQL { get; set; }

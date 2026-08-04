@@ -8,8 +8,6 @@ namespace cCoder.Logging.Models;
 
 public sealed class LogEntryCaptureRequest
 {
-    public LogEntryCaptureRequest() => Persist = true;
-
     public LogLevel Level { get; set; }
 
     public string CategoryName { get; set; }

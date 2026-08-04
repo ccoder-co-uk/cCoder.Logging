@@ -2,6 +2,8 @@
 
 `cCoder.Logging` contains the Logging domain for the cCoder platform.
 
+[View the latest code coverage report](https://ccoder-co-uk.github.io/cCoder.Logging/)
+
 ## Local Configuration
 
 Configuration binds directly into `LoggingConfiguration`. Leave the connection

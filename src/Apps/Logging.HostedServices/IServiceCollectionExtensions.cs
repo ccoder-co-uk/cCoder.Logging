@@ -3,6 +3,8 @@
 // ---------------------------------------------------------------
 
 using cCoder.Eventing;
+using cCoder.Eventing.Models;
+using cCoder.Logging.Models;
 using Logging.HostedServices.Models;
 
 namespace Logging.HostedServices;
@@ -14,7 +16,11 @@ public static class IServiceCollectionExtensions
         IConfiguration configuration,
         Action<LoggingHostedServicesConfiguration> configure = null)
     {
-        LoggingHostedServicesConfiguration hostedConfiguration = new();
+        LoggingHostedServicesConfiguration hostedConfiguration = new()
+        {
+            Logging = new LoggingConfiguration(),
+            Eventing = new EventingConfiguration()
+        };
         configuration.Bind(instance: hostedConfiguration);
         configure?.Invoke(obj: hostedConfiguration);
 

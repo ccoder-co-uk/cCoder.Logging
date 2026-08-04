@@ -33,7 +33,7 @@ public static partial class IServiceCollectionExtensions
                 LogSQL = configuration.LogSQL,
             });
 
-        services.AddEventProviders(eventProviders: configuration.EventProviders);
+        services.AddEventProviders(eventProviders: configuration.EventProviders ?? []);
     }
 
     internal static void AddLoggingApi(

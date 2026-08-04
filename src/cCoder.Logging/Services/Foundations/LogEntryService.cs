@@ -114,6 +114,14 @@ internal sealed partial class LogEntryService(
                 domainOrName: domainOrName);
         });
 
+    public string ResolveTenantId(int appId) =>
+        TryCatch(operation: () =>
+        {
+            ValidateAppOnResolve(inputs: [appId]);
+
+            return logEntryBroker.SelectTenantIdByAppId(appId: appId);
+        });
+
     private void Authorize(
         LogEntry logEntry,
         string privilege)

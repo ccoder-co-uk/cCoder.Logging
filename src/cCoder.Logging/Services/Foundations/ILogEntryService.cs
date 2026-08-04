@@ -16,4 +16,5 @@ internal interface ILogEntryService
     ValueTask DeleteLogEntryAsync(int logEntryId);
     ValueTask<int> DeleteLogEntriesBeforeAsync(DateTime cutoff);
     int? ResolveAppId(string domainOrName);
+    string ResolveTenantId(int appId);
 }

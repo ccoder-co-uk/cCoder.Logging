@@ -4,6 +4,7 @@
 
 using cCoder.Data.Models.Security;
 using cCoder.Logging.Brokers;
+using cCoder.Logging.Brokers.Loggings;
 using cCoder.Logging.Models;
 using Microsoft.AspNetCore.SignalR;
 
@@ -12,7 +13,7 @@ namespace cCoder.Logging.Services.Processings;
 internal sealed partial class LogHubProcessingService(
     ILogHubBroker logHubBroker,
     IAuthorizationBroker authorizationBroker,
-    ILogger<LogHubProcessingService> log) : ILogHubProcessingService
+    ILoggingBroker log) : ILogHubProcessingService
 {
     private static readonly IDictionary<string, ICollection<HistoryItem>>
         History = new Dictionary<string, ICollection<HistoryItem>>();

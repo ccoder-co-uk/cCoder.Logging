@@ -21,7 +21,13 @@ public static partial class WebApplicationExtensions
     public static WebApplication StartLoggingWeb(this WebApplication app, ILogger log = null) =>
         app.UseLoggingExposure(log);
 
-    public static WebApplication StartLoggingHostedServices(this WebApplication app) => app;
+    public static WebApplication StartLoggingHostedServices(
+        this WebApplication app)
+    {
+        PopulateMetadataTypeCache(app: app);
+
+        return app;
+    }
 
     private static WebApplication UseLoggingExposure(this WebApplication app, ILogger log = null)
     {

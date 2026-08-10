@@ -2,6 +2,7 @@
 // Copyright (c) Paul.Ward@ccoder.co.uk
 // ---------------------------------------------------------------
 
+using cCoder.Logging.Brokers.Loggings;
 using cCoder.Logging.Extensions.OData;
 using cCoder.Logging.Brokers.OData;
 using cCoder.Logging.Models.OData;
@@ -19,7 +20,8 @@ using Microsoft.AspNetCore.OData.Routing.Controllers;
 namespace cCoder.Logging.Exposures.Controllers;
 
 public partial class LogDataItemController(
-    ILogDataItemManager logDataItemManager)
+    ILogDataItemManager logDataItemManager,
+    ILoggingBroker loggingBroker)
         : ODataController
 {
     [HttpGet]
@@ -43,8 +45,10 @@ public partial class LogDataItemController(
                         isEntity: true,
                         hasEndpoint: true));
         }
-        catch (Exception)
+        catch (Exception exception)
         {
+            loggingBroker.LogError(exception: exception, message: "Controller request failed.");
+
             return StatusCode(
                 statusCode: StatusCodes.Status500InternalServerError,
                 value: "The log data item metadata request failed.");
@@ -66,18 +70,24 @@ public partial class LogDataItemController(
         {
             return Ok(value: logDataItemManager.GetAllLogDataItems());
         }
-        catch (LoggingValidationException)
+        catch (LoggingValidationException exception)
         {
+            loggingBroker.LogError(exception: exception, message: "Controller request failed.");
+
             return BadRequest(error: "The log data item request is invalid.");
         }
-        catch (System.Security.SecurityException)
+        catch (System.Security.SecurityException exception)
         {
+            loggingBroker.LogError(exception: exception, message: "Controller request failed.");
+
             return StatusCode(
                 statusCode: StatusCodes.Status403Forbidden,
                 value: "The log data item request is forbidden.");
         }
-        catch (Exception)
+        catch (Exception exception)
         {
+            loggingBroker.LogError(exception: exception, message: "Controller request failed.");
+
             return StatusCode(
                 statusCode: StatusCodes.Status500InternalServerError,
                 value: "The log data item request failed.");
@@ -108,18 +118,24 @@ public partial class LogDataItemController(
 
             return Ok(value: logDataItem);
         }
-        catch (LoggingValidationException)
+        catch (LoggingValidationException exception)
         {
+            loggingBroker.LogError(exception: exception, message: "Controller request failed.");
+
             return BadRequest(error: "The log data item request is invalid.");
         }
-        catch (System.Security.SecurityException)
+        catch (System.Security.SecurityException exception)
         {
+            loggingBroker.LogError(exception: exception, message: "Controller request failed.");
+
             return StatusCode(
                 statusCode: StatusCodes.Status403Forbidden,
                 value: "The log data item request is forbidden.");
         }
-        catch (Exception)
+        catch (Exception exception)
         {
+            loggingBroker.LogError(exception: exception, message: "Controller request failed.");
+
             return StatusCode(
                 statusCode: StatusCodes.Status500InternalServerError,
                 value: "The log data item request failed.");
@@ -151,18 +167,24 @@ public partial class LogDataItemController(
                 statusCode: StatusCodes.Status201Created,
                 value: savedLogDataItem);
         }
-        catch (LoggingValidationException)
+        catch (LoggingValidationException exception)
         {
+            loggingBroker.LogError(exception: exception, message: "Controller request failed.");
+
             return BadRequest(error: "The log data item request is invalid.");
         }
-        catch (System.Security.SecurityException)
+        catch (System.Security.SecurityException exception)
         {
+            loggingBroker.LogError(exception: exception, message: "Controller request failed.");
+
             return StatusCode(
                 statusCode: StatusCodes.Status403Forbidden,
                 value: "The log data item request is forbidden.");
         }
-        catch (Exception)
+        catch (Exception exception)
         {
+            loggingBroker.LogError(exception: exception, message: "Controller request failed.");
+
             return StatusCode(
                 statusCode: StatusCodes.Status500InternalServerError,
                 value: "The log data item request failed.");

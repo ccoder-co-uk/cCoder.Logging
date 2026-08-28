@@ -54,7 +54,16 @@ jobs:
         run: dotnet build src/cCoder.Logging.slnx -c Release --no-restore -m:1 /p:Version="${{ steps.version.outputs.value }}"
 
       - name: Test and collect coverage
-        run: dotnet test src/cCoder.Logging.slnx -c Release --no-build -m:1 --settings coverage.runsettings --collect:"XPlat Code Coverage" --results-directory "${{ env.TEST_RESULTS_DIRECTORY }}" --logger trx
+        run: |
+          if ([string]::IsNullOrWhiteSpace($env:CoreData__ConnectionString)) {
+            $env:CoreData__ConnectionString = $env:Logging__ConnectionString
+          }
+
+          if ([string]::IsNullOrWhiteSpace($env:SecurityData__ConnectionString)) {
+            $env:SecurityData__ConnectionString = $env:Security__ConnectionString
+          }
+
+          dotnet test src/cCoder.Logging.slnx -c Release --no-build -m:1 --settings coverage.runsettings --collect:"XPlat Code Coverage" --results-directory "${{ env.TEST_RESULTS_DIRECTORY }}" --logger trx
 
       - name: Enforce services and exposures coverage
         run: |

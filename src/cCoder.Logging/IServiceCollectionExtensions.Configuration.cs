@@ -5,7 +5,6 @@
 using cCoder.Logging.Brokers.OData;
 using cCoder.Logging.Extensions.OData;
 using cCoder.Logging.Models;
-using cCoder.Data;
 using cCoder.Eventing;
 using Microsoft.AspNetCore.OData;
 using Microsoft.AspNetCore.OData.Batch;
@@ -24,14 +23,6 @@ public static partial class IServiceCollectionExtensions
     {
         ArgumentNullException.ThrowIfNull(argument: configuration);
         services.AddSingleton(implementationInstance: configuration);
-
-        services.AddData(
-            configuration: new cCoder.Data.Models.DataConfiguration
-            {
-                ConnectionString = configuration.ConnectionString,
-                DebugInfo = configuration.DebugInfo,
-                LogSQL = configuration.LogSQL,
-            });
 
         services.AddEventProviders(eventProviders: configuration.EventProviders ?? []);
     }

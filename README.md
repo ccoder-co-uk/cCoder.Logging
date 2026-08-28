@@ -6,11 +6,15 @@
 
 ## Local Configuration
 
-Configuration binds directly into `LoggingConfiguration`. Leave the connection
-string empty in appsettings and define `Logging__ConnectionString` as a
-user-level or machine-level environment variable. Restart Visual Studio, select
-the Web and HostedServices startup projects, and press F5. No configuration
-conversion step is required.
+Each executable binds the complete configuration root to its own
+`AppConfiguration`. The Web composition root registers `CoreData`, `Logging`,
+`SecurityData`, `Security`, and `Eventing` side by side. The HostedServices
+composition root registers `CoreData`, `Logging`, and `Eventing`.
+
+Persistence belongs to the Data domains. `LoggingConfiguration` contains only
+Logging behavior; `CoreData` owns the database connection, Data registration,
+and migrations. Likewise, `SecurityData` owns the Security database and
+`Security` contains authentication behavior.
 
 ## Functionality
 
@@ -54,15 +58,29 @@ dotnet build src/cCoder.Logging.slnx -v minimal
 dotnet test src/cCoder.Logging.slnx -v minimal --no-build
 ```
 
-The standalone apps bind their structured configuration directly. Leave secrets
-blank in `appsettings.json`, define these user-level or machine-level environment
-variables, restart Visual Studio, and press F5:
+Leave secrets blank in `appsettings.json`, define these user-level or
+machine-level environment variables, restart Visual Studio, and press F5:
 
-- `Logging__ConnectionString`
-- `Security__ConnectionString` (Web only)
+- `CoreData__ConnectionString`
+- `SecurityData__ConnectionString` (Web only)
 - `Security__DecryptionKey` (Web only)
+- `Eventing__ServiceBus__ConnectionString` when `Eventing__ProviderType` is
+  `ServiceBus`
+
+`CoreData__AdminConnectionString` and
+`SecurityData__AdminConnectionString` are optional migration-only overrides. If
+an admin connection is configured, startup migrations use it and normal runtime
+operations continue to use the regular connection. If it is omitted, migrations
+use the regular connection.
 
 No `.env` file or configuration conversion step is required.
+
+Library consumers register persistence and behavior explicitly at their own
+composition root: call `AddData` before `AddLoggingWeb` or
+`AddLoggingHostedServices`; Web hosts also call `AddSecurityData` before
+`AddSecurityWeb`. An application that consumes `cCoder.Core` should use Core's
+composite API instead; Core deliberately composes its configured child domains
+recursively.
 
 Logging behavior is configured through `LoggingConfiguration`:
 

@@ -46,8 +46,8 @@ internal sealed class WebAcceptanceFactory
         {
             config.AddInMemoryCollection(
 initialData: [
-                new KeyValuePair<string, string>(key: "Logging:ConnectionString", value: settings.CoreConnectionString),
-                new KeyValuePair<string, string>(key: "Security:ConnectionString", value: settings.SsoConnectionString),
+                new KeyValuePair<string, string>(key: "CoreData:ConnectionString", value: settings.CoreConnectionString),
+                new KeyValuePair<string, string>(key: "SecurityData:ConnectionString", value: settings.SsoConnectionString),
                 new KeyValuePair<string, string>(key: "Security:DecryptionKey", value: settings.DecryptionKey),
                 new KeyValuePair<string, string>(key: "Eventing:ProviderType", value: string.Empty),
             ]);

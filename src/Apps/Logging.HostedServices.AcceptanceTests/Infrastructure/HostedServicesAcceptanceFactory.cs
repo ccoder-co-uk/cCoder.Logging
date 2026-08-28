@@ -24,7 +24,7 @@ internal sealed class HostedServicesAcceptanceFactory : WebApplicationFactory<Pr
             config.AddInMemoryCollection(
 initialData: [
                 new KeyValuePair<string, string>(
-key: "Logging:ConnectionString",
+key: "CoreData:ConnectionString",
 value: configuration.CoreConnectionString),
                 new KeyValuePair<string, string>(
                     key: "Logging:StoreLogEntries",

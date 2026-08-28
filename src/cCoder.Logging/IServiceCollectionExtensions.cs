@@ -180,7 +180,6 @@ public static partial class IServiceCollectionExtensions
         this IServiceCollection services) =>
         new()
         {
-            ConnectionString = string.Empty,
             StreamLogEntries = true,
             RetentionDays = 30,
             RetentionIntervalMinutes = 60,

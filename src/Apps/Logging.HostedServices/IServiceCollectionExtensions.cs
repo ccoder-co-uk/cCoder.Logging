@@ -2,28 +2,24 @@
 // Copyright (c) Paul.Ward@ccoder.co.uk
 // ---------------------------------------------------------------
 
+using cCoder.Data;
 using cCoder.Eventing;
-using cCoder.Eventing.Models;
-using cCoder.Logging.Models;
 using Logging.HostedServices.Models;
 
 namespace Logging.HostedServices;
 
 public static class IServiceCollectionExtensions
 {
-    public static IServiceCollection AddLoggingHostedServices(
+    public static IServiceCollection AddHostedServices(
         this IServiceCollection services,
         IConfiguration configuration,
-        Action<LoggingHostedServicesConfiguration> configure = null)
+        Action<AppConfiguration> configure = null)
     {
-        LoggingHostedServicesConfiguration hostedConfiguration = new()
-        {
-            Logging = new LoggingConfiguration(),
-            Eventing = new EventingConfiguration()
-        };
+        AppConfiguration hostedConfiguration = new();
         configuration.Bind(instance: hostedConfiguration);
         configure?.Invoke(obj: hostedConfiguration);
 
+        services.AddData(configuration: hostedConfiguration.CoreData);
         services.AddEventingHostedServices(
             configuration: hostedConfiguration.Eventing);
         cCoder.Logging.IServiceCollectionExtensions

@@ -8,9 +8,6 @@ namespace cCoder.Logging.Models;
 
 public class LoggingConfiguration
 {
-    public string ConnectionString { get; set; }
-    public bool DebugInfo { get; set; }
-    public bool LogSQL { get; set; }
     public bool StoreLogEntries { get; set; }
     public bool StreamLogEntries { get; set; }
     public int RetentionDays { get; set; }

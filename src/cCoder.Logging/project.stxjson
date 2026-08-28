@@ -5037,7 +5037,7 @@
     {
       "Name": "cCoder.Logging.IServiceCollectionExtensions",
       "StandardElementType": "App",
-      "LineNumber": 19,
+      "LineNumber": 18,
       "IsPublic": true,
       "Kind": "Class",
       "BaseType": null,
@@ -5487,16 +5487,8 @@
       "Interfaces": [],
       "Properties": [
         {
-          "Name": "ConnectionString",
-          "Type": "System.String"
-        },
-        {
           "Name": "DatabaseMinimumLogLevel",
           "Type": "LogLevel"
-        },
-        {
-          "Name": "DebugInfo",
-          "Type": "System.Boolean"
         },
         {
           "Name": "DefaultAppDomain",
@@ -5509,10 +5501,6 @@
         {
           "Name": "EventProviders",
           "Type": "cCoder.Eventing.Models.EventProvider[]"
-        },
-        {
-          "Name": "LogSQL",
-          "Type": "System.Boolean"
         },
         {
           "Name": "RequestLoggingEnabled",

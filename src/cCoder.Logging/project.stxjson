@@ -5338,7 +5338,7 @@
     },
     {
       "Name": "cCoder.Logging.Models.Exceptions.LoggingDependencyException",
-      "StandardElementType": "Dependency",
+      "StandardElementType": "Model",
       "LineNumber": 7,
       "IsPublic": true,
       "Kind": "Class",
@@ -5358,7 +5358,7 @@
     },
     {
       "Name": "cCoder.Logging.Models.Exceptions.LoggingServiceException",
-      "StandardElementType": "Dependency",
+      "StandardElementType": "Model",
       "LineNumber": 7,
       "IsPublic": true,
       "Kind": "Class",
@@ -5378,7 +5378,7 @@
     },
     {
       "Name": "cCoder.Logging.Models.Exceptions.LoggingValidationException",
-      "StandardElementType": "Dependency",
+      "StandardElementType": "Model",
       "LineNumber": 7,
       "IsPublic": true,
       "Kind": "Class",
@@ -13865,6 +13865,58 @@
   ],
   "Links": [
     {
+      "FromType": "cCoder.Logging.Brokers.AuthInfoBroker",
+      "ToType": "cCoder.Data.ICoreAuthInfo"
+    },
+    {
+      "FromType": "cCoder.Logging.Brokers.AuthorizationBroker",
+      "ToType": "cCoder.Data.ICoreContextFactory"
+    },
+    {
+      "FromType": "cCoder.Logging.Brokers.LogDataItemBroker",
+      "ToType": "cCoder.Data.ICoreContextFactory"
+    },
+    {
+      "FromType": "cCoder.Logging.Brokers.LogDataItemEventBroker",
+      "ToType": "cCoder.Eventing.IEventHub"
+    },
+    {
+      "FromType": "cCoder.Logging.Brokers.LogEntryBroker",
+      "ToType": "cCoder.Data.ICoreContextFactory"
+    },
+    {
+      "FromType": "cCoder.Logging.Brokers.LogEntryCaptureQueue",
+      "ToType": "System.Threading.Channels.Channel\u003CcCoder.Logging.Models.LogEntryCaptureRequest\u003E"
+    },
+    {
+      "FromType": "cCoder.Logging.Brokers.LogEntryEventBroker",
+      "ToType": "cCoder.Eventing.IEventHub"
+    },
+    {
+      "FromType": "cCoder.Logging.Brokers.LogEntryStreamBroker",
+      "ToType": "System.IServiceProvider"
+    },
+    {
+      "FromType": "cCoder.Logging.Brokers.LogHubBroker",
+      "ToType": "cCoder.Data.ICoreContextFactory"
+    },
+    {
+      "FromType": "cCoder.Logging.Brokers.Loggings.LoggingBroker",
+      "ToType": "Microsoft.Extensions.Logging.ILogger\u003CcCoder.Logging.Brokers.Loggings.LoggingBroker\u003E"
+    },
+    {
+      "FromType": "cCoder.Logging.Brokers.OData.LoggingModelBroker",
+      "ToType": "Microsoft.OData.ModelBuilder.ODataConventionModelBuilder"
+    },
+    {
+      "FromType": "cCoder.Logging.Brokers.OData.ODataModelBroker",
+      "ToType": "Microsoft.OData.ModelBuilder.ODataConventionModelBuilder"
+    },
+    {
+      "FromType": "cCoder.Logging.Dependencies.Logging.LoggingLogger",
+      "ToType": "System.String"
+    },
+    {
       "FromType": "cCoder.Logging.Dependencies.Logging.LoggingLogger",
       "ToType": "cCoder.Logging.Brokers.LogEntryCaptureQueue"
     },
@@ -13901,6 +13953,10 @@
       "ToType": "cCoder.Logging.RequestLogQueueCoordinator"
     },
     {
+      "FromType": "cCoder.Logging.Exposures.HostedServices.LogRetentionCleaner",
+      "ToType": "Microsoft.Extensions.DependencyInjection.IServiceScopeFactory"
+    },
+    {
       "FromType": "cCoder.Logging.Exposures.Hubs.LogHub",
       "ToType": "cCoder.Logging.Services.Processings.LogHubProcessingService"
     },
@@ -13917,8 +13973,40 @@
       "ToType": "cCoder.Logging.RequestLoggingCoordinator"
     },
     {
+      "FromType": "cCoder.Logging.Extensions.OData.BadRequestResult",
+      "ToType": "ModelStateDictionary"
+    },
+    {
+      "FromType": "cCoder.Logging.Extensions.OData.CompositePropertyInfo",
+      "ToType": "System.Type"
+    },
+    {
+      "FromType": "cCoder.Logging.Models.Exceptions.LoggingDependencyException",
+      "ToType": "System.Exception"
+    },
+    {
+      "FromType": "cCoder.Logging.Models.Exceptions.LoggingServiceException",
+      "ToType": "System.Exception"
+    },
+    {
+      "FromType": "cCoder.Logging.Models.Exceptions.LoggingValidationException",
+      "ToType": "System.Exception"
+    },
+    {
+      "FromType": "cCoder.Logging.RequestLogQueueCoordinator",
+      "ToType": "ILogger\u003CcCoder.Logging.RequestLogQueueCoordinator\u003E"
+    },
+    {
+      "FromType": "cCoder.Logging.RequestLogQueueCoordinator",
+      "ToType": "IServiceScopeFactory"
+    },
+    {
       "FromType": "cCoder.Logging.RequestLogQueueCoordinator",
       "ToType": "cCoder.Logging.Brokers.LogEntryCaptureQueue"
+    },
+    {
+      "FromType": "cCoder.Logging.RequestLoggingCoordinator",
+      "ToType": "ILogger\u003CcCoder.Logging.RequestLoggingCoordinator\u003E"
     },
     {
       "FromType": "cCoder.Logging.RequestLoggingCoordinator",

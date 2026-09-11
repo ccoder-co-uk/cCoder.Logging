@@ -60,7 +60,7 @@ internal sealed class RequestLoggingCoordinator(
             Persist = true
         };
 
-        if (!queue.TryEnqueue(request: request))
+        if (!queue.TryEnqueue(logEntryCaptureRequest: request))
         {
             logger.LogWarning(message: "Request logging queue is full; the newest request log was dropped.");
         }

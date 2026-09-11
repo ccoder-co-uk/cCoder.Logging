@@ -3,7 +3,6 @@
 // ---------------------------------------------------------------
 
 using cCoder.Logging.Services.Processings;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace cCoder.Logging.Exposures.HostedServices;
 
@@ -12,21 +11,10 @@ public interface ILogRetentionCleaner : IHostedService
 }
 
 internal sealed class LogRetentionCleaner(
-    IServiceScopeFactory serviceScopeFactory)
+    ILogEntryRetentionProcessingService logRetentionProcessingService)
         : BackgroundService, ILogRetentionCleaner
 {
-    protected override async Task ExecuteAsync(
-        CancellationToken stoppingToken)
-    {
-        using IServiceScope scope =
-            serviceScopeFactory.CreateScope();
-
-        ILogEntryRetentionProcessingService
-            logRetentionProcessingService =
-                scope.ServiceProvider.GetRequiredService<
-                    ILogEntryRetentionProcessingService>();
-
-        await logRetentionProcessingService.RunLogRetentionAsync(
+    protected override Task ExecuteAsync(CancellationToken stoppingToken) =>
+        logRetentionProcessingService.RunLogRetentionAsync(
             cancellationToken: stoppingToken);
-    }
 }

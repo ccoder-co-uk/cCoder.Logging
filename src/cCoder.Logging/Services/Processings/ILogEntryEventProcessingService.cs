@@ -10,7 +10,7 @@ namespace cCoder.Logging.Services.Processings;
 
 internal interface ILogEntryEventProcessingService
 {
-    ValueTask RaiseLogEntryAddEventAsync(LogEntry entity);
-    ValueTask RaiseLogEntryUpdateEventAsync(LogEntry entity);
-    ValueTask RaiseLogEntryDeleteEventAsync(LogEntry entity);
+    ValueTask RaiseLogEntryAddEventAsync(LogEntry logEntry);
+    ValueTask RaiseLogEntryUpdateEventAsync(LogEntry logEntry);
+    ValueTask RaiseLogEntryDeleteEventAsync(LogEntry logEntry);
 }

@@ -13,37 +13,37 @@ internal sealed partial class LogDataItemEventService(
     IAuthInfoBroker authInfoBroker)
         : ILogDataItemEventService
 {
-    public ValueTask RaiseLogDataItemAddEventAsync(LogDataItem entity) =>
+    public ValueTask RaiseLogDataItemAddEventAsync(LogDataItem logDataItem) =>
         TryCatch(operation: async () =>
         {
-            ValidateInputs(inputs: [entity]);
+            ValidateInputs(inputs: [logDataItem]);
 
             EventMessage<LogDataItem> message =
-                CreateLogDataItemEventMessage(logDataItem: entity);
+                CreateLogDataItemEventMessage(logDataItem: logDataItem);
 
             await logDataItemEventBroker.RaiseLogDataItemAddEventAsync(
                 message: message);
         });
 
-    public ValueTask RaiseLogDataItemUpdateEventAsync(LogDataItem entity) =>
+    public ValueTask RaiseLogDataItemUpdateEventAsync(LogDataItem logDataItem) =>
         TryCatch(operation: async () =>
         {
-            ValidateInputs(inputs: [entity]);
+            ValidateInputs(inputs: [logDataItem]);
 
             EventMessage<LogDataItem> message =
-                CreateLogDataItemEventMessage(logDataItem: entity);
+                CreateLogDataItemEventMessage(logDataItem: logDataItem);
 
             await logDataItemEventBroker.RaiseLogDataItemUpdateEventAsync(
                 message: message);
         });
 
-    public ValueTask RaiseLogDataItemDeleteEventAsync(LogDataItem entity) =>
+    public ValueTask RaiseLogDataItemDeleteEventAsync(LogDataItem logDataItem) =>
         TryCatch(operation: async () =>
         {
-            ValidateInputs(inputs: [entity]);
+            ValidateInputs(inputs: [logDataItem]);
 
             EventMessage<LogDataItem> message =
-                CreateLogDataItemEventMessage(logDataItem: entity);
+                CreateLogDataItemEventMessage(logDataItem: logDataItem);
 
             await logDataItemEventBroker.RaiseLogDataItemDeleteEventAsync(
                 message: message);

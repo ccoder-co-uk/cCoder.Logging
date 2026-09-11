@@ -19,14 +19,14 @@ public partial class LogDataItemEventProcessingServiceTests
         LogDataItem entity = CreateRandomLogDataItem();
 
         logDataItemEventServiceMock
-            .Setup(expression: x => x.RaiseLogDataItemUpdateEventAsync(entity: entity))
+            .Setup(expression: x => x.RaiseLogDataItemUpdateEventAsync(logDataItem: entity))
             .Returns(value: ValueTask.CompletedTask);
 
         // When
-        await service.RaiseLogDataItemUpdateEventAsync(entity: entity);
+        await service.RaiseLogDataItemUpdateEventAsync(logDataItem: entity);
 
         // Then
-        logDataItemEventServiceMock.Verify(expression: x => x.RaiseLogDataItemUpdateEventAsync(entity: entity), times: Times.Once);
+        logDataItemEventServiceMock.Verify(expression: x => x.RaiseLogDataItemUpdateEventAsync(logDataItem: entity), times: Times.Once);
         logDataItemEventServiceMock.VerifyNoOtherCalls();
     }
 

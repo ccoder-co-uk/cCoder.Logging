@@ -27,7 +27,7 @@ public partial class LogEntryEventServiceTests
             .Returns(value: ValueTask.CompletedTask);
 
         // When
-        await service.RaiseLogEntryDeleteEventAsync(entity: entity);
+        await service.RaiseLogEntryDeleteEventAsync(logEntry: entity);
 
         // Then
 

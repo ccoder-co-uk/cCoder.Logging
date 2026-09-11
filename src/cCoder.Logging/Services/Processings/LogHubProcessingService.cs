@@ -6,7 +6,6 @@ using cCoder.Data.Models.Security;
 using cCoder.Logging.Brokers;
 using cCoder.Logging.Brokers.Loggings;
 using cCoder.Logging.Models;
-using Microsoft.AspNetCore.SignalR;
 
 namespace cCoder.Logging.Services.Processings;
 
@@ -21,10 +20,10 @@ internal sealed partial class LogHubProcessingService(
     private static readonly IDictionary<string, int> UserCounts =
         new Dictionary<string, int>();
 
-    public ValueTask ConnectLogHubSessionAsync(LogHubSession session) =>
+    public ValueTask ConnectLogHubSessionAsync(LogHubSession logHubSession) =>
         TryCatch(operation: () =>
         {
-            ValidateInputs(inputs: [session]);
+            ValidateInputs(inputs: [logHubSession]);
 
             log.LogDebug(
                 message: "New client connected to the logging hub.");
@@ -32,56 +31,49 @@ internal sealed partial class LogHubProcessingService(
             return ValueTask.CompletedTask;
         });
 
-    public ValueTask JoinLogHubSessionAsync(LogHubSession session) =>
+    public ValueTask JoinLogHubSessionAsync(LogHubSession logHubSession) =>
         TryCatch(operation: async () =>
         {
-            ValidateInputs(inputs: [session]);
+            ValidateInputs(inputs: [logHubSession]);
 
             int? appId =
                 logHubBroker.SelectAppIdByDomain(
-                    domain: session.Thread);
+                    domain: logHubSession.Thread);
 
             User user = authorizationBroker.SelectCurrentUser();
 
             if (appId.HasValue
                 && user.IsAdminOfApp(appId: appId.Value))
             {
-                await session.Groups.AddToGroupAsync(
-                    connectionId: session.ConnectionId,
-                    groupName: session.Thread);
+                await logHubBroker.JoinGroupAsync(logHubSession: logHubSession);
 
-                await session.Clients.Caller.SendAsync(
-                    method: "ConsoleReceive",
-                    arg1: "info",
-                    arg2: $"Connected to instance {session.Thread}",
-                    arg3: session.Thread);
+                await logHubBroker.SendCallerAsync(
+                    logHubSession: logHubSession,
+                    level: "info",
+                    message: $"Connected to instance {logHubSession.Thread}");
 
-                await session.Clients.Group(
-                    groupName: session.Thread)
-                    .SendAsync(
-                        method: "ConsoleReceive",
-                        arg1: "info",
-                        arg2: "User Joined",
-                        arg3: session.Thread);
+                await logHubBroker.SendGroupAsync(
+                    logHubSession: logHubSession,
+                    level: "info",
+                    message: "User Joined");
 
                 log.LogInformation(
                     message:
                         "User {UserId} is listening to logs for {Domain}.",
-                    args: [user.Id, session.Thread]);
+                    args: [user.Id, logHubSession.Thread]);
 
                 ICollection<HistoryItem> history =
-                    GetOrCreateHistory(thread: session.Thread);
+                    GetOrCreateHistory(thread: logHubSession.Thread);
 
-                UserCounts[session.Thread] =
-                    GetUserCount(thread: session.Thread) + 1;
+                UserCounts[logHubSession.Thread] =
+                    GetUserCount(thread: logHubSession.Thread) + 1;
 
                 foreach (HistoryItem item in history)
                 {
-                    await session.Clients.Caller.SendAsync(
-                        method: "ConsoleReceive",
-                        arg1: item.Level,
-                        arg2: item.Message,
-                        arg3: session.Thread);
+                    await logHubBroker.SendCallerAsync(
+                        logHubSession: logHubSession,
+                        level: item.Level,
+                        message: item.Message);
                 }
 
                 return;
@@ -90,42 +82,35 @@ internal sealed partial class LogHubProcessingService(
             log.LogWarning(
                 message:
                     "User {UserId} was denied logging access to {Domain}.",
-                args: [user.Id, session.Thread]);
+                args: [user.Id, logHubSession.Thread]);
         });
 
-    public ValueTask LeaveLogHubSessionAsync(LogHubSession session) =>
+    public ValueTask LeaveLogHubSessionAsync(LogHubSession logHubSession) =>
         TryCatch(operation: async () =>
         {
-            ValidateInputs(inputs: [session]);
+            ValidateInputs(inputs: [logHubSession]);
 
-            await session.Groups.RemoveFromGroupAsync(
-                connectionId: session.ConnectionId,
-                groupName: session.Thread);
+            await logHubBroker.RemoveFromGroupAsync(logHubSession: logHubSession);
 
-            await session.Clients.Caller.SendAsync(
-                method: "ConsoleReceive",
-                arg1: "info",
-                arg2:
-                    $"Stopped listening to messages for {session.Thread}",
-                arg3: session.Thread);
+            await logHubBroker.SendCallerAsync(
+                logHubSession: logHubSession,
+                level: "info",
+                message: $"Stopped listening to messages for {logHubSession.Thread}");
 
-            await session.Clients.Group(
-                groupName: session.Thread)
-                .SendAsync(
-                    method: "ConsoleReceive",
-                    arg1: "info",
-                    arg2: "User Left",
-                    arg3: session.Thread);
+            await logHubBroker.SendGroupAsync(
+                logHubSession: logHubSession,
+                level: "info",
+                message: "User Left");
 
             int userCount =
-                GetUserCount(thread: session.Thread) - 1;
+                GetUserCount(thread: logHubSession.Thread) - 1;
 
-            UserCounts[session.Thread] = userCount;
+            UserCounts[logHubSession.Thread] = userCount;
 
             if (userCount <= 0)
             {
-                _ = History.Remove(key: session.Thread);
-                _ = UserCounts.Remove(key: session.Thread);
+                _ = History.Remove(key: logHubSession.Thread);
+                _ = UserCounts.Remove(key: logHubSession.Thread);
             }
 
             User user = authorizationBroker.SelectCurrentUser();
@@ -133,13 +118,13 @@ internal sealed partial class LogHubProcessingService(
             log.LogInformation(
                 message:
                     "User {UserId} stopped listening to logs for {Domain}.",
-                args: [user.Id, session.Thread]);
+                args: [user.Id, logHubSession.Thread]);
         });
 
-    public ValueTask DisconnectLogHubSessionAsync(LogHubSession session) =>
+    public ValueTask DisconnectLogHubSessionAsync(LogHubSession logHubSession) =>
         TryCatch(operation: () =>
         {
-            ValidateInputs(inputs: [session]);
+            ValidateInputs(inputs: [logHubSession]);
 
             User user = authorizationBroker.SelectCurrentUser();
 
@@ -150,83 +135,85 @@ internal sealed partial class LogHubProcessingService(
             return ValueTask.CompletedTask;
         });
 
-    public void DebugLogHubSession(LogHubSession session) =>
+    public void DebugLogHubSession(LogHubSession logHubSession) =>
         TryCatch(operation: () =>
         {
-            ValidateInputs(inputs: [session]);
+            ValidateInputs(inputs: [logHubSession]);
+
+            logHubSession.Host = logHubBroker.SelectHost(logHubSession: logHubSession);
 
             log.LogDebug(
                 message: "{Host}: {Level} {Message}",
-                args: [session.Host, session.Level, session.Message]);
+                args: [logHubSession.Host, logHubSession.Level, logHubSession.Message]);
         });
 
-    public void InfoLogHubSession(LogHubSession session) =>
+    public void InfoLogHubSession(LogHubSession logHubSession) =>
         TryCatch(operation: () =>
         {
-            ValidateInputs(inputs: [session]);
+            ValidateInputs(inputs: [logHubSession]);
+
+            logHubSession.Host = logHubBroker.SelectHost(logHubSession: logHubSession);
 
             log.LogInformation(
                 message: "{Host}: {Level} {Message}",
-                args: [session.Host, session.Level, session.Message]);
+                args: [logHubSession.Host, logHubSession.Level, logHubSession.Message]);
         });
 
-    public void WarnLogHubSession(LogHubSession session) =>
+    public void WarnLogHubSession(LogHubSession logHubSession) =>
         TryCatch(operation: () =>
         {
-            ValidateInputs(inputs: [session]);
+            ValidateInputs(inputs: [logHubSession]);
+
+            logHubSession.Host = logHubBroker.SelectHost(logHubSession: logHubSession);
 
             log.LogWarning(
                 message: "{Host}: {Level} {Message}",
-                args: [session.Host, session.Level, session.Message]);
+                args: [logHubSession.Host, logHubSession.Level, logHubSession.Message]);
         });
 
-    public void ErrorLogHubSession(LogHubSession session) =>
+    public void ErrorLogHubSession(LogHubSession logHubSession) =>
         TryCatch(operation: () =>
         {
-            ValidateInputs(inputs: [session]);
+            ValidateInputs(inputs: [logHubSession]);
+
+            logHubSession.Host = logHubBroker.SelectHost(logHubSession: logHubSession);
 
             log.LogError(
                 message: "{Host}: {Level} {Message}",
-                args: [session.Host, session.Level, session.Message]);
+                args: [logHubSession.Host, logHubSession.Level, logHubSession.Message]);
         });
 
     public ValueTask SendConsoleLogHubSessionAsync(
-        LogHubSession session) =>
+        LogHubSession logHubSession) =>
         TryCatch(operation: async () =>
         {
-            ValidateInputs(inputs: [session]);
+            ValidateInputs(inputs: [logHubSession]);
 
             ICollection<HistoryItem> history =
-                GetOrCreateHistory(thread: session.Thread);
+                GetOrCreateHistory(thread: logHubSession.Thread);
 
             history.Add(
                 item: new HistoryItem
                 {
-                    Level = session.Level,
-                    Message = session.Message,
+                    Level = logHubSession.Level,
+                    Message = logHubSession.Message,
                 });
 
-            await session.Clients.Group(
-                groupName: session.Thread)
-                .SendAsync(
-                    method: "ConsoleReceive",
-                    arg1: session.Level,
-                    arg2: session.Message,
-                    arg3: session.Thread);
+            await logHubBroker.SendGroupAsync(
+                logHubSession: logHubSession,
+                level: logHubSession.Level,
+                message: logHubSession.Message);
         });
 
-    public ValueTask SendTestLogHubSessionAsync(LogHubSession session) =>
+    public ValueTask SendTestLogHubSessionAsync(LogHubSession logHubSession) =>
         TryCatch(operation: async () =>
         {
-            ValidateInputs(inputs: [session]);
+            ValidateInputs(inputs: [logHubSession]);
 
-            await session.Clients.Group(
-                groupName: session.Thread)
-                .SendAsync(
-                    method: "ConsoleReceive",
-                    arg1: "test",
-                    arg2: session.Message,
-                    arg3: session.Thread);
+            await logHubBroker.SendGroupAsync(
+                logHubSession: logHubSession,
+                level: "test",
+                message: logHubSession.Message);
         });
 
     private static ICollection<HistoryItem> GetOrCreateHistory(

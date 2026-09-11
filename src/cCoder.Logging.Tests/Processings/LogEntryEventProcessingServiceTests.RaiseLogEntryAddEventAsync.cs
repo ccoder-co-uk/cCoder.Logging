@@ -19,14 +19,14 @@ public partial class LogEntryEventProcessingServiceTests
         LogEntry entity = CreateRandomLogEntry();
 
         logEntryEventServiceMock
-            .Setup(expression: x => x.RaiseLogEntryAddEventAsync(entity: entity))
+            .Setup(expression: x => x.RaiseLogEntryAddEventAsync(logEntry: entity))
             .Returns(value: ValueTask.CompletedTask);
 
         // When
-        await service.RaiseLogEntryAddEventAsync(entity: entity);
+        await service.RaiseLogEntryAddEventAsync(logEntry: entity);
 
         // Then
-        logEntryEventServiceMock.Verify(expression: x => x.RaiseLogEntryAddEventAsync(entity: entity), times: Times.Once);
+        logEntryEventServiceMock.Verify(expression: x => x.RaiseLogEntryAddEventAsync(logEntry: entity), times: Times.Once);
         logEntryEventServiceMock.VerifyNoOtherCalls();
     }
 

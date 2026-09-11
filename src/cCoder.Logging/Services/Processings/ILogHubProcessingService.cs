@@ -8,23 +8,23 @@ namespace cCoder.Logging.Services.Processings;
 
 internal interface ILogHubProcessingService
 {
-    ValueTask ConnectLogHubSessionAsync(LogHubSession session);
+    ValueTask ConnectLogHubSessionAsync(LogHubSession logHubSession);
 
-    ValueTask JoinLogHubSessionAsync(LogHubSession session);
+    ValueTask JoinLogHubSessionAsync(LogHubSession logHubSession);
 
-    ValueTask LeaveLogHubSessionAsync(LogHubSession session);
+    ValueTask LeaveLogHubSessionAsync(LogHubSession logHubSession);
 
-    ValueTask DisconnectLogHubSessionAsync(LogHubSession session);
+    ValueTask DisconnectLogHubSessionAsync(LogHubSession logHubSession);
 
-    void DebugLogHubSession(LogHubSession session);
+    void DebugLogHubSession(LogHubSession logHubSession);
 
-    void InfoLogHubSession(LogHubSession session);
+    void InfoLogHubSession(LogHubSession logHubSession);
 
-    void WarnLogHubSession(LogHubSession session);
+    void WarnLogHubSession(LogHubSession logHubSession);
 
-    void ErrorLogHubSession(LogHubSession session);
+    void ErrorLogHubSession(LogHubSession logHubSession);
 
-    ValueTask SendConsoleLogHubSessionAsync(LogHubSession session);
+    ValueTask SendConsoleLogHubSessionAsync(LogHubSession logHubSession);
 
-    ValueTask SendTestLogHubSessionAsync(LogHubSession session);
+    ValueTask SendTestLogHubSessionAsync(LogHubSession logHubSession);
 }

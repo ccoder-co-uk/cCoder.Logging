@@ -43,7 +43,7 @@ internal sealed partial class LogEntryOrchestrationService(
                     newLogEntry: newLogEntry);
 
             await logEntryEventProcessingService.RaiseLogEntryAddEventAsync(
-                entity: savedLogEntry);
+                logEntry: savedLogEntry);
 
             return savedLogEntry;
         });
@@ -59,7 +59,7 @@ internal sealed partial class LogEntryOrchestrationService(
                     newLogEntry: newLogEntry);
 
             await logEntryEventProcessingService.RaiseLogEntryAddEventAsync(
-                entity: savedLogEntry);
+                logEntry: savedLogEntry);
 
             return savedLogEntry;
         });
@@ -75,7 +75,7 @@ internal sealed partial class LogEntryOrchestrationService(
                     updatedLogEntry: updatedLogEntry);
 
             await logEntryEventProcessingService.RaiseLogEntryUpdateEventAsync(
-                entity: savedLogEntry);
+                logEntry: savedLogEntry);
 
             return savedLogEntry;
         });
@@ -90,7 +90,7 @@ internal sealed partial class LogEntryOrchestrationService(
                     logEntryId: logEntryId);
 
             await logEntryEventProcessingService.RaiseLogEntryDeleteEventAsync(
-                entity: deletedLogEntry);
+                logEntry: deletedLogEntry);
 
             await logEntryProcessingService.DeleteLogEntryAsync(
                 logEntryId: logEntryId);

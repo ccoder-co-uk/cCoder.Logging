@@ -1302,7 +1302,7 @@
           "LineNumber": 17,
           "Inputs": [
             {
-              "Name": "request",
+              "Name": "logEntryCaptureRequest",
               "Type": "cCoder.Logging.Models.LogEntryCaptureRequest"
             }
           ],
@@ -1564,7 +1564,7 @@
     {
       "Name": "cCoder.Logging.Brokers.LogHubBroker",
       "StandardElementType": "Broker",
-      "LineNumber": 15,
+      "LineNumber": 22,
       "IsPublic": false,
       "Kind": "Class",
       "BaseType": null,
@@ -1583,9 +1583,63 @@
       "Properties": [],
       "Methods": [
         {
+          "Id": "cCoder.Logging.Brokers.LogHubBroker.JoinGroupAsync(cCoder.Logging.Models.LogHubSession)",
+          "Name": "JoinGroupAsync",
+          "LineNumber": 40,
+          "Inputs": [
+            {
+              "Name": "logHubSession",
+              "Type": "cCoder.Logging.Models.LogHubSession"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.Task",
+          "Implements": [
+            "cCoder.Logging.Brokers.ILogHubBroker.JoinGroupAsync(cCoder.Logging.Models.LogHubSession)"
+          ],
+          "Calls": [],
+          "PossibleExceptionTypes": [],
+          "IncomingExceptionTypes": [],
+          "ThrowsExceptionTypes": [],
+          "HttpMethods": [],
+          "HttpResponses": [],
+          "IsHttpRequestHandler": false,
+          "IsODataControllerAction": false,
+          "HasFromBodyParameter": false,
+          "HasKeyParameter": false,
+          "HandlesNullWithNotFound": false,
+          "HasTryCatch": false
+        },
+        {
+          "Id": "cCoder.Logging.Brokers.LogHubBroker.RemoveFromGroupAsync(cCoder.Logging.Models.LogHubSession)",
+          "Name": "RemoveFromGroupAsync",
+          "LineNumber": 45,
+          "Inputs": [
+            {
+              "Name": "logHubSession",
+              "Type": "cCoder.Logging.Models.LogHubSession"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.Task",
+          "Implements": [
+            "cCoder.Logging.Brokers.ILogHubBroker.RemoveFromGroupAsync(cCoder.Logging.Models.LogHubSession)"
+          ],
+          "Calls": [],
+          "PossibleExceptionTypes": [],
+          "IncomingExceptionTypes": [],
+          "ThrowsExceptionTypes": [],
+          "HttpMethods": [],
+          "HttpResponses": [],
+          "IsHttpRequestHandler": false,
+          "IsODataControllerAction": false,
+          "HasFromBodyParameter": false,
+          "HasKeyParameter": false,
+          "HandlesNullWithNotFound": false,
+          "HasTryCatch": false
+        },
+        {
           "Id": "cCoder.Logging.Brokers.LogHubBroker.SelectAppIdByDomain(System.String)",
           "Name": "SelectAppIdByDomain",
-          "LineNumber": 18,
+          "LineNumber": 25,
           "Inputs": [
             {
               "Name": "domain",
@@ -1633,6 +1687,103 @@
               "IsDependencyBoundary": true
             }
           ],
+          "PossibleExceptionTypes": [],
+          "IncomingExceptionTypes": [],
+          "ThrowsExceptionTypes": [],
+          "HttpMethods": [],
+          "HttpResponses": [],
+          "IsHttpRequestHandler": false,
+          "IsODataControllerAction": false,
+          "HasFromBodyParameter": false,
+          "HasKeyParameter": false,
+          "HandlesNullWithNotFound": false,
+          "HasTryCatch": false
+        },
+        {
+          "Id": "cCoder.Logging.Brokers.LogHubBroker.SelectHost(cCoder.Logging.Models.LogHubSession)",
+          "Name": "SelectHost",
+          "LineNumber": 37,
+          "Inputs": [
+            {
+              "Name": "logHubSession",
+              "Type": "cCoder.Logging.Models.LogHubSession"
+            }
+          ],
+          "ReturnType": "System.String",
+          "Implements": [
+            "cCoder.Logging.Brokers.ILogHubBroker.SelectHost(cCoder.Logging.Models.LogHubSession)"
+          ],
+          "Calls": [],
+          "PossibleExceptionTypes": [],
+          "IncomingExceptionTypes": [],
+          "ThrowsExceptionTypes": [],
+          "HttpMethods": [],
+          "HttpResponses": [],
+          "IsHttpRequestHandler": false,
+          "IsODataControllerAction": false,
+          "HasFromBodyParameter": false,
+          "HasKeyParameter": false,
+          "HandlesNullWithNotFound": false,
+          "HasTryCatch": false
+        },
+        {
+          "Id": "cCoder.Logging.Brokers.LogHubBroker.SendCallerAsync(cCoder.Logging.Models.LogHubSession,System.String,System.String)",
+          "Name": "SendCallerAsync",
+          "LineNumber": 50,
+          "Inputs": [
+            {
+              "Name": "logHubSession",
+              "Type": "cCoder.Logging.Models.LogHubSession"
+            },
+            {
+              "Name": "level",
+              "Type": "System.String"
+            },
+            {
+              "Name": "message",
+              "Type": "System.String"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.Task",
+          "Implements": [
+            "cCoder.Logging.Brokers.ILogHubBroker.SendCallerAsync(cCoder.Logging.Models.LogHubSession,System.String,System.String)"
+          ],
+          "Calls": [],
+          "PossibleExceptionTypes": [],
+          "IncomingExceptionTypes": [],
+          "ThrowsExceptionTypes": [],
+          "HttpMethods": [],
+          "HttpResponses": [],
+          "IsHttpRequestHandler": false,
+          "IsODataControllerAction": false,
+          "HasFromBodyParameter": false,
+          "HasKeyParameter": false,
+          "HandlesNullWithNotFound": false,
+          "HasTryCatch": false
+        },
+        {
+          "Id": "cCoder.Logging.Brokers.LogHubBroker.SendGroupAsync(cCoder.Logging.Models.LogHubSession,System.String,System.String)",
+          "Name": "SendGroupAsync",
+          "LineNumber": 60,
+          "Inputs": [
+            {
+              "Name": "logHubSession",
+              "Type": "cCoder.Logging.Models.LogHubSession"
+            },
+            {
+              "Name": "level",
+              "Type": "System.String"
+            },
+            {
+              "Name": "message",
+              "Type": "System.String"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.Task",
+          "Implements": [
+            "cCoder.Logging.Brokers.ILogHubBroker.SendGroupAsync(cCoder.Logging.Models.LogHubSession,System.String,System.String)"
+          ],
+          "Calls": [],
           "PossibleExceptionTypes": [],
           "IncomingExceptionTypes": [],
           "ThrowsExceptionTypes": [],
@@ -2227,7 +2378,7 @@
         {
           "Id": "cCoder.Logging.Exposures.Controllers.LogDataItemController.Get()",
           "Name": "Get",
-          "LineNumber": 67,
+          "LineNumber": 36,
           "Inputs": [],
           "ReturnType": "IActionResult",
           "Implements": [],
@@ -2300,7 +2451,7 @@
         {
           "Id": "cCoder.Logging.Exposures.Controllers.LogDataItemController.Get(System.Int32)",
           "Name": "Get",
-          "LineNumber": 107,
+          "LineNumber": 76,
           "Inputs": [
             {
               "Name": "key",
@@ -2393,64 +2544,9 @@
           "HasTryCatch": true
         },
         {
-          "Id": "cCoder.Logging.Exposures.Controllers.LogDataItemController.GetMetadata()",
-          "Name": "GetMetadata",
-          "LineNumber": 28,
-          "Inputs": [],
-          "ReturnType": "IActionResult",
-          "Implements": [],
-          "Calls": [
-            {
-              "TypeName": "cCoder.Logging.Brokers.Loggings.ILoggingBroker",
-              "MethodName": "LogError",
-              "MethodId": "cCoder.Logging.Brokers.Loggings.ILoggingBroker.LogError(System.Exception,System.String,System.Object[])",
-              "StandardElementType": "Broker",
-              "IsDependencyBoundary": false
-            },
-            {
-              "TypeName": "cCoder.Logging.Brokers.OData.LoggingModelBroker",
-              "MethodName": "Build",
-              "MethodId": "cCoder.Logging.Brokers.OData.LoggingModelBroker.Build()",
-              "StandardElementType": "Broker",
-              "IsDependencyBoundary": false
-            },
-            {
-              "TypeName": "cCoder.Logging.Extensions.OData.EdmModelExtensions",
-              "MethodName": "GetExtendedMetadataForType",
-              "MethodId": "cCoder.Logging.Extensions.OData.EdmModelExtensions.GetExtendedMetadataForType(Microsoft.OData.Edm.IEdmModel,System.String,System.Type,System.Boolean)",
-              "StandardElementType": "Exposure",
-              "IsDependencyBoundary": false
-            }
-          ],
-          "PossibleExceptionTypes": [],
-          "IncomingExceptionTypes": [],
-          "ThrowsExceptionTypes": [],
-          "HttpMethods": [
-            "GET"
-          ],
-          "HttpResponses": [
-            {
-              "StatusCode": 200,
-              "ResultMethod": "Ok",
-              "ExceptionType": "",
-              "IsExceptionPath": false,
-              "IsNullPath": false,
-              "HasBody": true,
-              "ExposesExceptionDetails": false,
-              "LogsException": false
-            }
-          ],
-          "IsHttpRequestHandler": true,
-          "IsODataControllerAction": true,
-          "HasFromBodyParameter": false,
-          "HasKeyParameter": false,
-          "HandlesNullWithNotFound": false,
-          "HasTryCatch": true
-        },
-        {
           "Id": "cCoder.Logging.Exposures.Controllers.LogDataItemController.Post(cCoder.Data.Models.Logging.LogDataItem)",
           "Name": "Post",
-          "LineNumber": 154,
+          "LineNumber": 123,
           "Inputs": [
             {
               "Name": "newLogDataItem",
@@ -2551,7 +2647,7 @@
         {
           "Id": "cCoder.Logging.Exposures.Controllers.LogEntryController.Get()",
           "Name": "Get",
-          "LineNumber": 67,
+          "LineNumber": 36,
           "Inputs": [],
           "ReturnType": "IActionResult",
           "Implements": [],
@@ -2624,7 +2720,7 @@
         {
           "Id": "cCoder.Logging.Exposures.Controllers.LogEntryController.Get(System.Int32)",
           "Name": "Get",
-          "LineNumber": 107,
+          "LineNumber": 76,
           "Inputs": [
             {
               "Name": "key",
@@ -2717,64 +2813,9 @@
           "HasTryCatch": true
         },
         {
-          "Id": "cCoder.Logging.Exposures.Controllers.LogEntryController.GetMetadata()",
-          "Name": "GetMetadata",
-          "LineNumber": 28,
-          "Inputs": [],
-          "ReturnType": "IActionResult",
-          "Implements": [],
-          "Calls": [
-            {
-              "TypeName": "cCoder.Logging.Brokers.Loggings.ILoggingBroker",
-              "MethodName": "LogError",
-              "MethodId": "cCoder.Logging.Brokers.Loggings.ILoggingBroker.LogError(System.Exception,System.String,System.Object[])",
-              "StandardElementType": "Broker",
-              "IsDependencyBoundary": false
-            },
-            {
-              "TypeName": "cCoder.Logging.Brokers.OData.LoggingModelBroker",
-              "MethodName": "Build",
-              "MethodId": "cCoder.Logging.Brokers.OData.LoggingModelBroker.Build()",
-              "StandardElementType": "Broker",
-              "IsDependencyBoundary": false
-            },
-            {
-              "TypeName": "cCoder.Logging.Extensions.OData.EdmModelExtensions",
-              "MethodName": "GetExtendedMetadataForType",
-              "MethodId": "cCoder.Logging.Extensions.OData.EdmModelExtensions.GetExtendedMetadataForType(Microsoft.OData.Edm.IEdmModel,System.String,System.Type,System.Boolean)",
-              "StandardElementType": "Exposure",
-              "IsDependencyBoundary": false
-            }
-          ],
-          "PossibleExceptionTypes": [],
-          "IncomingExceptionTypes": [],
-          "ThrowsExceptionTypes": [],
-          "HttpMethods": [
-            "GET"
-          ],
-          "HttpResponses": [
-            {
-              "StatusCode": 200,
-              "ResultMethod": "Ok",
-              "ExceptionType": "",
-              "IsExceptionPath": false,
-              "IsNullPath": false,
-              "HasBody": true,
-              "ExposesExceptionDetails": false,
-              "LogsException": false
-            }
-          ],
-          "IsHttpRequestHandler": true,
-          "IsODataControllerAction": true,
-          "HasFromBodyParameter": false,
-          "HasKeyParameter": false,
-          "HandlesNullWithNotFound": false,
-          "HasTryCatch": true
-        },
-        {
           "Id": "cCoder.Logging.Exposures.Controllers.LogEntryController.Post(cCoder.Data.Models.Logging.LogEntry)",
           "Name": "Post",
-          "LineNumber": 154,
+          "LineNumber": 123,
           "Inputs": [
             {
               "Name": "newLogEntry",
@@ -2910,7 +2951,7 @@
     {
       "Name": "cCoder.Logging.Exposures.HostedServices.LogRetentionCleaner",
       "StandardElementType": "Exposure",
-      "LineNumber": 14,
+      "LineNumber": 13,
       "IsPublic": false,
       "Kind": "Class",
       "BaseType": {
@@ -4392,7 +4433,7 @@
           "LineNumber": 12,
           "Inputs": [
             {
-              "Name": "configuration",
+              "Name": "loggingConfiguration",
               "Type": "cCoder.Logging.Models.LoggingConfiguration"
             },
             {
@@ -4416,26 +4457,6 @@
           "HasTryCatch": false
         }
       ]
-    },
-    {
-      "Name": "cCoder.Logging.Extensions.OData.BadRequestResult",
-      "StandardElementType": "Dependency",
-      "LineNumber": 11,
-      "IsPublic": true,
-      "Kind": "Class",
-      "BaseType": {
-        "Id": "cCoder.Logging:BadRequestObjectResult",
-        "FullName": "BadRequestObjectResult",
-        "Name": "BadRequestObjectResult",
-        "Namespace": "\u003Cglobal namespace\u003E",
-        "AssemblyName": "cCoder.Logging",
-        "Kind": "Class",
-        "IsInCurrentProject": true,
-        "StandardElementType": "Dependency"
-      },
-      "Interfaces": [],
-      "Properties": [],
-      "Methods": []
     },
     {
       "Name": "cCoder.Logging.Extensions.OData.CompositePropertyInfo",
@@ -4860,126 +4881,6 @@
       ]
     },
     {
-      "Name": "cCoder.Logging.Extensions.OData.EdmModelExtensions",
-      "StandardElementType": "Exposure",
-      "LineNumber": 11,
-      "IsPublic": true,
-      "Kind": "Class",
-      "BaseType": null,
-      "Interfaces": [],
-      "Properties": [],
-      "Methods": [
-        {
-          "Id": "cCoder.Logging.Extensions.OData.EdmModelExtensions.GetExtendedMetadataForType(Microsoft.OData.Edm.IEdmModel,System.String,System.Type,System.Boolean)",
-          "Name": "GetExtendedMetadataForType",
-          "LineNumber": 13,
-          "Inputs": [
-            {
-              "Name": "model",
-              "Type": "Microsoft.OData.Edm.IEdmModel"
-            },
-            {
-              "Name": "context",
-              "Type": "System.String"
-            },
-            {
-              "Name": "type",
-              "Type": "System.Type"
-            },
-            {
-              "Name": "hasEndpoint",
-              "Type": "System.Boolean"
-            }
-          ],
-          "ReturnType": "cCoder.Logging.Models.OData.ExtendedMetadataContainer",
-          "Implements": [],
-          "Calls": [
-            {
-              "TypeName": "Microsoft.OData.Edm.ExtensionMethods",
-              "MethodName": "FullName",
-              "MethodId": "Microsoft.OData.Edm.ExtensionMethods.FullName(Microsoft.OData.Edm.IEdmTypeReference)",
-              "StandardElementType": "Dependency",
-              "IsDependencyBoundary": true
-            },
-            {
-              "TypeName": "Microsoft.OData.Edm.ExtensionMethods",
-              "MethodName": "GetReturn",
-              "MethodId": "Microsoft.OData.Edm.ExtensionMethods.GetReturn(Microsoft.OData.Edm.IEdmOperation)",
-              "StandardElementType": "Dependency",
-              "IsDependencyBoundary": true
-            },
-            {
-              "TypeName": "Microsoft.OData.Edm.ExtensionMethods",
-              "MethodName": "IsFunction",
-              "MethodId": "Microsoft.OData.Edm.ExtensionMethods.IsFunction(Microsoft.OData.Edm.IEdmOperation)",
-              "StandardElementType": "Dependency",
-              "IsDependencyBoundary": true
-            },
-            {
-              "TypeName": "Microsoft.OData.Edm.IEdmEntityContainer",
-              "MethodName": "FindEntitySet",
-              "MethodId": "Microsoft.OData.Edm.IEdmEntityContainer.FindEntitySet(System.String)",
-              "StandardElementType": "Dependency",
-              "IsDependencyBoundary": true
-            },
-            {
-              "TypeName": "Microsoft.OData.Edm.IEdmModel",
-              "MethodName": "FindDeclaredBoundOperations",
-              "MethodId": "Microsoft.OData.Edm.IEdmModel.FindDeclaredBoundOperations(Microsoft.OData.Edm.IEdmType)",
-              "StandardElementType": "Dependency",
-              "IsDependencyBoundary": true
-            },
-            {
-              "TypeName": "System.Linq.Enumerable",
-              "MethodName": "Select",
-              "MethodId": "System.Linq.Enumerable.Select(System.Collections.Generic.IEnumerable\u003CTSource\u003E,System.Func\u003CTSource, TResult\u003E)",
-              "StandardElementType": "Dependency",
-              "IsDependencyBoundary": true
-            },
-            {
-              "TypeName": "System.Linq.Enumerable",
-              "MethodName": "ToDictionary",
-              "MethodId": "System.Linq.Enumerable.ToDictionary(System.Collections.Generic.IEnumerable\u003CTSource\u003E,System.Func\u003CTSource, TKey\u003E,System.Func\u003CTSource, TElement\u003E)",
-              "StandardElementType": "Dependency",
-              "IsDependencyBoundary": true
-            },
-            {
-              "TypeName": "System.Linq.Enumerable",
-              "MethodName": "ToList",
-              "MethodId": "System.Linq.Enumerable.ToList(System.Collections.Generic.IEnumerable\u003CTSource\u003E)",
-              "StandardElementType": "Dependency",
-              "IsDependencyBoundary": true
-            },
-            {
-              "TypeName": "System.Linq.Enumerable",
-              "MethodName": "Union",
-              "MethodId": "System.Linq.Enumerable.Union(System.Collections.Generic.IEnumerable\u003CTSource\u003E,System.Collections.Generic.IEnumerable\u003CTSource\u003E)",
-              "StandardElementType": "Dependency",
-              "IsDependencyBoundary": true
-            },
-            {
-              "TypeName": "System.Linq.Enumerable",
-              "MethodName": "Where",
-              "MethodId": "System.Linq.Enumerable.Where(System.Collections.Generic.IEnumerable\u003CTSource\u003E,System.Func\u003CTSource, System.Boolean\u003E)",
-              "StandardElementType": "Dependency",
-              "IsDependencyBoundary": true
-            }
-          ],
-          "PossibleExceptionTypes": [],
-          "IncomingExceptionTypes": [],
-          "ThrowsExceptionTypes": [],
-          "HttpMethods": [],
-          "HttpResponses": [],
-          "IsHttpRequestHandler": false,
-          "IsODataControllerAction": false,
-          "HasFromBodyParameter": false,
-          "HasKeyParameter": false,
-          "HandlesNullWithNotFound": false,
-          "HasTryCatch": false
-        }
-      ]
-    },
-    {
       "Name": "cCoder.Logging.Extensions.OData.IEnumerableExtensions",
       "StandardElementType": "Exposure",
       "LineNumber": 7,
@@ -4992,17 +4893,6 @@
     },
     {
       "Name": "cCoder.Logging.Extensions.OData.ODataConventionModelBuilderExtensions",
-      "StandardElementType": "Exposure",
-      "LineNumber": 10,
-      "IsPublic": false,
-      "Kind": "Class",
-      "BaseType": null,
-      "Interfaces": [],
-      "Properties": [],
-      "Methods": []
-    },
-    {
-      "Name": "cCoder.Logging.Extensions.OData.ObjectExtensions",
       "StandardElementType": "Exposure",
       "LineNumber": 10,
       "IsPublic": false,
@@ -6090,7 +5980,7 @@
           "LineNumber": 16,
           "Inputs": [
             {
-              "Name": "entity",
+              "Name": "logDataItem",
               "Type": "cCoder.Data.Models.Logging.LogDataItem"
             }
           ],
@@ -6135,7 +6025,7 @@
           "LineNumber": 40,
           "Inputs": [
             {
-              "Name": "entity",
+              "Name": "logDataItem",
               "Type": "cCoder.Data.Models.Logging.LogDataItem"
             }
           ],
@@ -6180,7 +6070,7 @@
           "LineNumber": 28,
           "Inputs": [
             {
-              "Name": "entity",
+              "Name": "logDataItem",
               "Type": "cCoder.Data.Models.Logging.LogDataItem"
             }
           ],
@@ -6248,7 +6138,7 @@
           "LineNumber": 16,
           "Inputs": [
             {
-              "Name": "entity",
+              "Name": "logEntry",
               "Type": "cCoder.Data.Models.Logging.LogEntry"
             }
           ],
@@ -6293,7 +6183,7 @@
           "LineNumber": 40,
           "Inputs": [
             {
-              "Name": "entity",
+              "Name": "logEntry",
               "Type": "cCoder.Data.Models.Logging.LogEntry"
             }
           ],
@@ -6338,7 +6228,7 @@
           "LineNumber": 28,
           "Inputs": [
             {
-              "Name": "entity",
+              "Name": "logEntry",
               "Type": "cCoder.Data.Models.Logging.LogEntry"
             }
           ],
@@ -8186,7 +8076,7 @@
           "LineNumber": 15,
           "Inputs": [
             {
-              "Name": "entity",
+              "Name": "logDataItem",
               "Type": "cCoder.Data.Models.Logging.LogDataItem"
             }
           ],
@@ -8233,7 +8123,7 @@
           "LineNumber": 33,
           "Inputs": [
             {
-              "Name": "entity",
+              "Name": "logDataItem",
               "Type": "cCoder.Data.Models.Logging.LogDataItem"
             }
           ],
@@ -8280,7 +8170,7 @@
           "LineNumber": 24,
           "Inputs": [
             {
-              "Name": "entity",
+              "Name": "logDataItem",
               "Type": "cCoder.Data.Models.Logging.LogDataItem"
             }
           ],
@@ -8703,7 +8593,7 @@
           "LineNumber": 22,
           "Inputs": [
             {
-              "Name": "operation",
+              "Name": "logEntryCaptureOperation",
               "Type": "cCoder.Logging.Models.LogEntryCaptureOperation"
             }
           ],
@@ -8781,7 +8671,7 @@
           "LineNumber": 15,
           "Inputs": [
             {
-              "Name": "entity",
+              "Name": "logEntry",
               "Type": "cCoder.Data.Models.Logging.LogEntry"
             }
           ],
@@ -8828,7 +8718,7 @@
           "LineNumber": 33,
           "Inputs": [
             {
-              "Name": "entity",
+              "Name": "logEntry",
               "Type": "cCoder.Data.Models.Logging.LogEntry"
             }
           ],
@@ -8875,7 +8765,7 @@
           "LineNumber": 24,
           "Inputs": [
             {
-              "Name": "entity",
+              "Name": "logEntry",
               "Type": "cCoder.Data.Models.Logging.LogEntry"
             }
           ],
@@ -9529,7 +9419,7 @@
     {
       "Name": "cCoder.Logging.Services.Processings.LogHubProcessingService",
       "StandardElementType": "ProcessingService",
-      "LineNumber": 13,
+      "LineNumber": 12,
       "IsPublic": false,
       "Kind": "Class",
       "BaseType": null,
@@ -9550,10 +9440,10 @@
         {
           "Id": "cCoder.Logging.Services.Processings.LogHubProcessingService.ConnectLogHubSessionAsync(cCoder.Logging.Models.LogHubSession)",
           "Name": "ConnectLogHubSessionAsync",
-          "LineNumber": 24,
+          "LineNumber": 23,
           "Inputs": [
             {
-              "Name": "session",
+              "Name": "logHubSession",
               "Type": "cCoder.Logging.Models.LogHubSession"
             }
           ],
@@ -9597,10 +9487,10 @@
         {
           "Id": "cCoder.Logging.Services.Processings.LogHubProcessingService.DebugLogHubSession(cCoder.Logging.Models.LogHubSession)",
           "Name": "DebugLogHubSession",
-          "LineNumber": 153,
+          "LineNumber": 138,
           "Inputs": [
             {
-              "Name": "session",
+              "Name": "logHubSession",
               "Type": "cCoder.Logging.Models.LogHubSession"
             }
           ],
@@ -9609,6 +9499,13 @@
             "cCoder.Logging.Services.Processings.ILogHubProcessingService.DebugLogHubSession(cCoder.Logging.Models.LogHubSession)"
           ],
           "Calls": [
+            {
+              "TypeName": "cCoder.Logging.Brokers.ILogHubBroker",
+              "MethodName": "SelectHost",
+              "MethodId": "cCoder.Logging.Brokers.ILogHubBroker.SelectHost(cCoder.Logging.Models.LogHubSession)",
+              "StandardElementType": "Broker",
+              "IsDependencyBoundary": false
+            },
             {
               "TypeName": "cCoder.Logging.Brokers.Loggings.ILoggingBroker",
               "MethodName": "LogDebug",
@@ -9644,10 +9541,10 @@
         {
           "Id": "cCoder.Logging.Services.Processings.LogHubProcessingService.DisconnectLogHubSessionAsync(cCoder.Logging.Models.LogHubSession)",
           "Name": "DisconnectLogHubSessionAsync",
-          "LineNumber": 139,
+          "LineNumber": 124,
           "Inputs": [
             {
-              "Name": "session",
+              "Name": "logHubSession",
               "Type": "cCoder.Logging.Models.LogHubSession"
             }
           ],
@@ -9698,10 +9595,10 @@
         {
           "Id": "cCoder.Logging.Services.Processings.LogHubProcessingService.ErrorLogHubSession(cCoder.Logging.Models.LogHubSession)",
           "Name": "ErrorLogHubSession",
-          "LineNumber": 183,
+          "LineNumber": 174,
           "Inputs": [
             {
-              "Name": "session",
+              "Name": "logHubSession",
               "Type": "cCoder.Logging.Models.LogHubSession"
             }
           ],
@@ -9710,6 +9607,13 @@
             "cCoder.Logging.Services.Processings.ILogHubProcessingService.ErrorLogHubSession(cCoder.Logging.Models.LogHubSession)"
           ],
           "Calls": [
+            {
+              "TypeName": "cCoder.Logging.Brokers.ILogHubBroker",
+              "MethodName": "SelectHost",
+              "MethodId": "cCoder.Logging.Brokers.ILogHubBroker.SelectHost(cCoder.Logging.Models.LogHubSession)",
+              "StandardElementType": "Broker",
+              "IsDependencyBoundary": false
+            },
             {
               "TypeName": "cCoder.Logging.Brokers.Loggings.ILoggingBroker",
               "MethodName": "LogError",
@@ -9745,10 +9649,10 @@
         {
           "Id": "cCoder.Logging.Services.Processings.LogHubProcessingService.InfoLogHubSession(cCoder.Logging.Models.LogHubSession)",
           "Name": "InfoLogHubSession",
-          "LineNumber": 163,
+          "LineNumber": 150,
           "Inputs": [
             {
-              "Name": "session",
+              "Name": "logHubSession",
               "Type": "cCoder.Logging.Models.LogHubSession"
             }
           ],
@@ -9757,6 +9661,13 @@
             "cCoder.Logging.Services.Processings.ILogHubProcessingService.InfoLogHubSession(cCoder.Logging.Models.LogHubSession)"
           ],
           "Calls": [
+            {
+              "TypeName": "cCoder.Logging.Brokers.ILogHubBroker",
+              "MethodName": "SelectHost",
+              "MethodId": "cCoder.Logging.Brokers.ILogHubBroker.SelectHost(cCoder.Logging.Models.LogHubSession)",
+              "StandardElementType": "Broker",
+              "IsDependencyBoundary": false
+            },
             {
               "TypeName": "cCoder.Logging.Brokers.Loggings.ILoggingBroker",
               "MethodName": "LogInformation",
@@ -9792,10 +9703,10 @@
         {
           "Id": "cCoder.Logging.Services.Processings.LogHubProcessingService.JoinLogHubSessionAsync(cCoder.Logging.Models.LogHubSession)",
           "Name": "JoinLogHubSessionAsync",
-          "LineNumber": 35,
+          "LineNumber": 34,
           "Inputs": [
             {
-              "Name": "session",
+              "Name": "logHubSession",
               "Type": "cCoder.Logging.Models.LogHubSession"
             }
           ],
@@ -9820,8 +9731,29 @@
             },
             {
               "TypeName": "cCoder.Logging.Brokers.ILogHubBroker",
+              "MethodName": "JoinGroupAsync",
+              "MethodId": "cCoder.Logging.Brokers.ILogHubBroker.JoinGroupAsync(cCoder.Logging.Models.LogHubSession)",
+              "StandardElementType": "Broker",
+              "IsDependencyBoundary": false
+            },
+            {
+              "TypeName": "cCoder.Logging.Brokers.ILogHubBroker",
               "MethodName": "SelectAppIdByDomain",
               "MethodId": "cCoder.Logging.Brokers.ILogHubBroker.SelectAppIdByDomain(System.String)",
+              "StandardElementType": "Broker",
+              "IsDependencyBoundary": false
+            },
+            {
+              "TypeName": "cCoder.Logging.Brokers.ILogHubBroker",
+              "MethodName": "SendCallerAsync",
+              "MethodId": "cCoder.Logging.Brokers.ILogHubBroker.SendCallerAsync(cCoder.Logging.Models.LogHubSession,System.String,System.String)",
+              "StandardElementType": "Broker",
+              "IsDependencyBoundary": false
+            },
+            {
+              "TypeName": "cCoder.Logging.Brokers.ILogHubBroker",
+              "MethodName": "SendGroupAsync",
+              "MethodId": "cCoder.Logging.Brokers.ILogHubBroker.SendGroupAsync(cCoder.Logging.Models.LogHubSession,System.String,System.String)",
               "StandardElementType": "Broker",
               "IsDependencyBoundary": false
             },
@@ -9867,10 +9799,10 @@
         {
           "Id": "cCoder.Logging.Services.Processings.LogHubProcessingService.LeaveLogHubSessionAsync(cCoder.Logging.Models.LogHubSession)",
           "Name": "LeaveLogHubSessionAsync",
-          "LineNumber": 96,
+          "LineNumber": 88,
           "Inputs": [
             {
-              "Name": "session",
+              "Name": "logHubSession",
               "Type": "cCoder.Logging.Models.LogHubSession"
             }
           ],
@@ -9890,6 +9822,27 @@
               "TypeName": "cCoder.Logging.Brokers.IAuthorizationBroker",
               "MethodName": "SelectCurrentUser",
               "MethodId": "cCoder.Logging.Brokers.IAuthorizationBroker.SelectCurrentUser()",
+              "StandardElementType": "Broker",
+              "IsDependencyBoundary": false
+            },
+            {
+              "TypeName": "cCoder.Logging.Brokers.ILogHubBroker",
+              "MethodName": "RemoveFromGroupAsync",
+              "MethodId": "cCoder.Logging.Brokers.ILogHubBroker.RemoveFromGroupAsync(cCoder.Logging.Models.LogHubSession)",
+              "StandardElementType": "Broker",
+              "IsDependencyBoundary": false
+            },
+            {
+              "TypeName": "cCoder.Logging.Brokers.ILogHubBroker",
+              "MethodName": "SendCallerAsync",
+              "MethodId": "cCoder.Logging.Brokers.ILogHubBroker.SendCallerAsync(cCoder.Logging.Models.LogHubSession,System.String,System.String)",
+              "StandardElementType": "Broker",
+              "IsDependencyBoundary": false
+            },
+            {
+              "TypeName": "cCoder.Logging.Brokers.ILogHubBroker",
+              "MethodName": "SendGroupAsync",
+              "MethodId": "cCoder.Logging.Brokers.ILogHubBroker.SendGroupAsync(cCoder.Logging.Models.LogHubSession,System.String,System.String)",
               "StandardElementType": "Broker",
               "IsDependencyBoundary": false
             },
@@ -9928,10 +9881,10 @@
         {
           "Id": "cCoder.Logging.Services.Processings.LogHubProcessingService.SendConsoleLogHubSessionAsync(cCoder.Logging.Models.LogHubSession)",
           "Name": "SendConsoleLogHubSessionAsync",
-          "LineNumber": 193,
+          "LineNumber": 186,
           "Inputs": [
             {
-              "Name": "session",
+              "Name": "logHubSession",
               "Type": "cCoder.Logging.Models.LogHubSession"
             }
           ],
@@ -9946,6 +9899,13 @@
               "MethodId": "System.Collections.Generic.ICollection\u003CT\u003E.Add(T)",
               "StandardElementType": "Dependency",
               "IsDependencyBoundary": true
+            },
+            {
+              "TypeName": "cCoder.Logging.Brokers.ILogHubBroker",
+              "MethodName": "SendGroupAsync",
+              "MethodId": "cCoder.Logging.Brokers.ILogHubBroker.SendGroupAsync(cCoder.Logging.Models.LogHubSession,System.String,System.String)",
+              "StandardElementType": "Broker",
+              "IsDependencyBoundary": false
             }
           ],
           "PossibleExceptionTypes": [
@@ -9975,10 +9935,10 @@
         {
           "Id": "cCoder.Logging.Services.Processings.LogHubProcessingService.SendTestLogHubSessionAsync(cCoder.Logging.Models.LogHubSession)",
           "Name": "SendTestLogHubSessionAsync",
-          "LineNumber": 218,
+          "LineNumber": 208,
           "Inputs": [
             {
-              "Name": "session",
+              "Name": "logHubSession",
               "Type": "cCoder.Logging.Models.LogHubSession"
             }
           ],
@@ -9986,7 +9946,15 @@
           "Implements": [
             "cCoder.Logging.Services.Processings.ILogHubProcessingService.SendTestLogHubSessionAsync(cCoder.Logging.Models.LogHubSession)"
           ],
-          "Calls": [],
+          "Calls": [
+            {
+              "TypeName": "cCoder.Logging.Brokers.ILogHubBroker",
+              "MethodName": "SendGroupAsync",
+              "MethodId": "cCoder.Logging.Brokers.ILogHubBroker.SendGroupAsync(cCoder.Logging.Models.LogHubSession,System.String,System.String)",
+              "StandardElementType": "Broker",
+              "IsDependencyBoundary": false
+            }
+          ],
           "PossibleExceptionTypes": [
             "cCoder.Logging.Models.Exceptions.LoggingDependencyException",
             "cCoder.Logging.Models.Exceptions.LoggingServiceException",
@@ -10014,10 +9982,10 @@
         {
           "Id": "cCoder.Logging.Services.Processings.LogHubProcessingService.WarnLogHubSession(cCoder.Logging.Models.LogHubSession)",
           "Name": "WarnLogHubSession",
-          "LineNumber": 173,
+          "LineNumber": 162,
           "Inputs": [
             {
-              "Name": "session",
+              "Name": "logHubSession",
               "Type": "cCoder.Logging.Models.LogHubSession"
             }
           ],
@@ -10026,6 +9994,13 @@
             "cCoder.Logging.Services.Processings.ILogHubProcessingService.WarnLogHubSession(cCoder.Logging.Models.LogHubSession)"
           ],
           "Calls": [
+            {
+              "TypeName": "cCoder.Logging.Brokers.ILogHubBroker",
+              "MethodName": "SelectHost",
+              "MethodId": "cCoder.Logging.Brokers.ILogHubBroker.SelectHost(cCoder.Logging.Models.LogHubSession)",
+              "StandardElementType": "Broker",
+              "IsDependencyBoundary": false
+            },
             {
               "TypeName": "cCoder.Logging.Brokers.Loggings.ILoggingBroker",
               "MethodName": "LogWarning",
@@ -10789,7 +10764,7 @@
           "LineNumber": 11,
           "Inputs": [
             {
-              "Name": "request",
+              "Name": "logEntryCaptureRequest",
               "Type": "cCoder.Logging.Models.LogEntryCaptureRequest"
             }
           ],
@@ -10969,7 +10944,7 @@
     {
       "Name": "cCoder.Logging.Brokers.ILogHubBroker",
       "StandardElementType": "Broker",
-      "LineNumber": 10,
+      "LineNumber": 12,
       "IsPublic": false,
       "Kind": "Interface",
       "BaseType": null,
@@ -10977,9 +10952,59 @@
       "Properties": [],
       "Methods": [
         {
+          "Id": "cCoder.Logging.Brokers.ILogHubBroker.JoinGroupAsync(cCoder.Logging.Models.LogHubSession)",
+          "Name": "JoinGroupAsync",
+          "LineNumber": 16,
+          "Inputs": [
+            {
+              "Name": "logHubSession",
+              "Type": "cCoder.Logging.Models.LogHubSession"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.Task",
+          "Implements": [],
+          "Calls": [],
+          "PossibleExceptionTypes": [],
+          "IncomingExceptionTypes": [],
+          "ThrowsExceptionTypes": [],
+          "HttpMethods": [],
+          "HttpResponses": [],
+          "IsHttpRequestHandler": false,
+          "IsODataControllerAction": false,
+          "HasFromBodyParameter": false,
+          "HasKeyParameter": false,
+          "HandlesNullWithNotFound": false,
+          "HasTryCatch": false
+        },
+        {
+          "Id": "cCoder.Logging.Brokers.ILogHubBroker.RemoveFromGroupAsync(cCoder.Logging.Models.LogHubSession)",
+          "Name": "RemoveFromGroupAsync",
+          "LineNumber": 17,
+          "Inputs": [
+            {
+              "Name": "logHubSession",
+              "Type": "cCoder.Logging.Models.LogHubSession"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.Task",
+          "Implements": [],
+          "Calls": [],
+          "PossibleExceptionTypes": [],
+          "IncomingExceptionTypes": [],
+          "ThrowsExceptionTypes": [],
+          "HttpMethods": [],
+          "HttpResponses": [],
+          "IsHttpRequestHandler": false,
+          "IsODataControllerAction": false,
+          "HasFromBodyParameter": false,
+          "HasKeyParameter": false,
+          "HandlesNullWithNotFound": false,
+          "HasTryCatch": false
+        },
+        {
           "Id": "cCoder.Logging.Brokers.ILogHubBroker.SelectAppIdByDomain(System.String)",
           "Name": "SelectAppIdByDomain",
-          "LineNumber": 12,
+          "LineNumber": 14,
           "Inputs": [
             {
               "Name": "domain",
@@ -10987,6 +11012,97 @@
             }
           ],
           "ReturnType": "System.Int32?",
+          "Implements": [],
+          "Calls": [],
+          "PossibleExceptionTypes": [],
+          "IncomingExceptionTypes": [],
+          "ThrowsExceptionTypes": [],
+          "HttpMethods": [],
+          "HttpResponses": [],
+          "IsHttpRequestHandler": false,
+          "IsODataControllerAction": false,
+          "HasFromBodyParameter": false,
+          "HasKeyParameter": false,
+          "HandlesNullWithNotFound": false,
+          "HasTryCatch": false
+        },
+        {
+          "Id": "cCoder.Logging.Brokers.ILogHubBroker.SelectHost(cCoder.Logging.Models.LogHubSession)",
+          "Name": "SelectHost",
+          "LineNumber": 15,
+          "Inputs": [
+            {
+              "Name": "logHubSession",
+              "Type": "cCoder.Logging.Models.LogHubSession"
+            }
+          ],
+          "ReturnType": "System.String",
+          "Implements": [],
+          "Calls": [],
+          "PossibleExceptionTypes": [],
+          "IncomingExceptionTypes": [],
+          "ThrowsExceptionTypes": [],
+          "HttpMethods": [],
+          "HttpResponses": [],
+          "IsHttpRequestHandler": false,
+          "IsODataControllerAction": false,
+          "HasFromBodyParameter": false,
+          "HasKeyParameter": false,
+          "HandlesNullWithNotFound": false,
+          "HasTryCatch": false
+        },
+        {
+          "Id": "cCoder.Logging.Brokers.ILogHubBroker.SendCallerAsync(cCoder.Logging.Models.LogHubSession,System.String,System.String)",
+          "Name": "SendCallerAsync",
+          "LineNumber": 18,
+          "Inputs": [
+            {
+              "Name": "logHubSession",
+              "Type": "cCoder.Logging.Models.LogHubSession"
+            },
+            {
+              "Name": "level",
+              "Type": "System.String"
+            },
+            {
+              "Name": "message",
+              "Type": "System.String"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.Task",
+          "Implements": [],
+          "Calls": [],
+          "PossibleExceptionTypes": [],
+          "IncomingExceptionTypes": [],
+          "ThrowsExceptionTypes": [],
+          "HttpMethods": [],
+          "HttpResponses": [],
+          "IsHttpRequestHandler": false,
+          "IsODataControllerAction": false,
+          "HasFromBodyParameter": false,
+          "HasKeyParameter": false,
+          "HandlesNullWithNotFound": false,
+          "HasTryCatch": false
+        },
+        {
+          "Id": "cCoder.Logging.Brokers.ILogHubBroker.SendGroupAsync(cCoder.Logging.Models.LogHubSession,System.String,System.String)",
+          "Name": "SendGroupAsync",
+          "LineNumber": 19,
+          "Inputs": [
+            {
+              "Name": "logHubSession",
+              "Type": "cCoder.Logging.Models.LogHubSession"
+            },
+            {
+              "Name": "level",
+              "Type": "System.String"
+            },
+            {
+              "Name": "message",
+              "Type": "System.String"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.Task",
           "Implements": [],
           "Calls": [],
           "PossibleExceptionTypes": [],
@@ -11251,7 +11367,7 @@
     {
       "Name": "cCoder.Logging.Exposures.HostedServices.ILogRetentionCleaner",
       "StandardElementType": "Exposure",
-      "LineNumber": 10,
+      "LineNumber": 9,
       "IsPublic": true,
       "Kind": "Interface",
       "BaseType": null,
@@ -11828,7 +11944,7 @@
           "LineNumber": 12,
           "Inputs": [
             {
-              "Name": "entity",
+              "Name": "logDataItem",
               "Type": "cCoder.Data.Models.Logging.LogDataItem"
             }
           ],
@@ -11853,7 +11969,7 @@
           "LineNumber": 14,
           "Inputs": [
             {
-              "Name": "entity",
+              "Name": "logDataItem",
               "Type": "cCoder.Data.Models.Logging.LogDataItem"
             }
           ],
@@ -11878,7 +11994,7 @@
           "LineNumber": 13,
           "Inputs": [
             {
-              "Name": "entity",
+              "Name": "logDataItem",
               "Type": "cCoder.Data.Models.Logging.LogDataItem"
             }
           ],
@@ -11915,7 +12031,7 @@
           "LineNumber": 12,
           "Inputs": [
             {
-              "Name": "entity",
+              "Name": "logEntry",
               "Type": "cCoder.Data.Models.Logging.LogEntry"
             }
           ],
@@ -11940,7 +12056,7 @@
           "LineNumber": 14,
           "Inputs": [
             {
-              "Name": "entity",
+              "Name": "logEntry",
               "Type": "cCoder.Data.Models.Logging.LogEntry"
             }
           ],
@@ -11965,7 +12081,7 @@
           "LineNumber": 13,
           "Inputs": [
             {
-              "Name": "entity",
+              "Name": "logEntry",
               "Type": "cCoder.Data.Models.Logging.LogEntry"
             }
           ],
@@ -12894,7 +13010,7 @@
           "LineNumber": 13,
           "Inputs": [
             {
-              "Name": "entity",
+              "Name": "logDataItem",
               "Type": "cCoder.Data.Models.Logging.LogDataItem"
             }
           ],
@@ -12919,7 +13035,7 @@
           "LineNumber": 15,
           "Inputs": [
             {
-              "Name": "entity",
+              "Name": "logDataItem",
               "Type": "cCoder.Data.Models.Logging.LogDataItem"
             }
           ],
@@ -12944,7 +13060,7 @@
           "LineNumber": 14,
           "Inputs": [
             {
-              "Name": "entity",
+              "Name": "logDataItem",
               "Type": "cCoder.Data.Models.Logging.LogDataItem"
             }
           ],
@@ -13205,7 +13321,7 @@
           "LineNumber": 13,
           "Inputs": [
             {
-              "Name": "entity",
+              "Name": "logEntry",
               "Type": "cCoder.Data.Models.Logging.LogEntry"
             }
           ],
@@ -13230,7 +13346,7 @@
           "LineNumber": 15,
           "Inputs": [
             {
-              "Name": "entity",
+              "Name": "logEntry",
               "Type": "cCoder.Data.Models.Logging.LogEntry"
             }
           ],
@@ -13255,7 +13371,7 @@
           "LineNumber": 14,
           "Inputs": [
             {
-              "Name": "entity",
+              "Name": "logEntry",
               "Type": "cCoder.Data.Models.Logging.LogEntry"
             }
           ],
@@ -13616,7 +13732,7 @@
           "LineNumber": 11,
           "Inputs": [
             {
-              "Name": "session",
+              "Name": "logHubSession",
               "Type": "cCoder.Logging.Models.LogHubSession"
             }
           ],
@@ -13641,7 +13757,7 @@
           "LineNumber": 19,
           "Inputs": [
             {
-              "Name": "session",
+              "Name": "logHubSession",
               "Type": "cCoder.Logging.Models.LogHubSession"
             }
           ],
@@ -13666,7 +13782,7 @@
           "LineNumber": 17,
           "Inputs": [
             {
-              "Name": "session",
+              "Name": "logHubSession",
               "Type": "cCoder.Logging.Models.LogHubSession"
             }
           ],
@@ -13691,7 +13807,7 @@
           "LineNumber": 25,
           "Inputs": [
             {
-              "Name": "session",
+              "Name": "logHubSession",
               "Type": "cCoder.Logging.Models.LogHubSession"
             }
           ],
@@ -13716,7 +13832,7 @@
           "LineNumber": 21,
           "Inputs": [
             {
-              "Name": "session",
+              "Name": "logHubSession",
               "Type": "cCoder.Logging.Models.LogHubSession"
             }
           ],
@@ -13741,7 +13857,7 @@
           "LineNumber": 13,
           "Inputs": [
             {
-              "Name": "session",
+              "Name": "logHubSession",
               "Type": "cCoder.Logging.Models.LogHubSession"
             }
           ],
@@ -13766,7 +13882,7 @@
           "LineNumber": 15,
           "Inputs": [
             {
-              "Name": "session",
+              "Name": "logHubSession",
               "Type": "cCoder.Logging.Models.LogHubSession"
             }
           ],
@@ -13791,7 +13907,7 @@
           "LineNumber": 27,
           "Inputs": [
             {
-              "Name": "session",
+              "Name": "logHubSession",
               "Type": "cCoder.Logging.Models.LogHubSession"
             }
           ],
@@ -13816,7 +13932,7 @@
           "LineNumber": 29,
           "Inputs": [
             {
-              "Name": "session",
+              "Name": "logHubSession",
               "Type": "cCoder.Logging.Models.LogHubSession"
             }
           ],
@@ -13841,7 +13957,7 @@
           "LineNumber": 23,
           "Inputs": [
             {
-              "Name": "session",
+              "Name": "logHubSession",
               "Type": "cCoder.Logging.Models.LogHubSession"
             }
           ],
@@ -13954,7 +14070,7 @@
     },
     {
       "FromType": "cCoder.Logging.Exposures.HostedServices.LogRetentionCleaner",
-      "ToType": "Microsoft.Extensions.DependencyInjection.IServiceScopeFactory"
+      "ToType": "cCoder.Logging.Services.Processings.LogEntryRetentionProcessingService"
     },
     {
       "FromType": "cCoder.Logging.Exposures.Hubs.LogHub",
@@ -13971,10 +14087,6 @@
     {
       "FromType": "cCoder.Logging.Exposures.RequestLoggingMiddleware",
       "ToType": "cCoder.Logging.RequestLoggingCoordinator"
-    },
-    {
-      "FromType": "cCoder.Logging.Extensions.OData.BadRequestResult",
-      "ToType": "ModelStateDictionary"
     },
     {
       "FromType": "cCoder.Logging.Extensions.OData.CompositePropertyInfo",
@@ -14127,56 +14239,42 @@
       "Description": "Every public HTTP handler must map success and caught failure paths to 2xx, 4xx, or 5xx responses.",
       "Severity": "Warning",
       "Type": "cCoder.Logging.Exposures.Controllers.LogDataItemController",
-      "LineNumber": 28
+      "LineNumber": 36
     },
     {
       "Code": "STXAPI005",
       "Description": "Every public HTTP handler must map success and caught failure paths to 2xx, 4xx, or 5xx responses.",
       "Severity": "Warning",
       "Type": "cCoder.Logging.Exposures.Controllers.LogDataItemController",
-      "LineNumber": 67
+      "LineNumber": 76
     },
     {
       "Code": "STXAPI005",
       "Description": "Every public HTTP handler must map success and caught failure paths to 2xx, 4xx, or 5xx responses.",
       "Severity": "Warning",
       "Type": "cCoder.Logging.Exposures.Controllers.LogDataItemController",
-      "LineNumber": 107
-    },
-    {
-      "Code": "STXAPI005",
-      "Description": "Every public HTTP handler must map success and caught failure paths to 2xx, 4xx, or 5xx responses.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Exposures.Controllers.LogDataItemController",
-      "LineNumber": 154
+      "LineNumber": 123
     },
     {
       "Code": "STXAPI005",
       "Description": "Every public HTTP handler must map success and caught failure paths to 2xx, 4xx, or 5xx responses.",
       "Severity": "Warning",
       "Type": "cCoder.Logging.Exposures.Controllers.LogEntryController",
-      "LineNumber": 28
+      "LineNumber": 36
     },
     {
       "Code": "STXAPI005",
       "Description": "Every public HTTP handler must map success and caught failure paths to 2xx, 4xx, or 5xx responses.",
       "Severity": "Warning",
       "Type": "cCoder.Logging.Exposures.Controllers.LogEntryController",
-      "LineNumber": 67
+      "LineNumber": 76
     },
     {
       "Code": "STXAPI005",
       "Description": "Every public HTTP handler must map success and caught failure paths to 2xx, 4xx, or 5xx responses.",
       "Severity": "Warning",
       "Type": "cCoder.Logging.Exposures.Controllers.LogEntryController",
-      "LineNumber": 107
-    },
-    {
-      "Code": "STXAPI005",
-      "Description": "Every public HTTP handler must map success and caught failure paths to 2xx, 4xx, or 5xx responses.",
-      "Severity": "Warning",
-      "Type": "cCoder.Logging.Exposures.Controllers.LogEntryController",
-      "LineNumber": 154
+      "LineNumber": 123
     },
     {
       "Code": "STXE005",

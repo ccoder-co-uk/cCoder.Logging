@@ -27,7 +27,7 @@ public partial class LogDataItemEventServiceTests
             .Returns(value: ValueTask.CompletedTask);
 
         // When
-        await service.RaiseLogDataItemUpdateEventAsync(entity: entity);
+        await service.RaiseLogDataItemUpdateEventAsync(logDataItem: entity);
 
         // Then
 

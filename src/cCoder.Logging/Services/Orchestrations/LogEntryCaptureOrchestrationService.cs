@@ -31,7 +31,7 @@ internal sealed partial class LogEntryCaptureOrchestrationService(
             {
                 await logEntryEventProcessingService
                     .RaiseLogEntryAddEventAsync(
-                        entity: operation.Result);
+                        logEntry: operation.Result);
             }
         });
 }

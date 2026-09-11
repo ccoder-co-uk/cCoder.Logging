@@ -25,37 +25,6 @@ public partial class LogEntryController(
         : ODataController
 {
     [HttpGet]
-    public IActionResult GetMetadata()
-    {
-        try
-        {
-            bool isExtendedMetaRequest = Request.Query["extend"] == "true";
-
-            return isExtendedMetaRequest
-                ? Ok(
-                    value: new LoggingModelBroker()
-                        .Build()
-                        .EDMModel.GetExtendedMetadataForType(
-                            context: "Logging",
-                            type: typeof(LogEntry))
-                )
-                : Ok(
-                    value: PropertyInfoExtensions.CreateMetadataContainer(
-                        type: typeof(LogEntry),
-                        isEntity: true,
-                        hasEndpoint: true));
-        }
-        catch (Exception exception)
-        {
-            loggingBroker.LogError(exception: exception, message: "Controller request failed.");
-
-            return StatusCode(
-                statusCode: StatusCodes.Status500InternalServerError,
-                value: "The log entry metadata request failed.");
-        }
-    }
-
-    [HttpGet]
     [EnableQuery(
         AllowedArithmeticOperators = AllowedArithmeticOperators.All,
         AllowedFunctions = AllowedFunctions.AllFunctions,

@@ -23,7 +23,7 @@ public partial class LogEntryOrchestrationServiceTests
             .ReturnsAsync(value: entity);
 
         logEntryEventProcessingServiceMock
-            .Setup(expression: x => x.RaiseLogEntryUpdateEventAsync(entity: entity))
+            .Setup(expression: x => x.RaiseLogEntryUpdateEventAsync(logEntry: entity))
             .Returns(value: ValueTask.CompletedTask);
 
         // When
@@ -35,7 +35,7 @@ public partial class LogEntryOrchestrationServiceTests
             .BeSameAs(expected: entity);
 
         logEntryProcessingServiceMock.Verify(expression: x => x.UpdateLogEntryAsync(updatedLogEntry: entity), times: Times.Once);
-        logEntryEventProcessingServiceMock.Verify(expression: x => x.RaiseLogEntryUpdateEventAsync(entity: entity), times: Times.Once);
+        logEntryEventProcessingServiceMock.Verify(expression: x => x.RaiseLogEntryUpdateEventAsync(logEntry: entity), times: Times.Once);
     }
 
 }

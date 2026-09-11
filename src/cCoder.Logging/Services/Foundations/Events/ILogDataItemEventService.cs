@@ -9,7 +9,7 @@ namespace cCoder.Logging.Services.Foundations.Events;
 
 internal interface ILogDataItemEventService
 {
-    ValueTask RaiseLogDataItemAddEventAsync(LogDataItem entity);
-    ValueTask RaiseLogDataItemUpdateEventAsync(LogDataItem entity);
-    ValueTask RaiseLogDataItemDeleteEventAsync(LogDataItem entity);
+    ValueTask RaiseLogDataItemAddEventAsync(LogDataItem logDataItem);
+    ValueTask RaiseLogDataItemUpdateEventAsync(LogDataItem logDataItem);
+    ValueTask RaiseLogDataItemDeleteEventAsync(LogDataItem logDataItem);
 }

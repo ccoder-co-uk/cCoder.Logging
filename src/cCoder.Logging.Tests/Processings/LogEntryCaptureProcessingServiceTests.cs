@@ -83,7 +83,7 @@ public partial class LogEntryCaptureProcessingServiceTests
         // When
         LogEntryCaptureOperation result =
             await processingService.CaptureLogEntryCaptureOperationAsync(
-                operation: new LogEntryCaptureOperation
+                logEntryCaptureOperation: new LogEntryCaptureOperation
                 {
                     Request = request
                 });
@@ -127,7 +127,7 @@ public partial class LogEntryCaptureProcessingServiceTests
 
         // When
         await processingService.CaptureLogEntryCaptureOperationAsync(
-            operation: new LogEntryCaptureOperation
+            logEntryCaptureOperation: new LogEntryCaptureOperation
             {
                 Request = logEntryCaptureRequest
             });

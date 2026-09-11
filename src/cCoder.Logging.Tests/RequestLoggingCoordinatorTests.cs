@@ -40,7 +40,7 @@ public sealed partial class RequestLoggingCoordinatorTests
 
         queueMock
             .Setup(expression: queue => queue.TryEnqueue(
-                request: It.Is<LogEntryCaptureRequest>(match: request =>
+                logEntryCaptureRequest: It.Is<LogEntryCaptureRequest>(match: request =>
                     request.Url == "https://example.test/orders?status=open"
                     && request.UserId == "user-7"
                     && request.SessionId == "session-9"

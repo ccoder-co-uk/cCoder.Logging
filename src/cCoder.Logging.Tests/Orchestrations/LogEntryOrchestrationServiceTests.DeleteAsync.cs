@@ -26,7 +26,7 @@ public partial class LogEntryOrchestrationServiceTests
             .Returns(value: ValueTask.CompletedTask);
 
         logEntryEventProcessingServiceMock
-            .Setup(expression: x => x.RaiseLogEntryDeleteEventAsync(entity: entity))
+            .Setup(expression: x => x.RaiseLogEntryDeleteEventAsync(logEntry: entity))
             .Returns(value: ValueTask.CompletedTask);
 
         // When
@@ -35,7 +35,7 @@ public partial class LogEntryOrchestrationServiceTests
         // Then
         logEntryProcessingServiceMock.Verify(expression: x => x.GetLogEntry(logEntryId: id), times: Times.Once);
         logEntryProcessingServiceMock.Verify(expression: x => x.DeleteLogEntryAsync(logEntryId: id), times: Times.Once);
-        logEntryEventProcessingServiceMock.Verify(expression: x => x.RaiseLogEntryDeleteEventAsync(entity: entity), times: Times.Once);
+        logEntryEventProcessingServiceMock.Verify(expression: x => x.RaiseLogEntryDeleteEventAsync(logEntry: entity), times: Times.Once);
     }
 
 }

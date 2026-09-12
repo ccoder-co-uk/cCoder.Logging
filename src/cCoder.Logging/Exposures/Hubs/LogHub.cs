@@ -13,46 +13,46 @@ internal sealed class LogHub(
 {
     public override Task OnConnectedAsync() =>
         processingService.ConnectLogHubSessionAsync(
-            session: CreateLogHubSession())
+            logHubSession: CreateLogHubSession())
         .AsTask();
 
     public Task Join(string thread) =>
         processingService.JoinLogHubSessionAsync(
-            session: CreateLogHubSession(thread: thread))
+            logHubSession: CreateLogHubSession(thread: thread))
         .AsTask();
 
     public Task Leave(string thread) =>
         processingService.LeaveLogHubSessionAsync(
-            session: CreateLogHubSession(thread: thread))
+            logHubSession: CreateLogHubSession(thread: thread))
         .AsTask();
 
     public override Task OnDisconnectedAsync(Exception exception) =>
         processingService.DisconnectLogHubSessionAsync(
-            session: CreateLogHubSession(exception: exception))
+            logHubSession: CreateLogHubSession(exception: exception))
         .AsTask();
 
     public void Debug(string level, string message) =>
         processingService.DebugLogHubSession(
-            session: CreateLogHubSession(level: level, message: message));
+            logHubSession: CreateLogHubSession(level: level, message: message));
 
     public void Info(string level, string message) =>
         processingService.InfoLogHubSession(
-            session: CreateLogHubSession(level: level, message: message));
+            logHubSession: CreateLogHubSession(level: level, message: message));
 
     public void Warn(string level, string message) =>
         processingService.WarnLogHubSession(
-            session: CreateLogHubSession(level: level, message: message));
+            logHubSession: CreateLogHubSession(level: level, message: message));
 
     public void Error(string level, string message) =>
         processingService.ErrorLogHubSession(
-            session: CreateLogHubSession(level: level, message: message));
+            logHubSession: CreateLogHubSession(level: level, message: message));
 
     public Task ConsoleSend(
         string level,
         string message,
         string thread) =>
         processingService.SendConsoleLogHubSessionAsync(
-            session: CreateLogHubSession(
+            logHubSession: CreateLogHubSession(
                 thread: thread,
                 level: level,
                 message: message))
@@ -60,7 +60,7 @@ internal sealed class LogHub(
 
     public Task SendTest(string message, string thread) =>
         processingService.SendTestLogHubSessionAsync(
-            session: CreateLogHubSession(
+            logHubSession: CreateLogHubSession(
                 thread: thread,
                 message: message))
         .AsTask();
@@ -74,9 +74,9 @@ internal sealed class LogHub(
         {
             Clients = Clients,
             ConnectionId = Context.ConnectionId,
+            Context = Context,
             Exception = exception,
             Groups = Groups,
-            Host = Context.GetHttpContext()?.Request.Host.Value,
             Level = level,
             Message = message,
             Thread = thread,

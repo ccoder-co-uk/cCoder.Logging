@@ -13,37 +13,37 @@ internal sealed partial class LogEntryEventService(
     IAuthInfoBroker authInfoBroker)
         : ILogEntryEventService
 {
-    public ValueTask RaiseLogEntryAddEventAsync(LogEntry entity) =>
+    public ValueTask RaiseLogEntryAddEventAsync(LogEntry logEntry) =>
         TryCatch(operation: async () =>
         {
-            ValidateInputs(inputs: [entity]);
+            ValidateInputs(inputs: [logEntry]);
 
             EventMessage<LogEntry> message =
-                CreateLogEntryEventMessage(logEntry: entity);
+                CreateLogEntryEventMessage(logEntry: logEntry);
 
             await logEntryEventBroker.RaiseLogEntryAddEventAsync(
                 message: message);
         });
 
-    public ValueTask RaiseLogEntryUpdateEventAsync(LogEntry entity) =>
+    public ValueTask RaiseLogEntryUpdateEventAsync(LogEntry logEntry) =>
         TryCatch(operation: async () =>
         {
-            ValidateInputs(inputs: [entity]);
+            ValidateInputs(inputs: [logEntry]);
 
             EventMessage<LogEntry> message =
-                CreateLogEntryEventMessage(logEntry: entity);
+                CreateLogEntryEventMessage(logEntry: logEntry);
 
             await logEntryEventBroker.RaiseLogEntryUpdateEventAsync(
                 message: message);
         });
 
-    public ValueTask RaiseLogEntryDeleteEventAsync(LogEntry entity) =>
+    public ValueTask RaiseLogEntryDeleteEventAsync(LogEntry logEntry) =>
         TryCatch(operation: async () =>
         {
-            ValidateInputs(inputs: [entity]);
+            ValidateInputs(inputs: [logEntry]);
 
             EventMessage<LogEntry> message =
-                CreateLogEntryEventMessage(logEntry: entity);
+                CreateLogEntryEventMessage(logEntry: logEntry);
 
             await logEntryEventBroker.RaiseLogEntryDeleteEventAsync(
                 message: message);

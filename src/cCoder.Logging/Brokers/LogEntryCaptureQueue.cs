@@ -14,8 +14,8 @@ internal sealed class LogEntryCaptureQueue : ILogEntryCaptureQueue
     public LogEntryCaptureQueue(Channel<LogEntryCaptureRequest> channel) =>
         this.channel = channel;
 
-    public bool TryEnqueue(LogEntryCaptureRequest request) =>
-        channel.Writer.TryWrite(item: request);
+    public bool TryEnqueue(LogEntryCaptureRequest logEntryCaptureRequest) =>
+        channel.Writer.TryWrite(item: logEntryCaptureRequest);
 
     public IAsyncEnumerable<LogEntryCaptureRequest> ReadAllAsync() =>
         channel.Reader.ReadAllAsync();

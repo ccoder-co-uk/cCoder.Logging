@@ -10,10 +10,10 @@ namespace cCoder.Logging.Extensions;
 public static class LoggingConfigurationExtensions
 {
     public static LoggingConfiguration WithEventProviders(
-        this LoggingConfiguration configuration,
+        this LoggingConfiguration loggingConfiguration,
         params EventProvider[] eventProviders)
     {
-        configuration.EventProviders = eventProviders ?? [];
-        return configuration;
+        loggingConfiguration.EventProviders = eventProviders ?? [];
+        return loggingConfiguration;
     }
 }

@@ -44,7 +44,7 @@ internal sealed partial class LogDataItemOrchestrationService(
 
             await logDataItemEventProcessingService
                 .RaiseLogDataItemAddEventAsync(
-                    entity: savedLogDataItem);
+                    logDataItem: savedLogDataItem);
 
             return savedLogDataItem;
         });
@@ -61,7 +61,7 @@ internal sealed partial class LogDataItemOrchestrationService(
 
             await logDataItemEventProcessingService
                 .RaiseLogDataItemUpdateEventAsync(
-                    entity: savedLogDataItem);
+                    logDataItem: savedLogDataItem);
 
             return savedLogDataItem;
         });
@@ -77,7 +77,7 @@ internal sealed partial class LogDataItemOrchestrationService(
 
             await logDataItemEventProcessingService
                 .RaiseLogDataItemDeleteEventAsync(
-                    entity: deletedLogDataItem);
+                    logDataItem: deletedLogDataItem);
 
             await logDataItemProcessingService.DeleteLogDataItemAsync(
                 logDataItemId: logDataItemId);

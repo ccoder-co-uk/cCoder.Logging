@@ -34,7 +34,7 @@ public partial class LogEntryCaptureOrchestrationServiceTests
         logEntryEventProcessingServiceMock
             .Setup(expression: processingService =>
                 processingService.RaiseLogEntryAddEventAsync(
-entity: savedLogEntry))
+logEntry: savedLogEntry))
             .Returns(value: ValueTask.CompletedTask);
 
         // When

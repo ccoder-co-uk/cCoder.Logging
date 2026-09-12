@@ -12,30 +12,30 @@ internal sealed partial class LogEntryEventProcessingService(
     ILogEntryEventService eventService)
         : ILogEntryEventProcessingService
 {
-    public ValueTask RaiseLogEntryAddEventAsync(LogEntry entity) =>
+    public ValueTask RaiseLogEntryAddEventAsync(LogEntry logEntry) =>
         TryCatch(operation: async () =>
         {
-            ValidateInputs(inputs: [entity]);
+            ValidateInputs(inputs: [logEntry]);
 
             await eventService.RaiseLogEntryAddEventAsync(
-                entity: entity);
+                logEntry: logEntry);
         });
 
-    public ValueTask RaiseLogEntryUpdateEventAsync(LogEntry entity) =>
+    public ValueTask RaiseLogEntryUpdateEventAsync(LogEntry logEntry) =>
         TryCatch(operation: async () =>
         {
-            ValidateInputs(inputs: [entity]);
+            ValidateInputs(inputs: [logEntry]);
 
             await eventService.RaiseLogEntryUpdateEventAsync(
-                entity: entity);
+                logEntry: logEntry);
         });
 
-    public ValueTask RaiseLogEntryDeleteEventAsync(LogEntry entity) =>
+    public ValueTask RaiseLogEntryDeleteEventAsync(LogEntry logEntry) =>
         TryCatch(operation: async () =>
         {
-            ValidateInputs(inputs: [entity]);
+            ValidateInputs(inputs: [logEntry]);
 
             await eventService.RaiseLogEntryDeleteEventAsync(
-                entity: entity);
+                logEntry: logEntry);
         });
 }

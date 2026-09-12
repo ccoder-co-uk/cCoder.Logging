@@ -12,6 +12,8 @@ internal sealed class LogHubSession
 
     internal string ConnectionId { get; set; }
 
+    internal HubCallerContext Context { get; set; }
+
     internal Exception Exception { get; set; }
 
     internal IGroupManager Groups { get; set; }

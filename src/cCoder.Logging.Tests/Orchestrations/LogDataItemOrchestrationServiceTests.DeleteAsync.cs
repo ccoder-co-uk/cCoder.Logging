@@ -26,7 +26,7 @@ public partial class LogDataItemOrchestrationServiceTests
             .Returns(value: ValueTask.CompletedTask);
 
         logDataItemEventProcessingServiceMock
-            .Setup(expression: x => x.RaiseLogDataItemDeleteEventAsync(entity: entity))
+            .Setup(expression: x => x.RaiseLogDataItemDeleteEventAsync(logDataItem: entity))
             .Returns(value: ValueTask.CompletedTask);
 
         // When
@@ -35,7 +35,7 @@ public partial class LogDataItemOrchestrationServiceTests
         // Then
         logDataItemProcessingServiceMock.Verify(expression: x => x.GetLogDataItem(logDataItemId: id), times: Times.Once);
         logDataItemProcessingServiceMock.Verify(expression: x => x.DeleteLogDataItemAsync(logDataItemId: id), times: Times.Once);
-        logDataItemEventProcessingServiceMock.Verify(expression: x => x.RaiseLogDataItemDeleteEventAsync(entity: entity), times: Times.Once);
+        logDataItemEventProcessingServiceMock.Verify(expression: x => x.RaiseLogDataItemDeleteEventAsync(logDataItem: entity), times: Times.Once);
     }
 
 }

@@ -8,7 +8,7 @@ namespace cCoder.Logging.Brokers;
 
 internal interface ILogEntryCaptureQueue
 {
-    bool TryEnqueue(LogEntryCaptureRequest request);
+    bool TryEnqueue(LogEntryCaptureRequest logEntryCaptureRequest);
     IAsyncEnumerable<LogEntryCaptureRequest> ReadAllAsync();
     void Complete();
 }

@@ -50,7 +50,7 @@ internal sealed class LoggingLogger(
         if (!string.IsNullOrWhiteSpace(value: message))
         {
             queue.TryEnqueue(
-                request: new LogEntryCaptureRequest
+                logEntryCaptureRequest: new LogEntryCaptureRequest
                 {
                     Level = logLevel,
                     CategoryName = categoryName,

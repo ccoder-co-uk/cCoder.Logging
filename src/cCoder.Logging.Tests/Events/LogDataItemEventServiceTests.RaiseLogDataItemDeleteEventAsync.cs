@@ -27,7 +27,7 @@ public partial class LogDataItemEventServiceTests
             .Returns(value: ValueTask.CompletedTask);
 
         // When
-        await service.RaiseLogDataItemDeleteEventAsync(entity: entity);
+        await service.RaiseLogDataItemDeleteEventAsync(logDataItem: entity);
 
         // Then
 

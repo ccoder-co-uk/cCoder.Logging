@@ -12,30 +12,30 @@ internal sealed partial class LogDataItemEventProcessingService(
     ILogDataItemEventService eventService)
         : ILogDataItemEventProcessingService
 {
-    public ValueTask RaiseLogDataItemAddEventAsync(LogDataItem entity) =>
+    public ValueTask RaiseLogDataItemAddEventAsync(LogDataItem logDataItem) =>
         TryCatch(operation: async () =>
         {
-            ValidateInputs(inputs: [entity]);
+            ValidateInputs(inputs: [logDataItem]);
 
             await eventService.RaiseLogDataItemAddEventAsync(
-                entity: entity);
+                logDataItem: logDataItem);
         });
 
-    public ValueTask RaiseLogDataItemUpdateEventAsync(LogDataItem entity) =>
+    public ValueTask RaiseLogDataItemUpdateEventAsync(LogDataItem logDataItem) =>
         TryCatch(operation: async () =>
         {
-            ValidateInputs(inputs: [entity]);
+            ValidateInputs(inputs: [logDataItem]);
 
             await eventService.RaiseLogDataItemUpdateEventAsync(
-                entity: entity);
+                logDataItem: logDataItem);
         });
 
-    public ValueTask RaiseLogDataItemDeleteEventAsync(LogDataItem entity) =>
+    public ValueTask RaiseLogDataItemDeleteEventAsync(LogDataItem logDataItem) =>
         TryCatch(operation: async () =>
         {
-            ValidateInputs(inputs: [entity]);
+            ValidateInputs(inputs: [logDataItem]);
 
             await eventService.RaiseLogDataItemDeleteEventAsync(
-                entity: entity);
+                logDataItem: logDataItem);
         });
 }

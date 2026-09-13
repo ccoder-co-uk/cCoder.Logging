@@ -3,19 +3,15 @@
 // ---------------------------------------------------------------
 
 using cCoder.Data.Models.Logging;
-using cCoder.Logging.Brokers;
 using cCoder.Logging.Models;
 using cCoder.Logging.Exposures.Hubs;
 using cCoder.Logging.Services.Foundations;
-using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Logging;
 
 namespace cCoder.Logging.Services.Processings;
 
 internal sealed partial class LogEntryCaptureProcessingService(
-    ILogEntryService logEntryService,
-    ILogEntryStreamBroker logEntryStreamBroker,
-    LoggingConfiguration loggingConfiguration)
+    ILogEntryService logEntryService)
         : ILogEntryCaptureProcessingService
 {
     public ValueTask<LogEntryCaptureOperation>
@@ -40,7 +36,7 @@ internal sealed partial class LogEntryCaptureProcessingService(
                 logEntryCaptureRequest: logEntryCaptureRequest,
                 thread: thread);
 
-            if (!loggingConfiguration.StoreLogEntries
+            if (!logEntryService.ShouldStoreLogEntries()
                 || !logEntryCaptureRequest.Persist)
             {
                 return logEntryCaptureOperation;
@@ -73,23 +69,14 @@ internal sealed partial class LogEntryCaptureProcessingService(
         LogEntryCaptureRequest logEntryCaptureRequest,
         string thread)
     {
-        if (loggingConfiguration.StreamLogEntries
+        if (logEntryService.ShouldStreamLogEntries()
             && !string.IsNullOrWhiteSpace(value: thread))
         {
-            IHubContext<LogHub> hubContext =
-                logEntryStreamBroker.SelectLogHubContext();
-
-            if (hubContext is null)
-            {
-                return;
-            }
-
             string level = logEntryCaptureRequest.Level
                 .ToString()
                 .ToLowerInvariant();
 
-            await logEntryStreamBroker.SendLogEntryAsync(
-                hubContext: hubContext,
+            await logEntryService.StreamLogEntryAsync(
                 thread: thread,
                 level: level,
                 message: logEntryCaptureRequest.Message);
@@ -100,16 +87,18 @@ internal sealed partial class LogEntryCaptureProcessingService(
         LogEntryCaptureRequest logEntryCaptureRequest,
         string thread)
     {
-        if (loggingConfiguration.DefaultAppId.GetValueOrDefault() > 0)
+        int? defaultAppId = logEntryService.GetDefaultAppId();
+
+        if (defaultAppId.GetValueOrDefault() > 0)
         {
-            return loggingConfiguration.DefaultAppId;
+            return defaultAppId;
         }
 
         return logEntryService.ResolveAppId(domainOrName: thread)
             ?? logEntryService.ResolveAppId(
                 domainOrName: logEntryCaptureRequest.RequestDomain)
             ?? logEntryService.ResolveAppId(
-                domainOrName: loggingConfiguration.DefaultAppDomain);
+                domainOrName: logEntryService.GetDefaultAppDomain());
     }
 
     private string GetThread(
@@ -118,8 +107,8 @@ internal sealed partial class LogEntryCaptureProcessingService(
             values:
             [
                 logEntryCaptureRequest.RequestDomain,
-                loggingConfiguration.DefaultAppDomain,
-                loggingConfiguration.DefaultAppId?.ToString()
+                logEntryService.GetDefaultAppDomain(),
+                logEntryService.GetDefaultAppId()?.ToString()
             ]);
 
     private static LogEntry CreateLogEntry(

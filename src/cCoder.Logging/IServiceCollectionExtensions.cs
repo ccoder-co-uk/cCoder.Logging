@@ -142,6 +142,7 @@ public static partial class IServiceCollectionExtensions
         services.AddTransient<ILoggingMetadataTypeService, LoggingMetadataTypeService>();
         services.AddTransient<ILogDataItemService, LogDataItemService>();
         services.AddTransient<ILogEntryService, LogEntryService>();
+        services.AddTransient<ILogHubService, LogHubService>();
         services.AddTransient<ILogDataItemEventService, LogDataItemEventService>();
         services.AddTransient<ILogEntryEventService, LogEntryEventService>();
     }
@@ -160,9 +161,6 @@ public static partial class IServiceCollectionExtensions
         services.AddTransient<ILogEntryEventProcessingService, LogEntryEventProcessingService>();
         services.AddTransient<ILogEntryCaptureProcessingService, LogEntryCaptureProcessingService>();
         services.AddTransient<ILogEntryProcessingService, LogEntryProcessingService>();
-        services.AddTransient<
-            ILogHubProcessingService,
-            LogHubProcessingService>();
         services.AddTransient<
             ILogEntryRetentionProcessingService,
             LogEntryRetentionProcessingService>();

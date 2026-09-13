@@ -4,9 +4,9 @@
 
 using cCoder.Logging.Models.Exceptions;
 
-namespace cCoder.Logging.Services.Processings;
+namespace cCoder.Logging.Services.Foundations;
 
-internal sealed partial class LogHubProcessingService
+internal sealed partial class LogHubService
 {
     private static void TryCatch(Action operation)
     {
@@ -16,23 +16,19 @@ internal sealed partial class LogHubProcessingService
         }
         catch (LoggingValidationException innerException)
         {
-            throw new LoggingValidationException(
-                innerException: innerException);
+            throw new LoggingValidationException(innerException: innerException);
         }
         catch (LoggingDependencyException innerException)
         {
-            throw new LoggingDependencyException(
-                innerException: innerException);
+            throw new LoggingDependencyException(innerException: innerException);
         }
         catch (Exception innerException)
         {
-            throw new LoggingServiceException(
-                innerException: innerException);
+            throw new LoggingServiceException(innerException: innerException);
         }
     }
 
-    private static async ValueTask TryCatch(
-        Func<ValueTask> operation)
+    private static async ValueTask TryCatch(Func<ValueTask> operation)
     {
         try
         {
@@ -40,18 +36,15 @@ internal sealed partial class LogHubProcessingService
         }
         catch (LoggingValidationException innerException)
         {
-            throw new LoggingValidationException(
-                innerException: innerException);
+            throw new LoggingValidationException(innerException: innerException);
         }
         catch (LoggingDependencyException innerException)
         {
-            throw new LoggingDependencyException(
-                innerException: innerException);
+            throw new LoggingDependencyException(innerException: innerException);
         }
         catch (Exception innerException)
         {
-            throw new LoggingServiceException(
-                innerException: innerException);
+            throw new LoggingServiceException(innerException: innerException);
         }
     }
 }

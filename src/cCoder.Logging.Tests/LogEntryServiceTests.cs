@@ -19,16 +19,20 @@ public partial class LogEntryServiceTests
 {
     private readonly Mock<ILogEntryBroker> logEntryBrokerMock;
     private readonly Mock<IAuthorizationBroker> authorizationBrokerMock;
+    private readonly Mock<ILogEntryStreamBroker> logEntryStreamBrokerMock;
     private readonly LogEntryService logEntryService;
 
     public LogEntryServiceTests()
     {
         logEntryBrokerMock = new Mock<ILogEntryBroker>(behavior: MockBehavior.Strict);
         authorizationBrokerMock = new Mock<IAuthorizationBroker>(behavior: MockBehavior.Strict);
+        logEntryStreamBrokerMock = new Mock<ILogEntryStreamBroker>(behavior: MockBehavior.Strict);
 
         logEntryService = new LogEntryService(
             logEntryBroker: logEntryBrokerMock.Object,
-            authorizationBroker: authorizationBrokerMock.Object);
+            authorizationBroker: authorizationBrokerMock.Object,
+            logEntryStreamBroker: logEntryStreamBrokerMock.Object,
+            loggingConfiguration: new LoggingConfiguration());
     }
 
     private static LogEntry CreateRandomLogEntry(int id = 42)

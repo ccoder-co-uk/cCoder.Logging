@@ -2,10 +2,9 @@
 // Copyright (c) Paul.Ward@ccoder.co.uk
 // ---------------------------------------------------------------
 
+namespace cCoder.Logging.Services.Foundations;
 
-namespace cCoder.Logging.Services.Processings;
-
-internal sealed partial class LogHubProcessingService
+internal sealed partial class LogHubService
 {
     private static void ValidateInputs(params object[] inputs)
     {

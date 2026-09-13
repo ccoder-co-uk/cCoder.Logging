@@ -17,4 +17,9 @@ internal interface ILogEntryService
     ValueTask<int> DeleteLogEntriesBeforeAsync(DateTime cutoff);
     int? ResolveAppId(string domainOrName);
     string ResolveTenantId(int appId);
+    bool ShouldStoreLogEntries();
+    bool ShouldStreamLogEntries();
+    int? GetDefaultAppId();
+    string GetDefaultAppDomain();
+    ValueTask StreamLogEntryAsync(string thread, string level, string message);
 }

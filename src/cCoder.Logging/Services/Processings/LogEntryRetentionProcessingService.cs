@@ -16,7 +16,7 @@ internal sealed partial class LogEntryRetentionProcessingService(
         TryCatch(
             operation: async () =>
             {
-                ValidateInputs(inputs: [cancellationToken]);
+                ValidateLogRetentionOnRun(inputs: [cancellationToken]);
 
                 while (!cancellationToken.IsCancellationRequested)
                 {
@@ -34,7 +34,7 @@ internal sealed partial class LogEntryRetentionProcessingService(
         CancellationToken cancellationToken = default) =>
         TryCatch(operation: async () =>
         {
-            ValidateInputs(inputs: [cancellationToken]);
+            ValidateExpiredLogEntriesOnDelete(inputs: [cancellationToken]);
 
             return await DeleteExpiredLogEntries(
                 cancellationToken: cancellationToken);

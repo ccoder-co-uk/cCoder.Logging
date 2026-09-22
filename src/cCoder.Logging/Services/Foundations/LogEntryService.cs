@@ -14,7 +14,6 @@ namespace cCoder.Logging.Services.Foundations;
 internal sealed partial class LogEntryService(
     ILogEntryBroker logEntryBroker,
     IAuthorizationBroker authorizationBroker,
-    ILogEntryStreamBroker logEntryStreamBroker,
     LoggingConfiguration loggingConfiguration)
         : ILogEntryService
 {
@@ -147,20 +146,6 @@ internal sealed partial class LogEntryService(
         TryCatch(operation: () =>
         {
             return loggingConfiguration.DefaultAppDomain;
-        });
-
-    public ValueTask StreamLogEntryAsync(
-        string thread,
-        string level,
-        string message) =>
-        TryCatch(operation: () =>
-        {
-            ValidateLogEntryOnStream(inputs: [thread, level, message]);
-
-            return logEntryStreamBroker.SendLogEntryAsync(
-                thread: thread,
-                level: level,
-                message: message);
         });
 
     private void Authorize(

@@ -31,9 +31,6 @@ internal sealed partial class LogEntryService
     private static void ValidateAppOnResolve(object[] inputs) =>
         Validate(inputs: inputs);
 
-    private static void ValidateLogEntryOnStream(object[] inputs) =>
-        Validate(inputs: inputs);
-
     private static void Validate(params object[] inputs)
     {
         foreach (object input in inputs)

@@ -9,6 +9,8 @@ using cCoder.Logging.Exposures.HostedServices;
 using cCoder.Logging.Dependencies.Logging;
 using cCoder.Logging.Models;
 using cCoder.Logging.Brokers.OData;
+using cCoder.Logging.Brokers.Metadata;
+using cCoder.Logging.Brokers.Loggings;
 using cCoder.Logging.Models.OData;
 using cCoder.Logging.Exposures;
 using cCoder.Logging.Services.Foundations;
@@ -86,7 +88,7 @@ public static partial class IServiceCollectionExtensions
     private static void AddExposures(
         this IServiceCollection services)
     {
-        services.AddSingleton<ILogEntryCaptureQueue>(
+        services.AddSingleton<LogEntryCaptureQueue>(
             implementationFactory: provider =>
             {
                 LoggingConfiguration configuration =
@@ -109,13 +111,39 @@ public static partial class IServiceCollectionExtensions
 
                 return new LogEntryCaptureQueue(channel: channel);
             });
+        services.AddSingleton<ILogEntryCaptureQueue>(
+            implementationFactory: provider =>
+                provider.GetRequiredService<LogEntryCaptureQueue>());
         services.AddSingleton<IRequestLoggingCoordinator, RequestLoggingCoordinator>();
         services.AddSingleton<IRequestLogQueueCoordinator, RequestLogQueueCoordinator>();
         services.AddTransient<RequestLoggingMiddleware>();
         services.AddHostedService<LogEntryCaptureWorker>();
         services.AddTransient<ILogDataItemManager, LogDataItemManager>();
         services.AddTransient<ILogEntryManager, LogEntryManager>();
-        services.AddSingleton<ILoggerProvider, LoggingLoggerProvider>();
+        services.AddSingleton<ILoggerProvider>(
+            implementationFactory: provider =>
+            {
+                ILogEntryCaptureQueue queue =
+                    provider.GetRequiredService<ILogEntryCaptureQueue>();
+
+                LoggingConfiguration configuration =
+                    provider.GetRequiredService<LoggingConfiguration>();
+
+                return new LoggingLoggerProvider(
+                    loggerFactory: categoryName =>
+                        new LoggingLoggerDependency(
+                            capture: (level, capturedCategoryName, message, exception) =>
+                                queue.TryEnqueue(
+                                    logEntryCaptureRequest: new LogEntryCaptureRequest
+                                    {
+                                        Level = level,
+                                        CategoryName = capturedCategoryName,
+                                        Message = message,
+                                        Exception = exception,
+                                        Persist = level >= configuration.DatabaseMinimumLogLevel,
+                                    }),
+                            categoryName: categoryName));
+            });
     }
 
     private static void AddEventingTypes(this IServiceCollection services)
@@ -133,8 +161,11 @@ public static partial class IServiceCollectionExtensions
         services.AddTransient<ILogDataItemBroker, LogDataItemBroker>();
         services.AddTransient<ILogEntryBroker, LogEntryBroker>();
         services.AddTransient<ILogEntryStreamBroker, LogEntryStreamBroker>();
+        services.AddTransient<ILogEntryStreamService, LogEntryStreamService>();
+        services.AddTransient<ILogEntryStreamProcessingService, LogEntryStreamProcessingService>();
         services.AddTransient<ILogHubBroker, LogHubBroker>();
         services.AddTransient<IAuthorizationBroker, AuthorizationBroker>();
+        services.AddTransient<IMetadataBroker, MetadataBroker>();
     }
 
     private static void AddFoundations(this IServiceCollection services)

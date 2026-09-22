@@ -45,10 +45,6 @@ public partial class LogEntryCaptureProcessingServiceTests
         };
 
         logEntryServiceMock
-            .Setup(expression: service => service.ShouldStreamLogEntries())
-            .Returns(value: loggingConfiguration.StreamLogEntries);
-
-        logEntryServiceMock
             .Setup(expression: service => service.ShouldStoreLogEntries())
             .Returns(value: loggingConfiguration.StoreLogEntries);
 
@@ -107,7 +103,7 @@ public partial class LogEntryCaptureProcessingServiceTests
     }
 
     [Fact]
-    public async Task ShouldNotStreamLogEntryWhenThreadIsUnavailable()
+    public async Task ShouldNotStoreLogEntryWhenStorageIsDisabled()
     {
         // Given
         Mock<ILogEntryService> logEntryServiceMock = new(
@@ -136,10 +132,6 @@ public partial class LogEntryCaptureProcessingServiceTests
         logEntryServiceMock
             .Setup(expression: service => service.GetDefaultAppId())
             .Returns(value: loggingConfiguration.DefaultAppId);
-
-        logEntryServiceMock
-            .Setup(expression: service => service.ShouldStreamLogEntries())
-            .Returns(value: loggingConfiguration.StreamLogEntries);
 
         logEntryServiceMock
             .Setup(expression: service => service.ShouldStoreLogEntries())

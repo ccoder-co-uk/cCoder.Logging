@@ -21,5 +21,4 @@ internal interface ILogEntryService
     bool ShouldStreamLogEntries();
     int? GetDefaultAppId();
     string GetDefaultAppDomain();
-    ValueTask StreamLogEntryAsync(string thread, string level, string message);
 }

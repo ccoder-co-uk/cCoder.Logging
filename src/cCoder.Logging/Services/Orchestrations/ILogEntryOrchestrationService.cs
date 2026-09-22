@@ -7,7 +7,7 @@ using cCoder.Logging.Models;
 
 namespace cCoder.Logging.Services.Orchestrations;
 
-internal interface ILogEntryOrchestrationService
+public interface ILogEntryOrchestrationService
 {
     LogEntry GetLogEntry(int logEntryId);
     IQueryable<LogEntry> GetAllLogEntries(bool ignoreFilters = false);

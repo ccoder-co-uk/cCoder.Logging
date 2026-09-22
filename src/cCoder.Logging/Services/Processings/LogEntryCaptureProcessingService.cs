@@ -32,10 +32,6 @@ internal sealed partial class LogEntryCaptureProcessingService(
             string thread = GetThread(
                 logEntryCaptureRequest: logEntryCaptureRequest);
 
-            await StreamLogEntryAsync(
-                logEntryCaptureRequest: logEntryCaptureRequest,
-                thread: thread);
-
             if (!logEntryService.ShouldStoreLogEntries()
                 || !logEntryCaptureRequest.Persist)
             {
@@ -64,24 +60,6 @@ internal sealed partial class LogEntryCaptureProcessingService(
 
             return logEntryCaptureOperation;
         });
-
-    private async ValueTask StreamLogEntryAsync(
-        LogEntryCaptureRequest logEntryCaptureRequest,
-        string thread)
-    {
-        if (logEntryService.ShouldStreamLogEntries()
-            && !string.IsNullOrWhiteSpace(value: thread))
-        {
-            string level = logEntryCaptureRequest.Level
-                .ToString()
-                .ToLowerInvariant();
-
-            await logEntryService.StreamLogEntryAsync(
-                thread: thread,
-                level: level,
-                message: logEntryCaptureRequest.Message);
-        }
-    }
 
     private int? ResolveAppId(
         LogEntryCaptureRequest logEntryCaptureRequest,

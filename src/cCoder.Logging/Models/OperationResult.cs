@@ -4,7 +4,7 @@
 
 namespace cCoder.Logging.Models;
 
-internal sealed class OperationResult<T>
+public sealed class OperationResult<T>
 {
     public bool Success { get; set; }
     public string Message { get; set; }

@@ -11,15 +11,16 @@ using Microsoft.OData.ModelBuilder;
 namespace cCoder.Logging.Brokers.OData;
 
 internal class LoggingModelBroker
-    : ODataModelBroker,
-      ILoggingModelBroker
+    : ILoggingModelBroker
 {
+    private readonly ODataConventionModelBuilder builder;
+
     public LoggingModelBroker(ODataConventionModelBuilder builder = null)
-        : base(builder: builder)
     {
+        this.builder = builder ?? new ODataConventionModelBuilder();
     }
 
-    public override ODataModel Build()
+    public ODataModel Build()
     {
         return new ODataModel
         {
@@ -42,9 +43,13 @@ internal class LoggingModelBroker
 
     private void ConfigureModel()
     {
-        AddCommonComplextypes();
-        AddSet<LogEntry, int>();
-        AddSet<LogDataItem, int>();
+        builder.ComplexType<MetadataContainerSet>();
+        builder.ComplexType<MetadataContainer>();
+        builder.ComplexType<PropertyContainer>();
+        builder.ComplexType<AuditResultsByUser>();
+        builder.ComplexType<AuditResultByProperty>();
+        builder.EntitySet<LogEntry>(name: nameof(LogEntry));
+        builder.EntitySet<LogDataItem>(name: nameof(LogDataItem));
         builder.Namespace = "";
     }
 }

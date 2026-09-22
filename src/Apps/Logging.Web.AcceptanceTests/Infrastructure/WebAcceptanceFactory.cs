@@ -5,9 +5,9 @@
 using cCoder.Data;
 using cCoder.Data.Models;
 using cCoder.Security.Data.EF;
-using cCoder.Security.Data.EF.Dependencies;
 using cCoder.Security.Data.EF.Interfaces;
 using cCoder.Security.Models;
+using cCoder.Security.Models.Configurations;
 using Logging.Web;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
@@ -56,11 +56,15 @@ initialData: [
         builder.ConfigureTestServices(servicesConfiguration: services =>
         {
             services.RemoveAll<ISecurityDbContextFactory>();
-            services.RemoveAll<DataConfiguration>();
 
-            services.AddSingleton<ISecurityDbContextFactory>(
-implementationFactory: _ => new MSSQLSecurityDbContextFactory(connectionString: settings.SsoConnectionString)
-            );
+            services.AddSecurityData(
+                configuration: new SecurityDataConfiguration
+                {
+                    ConnectionString = settings.SsoConnectionString
+                });
+
+            services.RemoveAll<ICoreContextFactory>();
+            services.RemoveAll<DataConfiguration>();
 
             services.AddData(
                 configuration: new DataConfiguration

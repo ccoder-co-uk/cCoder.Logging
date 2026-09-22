@@ -10,6 +10,7 @@ namespace cCoder.Logging.Services.Orchestrations;
 
 internal sealed partial class LogEntryCaptureOrchestrationService(
     ILogEntryCaptureProcessingService logEntryCaptureProcessingService,
+    ILogEntryStreamProcessingService logEntryStreamProcessingService,
     ILogEntryEventProcessingService logEntryEventProcessingService)
         : ILogEntryCaptureOrchestrationService
 {
@@ -18,6 +19,10 @@ internal sealed partial class LogEntryCaptureOrchestrationService(
         TryCatch(operation: async () =>
         {
             ValidateInputs(inputs: [logEntryCaptureRequest]);
+
+            await logEntryStreamProcessingService
+                .StreamLogEntryCaptureRequestAsync(
+                    logEntryCaptureRequest: logEntryCaptureRequest);
 
             LogEntryCaptureOperation operation =
                 await logEntryCaptureProcessingService

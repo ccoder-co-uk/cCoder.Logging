@@ -4,9 +4,9 @@
 
 using cCoder.Logging.Models.OData;
 
-namespace cCoder.Logging.Brokers.OData;
+namespace cCoder.Logging.Brokers.Metadata;
 
-public interface IODataModelBroker
+internal interface IMetadataBroker
 {
-    ODataModel Build();
+    ExtendedMetadataContainer CreateEntityMetadata(Type type);
 }

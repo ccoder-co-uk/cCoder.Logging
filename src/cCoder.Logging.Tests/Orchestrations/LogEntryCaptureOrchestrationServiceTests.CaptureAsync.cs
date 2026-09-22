@@ -18,6 +18,12 @@ public partial class LogEntryCaptureOrchestrationServiceTests
         LogEntryCaptureRequest logEntryCaptureRequest = CreateRequest();
         LogEntry savedLogEntry = CreateLogEntry();
 
+        logEntryStreamProcessingServiceMock
+            .Setup(expression: processingService =>
+                processingService.StreamLogEntryCaptureRequestAsync(
+                    logEntryCaptureRequest: logEntryCaptureRequest))
+            .Returns(value: ValueTask.CompletedTask);
+
         logEntryCaptureProcessingServiceMock
             .Setup(expression: processingService =>
                 processingService.CaptureLogEntryCaptureOperationAsync(
@@ -44,6 +50,7 @@ logEntry: savedLogEntry))
 
         // Then
         logEntryCaptureProcessingServiceMock.VerifyAll();
+        logEntryStreamProcessingServiceMock.VerifyAll();
         logEntryEventProcessingServiceMock.VerifyAll();
     }
 
@@ -52,6 +59,12 @@ logEntry: savedLogEntry))
     {
         // Given
         LogEntryCaptureRequest logEntryCaptureRequest = CreateRequest();
+
+        logEntryStreamProcessingServiceMock
+            .Setup(expression: processingService =>
+                processingService.StreamLogEntryCaptureRequestAsync(
+                    logEntryCaptureRequest: logEntryCaptureRequest))
+            .Returns(value: ValueTask.CompletedTask);
 
         logEntryCaptureProcessingServiceMock
             .Setup(expression: processingService =>
@@ -72,6 +85,7 @@ logEntry: savedLogEntry))
 
         // Then
         logEntryCaptureProcessingServiceMock.VerifyAll();
+        logEntryStreamProcessingServiceMock.VerifyAll();
         logEntryEventProcessingServiceMock.VerifyNoOtherCalls();
     }
 }

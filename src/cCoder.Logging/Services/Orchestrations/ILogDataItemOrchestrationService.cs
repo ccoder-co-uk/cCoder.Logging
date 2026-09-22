@@ -7,7 +7,7 @@ using cCoder.Logging.Models;
 
 namespace cCoder.Logging.Services.Orchestrations;
 
-internal interface ILogDataItemOrchestrationService
+public interface ILogDataItemOrchestrationService
 {
     LogDataItem GetLogDataItem(int logDataItemId);
     IQueryable<LogDataItem> GetAllLogDataItems(bool ignoreFilters = false);

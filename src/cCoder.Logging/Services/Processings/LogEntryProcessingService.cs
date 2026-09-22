@@ -15,7 +15,7 @@ internal sealed partial class LogEntryProcessingService(
     public LogEntry GetLogEntry(int logEntryId) =>
         TryCatch(operation: () =>
         {
-            ValidateInputs(inputs: [logEntryId]);
+            ValidateLogEntryOnGet(logEntryId: logEntryId);
 
             return logEntryService.GetLogEntry(
                 logEntryId: logEntryId);
@@ -25,7 +25,7 @@ internal sealed partial class LogEntryProcessingService(
         bool ignoreFilters = false) =>
         TryCatch(operation: () =>
         {
-            ValidateInputs(inputs: [ignoreFilters]);
+            ValidateAllLogEntriesOnGet(ignoreFilters: ignoreFilters);
 
             return logEntryService.GetAllLogEntries(
                 ignoreFilters: ignoreFilters);
@@ -35,7 +35,7 @@ internal sealed partial class LogEntryProcessingService(
         LogEntry newLogEntry) =>
         TryCatch(operation: async () =>
         {
-            ValidateInputs(inputs: [newLogEntry]);
+            ValidateLogEntryOnAdd(newLogEntry: newLogEntry);
 
             return await AddLogEntry(
                 newLogEntry: newLogEntry,
@@ -46,7 +46,7 @@ internal sealed partial class LogEntryProcessingService(
         LogEntry newLogEntry) =>
         TryCatch(operation: async () =>
         {
-            ValidateInputs(inputs: [newLogEntry]);
+            ValidateSystemLogEntryOnAdd(newLogEntry: newLogEntry);
 
             return await AddLogEntry(
                 newLogEntry: newLogEntry,
@@ -57,7 +57,7 @@ internal sealed partial class LogEntryProcessingService(
         LogEntry updatedLogEntry) =>
         TryCatch(operation: async () =>
         {
-            ValidateInputs(inputs: [updatedLogEntry]);
+            ValidateLogEntryOnUpdate(updatedLogEntry: updatedLogEntry);
 
             LogEntry internalLogEntry =
                 ToInternalLogEntry(logEntry: updatedLogEntry);
@@ -72,7 +72,7 @@ internal sealed partial class LogEntryProcessingService(
     public ValueTask DeleteLogEntryAsync(int logEntryId) =>
         TryCatch(operation: async () =>
         {
-            ValidateInputs(inputs: [logEntryId]);
+            ValidateLogEntryOnDelete(logEntryId: logEntryId);
 
             await logEntryService.DeleteLogEntryAsync(
                 logEntryId: logEntryId);
@@ -82,7 +82,7 @@ internal sealed partial class LogEntryProcessingService(
         IEnumerable<LogEntry> logEntries) =>
         TryCatch(operation: async () =>
         {
-            ValidateInputs(inputs: [logEntries]);
+            ValidateOrUpdateLogEntryResultsOnAdd(logEntries: logEntries);
 
             List<OperationResult<LogEntry>> results = [];
 
@@ -101,7 +101,8 @@ internal sealed partial class LogEntryProcessingService(
         IEnumerable<LogEntry> deletedLogEntries) =>
         TryCatch(operation: async () =>
         {
-            ValidateInputs(inputs: [deletedLogEntries]);
+            ValidateAllLogEntryOnDelete(
+                deletedLogEntries: deletedLogEntries);
 
             foreach (LogEntry deletedLogEntry in deletedLogEntries)
             {
@@ -113,7 +114,7 @@ internal sealed partial class LogEntryProcessingService(
     public ValueTask<int> DeleteLogEntriesBeforeAsync(DateTime cutoff) =>
         TryCatch(operation: async () =>
         {
-            ValidateInputs(inputs: [cutoff]);
+            ValidateLogEntriesBeforeOnDelete(cutoff: cutoff);
 
             return await logEntryService.DeleteLogEntriesBeforeAsync(
                 cutoff: cutoff);
@@ -122,7 +123,7 @@ internal sealed partial class LogEntryProcessingService(
     public int? ResolveAppId(string domainOrName) =>
         TryCatch(operation: () =>
         {
-            ValidateInputs(inputs: [domainOrName]);
+            ValidateAppOnResolve(domainOrName: domainOrName);
 
             return logEntryService.ResolveAppId(
                 domainOrName: domainOrName);

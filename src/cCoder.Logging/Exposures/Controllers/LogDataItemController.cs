@@ -10,7 +10,7 @@ using cCoder.Logging.Models;
 using cCoder.Logging.Models.Exceptions;
 using cCoder.Data.Extensions;
 using cCoder.Data.Models.Logging;
-using cCoder.Logging.Exposures;
+using cCoder.Logging.Services.Orchestrations;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Query;
@@ -20,7 +20,7 @@ using Microsoft.AspNetCore.OData.Routing.Controllers;
 namespace cCoder.Logging.Exposures.Controllers;
 
 public partial class LogDataItemController(
-    ILogDataItemManager logDataItemManager,
+    ILogDataItemOrchestrationService logDataItemOrchestrationService,
     ILoggingBroker loggingBroker)
         : ODataController
 {
@@ -37,7 +37,7 @@ public partial class LogDataItemController(
     {
         try
         {
-            return Ok(value: logDataItemManager.GetAllLogDataItems());
+            return Ok(value: logDataItemOrchestrationService.GetAllLogDataItems());
         }
         catch (LoggingValidationException exception)
         {
@@ -77,7 +77,7 @@ public partial class LogDataItemController(
     {
         try
         {
-            LogDataItem logDataItem = logDataItemManager.GetLogDataItem(
+            LogDataItem logDataItem = logDataItemOrchestrationService.GetLogDataItem(
                 logDataItemId: key);
 
             if (logDataItem is null)
@@ -129,7 +129,7 @@ public partial class LogDataItemController(
                 return BadRequest(modelState: ModelState);
             }
 
-            LogDataItem savedLogDataItem = await logDataItemManager.AddLogDataItemAsync(
+            LogDataItem savedLogDataItem = await logDataItemOrchestrationService.AddLogDataItemAsync(
                 newLogDataItem: newLogDataItem);
 
             return StatusCode(

@@ -9,9 +9,7 @@ namespace cCoder.Logging.Brokers;
 
 internal interface ILogEntryStreamBroker
 {
-    IHubContext<LogHub> SelectLogHubContext();
     ValueTask SendLogEntryAsync(
-        IHubContext<LogHub> hubContext,
         string thread,
         string level,
         string message);
@@ -21,20 +19,19 @@ internal sealed class LogEntryStreamBroker(
     IServiceProvider serviceProvider)
         : ILogEntryStreamBroker
 {
-    public IHubContext<LogHub> SelectLogHubContext() =>
-        serviceProvider.GetService<IHubContext<LogHub>>();
-
     public ValueTask SendLogEntryAsync(
-        IHubContext<LogHub> hubContext,
         string thread,
         string level,
         string message) =>
         new(
-            task: hubContext.Clients
+            task: serviceProvider
+                .GetService<IHubContext<LogHub>>()?
+                .Clients
                 .Group(groupName: thread)
                 .SendAsync(
                     method: "ConsoleReceive",
                     arg1: level,
                     arg2: message,
-                    arg3: thread));
+                    arg3: thread)
+                ?? Task.CompletedTask);
 }

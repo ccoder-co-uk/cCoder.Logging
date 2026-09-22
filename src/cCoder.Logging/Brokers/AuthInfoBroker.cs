@@ -3,6 +3,7 @@
 // ---------------------------------------------------------------
 
 using cCoder.Data;
+using cCoder.CodeAnalysis.Exposures;
 
 namespace cCoder.Logging.Brokers;
 
@@ -13,7 +14,7 @@ internal interface IAuthInfoBroker
 
 internal sealed class AuthInfoBroker(
     ICoreAuthInfo authInfo)
-        : IAuthInfoBroker
+        : IAuthInfoBroker, IUtilityBroker
 {
     public string SelectCurrentSsoUserId() =>
         authInfo.SSOUserId;

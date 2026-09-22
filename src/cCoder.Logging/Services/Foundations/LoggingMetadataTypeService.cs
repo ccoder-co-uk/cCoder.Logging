@@ -2,14 +2,15 @@
 // Copyright (c) Paul.Ward@ccoder.co.uk
 // ---------------------------------------------------------------
 
-using cCoder.Logging.Extensions.OData;
+using cCoder.Logging.Brokers.Metadata;
 using cCoder.Logging.Models.OData;
 using cCoder.Data.Models.Logging;
 
 
 namespace cCoder.Logging.Services.Foundations;
 
-internal sealed partial class LoggingMetadataTypeService : ILoggingMetadataTypeService
+internal sealed partial class LoggingMetadataTypeService(
+    IMetadataBroker metadataBroker) : ILoggingMetadataTypeService
 {
     public IEnumerable<MetadataContainerSet> GetKnownMetadata()
 =>
@@ -30,13 +31,10 @@ internal sealed partial class LoggingMetadataTypeService : ILoggingMetadataTypeS
         ];
         });
 
-    private static ExtendedMetadataContainer Entity<T>()
+    private ExtendedMetadataContainer Entity<T>()
     {
         ExtendedMetadataContainer metadata =
-            PropertyInfoExtensions.CreateExtendedMetadataContainer(
-                type: typeof(T),
-                isEntity: true,
-                hasEndpoint: true);
+            metadataBroker.CreateEntityMetadata(type: typeof(T));
 
         metadata.Category = "Logging";
 

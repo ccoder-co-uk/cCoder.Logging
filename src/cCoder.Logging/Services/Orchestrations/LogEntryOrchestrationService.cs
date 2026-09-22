@@ -16,7 +16,7 @@ internal sealed partial class LogEntryOrchestrationService(
     public LogEntry GetLogEntry(int logEntryId) =>
         TryCatch(operation: () =>
         {
-            ValidateInputs(inputs: [logEntryId]);
+            ValidateLogEntryOnGet(logEntryId: logEntryId);
 
             return logEntryProcessingService.GetLogEntry(
                 logEntryId: logEntryId);
@@ -26,7 +26,7 @@ internal sealed partial class LogEntryOrchestrationService(
         bool ignoreFilters = false) =>
         TryCatch(operation: () =>
         {
-            ValidateInputs(inputs: [ignoreFilters]);
+            ValidateAllLogEntriesOnGet(ignoreFilters: ignoreFilters);
 
             return logEntryProcessingService.GetAllLogEntries(
                 ignoreFilters: ignoreFilters);
@@ -36,7 +36,7 @@ internal sealed partial class LogEntryOrchestrationService(
         LogEntry newLogEntry) =>
         TryCatch(operation: async () =>
         {
-            ValidateInputs(inputs: [newLogEntry]);
+            ValidateLogEntryOnAdd(newLogEntry: newLogEntry);
 
             LogEntry savedLogEntry =
                 await logEntryProcessingService.AddLogEntryAsync(
@@ -52,7 +52,7 @@ internal sealed partial class LogEntryOrchestrationService(
         LogEntry newLogEntry) =>
         TryCatch(operation: async () =>
         {
-            ValidateInputs(inputs: [newLogEntry]);
+            ValidateSystemLogEntryOnAdd(newLogEntry: newLogEntry);
 
             LogEntry savedLogEntry =
                 await logEntryProcessingService.AddSystemLogEntryAsync(
@@ -68,7 +68,7 @@ internal sealed partial class LogEntryOrchestrationService(
         LogEntry updatedLogEntry) =>
         TryCatch(operation: async () =>
         {
-            ValidateInputs(inputs: [updatedLogEntry]);
+            ValidateLogEntryOnUpdate(updatedLogEntry: updatedLogEntry);
 
             LogEntry savedLogEntry =
                 await logEntryProcessingService.UpdateLogEntryAsync(
@@ -83,7 +83,7 @@ internal sealed partial class LogEntryOrchestrationService(
     public ValueTask DeleteLogEntryAsync(int logEntryId) =>
         TryCatch(operation: async () =>
         {
-            ValidateInputs(inputs: [logEntryId]);
+            ValidateLogEntryOnDelete(logEntryId: logEntryId);
 
             LogEntry deletedLogEntry =
                 logEntryProcessingService.GetLogEntry(
@@ -100,7 +100,7 @@ internal sealed partial class LogEntryOrchestrationService(
         IEnumerable<LogEntry> logEntries) =>
         TryCatch(operation: async () =>
         {
-            ValidateInputs(inputs: [logEntries]);
+            ValidateOrUpdateLogEntryResultsOnAdd(logEntries: logEntries);
 
             return await logEntryProcessingService
                 .AddOrUpdateLogEntryResultsAsync(
@@ -111,7 +111,8 @@ internal sealed partial class LogEntryOrchestrationService(
         IEnumerable<LogEntry> deletedLogEntries) =>
         TryCatch(operation: async () =>
         {
-            ValidateInputs(inputs: [deletedLogEntries]);
+            ValidateAllLogEntryOnDelete(
+                deletedLogEntries: deletedLogEntries);
 
             await logEntryProcessingService.DeleteAllLogEntryAsync(
                 deletedLogEntries: deletedLogEntries);
@@ -120,7 +121,7 @@ internal sealed partial class LogEntryOrchestrationService(
     public ValueTask<int> DeleteLogEntriesBeforeAsync(DateTime cutoff) =>
         TryCatch(operation: async () =>
         {
-            ValidateInputs(inputs: [cutoff]);
+            ValidateLogEntriesBeforeOnDelete(cutoff: cutoff);
 
             return await logEntryProcessingService.DeleteLogEntriesBeforeAsync(
                 cutoff: cutoff);
@@ -129,7 +130,7 @@ internal sealed partial class LogEntryOrchestrationService(
     public int? ResolveAppId(string domainOrName) =>
         TryCatch(operation: () =>
         {
-            ValidateInputs(inputs: [domainOrName]);
+            ValidateAppOnResolve(domainOrName: domainOrName);
 
             return logEntryProcessingService.ResolveAppId(
                 domainOrName: domainOrName);

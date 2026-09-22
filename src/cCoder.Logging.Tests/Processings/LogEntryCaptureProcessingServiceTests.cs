@@ -3,7 +3,6 @@
 // ---------------------------------------------------------------
 
 using cCoder.Data.Models.Logging;
-using cCoder.Logging.Brokers;
 using cCoder.Logging.Models;
 using cCoder.Logging.Services.Foundations;
 using cCoder.Logging.Services.Processings;
@@ -26,9 +25,6 @@ public partial class LogEntryCaptureProcessingServiceTests
         Mock<ILogEntryService> logEntryServiceMock = new(
             behavior: MockBehavior.Strict);
 
-        Mock<ILogEntryStreamBroker> logEntryStreamBrokerMock = new(
-            behavior: MockBehavior.Strict);
-
         LoggingConfiguration loggingConfiguration = new()
         {
             DefaultAppId = AppId,
@@ -47,6 +43,18 @@ public partial class LogEntryCaptureProcessingServiceTests
             SessionId = "session-9",
             Persist = true
         };
+
+        logEntryServiceMock
+            .Setup(expression: service => service.ShouldStoreLogEntries())
+            .Returns(value: loggingConfiguration.StoreLogEntries);
+
+        logEntryServiceMock
+            .Setup(expression: service => service.GetDefaultAppId())
+            .Returns(value: loggingConfiguration.DefaultAppId);
+
+        logEntryServiceMock
+            .Setup(expression: service => service.GetDefaultAppDomain())
+            .Returns(value: loggingConfiguration.DefaultAppDomain);
 
         logEntryServiceMock
             .Setup(expression: service =>
@@ -76,9 +84,7 @@ public partial class LogEntryCaptureProcessingServiceTests
             .ReturnsAsync(value: new LogEntry { Id = 1 });
 
         LogEntryCaptureProcessingService processingService = new(
-            logEntryService: logEntryServiceMock.Object,
-            logEntryStreamBroker: logEntryStreamBrokerMock.Object,
-            loggingConfiguration: loggingConfiguration);
+            logEntryService: logEntryServiceMock.Object);
 
         // When
         LogEntryCaptureOperation result =
@@ -94,17 +100,13 @@ public partial class LogEntryCaptureProcessingServiceTests
             .NotBeNull();
 
         logEntryServiceMock.VerifyAll();
-        logEntryStreamBrokerMock.VerifyNoOtherCalls();
     }
 
     [Fact]
-    public async Task ShouldNotStreamLogEntryWhenThreadIsUnavailable()
+    public async Task ShouldNotStoreLogEntryWhenStorageIsDisabled()
     {
         // Given
         Mock<ILogEntryService> logEntryServiceMock = new(
-            behavior: MockBehavior.Strict);
-
-        Mock<ILogEntryStreamBroker> logEntryStreamBrokerMock = new(
             behavior: MockBehavior.Strict);
 
         LoggingConfiguration loggingConfiguration = new()
@@ -121,9 +123,19 @@ public partial class LogEntryCaptureProcessingServiceTests
         };
 
         LogEntryCaptureProcessingService processingService = new(
-            logEntryService: logEntryServiceMock.Object,
-            logEntryStreamBroker: logEntryStreamBrokerMock.Object,
-            loggingConfiguration: loggingConfiguration);
+            logEntryService: logEntryServiceMock.Object);
+
+        logEntryServiceMock
+            .Setup(expression: service => service.GetDefaultAppDomain())
+            .Returns(value: loggingConfiguration.DefaultAppDomain);
+
+        logEntryServiceMock
+            .Setup(expression: service => service.GetDefaultAppId())
+            .Returns(value: loggingConfiguration.DefaultAppId);
+
+        logEntryServiceMock
+            .Setup(expression: service => service.ShouldStoreLogEntries())
+            .Returns(value: loggingConfiguration.StoreLogEntries);
 
         // When
         await processingService.CaptureLogEntryCaptureOperationAsync(
@@ -133,7 +145,6 @@ public partial class LogEntryCaptureProcessingServiceTests
             });
 
         // Then
-        logEntryStreamBrokerMock.VerifyNoOtherCalls();
-        logEntryServiceMock.VerifyNoOtherCalls();
+        logEntryServiceMock.VerifyAll();
     }
 }

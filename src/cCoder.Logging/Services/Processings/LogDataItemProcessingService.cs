@@ -15,7 +15,7 @@ internal sealed partial class LogDataItemProcessingService(
     public LogDataItem GetLogDataItem(int logDataItemId) =>
         TryCatch(operation: () =>
         {
-            ValidateInputs(inputs: [logDataItemId]);
+            ValidateLogDataItemOnGet(logDataItemId: logDataItemId);
 
             return logDataItemService.GetLogDataItem(
                 logDataItemId: logDataItemId);
@@ -25,7 +25,7 @@ internal sealed partial class LogDataItemProcessingService(
         bool ignoreFilters = false) =>
         TryCatch(operation: () =>
         {
-            ValidateInputs(inputs: [ignoreFilters]);
+            ValidateAllLogDataItemsOnGet(ignoreFilters: ignoreFilters);
 
             return logDataItemService.GetAllLogDataItems(
                 ignoreFilters: ignoreFilters);
@@ -35,7 +35,7 @@ internal sealed partial class LogDataItemProcessingService(
         LogDataItem newLogDataItem) =>
         TryCatch(operation: async () =>
         {
-            ValidateInputs(inputs: [newLogDataItem]);
+            ValidateLogDataItemOnAdd(newLogDataItem: newLogDataItem);
 
             return await AddLogDataItem(
                 newLogDataItem: newLogDataItem);
@@ -45,7 +45,7 @@ internal sealed partial class LogDataItemProcessingService(
         LogDataItem updatedLogDataItem) =>
         TryCatch(operation: async () =>
         {
-            ValidateInputs(inputs: [updatedLogDataItem]);
+            ValidateLogDataItemOnUpdate(updatedLogDataItem: updatedLogDataItem);
 
             return await UpdateLogDataItem(
                 updatedLogDataItem: updatedLogDataItem);
@@ -54,7 +54,7 @@ internal sealed partial class LogDataItemProcessingService(
     public ValueTask DeleteLogDataItemAsync(int logDataItemId) =>
         TryCatch(operation: async () =>
         {
-            ValidateInputs(inputs: [logDataItemId]);
+            ValidateLogDataItemOnDelete(logDataItemId: logDataItemId);
 
             await logDataItemService.DeleteLogDataItemAsync(
                 logDataItemId: logDataItemId);
@@ -64,7 +64,8 @@ internal sealed partial class LogDataItemProcessingService(
         IEnumerable<LogDataItem> logDataItems) =>
         TryCatch(operation: async () =>
         {
-            ValidateInputs(inputs: [logDataItems]);
+            ValidateOrUpdateLogDataItemResultsOnAdd(
+                logDataItems: logDataItems);
 
             List<OperationResult<LogDataItem>> results = [];
 
@@ -84,7 +85,8 @@ internal sealed partial class LogDataItemProcessingService(
         IEnumerable<LogDataItem> deletedLogDataItems) =>
         TryCatch(operation: async () =>
         {
-            ValidateInputs(inputs: [deletedLogDataItems]);
+            ValidateAllLogDataItemOnDelete(
+                deletedLogDataItems: deletedLogDataItems);
 
             foreach (LogDataItem deletedLogDataItem in deletedLogDataItems)
             {

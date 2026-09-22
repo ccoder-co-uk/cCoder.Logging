@@ -25,10 +25,10 @@ public partial class LogEntryServiceTests
     {
         logEntryBrokerMock = new Mock<ILogEntryBroker>(behavior: MockBehavior.Strict);
         authorizationBrokerMock = new Mock<IAuthorizationBroker>(behavior: MockBehavior.Strict);
-
         logEntryService = new LogEntryService(
             logEntryBroker: logEntryBrokerMock.Object,
-            authorizationBroker: authorizationBrokerMock.Object);
+            authorizationBroker: authorizationBrokerMock.Object,
+            loggingConfiguration: new LoggingConfiguration());
     }
 
     private static LogEntry CreateRandomLogEntry(int id = 42)

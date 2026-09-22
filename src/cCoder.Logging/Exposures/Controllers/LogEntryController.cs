@@ -10,7 +10,7 @@ using cCoder.Logging.Models;
 using cCoder.Logging.Models.Exceptions;
 using cCoder.Data.Extensions;
 using cCoder.Data.Models.Logging;
-using cCoder.Logging.Exposures;
+using cCoder.Logging.Services.Orchestrations;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Query;
@@ -20,7 +20,7 @@ using Microsoft.AspNetCore.OData.Routing.Controllers;
 namespace cCoder.Logging.Exposures.Controllers;
 
 public partial class LogEntryController(
-    ILogEntryManager logEntryManager,
+    ILogEntryOrchestrationService logEntryOrchestrationService,
     ILoggingBroker loggingBroker)
         : ODataController
 {
@@ -37,7 +37,7 @@ public partial class LogEntryController(
     {
         try
         {
-            return Ok(value: logEntryManager.GetAllLogEntries());
+            return Ok(value: logEntryOrchestrationService.GetAllLogEntries());
         }
         catch (LoggingValidationException exception)
         {
@@ -77,7 +77,7 @@ public partial class LogEntryController(
     {
         try
         {
-            LogEntry logEntry = logEntryManager.GetLogEntry(
+            LogEntry logEntry = logEntryOrchestrationService.GetLogEntry(
                 logEntryId: key);
 
             if (logEntry is null)
@@ -129,7 +129,7 @@ public partial class LogEntryController(
                 return BadRequest(modelState: ModelState);
             }
 
-            LogEntry savedLogEntry = await logEntryManager.AddLogEntryAsync(
+            LogEntry savedLogEntry = await logEntryOrchestrationService.AddLogEntryAsync(
                 newLogEntry: newLogEntry);
 
             return StatusCode(

@@ -2,27 +2,10 @@
 // Copyright (c) Paul.Ward@ccoder.co.uk
 // ---------------------------------------------------------------
 
-using cCoder.Logging.Brokers;
-using cCoder.Logging.Models;
-
 namespace cCoder.Logging.Dependencies.Logging;
 
-internal sealed class LoggingLoggerProvider(
-    ILogEntryCaptureQueue queue,
-    LoggingConfiguration configuration) : ILoggerProvider
-{
-    public ILogger CreateLogger(string categoryName) =>
-        new LoggingLogger(
-            queue: queue,
-            configuration: configuration,
-            categoryName: categoryName);
-
-    public void Dispose() => GC.SuppressFinalize(this);
-}
-
-internal sealed class LoggingLogger(
-    ILogEntryCaptureQueue queue,
-    LoggingConfiguration configuration,
+internal sealed class LoggingLoggerDependency(
+    Action<LogLevel, string, string, Exception> capture,
     string categoryName) : ILogger
 {
     public IDisposable BeginScope<TState>(TState state)
@@ -49,15 +32,11 @@ internal sealed class LoggingLogger(
 
         if (!string.IsNullOrWhiteSpace(value: message))
         {
-            queue.TryEnqueue(
-                logEntryCaptureRequest: new LogEntryCaptureRequest
-                {
-                    Level = logLevel,
-                    CategoryName = categoryName,
-                    Message = message,
-                    Exception = exception,
-                    Persist = logLevel >= configuration.DatabaseMinimumLogLevel
-                });
+            capture(
+                arg1: logLevel,
+                arg2: categoryName,
+                arg3: message,
+                arg4: exception);
         }
     }
 }

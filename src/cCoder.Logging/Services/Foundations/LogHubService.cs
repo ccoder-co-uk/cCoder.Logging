@@ -7,12 +7,12 @@ using cCoder.Logging.Brokers;
 using cCoder.Logging.Brokers.Loggings;
 using cCoder.Logging.Models;
 
-namespace cCoder.Logging.Services.Processings;
+namespace cCoder.Logging.Services.Foundations;
 
-internal sealed partial class LogHubProcessingService(
+internal sealed partial class LogHubService(
     ILogHubBroker logHubBroker,
     IAuthorizationBroker authorizationBroker,
-    ILoggingBroker log) : ILogHubProcessingService
+    ILoggingBroker log) : ILogHubService
 {
     private static readonly IDictionary<string, ICollection<HistoryItem>>
         History = new Dictionary<string, ICollection<HistoryItem>>();

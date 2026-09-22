@@ -7,12 +7,14 @@ using cCoder.Data.Models.CMS;
 using cCoder.Data.Models.Logging;
 using cCoder.Data.Models.Security;
 using cCoder.Logging.Brokers;
+using cCoder.Logging.Models;
 
 namespace cCoder.Logging.Services.Foundations;
 
 internal sealed partial class LogEntryService(
     ILogEntryBroker logEntryBroker,
-    IAuthorizationBroker authorizationBroker)
+    IAuthorizationBroker authorizationBroker,
+    LoggingConfiguration loggingConfiguration)
         : ILogEntryService
 {
     public LogEntry GetLogEntry(int logEntryId) =>
@@ -120,6 +122,30 @@ internal sealed partial class LogEntryService(
             ValidateAppOnResolve(inputs: [appId]);
 
             return logEntryBroker.SelectTenantIdByAppId(appId: appId);
+        });
+
+    public bool ShouldStoreLogEntries() =>
+        TryCatch(operation: () =>
+        {
+            return loggingConfiguration.StoreLogEntries;
+        });
+
+    public bool ShouldStreamLogEntries() =>
+        TryCatch(operation: () =>
+        {
+            return loggingConfiguration.StreamLogEntries;
+        });
+
+    public int? GetDefaultAppId() =>
+        TryCatch(operation: () =>
+        {
+            return loggingConfiguration.DefaultAppId;
+        });
+
+    public string GetDefaultAppDomain() =>
+        TryCatch(operation: () =>
+        {
+            return loggingConfiguration.DefaultAppDomain;
         });
 
     private void Authorize(

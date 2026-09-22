@@ -19,6 +19,9 @@ public partial class LogEntryCaptureOrchestrationServiceTests
     private readonly Mock<ILogEntryEventProcessingService>
         logEntryEventProcessingServiceMock;
 
+    private readonly Mock<ILogEntryStreamProcessingService>
+        logEntryStreamProcessingServiceMock;
+
     private readonly LogEntryCaptureOrchestrationService orchestrationService;
 
     public LogEntryCaptureOrchestrationServiceTests()
@@ -31,9 +34,15 @@ public partial class LogEntryCaptureOrchestrationServiceTests
             new Mock<ILogEntryEventProcessingService>(
                 behavior: MockBehavior.Strict);
 
+        logEntryStreamProcessingServiceMock =
+            new Mock<ILogEntryStreamProcessingService>(
+                behavior: MockBehavior.Strict);
+
         orchestrationService = new LogEntryCaptureOrchestrationService(
             logEntryCaptureProcessingService:
                 logEntryCaptureProcessingServiceMock.Object,
+            logEntryStreamProcessingService:
+                logEntryStreamProcessingServiceMock.Object,
             logEntryEventProcessingService:
                 logEntryEventProcessingServiceMock.Object);
     }

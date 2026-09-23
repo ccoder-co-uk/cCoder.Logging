@@ -25,7 +25,7 @@
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="10.2.3" />
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="10.2.3" />
     <PackageReference Include="cCoder.Data" Version="2026.9.22.2048" Condition="'$(UseLocalData)' != 'true'" />
-    <PackageReference Include="cCoder.Eventing" Version="2026.9.22.2040" />
+    <PackageReference Include="cCoder.Eventing" Version="2026.9.23.1651" />
     <PackageReference Include="cCoder.Security" Version="2026.9.22.2049" Condition="'$(UseLocalSecurity)' != 'true'" />
     <PackageReference Include="cCoder.Security.Data" Version="2026.9.22.2049" Condition="'$(UseLocalSecurity)' != 'true'" />
   </ItemGroup>

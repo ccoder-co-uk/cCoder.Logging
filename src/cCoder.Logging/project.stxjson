@@ -3195,7 +3195,7 @@
     {
       "Name": "cCoder.Logging.Exposures.HostedServices.LogRetentionCleaner",
       "StandardElementType": "Exposure",
-      "LineNumber": 13,
+      "LineNumber": 14,
       "IsPublic": false,
       "Kind": "Class",
       "BaseType": {
@@ -5161,7 +5161,7 @@
         {
           "Id": "cCoder.Logging.IServiceCollectionExtensions.AddLoggingHostedServices(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action\u003CcCoder.Logging.Models.LoggingConfiguration\u003E)",
           "Name": "AddLoggingHostedServices",
-          "LineNumber": 64,
+          "LineNumber": 65,
           "Inputs": [
             {
               "Name": "services",
@@ -5190,9 +5190,22 @@
               "IsDependencyBoundary": false
             }
           ],
-          "PossibleExceptionTypes": [],
-          "IncomingExceptionTypes": [],
-          "ThrowsExceptionTypes": [],
+          "PossibleExceptionTypes": [
+            "Microsoft.EntityFrameworkCore.DbUpdateConcurrencyException",
+            "cCoder.Logging.Models.Exceptions.LoggingDependencyException",
+            "cCoder.Logging.Models.Exceptions.LoggingServiceException",
+            "cCoder.Logging.Models.Exceptions.LoggingValidationException"
+          ],
+          "IncomingExceptionTypes": [
+            "cCoder.Logging.Models.Exceptions.LoggingDependencyException",
+            "cCoder.Logging.Models.Exceptions.LoggingServiceException",
+            "cCoder.Logging.Models.Exceptions.LoggingValidationException"
+          ],
+          "ThrowsExceptionTypes": [
+            "cCoder.Logging.Models.Exceptions.LoggingDependencyException",
+            "cCoder.Logging.Models.Exceptions.LoggingServiceException",
+            "cCoder.Logging.Models.Exceptions.LoggingValidationException"
+          ],
           "HttpMethods": [],
           "HttpResponses": [],
           "IsHttpRequestHandler": false,
@@ -5205,7 +5218,7 @@
         {
           "Id": "cCoder.Logging.IServiceCollectionExtensions.AddLoggingHostedServices(Microsoft.Extensions.DependencyInjection.IServiceCollection,cCoder.Logging.Models.LoggingConfiguration)",
           "Name": "AddLoggingHostedServices",
-          "LineNumber": 73,
+          "LineNumber": 74,
           "Inputs": [
             {
               "Name": "services",
@@ -5219,9 +5232,22 @@
           "ReturnType": "System.Void",
           "Implements": [],
           "Calls": [],
-          "PossibleExceptionTypes": [],
-          "IncomingExceptionTypes": [],
-          "ThrowsExceptionTypes": [],
+          "PossibleExceptionTypes": [
+            "Microsoft.EntityFrameworkCore.DbUpdateConcurrencyException",
+            "cCoder.Logging.Models.Exceptions.LoggingDependencyException",
+            "cCoder.Logging.Models.Exceptions.LoggingServiceException",
+            "cCoder.Logging.Models.Exceptions.LoggingValidationException"
+          ],
+          "IncomingExceptionTypes": [
+            "cCoder.Logging.Models.Exceptions.LoggingDependencyException",
+            "cCoder.Logging.Models.Exceptions.LoggingServiceException",
+            "cCoder.Logging.Models.Exceptions.LoggingValidationException"
+          ],
+          "ThrowsExceptionTypes": [
+            "cCoder.Logging.Models.Exceptions.LoggingDependencyException",
+            "cCoder.Logging.Models.Exceptions.LoggingServiceException",
+            "cCoder.Logging.Models.Exceptions.LoggingValidationException"
+          ],
           "HttpMethods": [],
           "HttpResponses": [],
           "IsHttpRequestHandler": false,
@@ -5234,7 +5260,7 @@
         {
           "Id": "cCoder.Logging.IServiceCollectionExtensions.AddLoggingWeb(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action\u003CcCoder.Logging.Models.LoggingConfiguration\u003E,Microsoft.OData.ModelBuilder.ODataConventionModelBuilder)",
           "Name": "AddLoggingWeb",
-          "LineNumber": 36,
+          "LineNumber": 37,
           "Inputs": [
             {
               "Name": "services",
@@ -5282,7 +5308,7 @@
         {
           "Id": "cCoder.Logging.IServiceCollectionExtensions.AddLoggingWeb(Microsoft.Extensions.DependencyInjection.IServiceCollection,cCoder.Logging.Models.LoggingConfiguration,Microsoft.OData.ModelBuilder.ODataConventionModelBuilder)",
           "Name": "AddLoggingWeb",
-          "LineNumber": 46,
+          "LineNumber": 47,
           "Inputs": [
             {
               "Name": "services",
@@ -12015,7 +12041,7 @@
     {
       "Name": "cCoder.Logging.Exposures.HostedServices.ILogRetentionCleaner",
       "StandardElementType": "Exposure",
-      "LineNumber": 9,
+      "LineNumber": 10,
       "IsPublic": true,
       "Kind": "Interface",
       "BaseType": null,
@@ -14928,7 +14954,7 @@
     },
     {
       "FromType": "cCoder.Logging.Exposures.HostedServices.LogRetentionCleaner",
-      "ToType": "cCoder.Logging.Services.Processings.LogEntryRetentionProcessingService"
+      "ToType": "cCoder.Logging.Dependencies.HostedServices.LogRetentionRunner"
     },
     {
       "FromType": "cCoder.Logging.Exposures.Hubs.LogHub",

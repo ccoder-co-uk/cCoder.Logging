@@ -6,6 +6,7 @@ using cCoder.Data.Models.Logging;
 using cCoder.Logging.Extensions.OData;
 using cCoder.Logging.Brokers;
 using cCoder.Logging.Exposures.HostedServices;
+using cCoder.Logging.Dependencies.HostedServices;
 using cCoder.Logging.Dependencies.Logging;
 using cCoder.Logging.Models;
 using cCoder.Logging.Brokers.OData;
@@ -199,6 +200,23 @@ public static partial class IServiceCollectionExtensions
 
     private static void AddHostedServiceExposures(this IServiceCollection services)
     {
+        services.AddSingleton<LogRetentionRunner>(
+            implementationFactory: provider =>
+            {
+                IServiceScopeFactory serviceScopeFactory =
+                    provider.GetRequiredService<IServiceScopeFactory>();
+
+                return async cancellationToken =>
+                {
+                    using IServiceScope scope = serviceScopeFactory.CreateScope();
+
+                    ILogEntryRetentionProcessingService logRetentionProcessingService =
+                        scope.ServiceProvider.GetRequiredService<ILogEntryRetentionProcessingService>();
+
+                    await logRetentionProcessingService.RunLogRetentionAsync(
+                        cancellationToken: cancellationToken);
+                };
+            });
         services.AddSingleton<ILogRetentionCleaner, LogRetentionCleaner>();
         services.AddSingleton<IHostedService>(
             implementationFactory: provider =>

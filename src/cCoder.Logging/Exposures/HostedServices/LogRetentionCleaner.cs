@@ -2,7 +2,8 @@
 // Copyright (c) Paul.Ward@ccoder.co.uk
 // ---------------------------------------------------------------
 
-using cCoder.Logging.Services.Processings;
+using cCoder.Logging.Dependencies.HostedServices;
+using Microsoft.Extensions.Hosting;
 
 namespace cCoder.Logging.Exposures.HostedServices;
 
@@ -11,10 +12,9 @@ public interface ILogRetentionCleaner : IHostedService
 }
 
 internal sealed class LogRetentionCleaner(
-    ILogEntryRetentionProcessingService logRetentionProcessingService)
+    LogRetentionRunner runLogRetentionAsync)
         : BackgroundService, ILogRetentionCleaner
 {
     protected override Task ExecuteAsync(CancellationToken stoppingToken) =>
-        logRetentionProcessingService.RunLogRetentionAsync(
-            cancellationToken: stoppingToken);
+        runLogRetentionAsync(stoppingToken: stoppingToken);
 }

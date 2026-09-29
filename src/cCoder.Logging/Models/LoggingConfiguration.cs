@@ -2,6 +2,8 @@
 // Copyright (c) Paul.Ward@ccoder.co.uk
 // ---------------------------------------------------------------
 
+using Microsoft.Extensions.Logging;
+
 using cCoder.Eventing.Models;
 
 namespace cCoder.Logging.Models;

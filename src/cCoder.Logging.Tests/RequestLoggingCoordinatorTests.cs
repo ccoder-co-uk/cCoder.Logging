@@ -2,6 +2,8 @@
 // Copyright (c) Paul.Ward@ccoder.co.uk
 // ---------------------------------------------------------------
 
+using System.Threading.Tasks;
+
 using cCoder.Logging.Brokers;
 using cCoder.Logging.Models;
 using cCoder.Security.Models.Configurations;

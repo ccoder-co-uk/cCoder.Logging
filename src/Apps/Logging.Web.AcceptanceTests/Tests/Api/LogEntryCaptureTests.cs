@@ -2,6 +2,8 @@
 // Copyright (c) Paul.Ward@ccoder.co.uk
 // ---------------------------------------------------------------
 
+using System.Threading.Tasks;
+
 using cCoder.Data;
 using cCoder.Data.Models.Logging;
 using Microsoft.EntityFrameworkCore;

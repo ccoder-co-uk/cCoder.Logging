@@ -2,6 +2,8 @@
 // Copyright (c) Paul.Ward@ccoder.co.uk
 // ---------------------------------------------------------------
 
+using System.Threading.Tasks;
+
 using cCoder.Logging.Models;
 using cCoder.Logging.Services.Foundations;
 using cCoder.Logging.Services.Processings;

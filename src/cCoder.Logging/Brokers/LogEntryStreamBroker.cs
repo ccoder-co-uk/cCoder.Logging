@@ -2,6 +2,11 @@
 // Copyright (c) Paul.Ward@ccoder.co.uk
 // ---------------------------------------------------------------
 
+using Microsoft.Extensions.DependencyInjection;
+
+using System;
+using System.Threading.Tasks;
+
 using cCoder.Logging.Exposures.Hubs;
 using Microsoft.AspNetCore.SignalR;
 

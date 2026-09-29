@@ -127,7 +127,7 @@
     {
       "Name": "cCoder.Logging.Brokers.LogDataItemBroker",
       "StandardElementType": "Broker",
-      "LineNumber": 23,
+      "LineNumber": 27,
       "IsPublic": false,
       "Kind": "Class",
       "BaseType": null,
@@ -148,7 +148,7 @@
         {
           "Id": "cCoder.Logging.Brokers.LogDataItemBroker.DeleteAllLogDataItemsAsync(System.Collections.Generic.IEnumerable\u003CcCoder.Data.Models.Logging.LogDataItem\u003E)",
           "Name": "DeleteAllLogDataItemsAsync",
-          "LineNumber": 79,
+          "LineNumber": 83,
           "Inputs": [
             {
               "Name": "deletedLogDataItems",
@@ -203,7 +203,7 @@
         {
           "Id": "cCoder.Logging.Brokers.LogDataItemBroker.DeleteLogDataItemAsync(cCoder.Data.Models.Logging.LogDataItem)",
           "Name": "DeleteLogDataItemAsync",
-          "LineNumber": 69,
+          "LineNumber": 73,
           "Inputs": [
             {
               "Name": "deletedLogDataItem",
@@ -258,7 +258,7 @@
         {
           "Id": "cCoder.Logging.Brokers.LogDataItemBroker.InsertLogDataItemAsync(cCoder.Data.Models.Logging.LogDataItem)",
           "Name": "InsertLogDataItemAsync",
-          "LineNumber": 43,
+          "LineNumber": 47,
           "Inputs": [
             {
               "Name": "newLogDataItem",
@@ -313,7 +313,7 @@
         {
           "Id": "cCoder.Logging.Brokers.LogDataItemBroker.SelectAllLogDataItems()",
           "Name": "SelectAllLogDataItems",
-          "LineNumber": 27,
+          "LineNumber": 31,
           "Inputs": [],
           "ReturnType": "System.Linq.IQueryable\u003CcCoder.Data.Models.Logging.LogDataItem\u003E",
           "Implements": [
@@ -343,7 +343,7 @@
         {
           "Id": "cCoder.Logging.Brokers.LogDataItemBroker.SelectAllLogDataItemsIgnoringFilters()",
           "Name": "SelectAllLogDataItemsIgnoringFilters",
-          "LineNumber": 35,
+          "LineNumber": 39,
           "Inputs": [],
           "ReturnType": "System.Linq.IQueryable\u003CcCoder.Data.Models.Logging.LogDataItem\u003E",
           "Implements": [
@@ -380,7 +380,7 @@
         {
           "Id": "cCoder.Logging.Brokers.LogDataItemBroker.SelectAppIdByLogDataItem(cCoder.Data.Models.Logging.LogDataItem)",
           "Name": "SelectAppIdByLogDataItem",
-          "LineNumber": 91,
+          "LineNumber": 95,
           "Inputs": [
             {
               "Name": "logDataItem",
@@ -436,7 +436,7 @@
         {
           "Id": "cCoder.Logging.Brokers.LogDataItemBroker.UpdateLogDataItemAsync(cCoder.Data.Models.Logging.LogDataItem)",
           "Name": "UpdateLogDataItemAsync",
-          "LineNumber": 56,
+          "LineNumber": 60,
           "Inputs": [
             {
               "Name": "updatedLogDataItem",
@@ -493,7 +493,7 @@
     {
       "Name": "cCoder.Logging.Brokers.LogDataItemEventBroker",
       "StandardElementType": "Broker",
-      "LineNumber": 20,
+      "LineNumber": 22,
       "IsPublic": false,
       "Kind": "Class",
       "BaseType": null,
@@ -514,7 +514,7 @@
         {
           "Id": "cCoder.Logging.Brokers.LogDataItemEventBroker.RaiseLogDataItemAddEventAsync(cCoder.Eventing.Models.EventMessage\u003CcCoder.Data.Models.Logging.LogDataItem\u003E)",
           "Name": "RaiseLogDataItemAddEventAsync",
-          "LineNumber": 22,
+          "LineNumber": 24,
           "Inputs": [
             {
               "Name": "message",
@@ -549,7 +549,7 @@
         {
           "Id": "cCoder.Logging.Brokers.LogDataItemEventBroker.RaiseLogDataItemDeleteEventAsync(cCoder.Eventing.Models.EventMessage\u003CcCoder.Data.Models.Logging.LogDataItem\u003E)",
           "Name": "RaiseLogDataItemDeleteEventAsync",
-          "LineNumber": 28,
+          "LineNumber": 30,
           "Inputs": [
             {
               "Name": "message",
@@ -584,7 +584,7 @@
         {
           "Id": "cCoder.Logging.Brokers.LogDataItemEventBroker.RaiseLogDataItemUpdateEventAsync(cCoder.Eventing.Models.EventMessage\u003CcCoder.Data.Models.Logging.LogDataItem\u003E)",
           "Name": "RaiseLogDataItemUpdateEventAsync",
-          "LineNumber": 25,
+          "LineNumber": 27,
           "Inputs": [
             {
               "Name": "message",
@@ -621,7 +621,7 @@
     {
       "Name": "cCoder.Logging.Brokers.LogEntryBroker",
       "StandardElementType": "Broker",
-      "LineNumber": 25,
+      "LineNumber": 30,
       "IsPublic": false,
       "Kind": "Class",
       "BaseType": null,
@@ -642,7 +642,7 @@
         {
           "Id": "cCoder.Logging.Brokers.LogEntryBroker.DeleteAllLogEntriesAsync(System.Collections.Generic.IEnumerable\u003CcCoder.Data.Models.Logging.LogEntry\u003E)",
           "Name": "DeleteAllLogEntriesAsync",
-          "LineNumber": 81,
+          "LineNumber": 86,
           "Inputs": [
             {
               "Name": "deletedLogEntries",
@@ -697,7 +697,7 @@
         {
           "Id": "cCoder.Logging.Brokers.LogEntryBroker.DeleteLogEntriesBeforeAsync(System.DateTime)",
           "Name": "DeleteLogEntriesBeforeAsync",
-          "LineNumber": 93,
+          "LineNumber": 98,
           "Inputs": [
             {
               "Name": "cutoff",
@@ -773,7 +773,7 @@
         {
           "Id": "cCoder.Logging.Brokers.LogEntryBroker.DeleteLogEntryAsync(cCoder.Data.Models.Logging.LogEntry)",
           "Name": "DeleteLogEntryAsync",
-          "LineNumber": 71,
+          "LineNumber": 76,
           "Inputs": [
             {
               "Name": "deletedLogEntry",
@@ -828,7 +828,7 @@
         {
           "Id": "cCoder.Logging.Brokers.LogEntryBroker.InsertLogEntryAsync(cCoder.Data.Models.Logging.LogEntry)",
           "Name": "InsertLogEntryAsync",
-          "LineNumber": 45,
+          "LineNumber": 50,
           "Inputs": [
             {
               "Name": "newLogEntry",
@@ -883,7 +883,7 @@
         {
           "Id": "cCoder.Logging.Brokers.LogEntryBroker.SelectAllLogEntries()",
           "Name": "SelectAllLogEntries",
-          "LineNumber": 29,
+          "LineNumber": 34,
           "Inputs": [],
           "ReturnType": "System.Linq.IQueryable\u003CcCoder.Data.Models.Logging.LogEntry\u003E",
           "Implements": [
@@ -913,7 +913,7 @@
         {
           "Id": "cCoder.Logging.Brokers.LogEntryBroker.SelectAllLogEntriesIgnoringFilters()",
           "Name": "SelectAllLogEntriesIgnoringFilters",
-          "LineNumber": 37,
+          "LineNumber": 42,
           "Inputs": [],
           "ReturnType": "System.Linq.IQueryable\u003CcCoder.Data.Models.Logging.LogEntry\u003E",
           "Implements": [
@@ -950,7 +950,7 @@
         {
           "Id": "cCoder.Logging.Brokers.LogEntryBroker.SelectAppIdByDomainOrName(System.String)",
           "Name": "SelectAppIdByDomainOrName",
-          "LineNumber": 107,
+          "LineNumber": 112,
           "Inputs": [
             {
               "Name": "domainOrName",
@@ -1013,7 +1013,7 @@
         {
           "Id": "cCoder.Logging.Brokers.LogEntryBroker.SelectTenantIdByAppId(System.Int32)",
           "Name": "SelectTenantIdByAppId",
-          "LineNumber": 121,
+          "LineNumber": 126,
           "Inputs": [
             {
               "Name": "appId",
@@ -1076,7 +1076,7 @@
         {
           "Id": "cCoder.Logging.Brokers.LogEntryBroker.UpdateLogEntryAsync(cCoder.Data.Models.Logging.LogEntry)",
           "Name": "UpdateLogEntryAsync",
-          "LineNumber": 58,
+          "LineNumber": 63,
           "Inputs": [
             {
               "Name": "updatedLogEntry",
@@ -1133,7 +1133,7 @@
     {
       "Name": "cCoder.Logging.Brokers.LogEntryCaptureQueue",
       "StandardElementType": "Broker",
-      "LineNumber": 10,
+      "LineNumber": 12,
       "IsPublic": false,
       "Kind": "Class",
       "BaseType": null,
@@ -1154,7 +1154,7 @@
         {
           "Id": "cCoder.Logging.Brokers.LogEntryCaptureQueue.Complete()",
           "Name": "Complete",
-          "LineNumber": 23,
+          "LineNumber": 25,
           "Inputs": [],
           "ReturnType": "System.Void",
           "Implements": [
@@ -1184,7 +1184,7 @@
         {
           "Id": "cCoder.Logging.Brokers.LogEntryCaptureQueue.ReadAllAsync()",
           "Name": "ReadAllAsync",
-          "LineNumber": 20,
+          "LineNumber": 22,
           "Inputs": [],
           "ReturnType": "System.Collections.Generic.IAsyncEnumerable\u003CcCoder.Logging.Models.LogEntryCaptureRequest\u003E",
           "Implements": [
@@ -1214,7 +1214,7 @@
         {
           "Id": "cCoder.Logging.Brokers.LogEntryCaptureQueue.TryEnqueue(cCoder.Logging.Models.LogEntryCaptureRequest)",
           "Name": "TryEnqueue",
-          "LineNumber": 17,
+          "LineNumber": 19,
           "Inputs": [
             {
               "Name": "logEntryCaptureRequest",
@@ -1251,7 +1251,7 @@
     {
       "Name": "cCoder.Logging.Brokers.LogEntryEventBroker",
       "StandardElementType": "Broker",
-      "LineNumber": 20,
+      "LineNumber": 22,
       "IsPublic": false,
       "Kind": "Class",
       "BaseType": null,
@@ -1272,7 +1272,7 @@
         {
           "Id": "cCoder.Logging.Brokers.LogEntryEventBroker.RaiseLogEntryAddEventAsync(cCoder.Eventing.Models.EventMessage\u003CcCoder.Data.Models.Logging.LogEntry\u003E)",
           "Name": "RaiseLogEntryAddEventAsync",
-          "LineNumber": 22,
+          "LineNumber": 24,
           "Inputs": [
             {
               "Name": "message",
@@ -1307,7 +1307,7 @@
         {
           "Id": "cCoder.Logging.Brokers.LogEntryEventBroker.RaiseLogEntryDeleteEventAsync(cCoder.Eventing.Models.EventMessage\u003CcCoder.Data.Models.Logging.LogEntry\u003E)",
           "Name": "RaiseLogEntryDeleteEventAsync",
-          "LineNumber": 28,
+          "LineNumber": 30,
           "Inputs": [
             {
               "Name": "message",
@@ -1342,7 +1342,7 @@
         {
           "Id": "cCoder.Logging.Brokers.LogEntryEventBroker.RaiseLogEntryUpdateEventAsync(cCoder.Eventing.Models.EventMessage\u003CcCoder.Data.Models.Logging.LogEntry\u003E)",
           "Name": "RaiseLogEntryUpdateEventAsync",
-          "LineNumber": 25,
+          "LineNumber": 27,
           "Inputs": [
             {
               "Name": "message",
@@ -1379,7 +1379,7 @@
     {
       "Name": "cCoder.Logging.Brokers.LogEntryStreamBroker",
       "StandardElementType": "Broker",
-      "LineNumber": 18,
+      "LineNumber": 23,
       "IsPublic": false,
       "Kind": "Class",
       "BaseType": null,
@@ -1400,7 +1400,7 @@
         {
           "Id": "cCoder.Logging.Brokers.LogEntryStreamBroker.SendLogEntryAsync(System.String,System.String,System.String)",
           "Name": "SendLogEntryAsync",
-          "LineNumber": 22,
+          "LineNumber": 27,
           "Inputs": [
             {
               "Name": "thread",
@@ -1466,7 +1466,7 @@
     {
       "Name": "cCoder.Logging.Brokers.LogHubBroker",
       "StandardElementType": "Broker",
-      "LineNumber": 22,
+      "LineNumber": 26,
       "IsPublic": false,
       "Kind": "Class",
       "BaseType": null,
@@ -1487,7 +1487,7 @@
         {
           "Id": "cCoder.Logging.Brokers.LogHubBroker.JoinGroupAsync(cCoder.Logging.Models.LogHubSession)",
           "Name": "JoinGroupAsync",
-          "LineNumber": 40,
+          "LineNumber": 44,
           "Inputs": [
             {
               "Name": "logHubSession",
@@ -1522,7 +1522,7 @@
         {
           "Id": "cCoder.Logging.Brokers.LogHubBroker.RemoveFromGroupAsync(cCoder.Logging.Models.LogHubSession)",
           "Name": "RemoveFromGroupAsync",
-          "LineNumber": 45,
+          "LineNumber": 49,
           "Inputs": [
             {
               "Name": "logHubSession",
@@ -1557,7 +1557,7 @@
         {
           "Id": "cCoder.Logging.Brokers.LogHubBroker.SelectAppIdByDomain(System.String)",
           "Name": "SelectAppIdByDomain",
-          "LineNumber": 25,
+          "LineNumber": 29,
           "Inputs": [
             {
               "Name": "domain",
@@ -1620,7 +1620,7 @@
         {
           "Id": "cCoder.Logging.Brokers.LogHubBroker.SelectHost(cCoder.Logging.Models.LogHubSession)",
           "Name": "SelectHost",
-          "LineNumber": 37,
+          "LineNumber": 41,
           "Inputs": [
             {
               "Name": "logHubSession",
@@ -1655,7 +1655,7 @@
         {
           "Id": "cCoder.Logging.Brokers.LogHubBroker.SendCallerAsync(cCoder.Logging.Models.LogHubSession,System.String,System.String)",
           "Name": "SendCallerAsync",
-          "LineNumber": 50,
+          "LineNumber": 54,
           "Inputs": [
             {
               "Name": "logHubSession",
@@ -1698,7 +1698,7 @@
         {
           "Id": "cCoder.Logging.Brokers.LogHubBroker.SendGroupAsync(cCoder.Logging.Models.LogHubSession,System.String,System.String)",
           "Name": "SendGroupAsync",
-          "LineNumber": 60,
+          "LineNumber": 64,
           "Inputs": [
             {
               "Name": "logHubSession",
@@ -1750,7 +1750,7 @@
     {
       "Name": "cCoder.Logging.Brokers.Loggings.LoggingBroker",
       "StandardElementType": "Broker",
-      "LineNumber": 10,
+      "LineNumber": 12,
       "IsPublic": false,
       "Kind": "Class",
       "BaseType": null,
@@ -1781,7 +1781,7 @@
         {
           "Id": "cCoder.Logging.Brokers.Loggings.LoggingBroker.LogDebug(System.String,System.Object[])",
           "Name": "LogDebug",
-          "LineNumber": 13,
+          "LineNumber": 15,
           "Inputs": [
             {
               "Name": "message",
@@ -1820,7 +1820,7 @@
         {
           "Id": "cCoder.Logging.Brokers.Loggings.LoggingBroker.LogError(System.Exception,System.String,System.Object[])",
           "Name": "LogError",
-          "LineNumber": 25,
+          "LineNumber": 27,
           "Inputs": [
             {
               "Name": "exception",
@@ -1863,7 +1863,7 @@
         {
           "Id": "cCoder.Logging.Brokers.Loggings.LoggingBroker.LogError(System.String,System.Object[])",
           "Name": "LogError",
-          "LineNumber": 22,
+          "LineNumber": 24,
           "Inputs": [
             {
               "Name": "message",
@@ -1902,7 +1902,7 @@
         {
           "Id": "cCoder.Logging.Brokers.Loggings.LoggingBroker.LogInformation(System.String,System.Object[])",
           "Name": "LogInformation",
-          "LineNumber": 16,
+          "LineNumber": 18,
           "Inputs": [
             {
               "Name": "message",
@@ -1941,7 +1941,7 @@
         {
           "Id": "cCoder.Logging.Brokers.Loggings.LoggingBroker.LogWarning(System.String,System.Object[])",
           "Name": "LogWarning",
-          "LineNumber": 19,
+          "LineNumber": 21,
           "Inputs": [
             {
               "Name": "message",
@@ -1982,7 +1982,7 @@
     {
       "Name": "cCoder.Logging.Brokers.Loggings.LoggingLoggerProvider",
       "StandardElementType": "Broker",
-      "LineNumber": 7,
+      "LineNumber": 10,
       "IsPublic": false,
       "Kind": "Class",
       "BaseType": null,
@@ -2003,7 +2003,7 @@
         {
           "Id": "cCoder.Logging.Brokers.Loggings.LoggingLoggerProvider.CreateLogger(System.String)",
           "Name": "CreateLogger",
-          "LineNumber": 10,
+          "LineNumber": 13,
           "Inputs": [
             {
               "Name": "categoryName",
@@ -2038,7 +2038,7 @@
         {
           "Id": "cCoder.Logging.Brokers.Loggings.LoggingLoggerProvider.Dispose()",
           "Name": "Dispose",
-          "LineNumber": 13,
+          "LineNumber": 16,
           "Inputs": [],
           "ReturnType": "System.Void",
           "Implements": [
@@ -2070,7 +2070,7 @@
     {
       "Name": "cCoder.Logging.Brokers.Metadata.MetadataBroker",
       "StandardElementType": "Broker",
-      "LineNumber": 13,
+      "LineNumber": 18,
       "IsPublic": false,
       "Kind": "Class",
       "BaseType": null,
@@ -2091,7 +2091,7 @@
         {
           "Id": "cCoder.Logging.Brokers.Metadata.MetadataBroker.CreateEntityMetadata(System.Type)",
           "Name": "CreateEntityMetadata",
-          "LineNumber": 33,
+          "LineNumber": 38,
           "Inputs": [
             {
               "Name": "type",
@@ -2223,7 +2223,7 @@
     {
       "Name": "cCoder.Logging.Dependencies.Logging.LoggingLoggerDependency",
       "StandardElementType": "Dependency",
-      "LineNumber": 7,
+      "LineNumber": 10,
       "IsPublic": false,
       "Kind": "Class",
       "BaseType": null,
@@ -2244,7 +2244,7 @@
         {
           "Id": "cCoder.Logging.Dependencies.Logging.LoggingLoggerDependency.BeginScope(TState)",
           "Name": "BeginScope",
-          "LineNumber": 11,
+          "LineNumber": 14,
           "Inputs": [
             {
               "Name": "state",
@@ -2271,7 +2271,7 @@
         {
           "Id": "cCoder.Logging.Dependencies.Logging.LoggingLoggerDependency.IsEnabled(Microsoft.Extensions.Logging.LogLevel)",
           "Name": "IsEnabled",
-          "LineNumber": 14,
+          "LineNumber": 17,
           "Inputs": [
             {
               "Name": "logLevel",
@@ -2298,7 +2298,7 @@
         {
           "Id": "cCoder.Logging.Dependencies.Logging.LoggingLoggerDependency.Log(Microsoft.Extensions.Logging.LogLevel,Microsoft.Extensions.Logging.EventId,TState,System.Exception,System.Func\u003CTState, System.Exception, System.String\u003E)",
           "Name": "Log",
-          "LineNumber": 16,
+          "LineNumber": 19,
           "Inputs": [
             {
               "Name": "logLevel",
@@ -2372,7 +2372,7 @@
     {
       "Name": "cCoder.Logging.Exposures.Controllers.LogDataItemController",
       "StandardElementType": "HttpExposure",
-      "LineNumber": 22,
+      "LineNumber": 27,
       "IsPublic": true,
       "Kind": "Class",
       "BaseType": {
@@ -2391,7 +2391,7 @@
         {
           "Id": "cCoder.Logging.Exposures.Controllers.LogDataItemController.Get()",
           "Name": "Get",
-          "LineNumber": 36,
+          "LineNumber": 41,
           "Inputs": [],
           "ReturnType": "Microsoft.AspNetCore.Mvc.IActionResult",
           "Implements": [],
@@ -2498,7 +2498,7 @@
         {
           "Id": "cCoder.Logging.Exposures.Controllers.LogDataItemController.Get(System.Int32)",
           "Name": "Get",
-          "LineNumber": 76,
+          "LineNumber": 81,
           "Inputs": [
             {
               "Name": "key",
@@ -2627,7 +2627,7 @@
         {
           "Id": "cCoder.Logging.Exposures.Controllers.LogDataItemController.Post(cCoder.Data.Models.Logging.LogDataItem)",
           "Name": "Post",
-          "LineNumber": 123,
+          "LineNumber": 128,
           "Inputs": [
             {
               "Name": "newLogDataItem",
@@ -2753,7 +2753,7 @@
     {
       "Name": "cCoder.Logging.Exposures.Controllers.LogEntryController",
       "StandardElementType": "HttpExposure",
-      "LineNumber": 22,
+      "LineNumber": 27,
       "IsPublic": true,
       "Kind": "Class",
       "BaseType": {
@@ -2772,7 +2772,7 @@
         {
           "Id": "cCoder.Logging.Exposures.Controllers.LogEntryController.Get()",
           "Name": "Get",
-          "LineNumber": 36,
+          "LineNumber": 41,
           "Inputs": [],
           "ReturnType": "Microsoft.AspNetCore.Mvc.IActionResult",
           "Implements": [],
@@ -2879,7 +2879,7 @@
         {
           "Id": "cCoder.Logging.Exposures.Controllers.LogEntryController.Get(System.Int32)",
           "Name": "Get",
-          "LineNumber": 76,
+          "LineNumber": 81,
           "Inputs": [
             {
               "Name": "key",
@@ -3008,7 +3008,7 @@
         {
           "Id": "cCoder.Logging.Exposures.Controllers.LogEntryController.Post(cCoder.Data.Models.Logging.LogEntry)",
           "Name": "Post",
-          "LineNumber": 123,
+          "LineNumber": 128,
           "Inputs": [
             {
               "Name": "newLogEntry",
@@ -3134,7 +3134,7 @@
     {
       "Name": "cCoder.Logging.Exposures.HostedServices.LogEntryCaptureWorker",
       "StandardElementType": "Exposure",
-      "LineNumber": 8,
+      "LineNumber": 12,
       "IsPublic": false,
       "Kind": "Class",
       "BaseType": {
@@ -3153,7 +3153,7 @@
         {
           "Id": "cCoder.Logging.Exposures.HostedServices.LogEntryCaptureWorker.StopAsync(System.Threading.CancellationToken)",
           "Name": "StopAsync",
-          "LineNumber": 15,
+          "LineNumber": 19,
           "Inputs": [
             {
               "Name": "cancellationToken",
@@ -3195,7 +3195,7 @@
     {
       "Name": "cCoder.Logging.Exposures.HostedServices.LogRetentionCleaner",
       "StandardElementType": "Exposure",
-      "LineNumber": 14,
+      "LineNumber": 17,
       "IsPublic": false,
       "Kind": "Class",
       "BaseType": {
@@ -3226,7 +3226,7 @@
     {
       "Name": "cCoder.Logging.Exposures.Hubs.LogHub",
       "StandardElementType": "Exposure",
-      "LineNumber": 11,
+      "LineNumber": 14,
       "IsPublic": false,
       "Kind": "Class",
       "BaseType": {
@@ -3245,7 +3245,7 @@
         {
           "Id": "cCoder.Logging.Exposures.Hubs.LogHub.ConsoleSend(System.String,System.String,System.String)",
           "Name": "ConsoleSend",
-          "LineNumber": 50,
+          "LineNumber": 53,
           "Inputs": [
             {
               "Name": "level",
@@ -3305,7 +3305,7 @@
         {
           "Id": "cCoder.Logging.Exposures.Hubs.LogHub.Debug(System.String,System.String)",
           "Name": "Debug",
-          "LineNumber": 34,
+          "LineNumber": 37,
           "Inputs": [
             {
               "Name": "level",
@@ -3354,7 +3354,7 @@
         {
           "Id": "cCoder.Logging.Exposures.Hubs.LogHub.Error(System.String,System.String)",
           "Name": "Error",
-          "LineNumber": 46,
+          "LineNumber": 49,
           "Inputs": [
             {
               "Name": "level",
@@ -3403,7 +3403,7 @@
         {
           "Id": "cCoder.Logging.Exposures.Hubs.LogHub.Info(System.String,System.String)",
           "Name": "Info",
-          "LineNumber": 38,
+          "LineNumber": 41,
           "Inputs": [
             {
               "Name": "level",
@@ -3452,7 +3452,7 @@
         {
           "Id": "cCoder.Logging.Exposures.Hubs.LogHub.Join(System.String)",
           "Name": "Join",
-          "LineNumber": 19,
+          "LineNumber": 22,
           "Inputs": [
             {
               "Name": "thread",
@@ -3504,7 +3504,7 @@
         {
           "Id": "cCoder.Logging.Exposures.Hubs.LogHub.Leave(System.String)",
           "Name": "Leave",
-          "LineNumber": 24,
+          "LineNumber": 27,
           "Inputs": [
             {
               "Name": "thread",
@@ -3556,7 +3556,7 @@
         {
           "Id": "cCoder.Logging.Exposures.Hubs.LogHub.OnConnectedAsync()",
           "Name": "OnConnectedAsync",
-          "LineNumber": 14,
+          "LineNumber": 17,
           "Inputs": [],
           "ReturnType": "System.Threading.Tasks.Task",
           "Implements": [],
@@ -3603,7 +3603,7 @@
         {
           "Id": "cCoder.Logging.Exposures.Hubs.LogHub.OnDisconnectedAsync(System.Exception)",
           "Name": "OnDisconnectedAsync",
-          "LineNumber": 29,
+          "LineNumber": 32,
           "Inputs": [
             {
               "Name": "exception",
@@ -3655,7 +3655,7 @@
         {
           "Id": "cCoder.Logging.Exposures.Hubs.LogHub.SendTest(System.String,System.String)",
           "Name": "SendTest",
-          "LineNumber": 61,
+          "LineNumber": 64,
           "Inputs": [
             {
               "Name": "message",
@@ -3711,7 +3711,7 @@
         {
           "Id": "cCoder.Logging.Exposures.Hubs.LogHub.Warn(System.String,System.String)",
           "Name": "Warn",
-          "LineNumber": 42,
+          "LineNumber": 45,
           "Inputs": [
             {
               "Name": "level",
@@ -3762,7 +3762,7 @@
     {
       "Name": "cCoder.Logging.Exposures.LogDataItemManager",
       "StandardElementType": "Exposure",
-      "LineNumber": 11,
+      "LineNumber": 15,
       "IsPublic": false,
       "Kind": "Class",
       "BaseType": null,
@@ -3783,7 +3783,7 @@
         {
           "Id": "cCoder.Logging.Exposures.LogDataItemManager.AddLogDataItemAsync(cCoder.Data.Models.Logging.LogDataItem)",
           "Name": "AddLogDataItemAsync",
-          "LineNumber": 23,
+          "LineNumber": 27,
           "Inputs": [
             {
               "Name": "newLogDataItem",
@@ -3832,7 +3832,7 @@
         {
           "Id": "cCoder.Logging.Exposures.LogDataItemManager.AddOrUpdateLogDataItemsAsync(System.Collections.Generic.IEnumerable\u003CcCoder.Data.Models.Logging.LogDataItem\u003E)",
           "Name": "AddOrUpdateLogDataItemsAsync",
-          "LineNumber": 36,
+          "LineNumber": 40,
           "Inputs": [
             {
               "Name": "logDataItems",
@@ -3888,7 +3888,7 @@
         {
           "Id": "cCoder.Logging.Exposures.LogDataItemManager.DeleteAllLogDataItemsAsync(System.Collections.Generic.IEnumerable\u003CcCoder.Data.Models.Logging.LogDataItem\u003E)",
           "Name": "DeleteAllLogDataItemsAsync",
-          "LineNumber": 44,
+          "LineNumber": 48,
           "Inputs": [
             {
               "Name": "deletedLogDataItems",
@@ -3937,7 +3937,7 @@
         {
           "Id": "cCoder.Logging.Exposures.LogDataItemManager.DeleteLogDataItemAsync(System.Int32)",
           "Name": "DeleteLogDataItemAsync",
-          "LineNumber": 32,
+          "LineNumber": 36,
           "Inputs": [
             {
               "Name": "logDataItemId",
@@ -3986,7 +3986,7 @@
         {
           "Id": "cCoder.Logging.Exposures.LogDataItemManager.GetAllLogDataItems(System.Boolean)",
           "Name": "GetAllLogDataItems",
-          "LineNumber": 19,
+          "LineNumber": 23,
           "Inputs": [
             {
               "Name": "ignoreFilters",
@@ -4033,7 +4033,7 @@
         {
           "Id": "cCoder.Logging.Exposures.LogDataItemManager.GetLogDataItem(System.Int32)",
           "Name": "GetLogDataItem",
-          "LineNumber": 15,
+          "LineNumber": 19,
           "Inputs": [
             {
               "Name": "logDataItemId",
@@ -4080,7 +4080,7 @@
         {
           "Id": "cCoder.Logging.Exposures.LogDataItemManager.UpdateLogDataItemAsync(cCoder.Data.Models.Logging.LogDataItem)",
           "Name": "UpdateLogDataItemAsync",
-          "LineNumber": 27,
+          "LineNumber": 31,
           "Inputs": [
             {
               "Name": "updatedLogDataItem",
@@ -4131,7 +4131,7 @@
     {
       "Name": "cCoder.Logging.Exposures.LogEntryManager",
       "StandardElementType": "Exposure",
-      "LineNumber": 11,
+      "LineNumber": 16,
       "IsPublic": false,
       "Kind": "Class",
       "BaseType": null,
@@ -4152,7 +4152,7 @@
         {
           "Id": "cCoder.Logging.Exposures.LogEntryManager.AddLogEntryAsync(cCoder.Data.Models.Logging.LogEntry)",
           "Name": "AddLogEntryAsync",
-          "LineNumber": 23,
+          "LineNumber": 28,
           "Inputs": [
             {
               "Name": "newLogEntry",
@@ -4201,7 +4201,7 @@
         {
           "Id": "cCoder.Logging.Exposures.LogEntryManager.AddOrUpdateLogEntriesAsync(System.Collections.Generic.IEnumerable\u003CcCoder.Data.Models.Logging.LogEntry\u003E)",
           "Name": "AddOrUpdateLogEntriesAsync",
-          "LineNumber": 39,
+          "LineNumber": 44,
           "Inputs": [
             {
               "Name": "logEntries",
@@ -4257,7 +4257,7 @@
         {
           "Id": "cCoder.Logging.Exposures.LogEntryManager.AddSystemLogEntryAsync(cCoder.Data.Models.Logging.LogEntry)",
           "Name": "AddSystemLogEntryAsync",
-          "LineNumber": 27,
+          "LineNumber": 32,
           "Inputs": [
             {
               "Name": "newLogEntry",
@@ -4306,7 +4306,7 @@
         {
           "Id": "cCoder.Logging.Exposures.LogEntryManager.DeleteAllLogEntriesAsync(System.Collections.Generic.IEnumerable\u003CcCoder.Data.Models.Logging.LogEntry\u003E)",
           "Name": "DeleteAllLogEntriesAsync",
-          "LineNumber": 47,
+          "LineNumber": 52,
           "Inputs": [
             {
               "Name": "deletedLogEntries",
@@ -4355,7 +4355,7 @@
         {
           "Id": "cCoder.Logging.Exposures.LogEntryManager.DeleteLogEntriesBeforeAsync(System.DateTime)",
           "Name": "DeleteLogEntriesBeforeAsync",
-          "LineNumber": 61,
+          "LineNumber": 66,
           "Inputs": [
             {
               "Name": "cutoff",
@@ -4403,7 +4403,7 @@
         {
           "Id": "cCoder.Logging.Exposures.LogEntryManager.DeleteLogEntryAsync(System.Int32)",
           "Name": "DeleteLogEntryAsync",
-          "LineNumber": 35,
+          "LineNumber": 40,
           "Inputs": [
             {
               "Name": "logEntryId",
@@ -4452,7 +4452,7 @@
         {
           "Id": "cCoder.Logging.Exposures.LogEntryManager.GetAllLogEntries(System.Boolean)",
           "Name": "GetAllLogEntries",
-          "LineNumber": 19,
+          "LineNumber": 24,
           "Inputs": [
             {
               "Name": "ignoreFilters",
@@ -4499,7 +4499,7 @@
         {
           "Id": "cCoder.Logging.Exposures.LogEntryManager.GetLogEntry(System.Int32)",
           "Name": "GetLogEntry",
-          "LineNumber": 15,
+          "LineNumber": 20,
           "Inputs": [
             {
               "Name": "logEntryId",
@@ -4546,7 +4546,7 @@
         {
           "Id": "cCoder.Logging.Exposures.LogEntryManager.ResolveAppId(System.String)",
           "Name": "ResolveAppId",
-          "LineNumber": 65,
+          "LineNumber": 70,
           "Inputs": [
             {
               "Name": "domainOrName",
@@ -4593,7 +4593,7 @@
         {
           "Id": "cCoder.Logging.Exposures.LogEntryManager.UpdateLogEntryAsync(cCoder.Data.Models.Logging.LogEntry)",
           "Name": "UpdateLogEntryAsync",
-          "LineNumber": 31,
+          "LineNumber": 36,
           "Inputs": [
             {
               "Name": "updatedLogEntry",
@@ -4644,7 +4644,7 @@
     {
       "Name": "cCoder.Logging.Exposures.RequestLoggingMiddleware",
       "StandardElementType": "HttpExposure",
-      "LineNumber": 8,
+      "LineNumber": 11,
       "IsPublic": false,
       "Kind": "Class",
       "BaseType": null,
@@ -4707,7 +4707,7 @@
     {
       "Name": "cCoder.Logging.Extensions.OData.CompositePropertyInfo",
       "StandardElementType": "Dependency",
-      "LineNumber": 10,
+      "LineNumber": 12,
       "IsPublic": false,
       "Kind": "Class",
       "BaseType": {
@@ -4755,7 +4755,7 @@
         {
           "Id": "cCoder.Logging.Extensions.OData.CompositePropertyInfo.GetAccessors(System.Boolean)",
           "Name": "GetAccessors",
-          "LineNumber": 20,
+          "LineNumber": 22,
           "Inputs": [
             {
               "Name": "nonPublic",
@@ -4794,7 +4794,7 @@
         {
           "Id": "cCoder.Logging.Extensions.OData.CompositePropertyInfo.GetCustomAttributes(System.Boolean)",
           "Name": "GetCustomAttributes",
-          "LineNumber": 22,
+          "LineNumber": 24,
           "Inputs": [
             {
               "Name": "inherit",
@@ -4827,7 +4827,7 @@
         {
           "Id": "cCoder.Logging.Extensions.OData.CompositePropertyInfo.GetCustomAttributes(System.Type,System.Boolean)",
           "Name": "GetCustomAttributes",
-          "LineNumber": 24,
+          "LineNumber": 26,
           "Inputs": [
             {
               "Name": "attributeType",
@@ -4864,7 +4864,7 @@
         {
           "Id": "cCoder.Logging.Extensions.OData.CompositePropertyInfo.GetGetMethod(System.Boolean)",
           "Name": "GetGetMethod",
-          "LineNumber": 26,
+          "LineNumber": 28,
           "Inputs": [
             {
               "Name": "nonPublic",
@@ -4903,7 +4903,7 @@
         {
           "Id": "cCoder.Logging.Extensions.OData.CompositePropertyInfo.GetIndexParameters()",
           "Name": "GetIndexParameters",
-          "LineNumber": 28,
+          "LineNumber": 30,
           "Inputs": [],
           "ReturnType": "System.Reflection.ParameterInfo[]",
           "Implements": [],
@@ -4937,7 +4937,7 @@
         {
           "Id": "cCoder.Logging.Extensions.OData.CompositePropertyInfo.GetSetMethod(System.Boolean)",
           "Name": "GetSetMethod",
-          "LineNumber": 30,
+          "LineNumber": 32,
           "Inputs": [
             {
               "Name": "nonPublic",
@@ -4976,7 +4976,7 @@
         {
           "Id": "cCoder.Logging.Extensions.OData.CompositePropertyInfo.GetValue(System.Object,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object[],System.Globalization.CultureInfo)",
           "Name": "GetValue",
-          "LineNumber": 32,
+          "LineNumber": 34,
           "Inputs": [
             {
               "Name": "obj",
@@ -5031,7 +5031,7 @@
         {
           "Id": "cCoder.Logging.Extensions.OData.CompositePropertyInfo.IsDefined(System.Type,System.Boolean)",
           "Name": "IsDefined",
-          "LineNumber": 34,
+          "LineNumber": 36,
           "Inputs": [
             {
               "Name": "attributeType",
@@ -5068,7 +5068,7 @@
         {
           "Id": "cCoder.Logging.Extensions.OData.CompositePropertyInfo.SetValue(System.Object,System.Object,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object[],System.Globalization.CultureInfo)",
           "Name": "SetValue",
-          "LineNumber": 36,
+          "LineNumber": 38,
           "Inputs": [
             {
               "Name": "obj",
@@ -5129,7 +5129,7 @@
     {
       "Name": "cCoder.Logging.Extensions.OData.IEnumerableExtensions",
       "StandardElementType": "Exposure",
-      "LineNumber": 7,
+      "LineNumber": 10,
       "IsPublic": false,
       "Kind": "Class",
       "BaseType": null,
@@ -5151,7 +5151,7 @@
     {
       "Name": "cCoder.Logging.IServiceCollectionExtensions",
       "StandardElementType": "App",
-      "LineNumber": 18,
+      "LineNumber": 24,
       "IsPublic": true,
       "Kind": "Class",
       "BaseType": null,
@@ -5161,7 +5161,7 @@
         {
           "Id": "cCoder.Logging.IServiceCollectionExtensions.AddLoggingHostedServices(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action\u003CcCoder.Logging.Models.LoggingConfiguration\u003E)",
           "Name": "AddLoggingHostedServices",
-          "LineNumber": 65,
+          "LineNumber": 71,
           "Inputs": [
             {
               "Name": "services",
@@ -5218,7 +5218,7 @@
         {
           "Id": "cCoder.Logging.IServiceCollectionExtensions.AddLoggingHostedServices(Microsoft.Extensions.DependencyInjection.IServiceCollection,cCoder.Logging.Models.LoggingConfiguration)",
           "Name": "AddLoggingHostedServices",
-          "LineNumber": 74,
+          "LineNumber": 80,
           "Inputs": [
             {
               "Name": "services",
@@ -5260,7 +5260,7 @@
         {
           "Id": "cCoder.Logging.IServiceCollectionExtensions.AddLoggingWeb(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action\u003CcCoder.Logging.Models.LoggingConfiguration\u003E,Microsoft.OData.ModelBuilder.ODataConventionModelBuilder)",
           "Name": "AddLoggingWeb",
-          "LineNumber": 37,
+          "LineNumber": 43,
           "Inputs": [
             {
               "Name": "services",
@@ -5308,7 +5308,7 @@
         {
           "Id": "cCoder.Logging.IServiceCollectionExtensions.AddLoggingWeb(Microsoft.Extensions.DependencyInjection.IServiceCollection,cCoder.Logging.Models.LoggingConfiguration,Microsoft.OData.ModelBuilder.ODataConventionModelBuilder)",
           "Name": "AddLoggingWeb",
-          "LineNumber": 47,
+          "LineNumber": 53,
           "Inputs": [
             {
               "Name": "services",
@@ -5479,7 +5479,7 @@
     {
       "Name": "cCoder.Logging.Models.Exceptions.LoggingDependencyException",
       "StandardElementType": "Model",
-      "LineNumber": 7,
+      "LineNumber": 9,
       "IsPublic": true,
       "Kind": "Class",
       "BaseType": {
@@ -5499,7 +5499,7 @@
     {
       "Name": "cCoder.Logging.Models.Exceptions.LoggingServiceException",
       "StandardElementType": "Model",
-      "LineNumber": 7,
+      "LineNumber": 9,
       "IsPublic": true,
       "Kind": "Class",
       "BaseType": {
@@ -5519,7 +5519,7 @@
     {
       "Name": "cCoder.Logging.Models.Exceptions.LoggingValidationException",
       "StandardElementType": "Model",
-      "LineNumber": 7,
+      "LineNumber": 9,
       "IsPublic": true,
       "Kind": "Class",
       "BaseType": {
@@ -5561,7 +5561,7 @@
     {
       "Name": "cCoder.Logging.Models.LogEntryCaptureRequest",
       "StandardElementType": "Model",
-      "LineNumber": 9,
+      "LineNumber": 11,
       "IsPublic": true,
       "Kind": "Class",
       "BaseType": null,
@@ -5609,7 +5609,7 @@
     {
       "Name": "cCoder.Logging.Models.LogHubSession",
       "StandardElementType": "Model",
-      "LineNumber": 9,
+      "LineNumber": 11,
       "IsPublic": false,
       "Kind": "Class",
       "BaseType": null,
@@ -5620,7 +5620,7 @@
     {
       "Name": "cCoder.Logging.Models.LoggingConfiguration",
       "StandardElementType": "Model",
-      "LineNumber": 9,
+      "LineNumber": 11,
       "IsPublic": true,
       "Kind": "Class",
       "BaseType": null,
@@ -5680,7 +5680,7 @@
     {
       "Name": "cCoder.Logging.Models.OData.ExtendedMetadataContainer",
       "StandardElementType": "Model",
-      "LineNumber": 7,
+      "LineNumber": 9,
       "IsPublic": true,
       "Kind": "Class",
       "BaseType": {
@@ -5705,7 +5705,7 @@
     {
       "Name": "cCoder.Logging.Models.OData.MetadataContainer",
       "StandardElementType": "Model",
-      "LineNumber": 7,
+      "LineNumber": 9,
       "IsPublic": true,
       "Kind": "Class",
       "BaseType": null,
@@ -5841,7 +5841,7 @@
     {
       "Name": "cCoder.Logging.Models.OData.OperationContainer",
       "StandardElementType": "Model",
-      "LineNumber": 7,
+      "LineNumber": 9,
       "IsPublic": true,
       "Kind": "Class",
       "BaseType": null,
@@ -5945,7 +5945,7 @@
     {
       "Name": "cCoder.Logging.Models.ODataCollection\u003CTCollectionType\u003E",
       "StandardElementType": "Model",
-      "LineNumber": 9,
+      "LineNumber": 11,
       "IsPublic": true,
       "Kind": "Class",
       "BaseType": null,
@@ -6042,7 +6042,7 @@
     {
       "Name": "cCoder.Logging.RequestLogQueueCoordinator",
       "StandardElementType": "Unknown",
-      "LineNumber": 11,
+      "LineNumber": 17,
       "IsPublic": false,
       "Kind": "Class",
       "BaseType": null,
@@ -6063,7 +6063,7 @@
         {
           "Id": "cCoder.Logging.RequestLogQueueCoordinator.Complete()",
           "Name": "Complete",
-          "LineNumber": 26,
+          "LineNumber": 32,
           "Inputs": [],
           "ReturnType": "System.Void",
           "Implements": [
@@ -6093,7 +6093,7 @@
         {
           "Id": "cCoder.Logging.RequestLogQueueCoordinator.RunAsync()",
           "Name": "RunAsync",
-          "LineNumber": 18,
+          "LineNumber": 24,
           "Inputs": [],
           "ReturnType": "System.Threading.Tasks.Task",
           "Implements": [
@@ -6130,7 +6130,7 @@
     {
       "Name": "cCoder.Logging.RequestLoggingCoordinator",
       "StandardElementType": "Unknown",
-      "LineNumber": 15,
+      "LineNumber": 22,
       "IsPublic": false,
       "Kind": "Class",
       "BaseType": null,
@@ -6151,7 +6151,7 @@
         {
           "Id": "cCoder.Logging.RequestLoggingCoordinator.CaptureRequestAsync(Microsoft.AspNetCore.Http.HttpContext,Microsoft.AspNetCore.Http.RequestDelegate)",
           "Name": "CaptureRequestAsync",
-          "LineNumber": 22,
+          "LineNumber": 29,
           "Inputs": [
             {
               "Name": "context",
@@ -6248,7 +6248,7 @@
     {
       "Name": "cCoder.Logging.Services.Foundations.Events.LogDataItemEventService",
       "StandardElementType": "FoundationService",
-      "LineNumber": 11,
+      "LineNumber": 13,
       "IsPublic": false,
       "Kind": "Class",
       "BaseType": null,
@@ -6269,7 +6269,7 @@
         {
           "Id": "cCoder.Logging.Services.Foundations.Events.LogDataItemEventService.RaiseLogDataItemAddEventAsync(cCoder.Data.Models.Logging.LogDataItem)",
           "Name": "RaiseLogDataItemAddEventAsync",
-          "LineNumber": 16,
+          "LineNumber": 18,
           "Inputs": [
             {
               "Name": "logDataItem",
@@ -6314,7 +6314,7 @@
         {
           "Id": "cCoder.Logging.Services.Foundations.Events.LogDataItemEventService.RaiseLogDataItemDeleteEventAsync(cCoder.Data.Models.Logging.LogDataItem)",
           "Name": "RaiseLogDataItemDeleteEventAsync",
-          "LineNumber": 40,
+          "LineNumber": 42,
           "Inputs": [
             {
               "Name": "logDataItem",
@@ -6359,7 +6359,7 @@
         {
           "Id": "cCoder.Logging.Services.Foundations.Events.LogDataItemEventService.RaiseLogDataItemUpdateEventAsync(cCoder.Data.Models.Logging.LogDataItem)",
           "Name": "RaiseLogDataItemUpdateEventAsync",
-          "LineNumber": 28,
+          "LineNumber": 30,
           "Inputs": [
             {
               "Name": "logDataItem",
@@ -6406,7 +6406,7 @@
     {
       "Name": "cCoder.Logging.Services.Foundations.Events.LogEntryEventService",
       "StandardElementType": "FoundationService",
-      "LineNumber": 11,
+      "LineNumber": 13,
       "IsPublic": false,
       "Kind": "Class",
       "BaseType": null,
@@ -6427,7 +6427,7 @@
         {
           "Id": "cCoder.Logging.Services.Foundations.Events.LogEntryEventService.RaiseLogEntryAddEventAsync(cCoder.Data.Models.Logging.LogEntry)",
           "Name": "RaiseLogEntryAddEventAsync",
-          "LineNumber": 16,
+          "LineNumber": 18,
           "Inputs": [
             {
               "Name": "logEntry",
@@ -6472,7 +6472,7 @@
         {
           "Id": "cCoder.Logging.Services.Foundations.Events.LogEntryEventService.RaiseLogEntryDeleteEventAsync(cCoder.Data.Models.Logging.LogEntry)",
           "Name": "RaiseLogEntryDeleteEventAsync",
-          "LineNumber": 40,
+          "LineNumber": 42,
           "Inputs": [
             {
               "Name": "logEntry",
@@ -6517,7 +6517,7 @@
         {
           "Id": "cCoder.Logging.Services.Foundations.Events.LogEntryEventService.RaiseLogEntryUpdateEventAsync(cCoder.Data.Models.Logging.LogEntry)",
           "Name": "RaiseLogEntryUpdateEventAsync",
-          "LineNumber": 28,
+          "LineNumber": 30,
           "Inputs": [
             {
               "Name": "logEntry",
@@ -6564,7 +6564,7 @@
     {
       "Name": "cCoder.Logging.Services.Foundations.LogDataItemService",
       "StandardElementType": "FoundationService",
-      "LineNumber": 12,
+      "LineNumber": 15,
       "IsPublic": false,
       "Kind": "Class",
       "BaseType": null,
@@ -6585,7 +6585,7 @@
         {
           "Id": "cCoder.Logging.Services.Foundations.LogDataItemService.AddLogDataItemAsync(cCoder.Data.Models.Logging.LogDataItem)",
           "Name": "AddLogDataItemAsync",
-          "LineNumber": 39,
+          "LineNumber": 42,
           "Inputs": [
             {
               "Name": "newLogDataItem",
@@ -6634,7 +6634,7 @@
         {
           "Id": "cCoder.Logging.Services.Foundations.LogDataItemService.DeleteLogDataItemAsync(System.Int32)",
           "Name": "DeleteLogDataItemAsync",
-          "LineNumber": 83,
+          "LineNumber": 86,
           "Inputs": [
             {
               "Name": "logDataItemId",
@@ -6683,7 +6683,7 @@
         {
           "Id": "cCoder.Logging.Services.Foundations.LogDataItemService.GetAllLogDataItems(System.Boolean)",
           "Name": "GetAllLogDataItems",
-          "LineNumber": 30,
+          "LineNumber": 33,
           "Inputs": [
             {
               "Name": "ignoreFilters",
@@ -6720,7 +6720,7 @@
         {
           "Id": "cCoder.Logging.Services.Foundations.LogDataItemService.GetLogDataItem(System.Int32)",
           "Name": "GetLogDataItem",
-          "LineNumber": 17,
+          "LineNumber": 20,
           "Inputs": [
             {
               "Name": "logDataItemId",
@@ -6779,7 +6779,7 @@
         {
           "Id": "cCoder.Logging.Services.Foundations.LogDataItemService.UpdateLogDataItemAsync(cCoder.Data.Models.Logging.LogDataItem)",
           "Name": "UpdateLogDataItemAsync",
-          "LineNumber": 61,
+          "LineNumber": 64,
           "Inputs": [
             {
               "Name": "updatedLogDataItem",
@@ -6830,7 +6830,7 @@
     {
       "Name": "cCoder.Logging.Services.Foundations.LogEntryService",
       "StandardElementType": "FoundationService",
-      "LineNumber": 14,
+      "LineNumber": 18,
       "IsPublic": false,
       "Kind": "Class",
       "BaseType": null,
@@ -6851,7 +6851,7 @@
         {
           "Id": "cCoder.Logging.Services.Foundations.LogEntryService.AddLogEntryAsync(cCoder.Data.Models.Logging.LogEntry)",
           "Name": "AddLogEntryAsync",
-          "LineNumber": 39,
+          "LineNumber": 43,
           "Inputs": [
             {
               "Name": "newLogEntry",
@@ -6900,7 +6900,7 @@
         {
           "Id": "cCoder.Logging.Services.Foundations.LogEntryService.AddSystemLogEntryAsync(cCoder.Data.Models.Logging.LogEntry)",
           "Name": "AddSystemLogEntryAsync",
-          "LineNumber": 56,
+          "LineNumber": 60,
           "Inputs": [
             {
               "Name": "newLogEntry",
@@ -6947,7 +6947,7 @@
         {
           "Id": "cCoder.Logging.Services.Foundations.LogEntryService.DeleteLogEntriesBeforeAsync(System.DateTime)",
           "Name": "DeleteLogEntriesBeforeAsync",
-          "LineNumber": 101,
+          "LineNumber": 105,
           "Inputs": [
             {
               "Name": "cutoff",
@@ -6994,7 +6994,7 @@
         {
           "Id": "cCoder.Logging.Services.Foundations.LogEntryService.DeleteLogEntryAsync(System.Int32)",
           "Name": "DeleteLogEntryAsync",
-          "LineNumber": 89,
+          "LineNumber": 93,
           "Inputs": [
             {
               "Name": "logEntryId",
@@ -7043,7 +7043,7 @@
         {
           "Id": "cCoder.Logging.Services.Foundations.LogEntryService.GetAllLogEntries(System.Boolean)",
           "Name": "GetAllLogEntries",
-          "LineNumber": 31,
+          "LineNumber": 35,
           "Inputs": [
             {
               "Name": "ignoreFilters",
@@ -7080,7 +7080,7 @@
         {
           "Id": "cCoder.Logging.Services.Foundations.LogEntryService.GetDefaultAppDomain()",
           "Name": "GetDefaultAppDomain",
-          "LineNumber": 145,
+          "LineNumber": 149,
           "Inputs": [],
           "ReturnType": "System.String",
           "Implements": [
@@ -7112,7 +7112,7 @@
         {
           "Id": "cCoder.Logging.Services.Foundations.LogEntryService.GetDefaultAppId()",
           "Name": "GetDefaultAppId",
-          "LineNumber": 139,
+          "LineNumber": 143,
           "Inputs": [],
           "ReturnType": "System.Int32?",
           "Implements": [
@@ -7144,7 +7144,7 @@
         {
           "Id": "cCoder.Logging.Services.Foundations.LogEntryService.GetLogEntry(System.Int32)",
           "Name": "GetLogEntry",
-          "LineNumber": 20,
+          "LineNumber": 24,
           "Inputs": [
             {
               "Name": "logEntryId",
@@ -7203,7 +7203,7 @@
         {
           "Id": "cCoder.Logging.Services.Foundations.LogEntryService.ResolveAppId(System.String)",
           "Name": "ResolveAppId",
-          "LineNumber": 110,
+          "LineNumber": 114,
           "Inputs": [
             {
               "Name": "domainOrName",
@@ -7248,7 +7248,7 @@
         {
           "Id": "cCoder.Logging.Services.Foundations.LogEntryService.ResolveTenantId(System.Int32)",
           "Name": "ResolveTenantId",
-          "LineNumber": 119,
+          "LineNumber": 123,
           "Inputs": [
             {
               "Name": "appId",
@@ -7293,7 +7293,7 @@
         {
           "Id": "cCoder.Logging.Services.Foundations.LogEntryService.ShouldStoreLogEntries()",
           "Name": "ShouldStoreLogEntries",
-          "LineNumber": 127,
+          "LineNumber": 131,
           "Inputs": [],
           "ReturnType": "System.Boolean",
           "Implements": [
@@ -7325,7 +7325,7 @@
         {
           "Id": "cCoder.Logging.Services.Foundations.LogEntryService.ShouldStreamLogEntries()",
           "Name": "ShouldStreamLogEntries",
-          "LineNumber": 133,
+          "LineNumber": 137,
           "Inputs": [],
           "ReturnType": "System.Boolean",
           "Implements": [
@@ -7357,7 +7357,7 @@
         {
           "Id": "cCoder.Logging.Services.Foundations.LogEntryService.UpdateLogEntryAsync(cCoder.Data.Models.Logging.LogEntry)",
           "Name": "UpdateLogEntryAsync",
-          "LineNumber": 72,
+          "LineNumber": 76,
           "Inputs": [
             {
               "Name": "updatedLogEntry",
@@ -7408,7 +7408,7 @@
     {
       "Name": "cCoder.Logging.Services.Foundations.LogEntryStreamService",
       "StandardElementType": "FoundationService",
-      "LineNumber": 10,
+      "LineNumber": 12,
       "IsPublic": false,
       "Kind": "Class",
       "BaseType": null,
@@ -7429,7 +7429,7 @@
         {
           "Id": "cCoder.Logging.Services.Foundations.LogEntryStreamService.GetDefaultAppDomain()",
           "Name": "GetDefaultAppDomain",
-          "LineNumber": 38,
+          "LineNumber": 40,
           "Inputs": [],
           "ReturnType": "System.String",
           "Implements": [
@@ -7461,7 +7461,7 @@
         {
           "Id": "cCoder.Logging.Services.Foundations.LogEntryStreamService.GetDefaultAppId()",
           "Name": "GetDefaultAppId",
-          "LineNumber": 35,
+          "LineNumber": 37,
           "Inputs": [],
           "ReturnType": "System.Int32?",
           "Implements": [
@@ -7493,7 +7493,7 @@
         {
           "Id": "cCoder.Logging.Services.Foundations.LogEntryStreamService.ShouldStreamLogEntries()",
           "Name": "ShouldStreamLogEntries",
-          "LineNumber": 32,
+          "LineNumber": 34,
           "Inputs": [],
           "ReturnType": "System.Boolean",
           "Implements": [
@@ -7525,7 +7525,7 @@
         {
           "Id": "cCoder.Logging.Services.Foundations.LogEntryStreamService.StreamLogEntryAsync(System.String,System.String,System.String)",
           "Name": "StreamLogEntryAsync",
-          "LineNumber": 15,
+          "LineNumber": 17,
           "Inputs": [
             {
               "Name": "thread",
@@ -7580,7 +7580,7 @@
     {
       "Name": "cCoder.Logging.Services.Foundations.LogHubService",
       "StandardElementType": "FoundationService",
-      "LineNumber": 12,
+      "LineNumber": 15,
       "IsPublic": false,
       "Kind": "Class",
       "BaseType": null,
@@ -7601,7 +7601,7 @@
         {
           "Id": "cCoder.Logging.Services.Foundations.LogHubService.ConnectLogHubSessionAsync(cCoder.Logging.Models.LogHubSession)",
           "Name": "ConnectLogHubSessionAsync",
-          "LineNumber": 23,
+          "LineNumber": 26,
           "Inputs": [
             {
               "Name": "logHubSession",
@@ -7648,7 +7648,7 @@
         {
           "Id": "cCoder.Logging.Services.Foundations.LogHubService.DebugLogHubSession(cCoder.Logging.Models.LogHubSession)",
           "Name": "DebugLogHubSession",
-          "LineNumber": 138,
+          "LineNumber": 141,
           "Inputs": [
             {
               "Name": "logHubSession",
@@ -7702,7 +7702,7 @@
         {
           "Id": "cCoder.Logging.Services.Foundations.LogHubService.DisconnectLogHubSessionAsync(cCoder.Logging.Models.LogHubSession)",
           "Name": "DisconnectLogHubSessionAsync",
-          "LineNumber": 124,
+          "LineNumber": 127,
           "Inputs": [
             {
               "Name": "logHubSession",
@@ -7756,7 +7756,7 @@
         {
           "Id": "cCoder.Logging.Services.Foundations.LogHubService.ErrorLogHubSession(cCoder.Logging.Models.LogHubSession)",
           "Name": "ErrorLogHubSession",
-          "LineNumber": 174,
+          "LineNumber": 177,
           "Inputs": [
             {
               "Name": "logHubSession",
@@ -7810,7 +7810,7 @@
         {
           "Id": "cCoder.Logging.Services.Foundations.LogHubService.InfoLogHubSession(cCoder.Logging.Models.LogHubSession)",
           "Name": "InfoLogHubSession",
-          "LineNumber": 150,
+          "LineNumber": 153,
           "Inputs": [
             {
               "Name": "logHubSession",
@@ -7864,7 +7864,7 @@
         {
           "Id": "cCoder.Logging.Services.Foundations.LogHubService.JoinLogHubSessionAsync(cCoder.Logging.Models.LogHubSession)",
           "Name": "JoinLogHubSessionAsync",
-          "LineNumber": 34,
+          "LineNumber": 37,
           "Inputs": [
             {
               "Name": "logHubSession",
@@ -7960,7 +7960,7 @@
         {
           "Id": "cCoder.Logging.Services.Foundations.LogHubService.LeaveLogHubSessionAsync(cCoder.Logging.Models.LogHubSession)",
           "Name": "LeaveLogHubSessionAsync",
-          "LineNumber": 88,
+          "LineNumber": 91,
           "Inputs": [
             {
               "Name": "logHubSession",
@@ -8042,7 +8042,7 @@
         {
           "Id": "cCoder.Logging.Services.Foundations.LogHubService.SendConsoleLogHubSessionAsync(cCoder.Logging.Models.LogHubSession)",
           "Name": "SendConsoleLogHubSessionAsync",
-          "LineNumber": 186,
+          "LineNumber": 189,
           "Inputs": [
             {
               "Name": "logHubSession",
@@ -8096,7 +8096,7 @@
         {
           "Id": "cCoder.Logging.Services.Foundations.LogHubService.SendTestLogHubSessionAsync(cCoder.Logging.Models.LogHubSession)",
           "Name": "SendTestLogHubSessionAsync",
-          "LineNumber": 208,
+          "LineNumber": 211,
           "Inputs": [
             {
               "Name": "logHubSession",
@@ -8143,7 +8143,7 @@
         {
           "Id": "cCoder.Logging.Services.Foundations.LogHubService.WarnLogHubSession(cCoder.Logging.Models.LogHubSession)",
           "Name": "WarnLogHubSession",
-          "LineNumber": 162,
+          "LineNumber": 165,
           "Inputs": [
             {
               "Name": "logHubSession",
@@ -8199,7 +8199,7 @@
     {
       "Name": "cCoder.Logging.Services.Foundations.LoggingMetadataTypeService",
       "StandardElementType": "FoundationService",
-      "LineNumber": 12,
+      "LineNumber": 14,
       "IsPublic": false,
       "Kind": "Class",
       "BaseType": null,
@@ -8220,7 +8220,7 @@
         {
           "Id": "cCoder.Logging.Services.Foundations.LoggingMetadataTypeService.GetKnownMetadata()",
           "Name": "GetKnownMetadata",
-          "LineNumber": 15,
+          "LineNumber": 17,
           "Inputs": [],
           "ReturnType": "System.Collections.Generic.IEnumerable\u003CcCoder.Logging.Models.OData.MetadataContainerSet\u003E",
           "Implements": [
@@ -8254,7 +8254,7 @@
     {
       "Name": "cCoder.Logging.Services.Orchestrations.LogDataItemOrchestrationService",
       "StandardElementType": "OrchestrationService",
-      "LineNumber": 11,
+      "LineNumber": 15,
       "IsPublic": false,
       "Kind": "Class",
       "BaseType": null,
@@ -8275,7 +8275,7 @@
         {
           "Id": "cCoder.Logging.Services.Orchestrations.LogDataItemOrchestrationService.AddLogDataItemAsync(cCoder.Data.Models.Logging.LogDataItem)",
           "Name": "AddLogDataItemAsync",
-          "LineNumber": 35,
+          "LineNumber": 39,
           "Inputs": [
             {
               "Name": "newLogDataItem",
@@ -8331,7 +8331,7 @@
         {
           "Id": "cCoder.Logging.Services.Orchestrations.LogDataItemOrchestrationService.AddOrUpdateLogDataItemResultsAsync(System.Collections.Generic.IEnumerable\u003CcCoder.Data.Models.Logging.LogDataItem\u003E)",
           "Name": "AddOrUpdateLogDataItemResultsAsync",
-          "LineNumber": 86,
+          "LineNumber": 90,
           "Inputs": [
             {
               "Name": "logDataItems",
@@ -8380,7 +8380,7 @@
         {
           "Id": "cCoder.Logging.Services.Orchestrations.LogDataItemOrchestrationService.DeleteAllLogDataItemAsync(System.Collections.Generic.IEnumerable\u003CcCoder.Data.Models.Logging.LogDataItem\u003E)",
           "Name": "DeleteAllLogDataItemAsync",
-          "LineNumber": 98,
+          "LineNumber": 102,
           "Inputs": [
             {
               "Name": "deletedLogDataItems",
@@ -8429,7 +8429,7 @@
         {
           "Id": "cCoder.Logging.Services.Orchestrations.LogDataItemOrchestrationService.DeleteLogDataItemAsync(System.Int32)",
           "Name": "DeleteLogDataItemAsync",
-          "LineNumber": 69,
+          "LineNumber": 73,
           "Inputs": [
             {
               "Name": "logDataItemId",
@@ -8492,7 +8492,7 @@
         {
           "Id": "cCoder.Logging.Services.Orchestrations.LogDataItemOrchestrationService.GetAllLogDataItems(System.Boolean)",
           "Name": "GetAllLogDataItems",
-          "LineNumber": 25,
+          "LineNumber": 29,
           "Inputs": [
             {
               "Name": "ignoreFilters",
@@ -8539,7 +8539,7 @@
         {
           "Id": "cCoder.Logging.Services.Orchestrations.LogDataItemOrchestrationService.GetLogDataItem(System.Int32)",
           "Name": "GetLogDataItem",
-          "LineNumber": 16,
+          "LineNumber": 20,
           "Inputs": [
             {
               "Name": "logDataItemId",
@@ -8586,7 +8586,7 @@
         {
           "Id": "cCoder.Logging.Services.Orchestrations.LogDataItemOrchestrationService.UpdateLogDataItemAsync(cCoder.Data.Models.Logging.LogDataItem)",
           "Name": "UpdateLogDataItemAsync",
-          "LineNumber": 52,
+          "LineNumber": 56,
           "Inputs": [
             {
               "Name": "updatedLogDataItem",
@@ -8644,7 +8644,7 @@
     {
       "Name": "cCoder.Logging.Services.Orchestrations.LogEntryCaptureOrchestrationService",
       "StandardElementType": "OrchestrationService",
-      "LineNumber": 11,
+      "LineNumber": 13,
       "IsPublic": false,
       "Kind": "Class",
       "BaseType": null,
@@ -8665,7 +8665,7 @@
         {
           "Id": "cCoder.Logging.Services.Orchestrations.LogEntryCaptureOrchestrationService.CaptureLogEntryCaptureRequestAsync(cCoder.Logging.Models.LogEntryCaptureRequest)",
           "Name": "CaptureLogEntryCaptureRequestAsync",
-          "LineNumber": 17,
+          "LineNumber": 19,
           "Inputs": [
             {
               "Name": "logEntryCaptureRequest",
@@ -8729,7 +8729,7 @@
     {
       "Name": "cCoder.Logging.Services.Orchestrations.LogEntryOrchestrationService",
       "StandardElementType": "OrchestrationService",
-      "LineNumber": 11,
+      "LineNumber": 16,
       "IsPublic": false,
       "Kind": "Class",
       "BaseType": null,
@@ -8750,7 +8750,7 @@
         {
           "Id": "cCoder.Logging.Services.Orchestrations.LogEntryOrchestrationService.AddLogEntryAsync(cCoder.Data.Models.Logging.LogEntry)",
           "Name": "AddLogEntryAsync",
-          "LineNumber": 35,
+          "LineNumber": 40,
           "Inputs": [
             {
               "Name": "newLogEntry",
@@ -8806,7 +8806,7 @@
         {
           "Id": "cCoder.Logging.Services.Orchestrations.LogEntryOrchestrationService.AddOrUpdateLogEntryResultsAsync(System.Collections.Generic.IEnumerable\u003CcCoder.Data.Models.Logging.LogEntry\u003E)",
           "Name": "AddOrUpdateLogEntryResultsAsync",
-          "LineNumber": 99,
+          "LineNumber": 104,
           "Inputs": [
             {
               "Name": "logEntries",
@@ -8855,7 +8855,7 @@
         {
           "Id": "cCoder.Logging.Services.Orchestrations.LogEntryOrchestrationService.AddSystemLogEntryAsync(cCoder.Data.Models.Logging.LogEntry)",
           "Name": "AddSystemLogEntryAsync",
-          "LineNumber": 51,
+          "LineNumber": 56,
           "Inputs": [
             {
               "Name": "newLogEntry",
@@ -8911,7 +8911,7 @@
         {
           "Id": "cCoder.Logging.Services.Orchestrations.LogEntryOrchestrationService.DeleteAllLogEntryAsync(System.Collections.Generic.IEnumerable\u003CcCoder.Data.Models.Logging.LogEntry\u003E)",
           "Name": "DeleteAllLogEntryAsync",
-          "LineNumber": 110,
+          "LineNumber": 115,
           "Inputs": [
             {
               "Name": "deletedLogEntries",
@@ -8960,7 +8960,7 @@
         {
           "Id": "cCoder.Logging.Services.Orchestrations.LogEntryOrchestrationService.DeleteLogEntriesBeforeAsync(System.DateTime)",
           "Name": "DeleteLogEntriesBeforeAsync",
-          "LineNumber": 121,
+          "LineNumber": 126,
           "Inputs": [
             {
               "Name": "cutoff",
@@ -9008,7 +9008,7 @@
         {
           "Id": "cCoder.Logging.Services.Orchestrations.LogEntryOrchestrationService.DeleteLogEntryAsync(System.Int32)",
           "Name": "DeleteLogEntryAsync",
-          "LineNumber": 83,
+          "LineNumber": 88,
           "Inputs": [
             {
               "Name": "logEntryId",
@@ -9071,7 +9071,7 @@
         {
           "Id": "cCoder.Logging.Services.Orchestrations.LogEntryOrchestrationService.GetAllLogEntries(System.Boolean)",
           "Name": "GetAllLogEntries",
-          "LineNumber": 25,
+          "LineNumber": 30,
           "Inputs": [
             {
               "Name": "ignoreFilters",
@@ -9118,7 +9118,7 @@
         {
           "Id": "cCoder.Logging.Services.Orchestrations.LogEntryOrchestrationService.GetLogEntry(System.Int32)",
           "Name": "GetLogEntry",
-          "LineNumber": 16,
+          "LineNumber": 21,
           "Inputs": [
             {
               "Name": "logEntryId",
@@ -9165,7 +9165,7 @@
         {
           "Id": "cCoder.Logging.Services.Orchestrations.LogEntryOrchestrationService.ResolveAppId(System.String)",
           "Name": "ResolveAppId",
-          "LineNumber": 130,
+          "LineNumber": 135,
           "Inputs": [
             {
               "Name": "domainOrName",
@@ -9212,7 +9212,7 @@
         {
           "Id": "cCoder.Logging.Services.Orchestrations.LogEntryOrchestrationService.UpdateLogEntryAsync(cCoder.Data.Models.Logging.LogEntry)",
           "Name": "UpdateLogEntryAsync",
-          "LineNumber": 67,
+          "LineNumber": 72,
           "Inputs": [
             {
               "Name": "updatedLogEntry",
@@ -9270,7 +9270,7 @@
     {
       "Name": "cCoder.Logging.Services.Processings.LogDataItemEventProcessingService",
       "StandardElementType": "ProcessingService",
-      "LineNumber": 11,
+      "LineNumber": 13,
       "IsPublic": false,
       "Kind": "Class",
       "BaseType": null,
@@ -9291,7 +9291,7 @@
         {
           "Id": "cCoder.Logging.Services.Processings.LogDataItemEventProcessingService.RaiseLogDataItemAddEventAsync(cCoder.Data.Models.Logging.LogDataItem)",
           "Name": "RaiseLogDataItemAddEventAsync",
-          "LineNumber": 15,
+          "LineNumber": 17,
           "Inputs": [
             {
               "Name": "logDataItem",
@@ -9338,7 +9338,7 @@
         {
           "Id": "cCoder.Logging.Services.Processings.LogDataItemEventProcessingService.RaiseLogDataItemDeleteEventAsync(cCoder.Data.Models.Logging.LogDataItem)",
           "Name": "RaiseLogDataItemDeleteEventAsync",
-          "LineNumber": 33,
+          "LineNumber": 35,
           "Inputs": [
             {
               "Name": "logDataItem",
@@ -9385,7 +9385,7 @@
         {
           "Id": "cCoder.Logging.Services.Processings.LogDataItemEventProcessingService.RaiseLogDataItemUpdateEventAsync(cCoder.Data.Models.Logging.LogDataItem)",
           "Name": "RaiseLogDataItemUpdateEventAsync",
-          "LineNumber": 24,
+          "LineNumber": 26,
           "Inputs": [
             {
               "Name": "logDataItem",
@@ -9434,7 +9434,7 @@
     {
       "Name": "cCoder.Logging.Services.Processings.LogDataItemProcessingService",
       "StandardElementType": "ProcessingService",
-      "LineNumber": 11,
+      "LineNumber": 17,
       "IsPublic": false,
       "Kind": "Class",
       "BaseType": null,
@@ -9455,7 +9455,7 @@
         {
           "Id": "cCoder.Logging.Services.Processings.LogDataItemProcessingService.AddLogDataItemAsync(cCoder.Data.Models.Logging.LogDataItem)",
           "Name": "AddLogDataItemAsync",
-          "LineNumber": 34,
+          "LineNumber": 40,
           "Inputs": [
             {
               "Name": "newLogDataItem",
@@ -9496,7 +9496,7 @@
         {
           "Id": "cCoder.Logging.Services.Processings.LogDataItemProcessingService.AddOrUpdateLogDataItemResultsAsync(System.Collections.Generic.IEnumerable\u003CcCoder.Data.Models.Logging.LogDataItem\u003E)",
           "Name": "AddOrUpdateLogDataItemResultsAsync",
-          "LineNumber": 63,
+          "LineNumber": 69,
           "Inputs": [
             {
               "Name": "logDataItems",
@@ -9552,7 +9552,7 @@
         {
           "Id": "cCoder.Logging.Services.Processings.LogDataItemProcessingService.DeleteAllLogDataItemAsync(System.Collections.Generic.IEnumerable\u003CcCoder.Data.Models.Logging.LogDataItem\u003E)",
           "Name": "DeleteAllLogDataItemAsync",
-          "LineNumber": 84,
+          "LineNumber": 90,
           "Inputs": [
             {
               "Name": "deletedLogDataItems",
@@ -9601,7 +9601,7 @@
         {
           "Id": "cCoder.Logging.Services.Processings.LogDataItemProcessingService.DeleteLogDataItemAsync(System.Int32)",
           "Name": "DeleteLogDataItemAsync",
-          "LineNumber": 54,
+          "LineNumber": 60,
           "Inputs": [
             {
               "Name": "logDataItemId",
@@ -9650,7 +9650,7 @@
         {
           "Id": "cCoder.Logging.Services.Processings.LogDataItemProcessingService.GetAllLogDataItems(System.Boolean)",
           "Name": "GetAllLogDataItems",
-          "LineNumber": 24,
+          "LineNumber": 30,
           "Inputs": [
             {
               "Name": "ignoreFilters",
@@ -9697,7 +9697,7 @@
         {
           "Id": "cCoder.Logging.Services.Processings.LogDataItemProcessingService.GetLogDataItem(System.Int32)",
           "Name": "GetLogDataItem",
-          "LineNumber": 15,
+          "LineNumber": 21,
           "Inputs": [
             {
               "Name": "logDataItemId",
@@ -9744,7 +9744,7 @@
         {
           "Id": "cCoder.Logging.Services.Processings.LogDataItemProcessingService.UpdateLogDataItemAsync(cCoder.Data.Models.Logging.LogDataItem)",
           "Name": "UpdateLogDataItemAsync",
-          "LineNumber": 44,
+          "LineNumber": 50,
           "Inputs": [
             {
               "Name": "updatedLogDataItem",
@@ -9787,7 +9787,7 @@
     {
       "Name": "cCoder.Logging.Services.Processings.LogEntryCaptureProcessingService",
       "StandardElementType": "ProcessingService",
-      "LineNumber": 13,
+      "LineNumber": 18,
       "IsPublic": false,
       "Kind": "Class",
       "BaseType": null,
@@ -9808,7 +9808,7 @@
         {
           "Id": "cCoder.Logging.Services.Processings.LogEntryCaptureProcessingService.CaptureLogEntryCaptureOperationAsync(cCoder.Logging.Models.LogEntryCaptureOperation)",
           "Name": "CaptureLogEntryCaptureOperationAsync",
-          "LineNumber": 18,
+          "LineNumber": 23,
           "Inputs": [
             {
               "Name": "logEntryCaptureOperation",
@@ -9872,7 +9872,7 @@
     {
       "Name": "cCoder.Logging.Services.Processings.LogEntryEventProcessingService",
       "StandardElementType": "ProcessingService",
-      "LineNumber": 11,
+      "LineNumber": 13,
       "IsPublic": false,
       "Kind": "Class",
       "BaseType": null,
@@ -9893,7 +9893,7 @@
         {
           "Id": "cCoder.Logging.Services.Processings.LogEntryEventProcessingService.RaiseLogEntryAddEventAsync(cCoder.Data.Models.Logging.LogEntry)",
           "Name": "RaiseLogEntryAddEventAsync",
-          "LineNumber": 15,
+          "LineNumber": 17,
           "Inputs": [
             {
               "Name": "logEntry",
@@ -9940,7 +9940,7 @@
         {
           "Id": "cCoder.Logging.Services.Processings.LogEntryEventProcessingService.RaiseLogEntryDeleteEventAsync(cCoder.Data.Models.Logging.LogEntry)",
           "Name": "RaiseLogEntryDeleteEventAsync",
-          "LineNumber": 33,
+          "LineNumber": 35,
           "Inputs": [
             {
               "Name": "logEntry",
@@ -9987,7 +9987,7 @@
         {
           "Id": "cCoder.Logging.Services.Processings.LogEntryEventProcessingService.RaiseLogEntryUpdateEventAsync(cCoder.Data.Models.Logging.LogEntry)",
           "Name": "RaiseLogEntryUpdateEventAsync",
-          "LineNumber": 24,
+          "LineNumber": 26,
           "Inputs": [
             {
               "Name": "logEntry",
@@ -10036,7 +10036,7 @@
     {
       "Name": "cCoder.Logging.Services.Processings.LogEntryProcessingService",
       "StandardElementType": "ProcessingService",
-      "LineNumber": 11,
+      "LineNumber": 16,
       "IsPublic": false,
       "Kind": "Class",
       "BaseType": null,
@@ -10057,7 +10057,7 @@
         {
           "Id": "cCoder.Logging.Services.Processings.LogEntryProcessingService.AddLogEntryAsync(cCoder.Data.Models.Logging.LogEntry)",
           "Name": "AddLogEntryAsync",
-          "LineNumber": 34,
+          "LineNumber": 39,
           "Inputs": [
             {
               "Name": "newLogEntry",
@@ -10098,7 +10098,7 @@
         {
           "Id": "cCoder.Logging.Services.Processings.LogEntryProcessingService.AddOrUpdateLogEntryResultsAsync(System.Collections.Generic.IEnumerable\u003CcCoder.Data.Models.Logging.LogEntry\u003E)",
           "Name": "AddOrUpdateLogEntryResultsAsync",
-          "LineNumber": 81,
+          "LineNumber": 86,
           "Inputs": [
             {
               "Name": "logEntries",
@@ -10154,7 +10154,7 @@
         {
           "Id": "cCoder.Logging.Services.Processings.LogEntryProcessingService.AddSystemLogEntryAsync(cCoder.Data.Models.Logging.LogEntry)",
           "Name": "AddSystemLogEntryAsync",
-          "LineNumber": 45,
+          "LineNumber": 50,
           "Inputs": [
             {
               "Name": "newLogEntry",
@@ -10195,7 +10195,7 @@
         {
           "Id": "cCoder.Logging.Services.Processings.LogEntryProcessingService.DeleteAllLogEntryAsync(System.Collections.Generic.IEnumerable\u003CcCoder.Data.Models.Logging.LogEntry\u003E)",
           "Name": "DeleteAllLogEntryAsync",
-          "LineNumber": 100,
+          "LineNumber": 105,
           "Inputs": [
             {
               "Name": "deletedLogEntries",
@@ -10244,7 +10244,7 @@
         {
           "Id": "cCoder.Logging.Services.Processings.LogEntryProcessingService.DeleteLogEntriesBeforeAsync(System.DateTime)",
           "Name": "DeleteLogEntriesBeforeAsync",
-          "LineNumber": 114,
+          "LineNumber": 119,
           "Inputs": [
             {
               "Name": "cutoff",
@@ -10292,7 +10292,7 @@
         {
           "Id": "cCoder.Logging.Services.Processings.LogEntryProcessingService.DeleteLogEntryAsync(System.Int32)",
           "Name": "DeleteLogEntryAsync",
-          "LineNumber": 72,
+          "LineNumber": 77,
           "Inputs": [
             {
               "Name": "logEntryId",
@@ -10341,7 +10341,7 @@
         {
           "Id": "cCoder.Logging.Services.Processings.LogEntryProcessingService.GetAllLogEntries(System.Boolean)",
           "Name": "GetAllLogEntries",
-          "LineNumber": 24,
+          "LineNumber": 29,
           "Inputs": [
             {
               "Name": "ignoreFilters",
@@ -10388,7 +10388,7 @@
         {
           "Id": "cCoder.Logging.Services.Processings.LogEntryProcessingService.GetLogEntry(System.Int32)",
           "Name": "GetLogEntry",
-          "LineNumber": 15,
+          "LineNumber": 20,
           "Inputs": [
             {
               "Name": "logEntryId",
@@ -10435,7 +10435,7 @@
         {
           "Id": "cCoder.Logging.Services.Processings.LogEntryProcessingService.ResolveAppId(System.String)",
           "Name": "ResolveAppId",
-          "LineNumber": 123,
+          "LineNumber": 128,
           "Inputs": [
             {
               "Name": "domainOrName",
@@ -10482,7 +10482,7 @@
         {
           "Id": "cCoder.Logging.Services.Processings.LogEntryProcessingService.UpdateLogEntryAsync(cCoder.Data.Models.Logging.LogEntry)",
           "Name": "UpdateLogEntryAsync",
-          "LineNumber": 56,
+          "LineNumber": 61,
           "Inputs": [
             {
               "Name": "updatedLogEntry",
@@ -10533,7 +10533,7 @@
     {
       "Name": "cCoder.Logging.Services.Processings.LogEntryRetentionProcessingService",
       "StandardElementType": "ProcessingService",
-      "LineNumber": 10,
+      "LineNumber": 14,
       "IsPublic": false,
       "Kind": "Class",
       "BaseType": null,
@@ -10554,7 +10554,7 @@
         {
           "Id": "cCoder.Logging.Services.Processings.LogEntryRetentionProcessingService.DeleteExpiredLogEntriesAsync(System.Threading.CancellationToken)",
           "Name": "DeleteExpiredLogEntriesAsync",
-          "LineNumber": 33,
+          "LineNumber": 37,
           "Inputs": [
             {
               "Name": "cancellationToken",
@@ -10594,7 +10594,7 @@
         {
           "Id": "cCoder.Logging.Services.Processings.LogEntryRetentionProcessingService.RunLogRetentionAsync(System.Threading.CancellationToken)",
           "Name": "RunLogRetentionAsync",
-          "LineNumber": 15,
+          "LineNumber": 19,
           "Inputs": [
             {
               "Name": "cancellationToken",
@@ -10644,7 +10644,7 @@
     {
       "Name": "cCoder.Logging.Services.Processings.LogEntryStreamProcessingService",
       "StandardElementType": "ProcessingService",
-      "LineNumber": 10,
+      "LineNumber": 14,
       "IsPublic": false,
       "Kind": "Class",
       "BaseType": null,
@@ -10665,7 +10665,7 @@
         {
           "Id": "cCoder.Logging.Services.Processings.LogEntryStreamProcessingService.StreamLogEntryCaptureRequestAsync(cCoder.Logging.Models.LogEntryCaptureRequest)",
           "Name": "StreamLogEntryCaptureRequestAsync",
-          "LineNumber": 14,
+          "LineNumber": 18,
           "Inputs": [
             {
               "Name": "logEntryCaptureRequest",
@@ -10761,7 +10761,7 @@
     {
       "Name": "cCoder.Logging.WebApplicationExtensions",
       "StandardElementType": "App",
-      "LineNumber": 17,
+      "LineNumber": 23,
       "IsPublic": true,
       "Kind": "Class",
       "BaseType": null,
@@ -10771,7 +10771,7 @@
         {
           "Id": "cCoder.Logging.WebApplicationExtensions.StartLoggingHostedServices(Microsoft.AspNetCore.Builder.WebApplication)",
           "Name": "StartLoggingHostedServices",
-          "LineNumber": 24,
+          "LineNumber": 30,
           "Inputs": [
             {
               "Name": "app",
@@ -10806,7 +10806,7 @@
         {
           "Id": "cCoder.Logging.WebApplicationExtensions.StartLoggingWeb(Microsoft.AspNetCore.Builder.WebApplication,Microsoft.Extensions.Logging.ILogger)",
           "Name": "StartLoggingWeb",
-          "LineNumber": 21,
+          "LineNumber": 27,
           "Inputs": [
             {
               "Name": "app",
@@ -10913,7 +10913,7 @@
     {
       "Name": "cCoder.Logging.Brokers.ILogDataItemBroker",
       "StandardElementType": "Broker",
-      "LineNumber": 12,
+      "LineNumber": 16,
       "IsPublic": false,
       "Kind": "Interface",
       "BaseType": null,
@@ -10923,7 +10923,7 @@
         {
           "Id": "cCoder.Logging.Brokers.ILogDataItemBroker.DeleteAllLogDataItemsAsync(System.Collections.Generic.IEnumerable\u003CcCoder.Data.Models.Logging.LogDataItem\u003E)",
           "Name": "DeleteAllLogDataItemsAsync",
-          "LineNumber": 19,
+          "LineNumber": 23,
           "Inputs": [
             {
               "Name": "deletedLogDataItems",
@@ -10948,7 +10948,7 @@
         {
           "Id": "cCoder.Logging.Brokers.ILogDataItemBroker.DeleteLogDataItemAsync(cCoder.Data.Models.Logging.LogDataItem)",
           "Name": "DeleteLogDataItemAsync",
-          "LineNumber": 18,
+          "LineNumber": 22,
           "Inputs": [
             {
               "Name": "deletedLogDataItem",
@@ -10973,7 +10973,7 @@
         {
           "Id": "cCoder.Logging.Brokers.ILogDataItemBroker.InsertLogDataItemAsync(cCoder.Data.Models.Logging.LogDataItem)",
           "Name": "InsertLogDataItemAsync",
-          "LineNumber": 16,
+          "LineNumber": 20,
           "Inputs": [
             {
               "Name": "newLogDataItem",
@@ -10998,7 +10998,7 @@
         {
           "Id": "cCoder.Logging.Brokers.ILogDataItemBroker.SelectAllLogDataItems()",
           "Name": "SelectAllLogDataItems",
-          "LineNumber": 14,
+          "LineNumber": 18,
           "Inputs": [],
           "ReturnType": "System.Linq.IQueryable\u003CcCoder.Data.Models.Logging.LogDataItem\u003E",
           "Implements": [],
@@ -11018,7 +11018,7 @@
         {
           "Id": "cCoder.Logging.Brokers.ILogDataItemBroker.SelectAllLogDataItemsIgnoringFilters()",
           "Name": "SelectAllLogDataItemsIgnoringFilters",
-          "LineNumber": 15,
+          "LineNumber": 19,
           "Inputs": [],
           "ReturnType": "System.Linq.IQueryable\u003CcCoder.Data.Models.Logging.LogDataItem\u003E",
           "Implements": [],
@@ -11038,7 +11038,7 @@
         {
           "Id": "cCoder.Logging.Brokers.ILogDataItemBroker.SelectAppIdByLogDataItem(cCoder.Data.Models.Logging.LogDataItem)",
           "Name": "SelectAppIdByLogDataItem",
-          "LineNumber": 20,
+          "LineNumber": 24,
           "Inputs": [
             {
               "Name": "logDataItem",
@@ -11063,7 +11063,7 @@
         {
           "Id": "cCoder.Logging.Brokers.ILogDataItemBroker.UpdateLogDataItemAsync(cCoder.Data.Models.Logging.LogDataItem)",
           "Name": "UpdateLogDataItemAsync",
-          "LineNumber": 17,
+          "LineNumber": 21,
           "Inputs": [
             {
               "Name": "updatedLogDataItem",
@@ -11090,7 +11090,7 @@
     {
       "Name": "cCoder.Logging.Brokers.ILogDataItemEventBroker",
       "StandardElementType": "Broker",
-      "LineNumber": 13,
+      "LineNumber": 15,
       "IsPublic": false,
       "Kind": "Interface",
       "BaseType": null,
@@ -11100,7 +11100,7 @@
         {
           "Id": "cCoder.Logging.Brokers.ILogDataItemEventBroker.RaiseLogDataItemAddEventAsync(cCoder.Eventing.Models.EventMessage\u003CcCoder.Data.Models.Logging.LogDataItem\u003E)",
           "Name": "RaiseLogDataItemAddEventAsync",
-          "LineNumber": 15,
+          "LineNumber": 17,
           "Inputs": [
             {
               "Name": "message",
@@ -11125,7 +11125,7 @@
         {
           "Id": "cCoder.Logging.Brokers.ILogDataItemEventBroker.RaiseLogDataItemDeleteEventAsync(cCoder.Eventing.Models.EventMessage\u003CcCoder.Data.Models.Logging.LogDataItem\u003E)",
           "Name": "RaiseLogDataItemDeleteEventAsync",
-          "LineNumber": 17,
+          "LineNumber": 19,
           "Inputs": [
             {
               "Name": "message",
@@ -11150,7 +11150,7 @@
         {
           "Id": "cCoder.Logging.Brokers.ILogDataItemEventBroker.RaiseLogDataItemUpdateEventAsync(cCoder.Eventing.Models.EventMessage\u003CcCoder.Data.Models.Logging.LogDataItem\u003E)",
           "Name": "RaiseLogDataItemUpdateEventAsync",
-          "LineNumber": 16,
+          "LineNumber": 18,
           "Inputs": [
             {
               "Name": "message",
@@ -11177,7 +11177,7 @@
     {
       "Name": "cCoder.Logging.Brokers.ILogEntryBroker",
       "StandardElementType": "Broker",
-      "LineNumber": 12,
+      "LineNumber": 17,
       "IsPublic": false,
       "Kind": "Interface",
       "BaseType": null,
@@ -11187,7 +11187,7 @@
         {
           "Id": "cCoder.Logging.Brokers.ILogEntryBroker.DeleteAllLogEntriesAsync(System.Collections.Generic.IEnumerable\u003CcCoder.Data.Models.Logging.LogEntry\u003E)",
           "Name": "DeleteAllLogEntriesAsync",
-          "LineNumber": 19,
+          "LineNumber": 24,
           "Inputs": [
             {
               "Name": "deletedLogEntries",
@@ -11212,7 +11212,7 @@
         {
           "Id": "cCoder.Logging.Brokers.ILogEntryBroker.DeleteLogEntriesBeforeAsync(System.DateTime)",
           "Name": "DeleteLogEntriesBeforeAsync",
-          "LineNumber": 20,
+          "LineNumber": 25,
           "Inputs": [
             {
               "Name": "cutoff",
@@ -11237,7 +11237,7 @@
         {
           "Id": "cCoder.Logging.Brokers.ILogEntryBroker.DeleteLogEntryAsync(cCoder.Data.Models.Logging.LogEntry)",
           "Name": "DeleteLogEntryAsync",
-          "LineNumber": 18,
+          "LineNumber": 23,
           "Inputs": [
             {
               "Name": "deletedLogEntry",
@@ -11262,7 +11262,7 @@
         {
           "Id": "cCoder.Logging.Brokers.ILogEntryBroker.InsertLogEntryAsync(cCoder.Data.Models.Logging.LogEntry)",
           "Name": "InsertLogEntryAsync",
-          "LineNumber": 16,
+          "LineNumber": 21,
           "Inputs": [
             {
               "Name": "newLogEntry",
@@ -11287,7 +11287,7 @@
         {
           "Id": "cCoder.Logging.Brokers.ILogEntryBroker.SelectAllLogEntries()",
           "Name": "SelectAllLogEntries",
-          "LineNumber": 14,
+          "LineNumber": 19,
           "Inputs": [],
           "ReturnType": "System.Linq.IQueryable\u003CcCoder.Data.Models.Logging.LogEntry\u003E",
           "Implements": [],
@@ -11307,7 +11307,7 @@
         {
           "Id": "cCoder.Logging.Brokers.ILogEntryBroker.SelectAllLogEntriesIgnoringFilters()",
           "Name": "SelectAllLogEntriesIgnoringFilters",
-          "LineNumber": 15,
+          "LineNumber": 20,
           "Inputs": [],
           "ReturnType": "System.Linq.IQueryable\u003CcCoder.Data.Models.Logging.LogEntry\u003E",
           "Implements": [],
@@ -11327,7 +11327,7 @@
         {
           "Id": "cCoder.Logging.Brokers.ILogEntryBroker.SelectAppIdByDomainOrName(System.String)",
           "Name": "SelectAppIdByDomainOrName",
-          "LineNumber": 21,
+          "LineNumber": 26,
           "Inputs": [
             {
               "Name": "domainOrName",
@@ -11352,7 +11352,7 @@
         {
           "Id": "cCoder.Logging.Brokers.ILogEntryBroker.SelectTenantIdByAppId(System.Int32)",
           "Name": "SelectTenantIdByAppId",
-          "LineNumber": 22,
+          "LineNumber": 27,
           "Inputs": [
             {
               "Name": "appId",
@@ -11377,7 +11377,7 @@
         {
           "Id": "cCoder.Logging.Brokers.ILogEntryBroker.UpdateLogEntryAsync(cCoder.Data.Models.Logging.LogEntry)",
           "Name": "UpdateLogEntryAsync",
-          "LineNumber": 17,
+          "LineNumber": 22,
           "Inputs": [
             {
               "Name": "updatedLogEntry",
@@ -11404,7 +11404,7 @@
     {
       "Name": "cCoder.Logging.Brokers.ILogEntryCaptureQueue",
       "StandardElementType": "Broker",
-      "LineNumber": 9,
+      "LineNumber": 11,
       "IsPublic": false,
       "Kind": "Interface",
       "BaseType": null,
@@ -11414,7 +11414,7 @@
         {
           "Id": "cCoder.Logging.Brokers.ILogEntryCaptureQueue.Complete()",
           "Name": "Complete",
-          "LineNumber": 13,
+          "LineNumber": 15,
           "Inputs": [],
           "ReturnType": "System.Void",
           "Implements": [],
@@ -11434,7 +11434,7 @@
         {
           "Id": "cCoder.Logging.Brokers.ILogEntryCaptureQueue.ReadAllAsync()",
           "Name": "ReadAllAsync",
-          "LineNumber": 12,
+          "LineNumber": 14,
           "Inputs": [],
           "ReturnType": "System.Collections.Generic.IAsyncEnumerable\u003CcCoder.Logging.Models.LogEntryCaptureRequest\u003E",
           "Implements": [],
@@ -11454,7 +11454,7 @@
         {
           "Id": "cCoder.Logging.Brokers.ILogEntryCaptureQueue.TryEnqueue(cCoder.Logging.Models.LogEntryCaptureRequest)",
           "Name": "TryEnqueue",
-          "LineNumber": 11,
+          "LineNumber": 13,
           "Inputs": [
             {
               "Name": "logEntryCaptureRequest",
@@ -11481,7 +11481,7 @@
     {
       "Name": "cCoder.Logging.Brokers.ILogEntryEventBroker",
       "StandardElementType": "Broker",
-      "LineNumber": 13,
+      "LineNumber": 15,
       "IsPublic": false,
       "Kind": "Interface",
       "BaseType": null,
@@ -11491,7 +11491,7 @@
         {
           "Id": "cCoder.Logging.Brokers.ILogEntryEventBroker.RaiseLogEntryAddEventAsync(cCoder.Eventing.Models.EventMessage\u003CcCoder.Data.Models.Logging.LogEntry\u003E)",
           "Name": "RaiseLogEntryAddEventAsync",
-          "LineNumber": 15,
+          "LineNumber": 17,
           "Inputs": [
             {
               "Name": "message",
@@ -11516,7 +11516,7 @@
         {
           "Id": "cCoder.Logging.Brokers.ILogEntryEventBroker.RaiseLogEntryDeleteEventAsync(cCoder.Eventing.Models.EventMessage\u003CcCoder.Data.Models.Logging.LogEntry\u003E)",
           "Name": "RaiseLogEntryDeleteEventAsync",
-          "LineNumber": 17,
+          "LineNumber": 19,
           "Inputs": [
             {
               "Name": "message",
@@ -11541,7 +11541,7 @@
         {
           "Id": "cCoder.Logging.Brokers.ILogEntryEventBroker.RaiseLogEntryUpdateEventAsync(cCoder.Eventing.Models.EventMessage\u003CcCoder.Data.Models.Logging.LogEntry\u003E)",
           "Name": "RaiseLogEntryUpdateEventAsync",
-          "LineNumber": 16,
+          "LineNumber": 18,
           "Inputs": [
             {
               "Name": "message",
@@ -11568,7 +11568,7 @@
     {
       "Name": "cCoder.Logging.Brokers.ILogEntryStreamBroker",
       "StandardElementType": "Broker",
-      "LineNumber": 10,
+      "LineNumber": 15,
       "IsPublic": false,
       "Kind": "Interface",
       "BaseType": null,
@@ -11578,7 +11578,7 @@
         {
           "Id": "cCoder.Logging.Brokers.ILogEntryStreamBroker.SendLogEntryAsync(System.String,System.String,System.String)",
           "Name": "SendLogEntryAsync",
-          "LineNumber": 12,
+          "LineNumber": 17,
           "Inputs": [
             {
               "Name": "thread",
@@ -11613,7 +11613,7 @@
     {
       "Name": "cCoder.Logging.Brokers.ILogHubBroker",
       "StandardElementType": "Broker",
-      "LineNumber": 12,
+      "LineNumber": 16,
       "IsPublic": false,
       "Kind": "Interface",
       "BaseType": null,
@@ -11623,7 +11623,7 @@
         {
           "Id": "cCoder.Logging.Brokers.ILogHubBroker.JoinGroupAsync(cCoder.Logging.Models.LogHubSession)",
           "Name": "JoinGroupAsync",
-          "LineNumber": 16,
+          "LineNumber": 20,
           "Inputs": [
             {
               "Name": "logHubSession",
@@ -11648,7 +11648,7 @@
         {
           "Id": "cCoder.Logging.Brokers.ILogHubBroker.RemoveFromGroupAsync(cCoder.Logging.Models.LogHubSession)",
           "Name": "RemoveFromGroupAsync",
-          "LineNumber": 17,
+          "LineNumber": 21,
           "Inputs": [
             {
               "Name": "logHubSession",
@@ -11673,7 +11673,7 @@
         {
           "Id": "cCoder.Logging.Brokers.ILogHubBroker.SelectAppIdByDomain(System.String)",
           "Name": "SelectAppIdByDomain",
-          "LineNumber": 14,
+          "LineNumber": 18,
           "Inputs": [
             {
               "Name": "domain",
@@ -11698,7 +11698,7 @@
         {
           "Id": "cCoder.Logging.Brokers.ILogHubBroker.SelectHost(cCoder.Logging.Models.LogHubSession)",
           "Name": "SelectHost",
-          "LineNumber": 15,
+          "LineNumber": 19,
           "Inputs": [
             {
               "Name": "logHubSession",
@@ -11723,7 +11723,7 @@
         {
           "Id": "cCoder.Logging.Brokers.ILogHubBroker.SendCallerAsync(cCoder.Logging.Models.LogHubSession,System.String,System.String)",
           "Name": "SendCallerAsync",
-          "LineNumber": 18,
+          "LineNumber": 22,
           "Inputs": [
             {
               "Name": "logHubSession",
@@ -11756,7 +11756,7 @@
         {
           "Id": "cCoder.Logging.Brokers.ILogHubBroker.SendGroupAsync(cCoder.Logging.Models.LogHubSession,System.String,System.String)",
           "Name": "SendGroupAsync",
-          "LineNumber": 19,
+          "LineNumber": 23,
           "Inputs": [
             {
               "Name": "logHubSession",
@@ -11791,7 +11791,7 @@
     {
       "Name": "cCoder.Logging.Brokers.Loggings.ILoggingBroker",
       "StandardElementType": "Broker",
-      "LineNumber": 7,
+      "LineNumber": 9,
       "IsPublic": true,
       "Kind": "Interface",
       "BaseType": null,
@@ -11801,7 +11801,7 @@
         {
           "Id": "cCoder.Logging.Brokers.Loggings.ILoggingBroker.LogDebug(System.String,System.Object[])",
           "Name": "LogDebug",
-          "LineNumber": 9,
+          "LineNumber": 11,
           "Inputs": [
             {
               "Name": "message",
@@ -11830,7 +11830,7 @@
         {
           "Id": "cCoder.Logging.Brokers.Loggings.ILoggingBroker.LogError(System.Exception,System.String,System.Object[])",
           "Name": "LogError",
-          "LineNumber": 13,
+          "LineNumber": 15,
           "Inputs": [
             {
               "Name": "exception",
@@ -11863,7 +11863,7 @@
         {
           "Id": "cCoder.Logging.Brokers.Loggings.ILoggingBroker.LogError(System.String,System.Object[])",
           "Name": "LogError",
-          "LineNumber": 12,
+          "LineNumber": 14,
           "Inputs": [
             {
               "Name": "message",
@@ -11892,7 +11892,7 @@
         {
           "Id": "cCoder.Logging.Brokers.Loggings.ILoggingBroker.LogInformation(System.String,System.Object[])",
           "Name": "LogInformation",
-          "LineNumber": 10,
+          "LineNumber": 12,
           "Inputs": [
             {
               "Name": "message",
@@ -11921,7 +11921,7 @@
         {
           "Id": "cCoder.Logging.Brokers.Loggings.ILoggingBroker.LogWarning(System.String,System.Object[])",
           "Name": "LogWarning",
-          "LineNumber": 11,
+          "LineNumber": 13,
           "Inputs": [
             {
               "Name": "message",
@@ -11952,7 +11952,7 @@
     {
       "Name": "cCoder.Logging.Brokers.Metadata.IMetadataBroker",
       "StandardElementType": "Broker",
-      "LineNumber": 9,
+      "LineNumber": 11,
       "IsPublic": false,
       "Kind": "Interface",
       "BaseType": null,
@@ -11962,7 +11962,7 @@
         {
           "Id": "cCoder.Logging.Brokers.Metadata.IMetadataBroker.CreateEntityMetadata(System.Type)",
           "Name": "CreateEntityMetadata",
-          "LineNumber": 11,
+          "LineNumber": 13,
           "Inputs": [
             {
               "Name": "type",
@@ -12041,7 +12041,7 @@
     {
       "Name": "cCoder.Logging.Exposures.HostedServices.ILogRetentionCleaner",
       "StandardElementType": "Exposure",
-      "LineNumber": 10,
+      "LineNumber": 13,
       "IsPublic": true,
       "Kind": "Interface",
       "BaseType": null,
@@ -12063,7 +12063,7 @@
     {
       "Name": "cCoder.Logging.Exposures.ILogDataItemManager",
       "StandardElementType": "Exposure",
-      "LineNumber": 10,
+      "LineNumber": 14,
       "IsPublic": true,
       "Kind": "Interface",
       "BaseType": null,
@@ -12073,7 +12073,7 @@
         {
           "Id": "cCoder.Logging.Exposures.ILogDataItemManager.AddLogDataItemAsync(cCoder.Data.Models.Logging.LogDataItem)",
           "Name": "AddLogDataItemAsync",
-          "LineNumber": 14,
+          "LineNumber": 18,
           "Inputs": [
             {
               "Name": "newLogDataItem",
@@ -12098,7 +12098,7 @@
         {
           "Id": "cCoder.Logging.Exposures.ILogDataItemManager.AddOrUpdateLogDataItemsAsync(System.Collections.Generic.IEnumerable\u003CcCoder.Data.Models.Logging.LogDataItem\u003E)",
           "Name": "AddOrUpdateLogDataItemsAsync",
-          "LineNumber": 17,
+          "LineNumber": 21,
           "Inputs": [
             {
               "Name": "logDataItems",
@@ -12123,7 +12123,7 @@
         {
           "Id": "cCoder.Logging.Exposures.ILogDataItemManager.DeleteAllLogDataItemsAsync(System.Collections.Generic.IEnumerable\u003CcCoder.Data.Models.Logging.LogDataItem\u003E)",
           "Name": "DeleteAllLogDataItemsAsync",
-          "LineNumber": 19,
+          "LineNumber": 23,
           "Inputs": [
             {
               "Name": "deletedLogDataItems",
@@ -12148,7 +12148,7 @@
         {
           "Id": "cCoder.Logging.Exposures.ILogDataItemManager.DeleteLogDataItemAsync(System.Int32)",
           "Name": "DeleteLogDataItemAsync",
-          "LineNumber": 16,
+          "LineNumber": 20,
           "Inputs": [
             {
               "Name": "logDataItemId",
@@ -12173,7 +12173,7 @@
         {
           "Id": "cCoder.Logging.Exposures.ILogDataItemManager.GetAllLogDataItems(System.Boolean)",
           "Name": "GetAllLogDataItems",
-          "LineNumber": 13,
+          "LineNumber": 17,
           "Inputs": [
             {
               "Name": "ignoreFilters",
@@ -12198,7 +12198,7 @@
         {
           "Id": "cCoder.Logging.Exposures.ILogDataItemManager.GetLogDataItem(System.Int32)",
           "Name": "GetLogDataItem",
-          "LineNumber": 12,
+          "LineNumber": 16,
           "Inputs": [
             {
               "Name": "logDataItemId",
@@ -12223,7 +12223,7 @@
         {
           "Id": "cCoder.Logging.Exposures.ILogDataItemManager.UpdateLogDataItemAsync(cCoder.Data.Models.Logging.LogDataItem)",
           "Name": "UpdateLogDataItemAsync",
-          "LineNumber": 15,
+          "LineNumber": 19,
           "Inputs": [
             {
               "Name": "updatedLogDataItem",
@@ -12250,7 +12250,7 @@
     {
       "Name": "cCoder.Logging.Exposures.ILogEntryManager",
       "StandardElementType": "Exposure",
-      "LineNumber": 10,
+      "LineNumber": 15,
       "IsPublic": true,
       "Kind": "Interface",
       "BaseType": null,
@@ -12260,7 +12260,7 @@
         {
           "Id": "cCoder.Logging.Exposures.ILogEntryManager.AddLogEntryAsync(cCoder.Data.Models.Logging.LogEntry)",
           "Name": "AddLogEntryAsync",
-          "LineNumber": 14,
+          "LineNumber": 19,
           "Inputs": [
             {
               "Name": "newLogEntry",
@@ -12285,7 +12285,7 @@
         {
           "Id": "cCoder.Logging.Exposures.ILogEntryManager.AddOrUpdateLogEntriesAsync(System.Collections.Generic.IEnumerable\u003CcCoder.Data.Models.Logging.LogEntry\u003E)",
           "Name": "AddOrUpdateLogEntriesAsync",
-          "LineNumber": 18,
+          "LineNumber": 23,
           "Inputs": [
             {
               "Name": "logEntries",
@@ -12310,7 +12310,7 @@
         {
           "Id": "cCoder.Logging.Exposures.ILogEntryManager.AddSystemLogEntryAsync(cCoder.Data.Models.Logging.LogEntry)",
           "Name": "AddSystemLogEntryAsync",
-          "LineNumber": 15,
+          "LineNumber": 20,
           "Inputs": [
             {
               "Name": "newLogEntry",
@@ -12335,7 +12335,7 @@
         {
           "Id": "cCoder.Logging.Exposures.ILogEntryManager.DeleteAllLogEntriesAsync(System.Collections.Generic.IEnumerable\u003CcCoder.Data.Models.Logging.LogEntry\u003E)",
           "Name": "DeleteAllLogEntriesAsync",
-          "LineNumber": 20,
+          "LineNumber": 25,
           "Inputs": [
             {
               "Name": "deletedLogEntries",
@@ -12360,7 +12360,7 @@
         {
           "Id": "cCoder.Logging.Exposures.ILogEntryManager.DeleteLogEntriesBeforeAsync(System.DateTime)",
           "Name": "DeleteLogEntriesBeforeAsync",
-          "LineNumber": 22,
+          "LineNumber": 27,
           "Inputs": [
             {
               "Name": "cutoff",
@@ -12385,7 +12385,7 @@
         {
           "Id": "cCoder.Logging.Exposures.ILogEntryManager.DeleteLogEntryAsync(System.Int32)",
           "Name": "DeleteLogEntryAsync",
-          "LineNumber": 17,
+          "LineNumber": 22,
           "Inputs": [
             {
               "Name": "logEntryId",
@@ -12410,7 +12410,7 @@
         {
           "Id": "cCoder.Logging.Exposures.ILogEntryManager.GetAllLogEntries(System.Boolean)",
           "Name": "GetAllLogEntries",
-          "LineNumber": 13,
+          "LineNumber": 18,
           "Inputs": [
             {
               "Name": "ignoreFilters",
@@ -12435,7 +12435,7 @@
         {
           "Id": "cCoder.Logging.Exposures.ILogEntryManager.GetLogEntry(System.Int32)",
           "Name": "GetLogEntry",
-          "LineNumber": 12,
+          "LineNumber": 17,
           "Inputs": [
             {
               "Name": "logEntryId",
@@ -12460,7 +12460,7 @@
         {
           "Id": "cCoder.Logging.Exposures.ILogEntryManager.ResolveAppId(System.String)",
           "Name": "ResolveAppId",
-          "LineNumber": 23,
+          "LineNumber": 28,
           "Inputs": [
             {
               "Name": "domainOrName",
@@ -12485,7 +12485,7 @@
         {
           "Id": "cCoder.Logging.Exposures.ILogEntryManager.UpdateLogEntryAsync(cCoder.Data.Models.Logging.LogEntry)",
           "Name": "UpdateLogEntryAsync",
-          "LineNumber": 16,
+          "LineNumber": 21,
           "Inputs": [
             {
               "Name": "updatedLogEntry",
@@ -12512,7 +12512,7 @@
     {
       "Name": "cCoder.Logging.IRequestLogQueueCoordinator",
       "StandardElementType": "Unknown",
-      "LineNumber": 7,
+      "LineNumber": 9,
       "IsPublic": false,
       "Kind": "Interface",
       "BaseType": null,
@@ -12522,7 +12522,7 @@
         {
           "Id": "cCoder.Logging.IRequestLogQueueCoordinator.Complete()",
           "Name": "Complete",
-          "LineNumber": 10,
+          "LineNumber": 12,
           "Inputs": [],
           "ReturnType": "System.Void",
           "Implements": [],
@@ -12542,7 +12542,7 @@
         {
           "Id": "cCoder.Logging.IRequestLogQueueCoordinator.RunAsync()",
           "Name": "RunAsync",
-          "LineNumber": 9,
+          "LineNumber": 11,
           "Inputs": [],
           "ReturnType": "System.Threading.Tasks.Task",
           "Implements": [],
@@ -12564,7 +12564,7 @@
     {
       "Name": "cCoder.Logging.IRequestLoggingCoordinator",
       "StandardElementType": "Unknown",
-      "LineNumber": 7,
+      "LineNumber": 10,
       "IsPublic": false,
       "Kind": "Interface",
       "BaseType": null,
@@ -12574,7 +12574,7 @@
         {
           "Id": "cCoder.Logging.IRequestLoggingCoordinator.CaptureRequestAsync(Microsoft.AspNetCore.Http.HttpContext,Microsoft.AspNetCore.Http.RequestDelegate)",
           "Name": "CaptureRequestAsync",
-          "LineNumber": 9,
+          "LineNumber": 12,
           "Inputs": [
             {
               "Name": "context",
@@ -12605,7 +12605,7 @@
     {
       "Name": "cCoder.Logging.Services.Foundations.Events.ILogDataItemEventService",
       "StandardElementType": "FoundationService",
-      "LineNumber": 10,
+      "LineNumber": 12,
       "IsPublic": false,
       "Kind": "Interface",
       "BaseType": null,
@@ -12615,7 +12615,7 @@
         {
           "Id": "cCoder.Logging.Services.Foundations.Events.ILogDataItemEventService.RaiseLogDataItemAddEventAsync(cCoder.Data.Models.Logging.LogDataItem)",
           "Name": "RaiseLogDataItemAddEventAsync",
-          "LineNumber": 12,
+          "LineNumber": 14,
           "Inputs": [
             {
               "Name": "logDataItem",
@@ -12640,7 +12640,7 @@
         {
           "Id": "cCoder.Logging.Services.Foundations.Events.ILogDataItemEventService.RaiseLogDataItemDeleteEventAsync(cCoder.Data.Models.Logging.LogDataItem)",
           "Name": "RaiseLogDataItemDeleteEventAsync",
-          "LineNumber": 14,
+          "LineNumber": 16,
           "Inputs": [
             {
               "Name": "logDataItem",
@@ -12665,7 +12665,7 @@
         {
           "Id": "cCoder.Logging.Services.Foundations.Events.ILogDataItemEventService.RaiseLogDataItemUpdateEventAsync(cCoder.Data.Models.Logging.LogDataItem)",
           "Name": "RaiseLogDataItemUpdateEventAsync",
-          "LineNumber": 13,
+          "LineNumber": 15,
           "Inputs": [
             {
               "Name": "logDataItem",
@@ -12692,7 +12692,7 @@
     {
       "Name": "cCoder.Logging.Services.Foundations.Events.ILogEntryEventService",
       "StandardElementType": "FoundationService",
-      "LineNumber": 10,
+      "LineNumber": 12,
       "IsPublic": false,
       "Kind": "Interface",
       "BaseType": null,
@@ -12702,7 +12702,7 @@
         {
           "Id": "cCoder.Logging.Services.Foundations.Events.ILogEntryEventService.RaiseLogEntryAddEventAsync(cCoder.Data.Models.Logging.LogEntry)",
           "Name": "RaiseLogEntryAddEventAsync",
-          "LineNumber": 12,
+          "LineNumber": 14,
           "Inputs": [
             {
               "Name": "logEntry",
@@ -12727,7 +12727,7 @@
         {
           "Id": "cCoder.Logging.Services.Foundations.Events.ILogEntryEventService.RaiseLogEntryDeleteEventAsync(cCoder.Data.Models.Logging.LogEntry)",
           "Name": "RaiseLogEntryDeleteEventAsync",
-          "LineNumber": 14,
+          "LineNumber": 16,
           "Inputs": [
             {
               "Name": "logEntry",
@@ -12752,7 +12752,7 @@
         {
           "Id": "cCoder.Logging.Services.Foundations.Events.ILogEntryEventService.RaiseLogEntryUpdateEventAsync(cCoder.Data.Models.Logging.LogEntry)",
           "Name": "RaiseLogEntryUpdateEventAsync",
-          "LineNumber": 13,
+          "LineNumber": 15,
           "Inputs": [
             {
               "Name": "logEntry",
@@ -12779,7 +12779,7 @@
     {
       "Name": "cCoder.Logging.Services.Foundations.ILogDataItemService",
       "StandardElementType": "FoundationService",
-      "LineNumber": 9,
+      "LineNumber": 12,
       "IsPublic": false,
       "Kind": "Interface",
       "BaseType": null,
@@ -12789,7 +12789,7 @@
         {
           "Id": "cCoder.Logging.Services.Foundations.ILogDataItemService.AddLogDataItemAsync(cCoder.Data.Models.Logging.LogDataItem)",
           "Name": "AddLogDataItemAsync",
-          "LineNumber": 13,
+          "LineNumber": 16,
           "Inputs": [
             {
               "Name": "newLogDataItem",
@@ -12814,7 +12814,7 @@
         {
           "Id": "cCoder.Logging.Services.Foundations.ILogDataItemService.DeleteLogDataItemAsync(System.Int32)",
           "Name": "DeleteLogDataItemAsync",
-          "LineNumber": 15,
+          "LineNumber": 18,
           "Inputs": [
             {
               "Name": "logDataItemId",
@@ -12839,7 +12839,7 @@
         {
           "Id": "cCoder.Logging.Services.Foundations.ILogDataItemService.GetAllLogDataItems(System.Boolean)",
           "Name": "GetAllLogDataItems",
-          "LineNumber": 12,
+          "LineNumber": 15,
           "Inputs": [
             {
               "Name": "ignoreFilters",
@@ -12864,7 +12864,7 @@
         {
           "Id": "cCoder.Logging.Services.Foundations.ILogDataItemService.GetLogDataItem(System.Int32)",
           "Name": "GetLogDataItem",
-          "LineNumber": 11,
+          "LineNumber": 14,
           "Inputs": [
             {
               "Name": "logDataItemId",
@@ -12889,7 +12889,7 @@
         {
           "Id": "cCoder.Logging.Services.Foundations.ILogDataItemService.UpdateLogDataItemAsync(cCoder.Data.Models.Logging.LogDataItem)",
           "Name": "UpdateLogDataItemAsync",
-          "LineNumber": 14,
+          "LineNumber": 17,
           "Inputs": [
             {
               "Name": "updatedLogDataItem",
@@ -12916,7 +12916,7 @@
     {
       "Name": "cCoder.Logging.Services.Foundations.ILogEntryService",
       "StandardElementType": "FoundationService",
-      "LineNumber": 9,
+      "LineNumber": 13,
       "IsPublic": false,
       "Kind": "Interface",
       "BaseType": null,
@@ -12926,7 +12926,7 @@
         {
           "Id": "cCoder.Logging.Services.Foundations.ILogEntryService.AddLogEntryAsync(cCoder.Data.Models.Logging.LogEntry)",
           "Name": "AddLogEntryAsync",
-          "LineNumber": 13,
+          "LineNumber": 17,
           "Inputs": [
             {
               "Name": "newLogEntry",
@@ -12951,7 +12951,7 @@
         {
           "Id": "cCoder.Logging.Services.Foundations.ILogEntryService.AddSystemLogEntryAsync(cCoder.Data.Models.Logging.LogEntry)",
           "Name": "AddSystemLogEntryAsync",
-          "LineNumber": 14,
+          "LineNumber": 18,
           "Inputs": [
             {
               "Name": "newLogEntry",
@@ -12976,7 +12976,7 @@
         {
           "Id": "cCoder.Logging.Services.Foundations.ILogEntryService.DeleteLogEntriesBeforeAsync(System.DateTime)",
           "Name": "DeleteLogEntriesBeforeAsync",
-          "LineNumber": 17,
+          "LineNumber": 21,
           "Inputs": [
             {
               "Name": "cutoff",
@@ -13001,7 +13001,7 @@
         {
           "Id": "cCoder.Logging.Services.Foundations.ILogEntryService.DeleteLogEntryAsync(System.Int32)",
           "Name": "DeleteLogEntryAsync",
-          "LineNumber": 16,
+          "LineNumber": 20,
           "Inputs": [
             {
               "Name": "logEntryId",
@@ -13026,7 +13026,7 @@
         {
           "Id": "cCoder.Logging.Services.Foundations.ILogEntryService.GetAllLogEntries(System.Boolean)",
           "Name": "GetAllLogEntries",
-          "LineNumber": 12,
+          "LineNumber": 16,
           "Inputs": [
             {
               "Name": "ignoreFilters",
@@ -13051,7 +13051,7 @@
         {
           "Id": "cCoder.Logging.Services.Foundations.ILogEntryService.GetDefaultAppDomain()",
           "Name": "GetDefaultAppDomain",
-          "LineNumber": 23,
+          "LineNumber": 27,
           "Inputs": [],
           "ReturnType": "System.String",
           "Implements": [],
@@ -13071,7 +13071,7 @@
         {
           "Id": "cCoder.Logging.Services.Foundations.ILogEntryService.GetDefaultAppId()",
           "Name": "GetDefaultAppId",
-          "LineNumber": 22,
+          "LineNumber": 26,
           "Inputs": [],
           "ReturnType": "System.Int32?",
           "Implements": [],
@@ -13091,7 +13091,7 @@
         {
           "Id": "cCoder.Logging.Services.Foundations.ILogEntryService.GetLogEntry(System.Int32)",
           "Name": "GetLogEntry",
-          "LineNumber": 11,
+          "LineNumber": 15,
           "Inputs": [
             {
               "Name": "logEntryId",
@@ -13116,7 +13116,7 @@
         {
           "Id": "cCoder.Logging.Services.Foundations.ILogEntryService.ResolveAppId(System.String)",
           "Name": "ResolveAppId",
-          "LineNumber": 18,
+          "LineNumber": 22,
           "Inputs": [
             {
               "Name": "domainOrName",
@@ -13141,7 +13141,7 @@
         {
           "Id": "cCoder.Logging.Services.Foundations.ILogEntryService.ResolveTenantId(System.Int32)",
           "Name": "ResolveTenantId",
-          "LineNumber": 19,
+          "LineNumber": 23,
           "Inputs": [
             {
               "Name": "appId",
@@ -13166,7 +13166,7 @@
         {
           "Id": "cCoder.Logging.Services.Foundations.ILogEntryService.ShouldStoreLogEntries()",
           "Name": "ShouldStoreLogEntries",
-          "LineNumber": 20,
+          "LineNumber": 24,
           "Inputs": [],
           "ReturnType": "System.Boolean",
           "Implements": [],
@@ -13186,7 +13186,7 @@
         {
           "Id": "cCoder.Logging.Services.Foundations.ILogEntryService.ShouldStreamLogEntries()",
           "Name": "ShouldStreamLogEntries",
-          "LineNumber": 21,
+          "LineNumber": 25,
           "Inputs": [],
           "ReturnType": "System.Boolean",
           "Implements": [],
@@ -13206,7 +13206,7 @@
         {
           "Id": "cCoder.Logging.Services.Foundations.ILogEntryService.UpdateLogEntryAsync(cCoder.Data.Models.Logging.LogEntry)",
           "Name": "UpdateLogEntryAsync",
-          "LineNumber": 15,
+          "LineNumber": 19,
           "Inputs": [
             {
               "Name": "updatedLogEntry",
@@ -13233,7 +13233,7 @@
     {
       "Name": "cCoder.Logging.Services.Foundations.ILogEntryStreamService",
       "StandardElementType": "FoundationService",
-      "LineNumber": 7,
+      "LineNumber": 9,
       "IsPublic": false,
       "Kind": "Interface",
       "BaseType": null,
@@ -13243,7 +13243,7 @@
         {
           "Id": "cCoder.Logging.Services.Foundations.ILogEntryStreamService.GetDefaultAppDomain()",
           "Name": "GetDefaultAppDomain",
-          "LineNumber": 15,
+          "LineNumber": 17,
           "Inputs": [],
           "ReturnType": "System.String",
           "Implements": [],
@@ -13263,7 +13263,7 @@
         {
           "Id": "cCoder.Logging.Services.Foundations.ILogEntryStreamService.GetDefaultAppId()",
           "Name": "GetDefaultAppId",
-          "LineNumber": 14,
+          "LineNumber": 16,
           "Inputs": [],
           "ReturnType": "System.Int32?",
           "Implements": [],
@@ -13283,7 +13283,7 @@
         {
           "Id": "cCoder.Logging.Services.Foundations.ILogEntryStreamService.ShouldStreamLogEntries()",
           "Name": "ShouldStreamLogEntries",
-          "LineNumber": 13,
+          "LineNumber": 15,
           "Inputs": [],
           "ReturnType": "System.Boolean",
           "Implements": [],
@@ -13303,7 +13303,7 @@
         {
           "Id": "cCoder.Logging.Services.Foundations.ILogEntryStreamService.StreamLogEntryAsync(System.String,System.String,System.String)",
           "Name": "StreamLogEntryAsync",
-          "LineNumber": 9,
+          "LineNumber": 11,
           "Inputs": [
             {
               "Name": "thread",
@@ -13338,7 +13338,7 @@
     {
       "Name": "cCoder.Logging.Services.Foundations.ILogHubService",
       "StandardElementType": "FoundationService",
-      "LineNumber": 9,
+      "LineNumber": 11,
       "IsPublic": false,
       "Kind": "Interface",
       "BaseType": null,
@@ -13348,7 +13348,7 @@
         {
           "Id": "cCoder.Logging.Services.Foundations.ILogHubService.ConnectLogHubSessionAsync(cCoder.Logging.Models.LogHubSession)",
           "Name": "ConnectLogHubSessionAsync",
-          "LineNumber": 11,
+          "LineNumber": 13,
           "Inputs": [
             {
               "Name": "logHubSession",
@@ -13373,7 +13373,7 @@
         {
           "Id": "cCoder.Logging.Services.Foundations.ILogHubService.DebugLogHubSession(cCoder.Logging.Models.LogHubSession)",
           "Name": "DebugLogHubSession",
-          "LineNumber": 15,
+          "LineNumber": 17,
           "Inputs": [
             {
               "Name": "logHubSession",
@@ -13398,7 +13398,7 @@
         {
           "Id": "cCoder.Logging.Services.Foundations.ILogHubService.DisconnectLogHubSessionAsync(cCoder.Logging.Models.LogHubSession)",
           "Name": "DisconnectLogHubSessionAsync",
-          "LineNumber": 14,
+          "LineNumber": 16,
           "Inputs": [
             {
               "Name": "logHubSession",
@@ -13423,7 +13423,7 @@
         {
           "Id": "cCoder.Logging.Services.Foundations.ILogHubService.ErrorLogHubSession(cCoder.Logging.Models.LogHubSession)",
           "Name": "ErrorLogHubSession",
-          "LineNumber": 18,
+          "LineNumber": 20,
           "Inputs": [
             {
               "Name": "logHubSession",
@@ -13448,7 +13448,7 @@
         {
           "Id": "cCoder.Logging.Services.Foundations.ILogHubService.InfoLogHubSession(cCoder.Logging.Models.LogHubSession)",
           "Name": "InfoLogHubSession",
-          "LineNumber": 16,
+          "LineNumber": 18,
           "Inputs": [
             {
               "Name": "logHubSession",
@@ -13473,7 +13473,7 @@
         {
           "Id": "cCoder.Logging.Services.Foundations.ILogHubService.JoinLogHubSessionAsync(cCoder.Logging.Models.LogHubSession)",
           "Name": "JoinLogHubSessionAsync",
-          "LineNumber": 12,
+          "LineNumber": 14,
           "Inputs": [
             {
               "Name": "logHubSession",
@@ -13498,7 +13498,7 @@
         {
           "Id": "cCoder.Logging.Services.Foundations.ILogHubService.LeaveLogHubSessionAsync(cCoder.Logging.Models.LogHubSession)",
           "Name": "LeaveLogHubSessionAsync",
-          "LineNumber": 13,
+          "LineNumber": 15,
           "Inputs": [
             {
               "Name": "logHubSession",
@@ -13523,7 +13523,7 @@
         {
           "Id": "cCoder.Logging.Services.Foundations.ILogHubService.SendConsoleLogHubSessionAsync(cCoder.Logging.Models.LogHubSession)",
           "Name": "SendConsoleLogHubSessionAsync",
-          "LineNumber": 19,
+          "LineNumber": 21,
           "Inputs": [
             {
               "Name": "logHubSession",
@@ -13548,7 +13548,7 @@
         {
           "Id": "cCoder.Logging.Services.Foundations.ILogHubService.SendTestLogHubSessionAsync(cCoder.Logging.Models.LogHubSession)",
           "Name": "SendTestLogHubSessionAsync",
-          "LineNumber": 20,
+          "LineNumber": 22,
           "Inputs": [
             {
               "Name": "logHubSession",
@@ -13573,7 +13573,7 @@
         {
           "Id": "cCoder.Logging.Services.Foundations.ILogHubService.WarnLogHubSession(cCoder.Logging.Models.LogHubSession)",
           "Name": "WarnLogHubSession",
-          "LineNumber": 17,
+          "LineNumber": 19,
           "Inputs": [
             {
               "Name": "logHubSession",
@@ -13600,7 +13600,7 @@
     {
       "Name": "cCoder.Logging.Services.Foundations.ILoggingMetadataTypeService",
       "StandardElementType": "FoundationService",
-      "LineNumber": 10,
+      "LineNumber": 12,
       "IsPublic": false,
       "Kind": "Interface",
       "BaseType": null,
@@ -13610,7 +13610,7 @@
         {
           "Id": "cCoder.Logging.Services.Foundations.ILoggingMetadataTypeService.GetKnownMetadata()",
           "Name": "GetKnownMetadata",
-          "LineNumber": 12,
+          "LineNumber": 14,
           "Inputs": [],
           "ReturnType": "System.Collections.Generic.IEnumerable\u003CcCoder.Logging.Models.OData.MetadataContainerSet\u003E",
           "Implements": [],
@@ -13632,7 +13632,7 @@
     {
       "Name": "cCoder.Logging.Services.Orchestrations.ILogDataItemOrchestrationService",
       "StandardElementType": "OrchestrationService",
-      "LineNumber": 10,
+      "LineNumber": 14,
       "IsPublic": true,
       "Kind": "Interface",
       "BaseType": null,
@@ -13642,7 +13642,7 @@
         {
           "Id": "cCoder.Logging.Services.Orchestrations.ILogDataItemOrchestrationService.AddLogDataItemAsync(cCoder.Data.Models.Logging.LogDataItem)",
           "Name": "AddLogDataItemAsync",
-          "LineNumber": 14,
+          "LineNumber": 18,
           "Inputs": [
             {
               "Name": "newLogDataItem",
@@ -13667,7 +13667,7 @@
         {
           "Id": "cCoder.Logging.Services.Orchestrations.ILogDataItemOrchestrationService.AddOrUpdateLogDataItemResultsAsync(System.Collections.Generic.IEnumerable\u003CcCoder.Data.Models.Logging.LogDataItem\u003E)",
           "Name": "AddOrUpdateLogDataItemResultsAsync",
-          "LineNumber": 17,
+          "LineNumber": 21,
           "Inputs": [
             {
               "Name": "logDataItems",
@@ -13692,7 +13692,7 @@
         {
           "Id": "cCoder.Logging.Services.Orchestrations.ILogDataItemOrchestrationService.DeleteAllLogDataItemAsync(System.Collections.Generic.IEnumerable\u003CcCoder.Data.Models.Logging.LogDataItem\u003E)",
           "Name": "DeleteAllLogDataItemAsync",
-          "LineNumber": 19,
+          "LineNumber": 23,
           "Inputs": [
             {
               "Name": "deletedLogDataItems",
@@ -13717,7 +13717,7 @@
         {
           "Id": "cCoder.Logging.Services.Orchestrations.ILogDataItemOrchestrationService.DeleteLogDataItemAsync(System.Int32)",
           "Name": "DeleteLogDataItemAsync",
-          "LineNumber": 16,
+          "LineNumber": 20,
           "Inputs": [
             {
               "Name": "logDataItemId",
@@ -13742,7 +13742,7 @@
         {
           "Id": "cCoder.Logging.Services.Orchestrations.ILogDataItemOrchestrationService.GetAllLogDataItems(System.Boolean)",
           "Name": "GetAllLogDataItems",
-          "LineNumber": 13,
+          "LineNumber": 17,
           "Inputs": [
             {
               "Name": "ignoreFilters",
@@ -13767,7 +13767,7 @@
         {
           "Id": "cCoder.Logging.Services.Orchestrations.ILogDataItemOrchestrationService.GetLogDataItem(System.Int32)",
           "Name": "GetLogDataItem",
-          "LineNumber": 12,
+          "LineNumber": 16,
           "Inputs": [
             {
               "Name": "logDataItemId",
@@ -13792,7 +13792,7 @@
         {
           "Id": "cCoder.Logging.Services.Orchestrations.ILogDataItemOrchestrationService.UpdateLogDataItemAsync(cCoder.Data.Models.Logging.LogDataItem)",
           "Name": "UpdateLogDataItemAsync",
-          "LineNumber": 15,
+          "LineNumber": 19,
           "Inputs": [
             {
               "Name": "updatedLogDataItem",
@@ -13819,7 +13819,7 @@
     {
       "Name": "cCoder.Logging.Services.Orchestrations.ILogEntryCaptureOrchestrationService",
       "StandardElementType": "OrchestrationService",
-      "LineNumber": 9,
+      "LineNumber": 11,
       "IsPublic": false,
       "Kind": "Interface",
       "BaseType": null,
@@ -13829,7 +13829,7 @@
         {
           "Id": "cCoder.Logging.Services.Orchestrations.ILogEntryCaptureOrchestrationService.CaptureLogEntryCaptureRequestAsync(cCoder.Logging.Models.LogEntryCaptureRequest)",
           "Name": "CaptureLogEntryCaptureRequestAsync",
-          "LineNumber": 11,
+          "LineNumber": 13,
           "Inputs": [
             {
               "Name": "logEntryCaptureRequest",
@@ -13856,7 +13856,7 @@
     {
       "Name": "cCoder.Logging.Services.Orchestrations.ILogEntryOrchestrationService",
       "StandardElementType": "OrchestrationService",
-      "LineNumber": 10,
+      "LineNumber": 15,
       "IsPublic": true,
       "Kind": "Interface",
       "BaseType": null,
@@ -13866,7 +13866,7 @@
         {
           "Id": "cCoder.Logging.Services.Orchestrations.ILogEntryOrchestrationService.AddLogEntryAsync(cCoder.Data.Models.Logging.LogEntry)",
           "Name": "AddLogEntryAsync",
-          "LineNumber": 14,
+          "LineNumber": 19,
           "Inputs": [
             {
               "Name": "newLogEntry",
@@ -13891,7 +13891,7 @@
         {
           "Id": "cCoder.Logging.Services.Orchestrations.ILogEntryOrchestrationService.AddOrUpdateLogEntryResultsAsync(System.Collections.Generic.IEnumerable\u003CcCoder.Data.Models.Logging.LogEntry\u003E)",
           "Name": "AddOrUpdateLogEntryResultsAsync",
-          "LineNumber": 18,
+          "LineNumber": 23,
           "Inputs": [
             {
               "Name": "logEntries",
@@ -13916,7 +13916,7 @@
         {
           "Id": "cCoder.Logging.Services.Orchestrations.ILogEntryOrchestrationService.AddSystemLogEntryAsync(cCoder.Data.Models.Logging.LogEntry)",
           "Name": "AddSystemLogEntryAsync",
-          "LineNumber": 15,
+          "LineNumber": 20,
           "Inputs": [
             {
               "Name": "newLogEntry",
@@ -13941,7 +13941,7 @@
         {
           "Id": "cCoder.Logging.Services.Orchestrations.ILogEntryOrchestrationService.DeleteAllLogEntryAsync(System.Collections.Generic.IEnumerable\u003CcCoder.Data.Models.Logging.LogEntry\u003E)",
           "Name": "DeleteAllLogEntryAsync",
-          "LineNumber": 20,
+          "LineNumber": 25,
           "Inputs": [
             {
               "Name": "deletedLogEntries",
@@ -13966,7 +13966,7 @@
         {
           "Id": "cCoder.Logging.Services.Orchestrations.ILogEntryOrchestrationService.DeleteLogEntriesBeforeAsync(System.DateTime)",
           "Name": "DeleteLogEntriesBeforeAsync",
-          "LineNumber": 22,
+          "LineNumber": 27,
           "Inputs": [
             {
               "Name": "cutoff",
@@ -13991,7 +13991,7 @@
         {
           "Id": "cCoder.Logging.Services.Orchestrations.ILogEntryOrchestrationService.DeleteLogEntryAsync(System.Int32)",
           "Name": "DeleteLogEntryAsync",
-          "LineNumber": 17,
+          "LineNumber": 22,
           "Inputs": [
             {
               "Name": "logEntryId",
@@ -14016,7 +14016,7 @@
         {
           "Id": "cCoder.Logging.Services.Orchestrations.ILogEntryOrchestrationService.GetAllLogEntries(System.Boolean)",
           "Name": "GetAllLogEntries",
-          "LineNumber": 13,
+          "LineNumber": 18,
           "Inputs": [
             {
               "Name": "ignoreFilters",
@@ -14041,7 +14041,7 @@
         {
           "Id": "cCoder.Logging.Services.Orchestrations.ILogEntryOrchestrationService.GetLogEntry(System.Int32)",
           "Name": "GetLogEntry",
-          "LineNumber": 12,
+          "LineNumber": 17,
           "Inputs": [
             {
               "Name": "logEntryId",
@@ -14066,7 +14066,7 @@
         {
           "Id": "cCoder.Logging.Services.Orchestrations.ILogEntryOrchestrationService.ResolveAppId(System.String)",
           "Name": "ResolveAppId",
-          "LineNumber": 23,
+          "LineNumber": 28,
           "Inputs": [
             {
               "Name": "domainOrName",
@@ -14091,7 +14091,7 @@
         {
           "Id": "cCoder.Logging.Services.Orchestrations.ILogEntryOrchestrationService.UpdateLogEntryAsync(cCoder.Data.Models.Logging.LogEntry)",
           "Name": "UpdateLogEntryAsync",
-          "LineNumber": 16,
+          "LineNumber": 21,
           "Inputs": [
             {
               "Name": "updatedLogEntry",
@@ -14118,7 +14118,7 @@
     {
       "Name": "cCoder.Logging.Services.Processings.ILogDataItemEventProcessingService",
       "StandardElementType": "ProcessingService",
-      "LineNumber": 11,
+      "LineNumber": 13,
       "IsPublic": false,
       "Kind": "Interface",
       "BaseType": null,
@@ -14128,7 +14128,7 @@
         {
           "Id": "cCoder.Logging.Services.Processings.ILogDataItemEventProcessingService.RaiseLogDataItemAddEventAsync(cCoder.Data.Models.Logging.LogDataItem)",
           "Name": "RaiseLogDataItemAddEventAsync",
-          "LineNumber": 13,
+          "LineNumber": 15,
           "Inputs": [
             {
               "Name": "logDataItem",
@@ -14153,7 +14153,7 @@
         {
           "Id": "cCoder.Logging.Services.Processings.ILogDataItemEventProcessingService.RaiseLogDataItemDeleteEventAsync(cCoder.Data.Models.Logging.LogDataItem)",
           "Name": "RaiseLogDataItemDeleteEventAsync",
-          "LineNumber": 15,
+          "LineNumber": 17,
           "Inputs": [
             {
               "Name": "logDataItem",
@@ -14178,7 +14178,7 @@
         {
           "Id": "cCoder.Logging.Services.Processings.ILogDataItemEventProcessingService.RaiseLogDataItemUpdateEventAsync(cCoder.Data.Models.Logging.LogDataItem)",
           "Name": "RaiseLogDataItemUpdateEventAsync",
-          "LineNumber": 14,
+          "LineNumber": 16,
           "Inputs": [
             {
               "Name": "logDataItem",
@@ -14205,7 +14205,7 @@
     {
       "Name": "cCoder.Logging.Services.Processings.ILogDataItemProcessingService",
       "StandardElementType": "ProcessingService",
-      "LineNumber": 10,
+      "LineNumber": 14,
       "IsPublic": false,
       "Kind": "Interface",
       "BaseType": null,
@@ -14215,7 +14215,7 @@
         {
           "Id": "cCoder.Logging.Services.Processings.ILogDataItemProcessingService.AddLogDataItemAsync(cCoder.Data.Models.Logging.LogDataItem)",
           "Name": "AddLogDataItemAsync",
-          "LineNumber": 14,
+          "LineNumber": 18,
           "Inputs": [
             {
               "Name": "newLogDataItem",
@@ -14240,7 +14240,7 @@
         {
           "Id": "cCoder.Logging.Services.Processings.ILogDataItemProcessingService.AddOrUpdateLogDataItemResultsAsync(System.Collections.Generic.IEnumerable\u003CcCoder.Data.Models.Logging.LogDataItem\u003E)",
           "Name": "AddOrUpdateLogDataItemResultsAsync",
-          "LineNumber": 17,
+          "LineNumber": 21,
           "Inputs": [
             {
               "Name": "logDataItems",
@@ -14265,7 +14265,7 @@
         {
           "Id": "cCoder.Logging.Services.Processings.ILogDataItemProcessingService.DeleteAllLogDataItemAsync(System.Collections.Generic.IEnumerable\u003CcCoder.Data.Models.Logging.LogDataItem\u003E)",
           "Name": "DeleteAllLogDataItemAsync",
-          "LineNumber": 19,
+          "LineNumber": 23,
           "Inputs": [
             {
               "Name": "deletedLogDataItems",
@@ -14290,7 +14290,7 @@
         {
           "Id": "cCoder.Logging.Services.Processings.ILogDataItemProcessingService.DeleteLogDataItemAsync(System.Int32)",
           "Name": "DeleteLogDataItemAsync",
-          "LineNumber": 16,
+          "LineNumber": 20,
           "Inputs": [
             {
               "Name": "logDataItemId",
@@ -14315,7 +14315,7 @@
         {
           "Id": "cCoder.Logging.Services.Processings.ILogDataItemProcessingService.GetAllLogDataItems(System.Boolean)",
           "Name": "GetAllLogDataItems",
-          "LineNumber": 13,
+          "LineNumber": 17,
           "Inputs": [
             {
               "Name": "ignoreFilters",
@@ -14340,7 +14340,7 @@
         {
           "Id": "cCoder.Logging.Services.Processings.ILogDataItemProcessingService.GetLogDataItem(System.Int32)",
           "Name": "GetLogDataItem",
-          "LineNumber": 12,
+          "LineNumber": 16,
           "Inputs": [
             {
               "Name": "logDataItemId",
@@ -14365,7 +14365,7 @@
         {
           "Id": "cCoder.Logging.Services.Processings.ILogDataItemProcessingService.UpdateLogDataItemAsync(cCoder.Data.Models.Logging.LogDataItem)",
           "Name": "UpdateLogDataItemAsync",
-          "LineNumber": 15,
+          "LineNumber": 19,
           "Inputs": [
             {
               "Name": "updatedLogDataItem",
@@ -14392,7 +14392,7 @@
     {
       "Name": "cCoder.Logging.Services.Processings.ILogEntryCaptureProcessingService",
       "StandardElementType": "ProcessingService",
-      "LineNumber": 10,
+      "LineNumber": 12,
       "IsPublic": false,
       "Kind": "Interface",
       "BaseType": null,
@@ -14402,7 +14402,7 @@
         {
           "Id": "cCoder.Logging.Services.Processings.ILogEntryCaptureProcessingService.CaptureLogEntryCaptureOperationAsync(cCoder.Logging.Models.LogEntryCaptureOperation)",
           "Name": "CaptureLogEntryCaptureOperationAsync",
-          "LineNumber": 13,
+          "LineNumber": 15,
           "Inputs": [
             {
               "Name": "operation",
@@ -14429,7 +14429,7 @@
     {
       "Name": "cCoder.Logging.Services.Processings.ILogEntryEventProcessingService",
       "StandardElementType": "ProcessingService",
-      "LineNumber": 11,
+      "LineNumber": 13,
       "IsPublic": false,
       "Kind": "Interface",
       "BaseType": null,
@@ -14439,7 +14439,7 @@
         {
           "Id": "cCoder.Logging.Services.Processings.ILogEntryEventProcessingService.RaiseLogEntryAddEventAsync(cCoder.Data.Models.Logging.LogEntry)",
           "Name": "RaiseLogEntryAddEventAsync",
-          "LineNumber": 13,
+          "LineNumber": 15,
           "Inputs": [
             {
               "Name": "logEntry",
@@ -14464,7 +14464,7 @@
         {
           "Id": "cCoder.Logging.Services.Processings.ILogEntryEventProcessingService.RaiseLogEntryDeleteEventAsync(cCoder.Data.Models.Logging.LogEntry)",
           "Name": "RaiseLogEntryDeleteEventAsync",
-          "LineNumber": 15,
+          "LineNumber": 17,
           "Inputs": [
             {
               "Name": "logEntry",
@@ -14489,7 +14489,7 @@
         {
           "Id": "cCoder.Logging.Services.Processings.ILogEntryEventProcessingService.RaiseLogEntryUpdateEventAsync(cCoder.Data.Models.Logging.LogEntry)",
           "Name": "RaiseLogEntryUpdateEventAsync",
-          "LineNumber": 14,
+          "LineNumber": 16,
           "Inputs": [
             {
               "Name": "logEntry",
@@ -14516,7 +14516,7 @@
     {
       "Name": "cCoder.Logging.Services.Processings.ILogEntryProcessingService",
       "StandardElementType": "ProcessingService",
-      "LineNumber": 10,
+      "LineNumber": 15,
       "IsPublic": false,
       "Kind": "Interface",
       "BaseType": null,
@@ -14526,7 +14526,7 @@
         {
           "Id": "cCoder.Logging.Services.Processings.ILogEntryProcessingService.AddLogEntryAsync(cCoder.Data.Models.Logging.LogEntry)",
           "Name": "AddLogEntryAsync",
-          "LineNumber": 14,
+          "LineNumber": 19,
           "Inputs": [
             {
               "Name": "newLogEntry",
@@ -14551,7 +14551,7 @@
         {
           "Id": "cCoder.Logging.Services.Processings.ILogEntryProcessingService.AddOrUpdateLogEntryResultsAsync(System.Collections.Generic.IEnumerable\u003CcCoder.Data.Models.Logging.LogEntry\u003E)",
           "Name": "AddOrUpdateLogEntryResultsAsync",
-          "LineNumber": 18,
+          "LineNumber": 23,
           "Inputs": [
             {
               "Name": "logEntries",
@@ -14576,7 +14576,7 @@
         {
           "Id": "cCoder.Logging.Services.Processings.ILogEntryProcessingService.AddSystemLogEntryAsync(cCoder.Data.Models.Logging.LogEntry)",
           "Name": "AddSystemLogEntryAsync",
-          "LineNumber": 15,
+          "LineNumber": 20,
           "Inputs": [
             {
               "Name": "newLogEntry",
@@ -14601,7 +14601,7 @@
         {
           "Id": "cCoder.Logging.Services.Processings.ILogEntryProcessingService.DeleteAllLogEntryAsync(System.Collections.Generic.IEnumerable\u003CcCoder.Data.Models.Logging.LogEntry\u003E)",
           "Name": "DeleteAllLogEntryAsync",
-          "LineNumber": 20,
+          "LineNumber": 25,
           "Inputs": [
             {
               "Name": "deletedLogEntries",
@@ -14626,7 +14626,7 @@
         {
           "Id": "cCoder.Logging.Services.Processings.ILogEntryProcessingService.DeleteLogEntriesBeforeAsync(System.DateTime)",
           "Name": "DeleteLogEntriesBeforeAsync",
-          "LineNumber": 22,
+          "LineNumber": 27,
           "Inputs": [
             {
               "Name": "cutoff",
@@ -14651,7 +14651,7 @@
         {
           "Id": "cCoder.Logging.Services.Processings.ILogEntryProcessingService.DeleteLogEntryAsync(System.Int32)",
           "Name": "DeleteLogEntryAsync",
-          "LineNumber": 17,
+          "LineNumber": 22,
           "Inputs": [
             {
               "Name": "logEntryId",
@@ -14676,7 +14676,7 @@
         {
           "Id": "cCoder.Logging.Services.Processings.ILogEntryProcessingService.GetAllLogEntries(System.Boolean)",
           "Name": "GetAllLogEntries",
-          "LineNumber": 13,
+          "LineNumber": 18,
           "Inputs": [
             {
               "Name": "ignoreFilters",
@@ -14701,7 +14701,7 @@
         {
           "Id": "cCoder.Logging.Services.Processings.ILogEntryProcessingService.GetLogEntry(System.Int32)",
           "Name": "GetLogEntry",
-          "LineNumber": 12,
+          "LineNumber": 17,
           "Inputs": [
             {
               "Name": "logEntryId",
@@ -14726,7 +14726,7 @@
         {
           "Id": "cCoder.Logging.Services.Processings.ILogEntryProcessingService.ResolveAppId(System.String)",
           "Name": "ResolveAppId",
-          "LineNumber": 23,
+          "LineNumber": 28,
           "Inputs": [
             {
               "Name": "domainOrName",
@@ -14751,7 +14751,7 @@
         {
           "Id": "cCoder.Logging.Services.Processings.ILogEntryProcessingService.UpdateLogEntryAsync(cCoder.Data.Models.Logging.LogEntry)",
           "Name": "UpdateLogEntryAsync",
-          "LineNumber": 16,
+          "LineNumber": 21,
           "Inputs": [
             {
               "Name": "updatedLogEntry",
@@ -14778,7 +14778,7 @@
     {
       "Name": "cCoder.Logging.Services.Processings.ILogEntryRetentionProcessingService",
       "StandardElementType": "ProcessingService",
-      "LineNumber": 7,
+      "LineNumber": 10,
       "IsPublic": false,
       "Kind": "Interface",
       "BaseType": null,
@@ -14788,7 +14788,7 @@
         {
           "Id": "cCoder.Logging.Services.Processings.ILogEntryRetentionProcessingService.DeleteExpiredLogEntriesAsync(System.Threading.CancellationToken)",
           "Name": "DeleteExpiredLogEntriesAsync",
-          "LineNumber": 11,
+          "LineNumber": 14,
           "Inputs": [
             {
               "Name": "cancellationToken",
@@ -14813,7 +14813,7 @@
         {
           "Id": "cCoder.Logging.Services.Processings.ILogEntryRetentionProcessingService.RunLogRetentionAsync(System.Threading.CancellationToken)",
           "Name": "RunLogRetentionAsync",
-          "LineNumber": 9,
+          "LineNumber": 12,
           "Inputs": [
             {
               "Name": "cancellationToken",
@@ -14840,7 +14840,7 @@
     {
       "Name": "cCoder.Logging.Services.Processings.ILogEntryStreamProcessingService",
       "StandardElementType": "ProcessingService",
-      "LineNumber": 9,
+      "LineNumber": 11,
       "IsPublic": false,
       "Kind": "Interface",
       "BaseType": null,
@@ -14850,7 +14850,7 @@
         {
           "Id": "cCoder.Logging.Services.Processings.ILogEntryStreamProcessingService.StreamLogEntryCaptureRequestAsync(cCoder.Logging.Models.LogEntryCaptureRequest)",
           "Name": "StreamLogEntryCaptureRequestAsync",
-          "LineNumber": 11,
+          "LineNumber": 13,
           "Inputs": [
             {
               "Name": "logEntryCaptureRequest",
@@ -15139,35 +15139,35 @@
       "Description": "The type is not a valid Standard element type.",
       "Severity": "Warning",
       "Type": "cCoder.Logging.RequestLogQueueCoordinator",
-      "LineNumber": 11
+      "LineNumber": 17
     },
     {
       "Code": "STX0026",
       "Description": "Only a broker may depend directly on Microsoft ILogger; other elements must use a LoggingBroker.",
       "Severity": "Warning",
       "Type": "cCoder.Logging.RequestLogQueueCoordinator",
-      "LineNumber": 11
+      "LineNumber": 17
     },
     {
       "Code": "STXD001",
       "Description": "Dependency elements and event hubs may only be consumed by brokers or other dependencies.",
       "Severity": "Warning",
       "Type": "cCoder.Logging.RequestLogQueueCoordinator",
-      "LineNumber": 11
+      "LineNumber": 17
     },
     {
       "Code": "STX0001",
       "Description": "The type is not a valid Standard element type.",
       "Severity": "Warning",
       "Type": "cCoder.Logging.RequestLoggingCoordinator",
-      "LineNumber": 15
+      "LineNumber": 22
     },
     {
       "Code": "STX0026",
       "Description": "Only a broker may depend directly on Microsoft ILogger; other elements must use a LoggingBroker.",
       "Severity": "Warning",
       "Type": "cCoder.Logging.RequestLoggingCoordinator",
-      "LineNumber": 15
+      "LineNumber": 22
     }
   ]
 }

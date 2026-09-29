@@ -2,6 +2,11 @@
 // Copyright (c) Paul.Ward@ccoder.co.uk
 // ---------------------------------------------------------------
 
+using System;
+using System.Linq;
+
+using System.Threading.Tasks;
+
 using cCoder.Data.Models.Logging;
 using cCoder.Data.Models.Security;
 using FluentAssertions;

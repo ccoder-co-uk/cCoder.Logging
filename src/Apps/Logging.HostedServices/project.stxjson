@@ -9,7 +9,7 @@
     {
       "Name": "Logging.HostedServices.IServiceCollectionExtensions",
       "StandardElementType": "App",
-      "LineNumber": 11,
+      "LineNumber": 15,
       "IsPublic": true,
       "Kind": "Class",
       "BaseType": null,
@@ -19,7 +19,7 @@
         {
           "Id": "Logging.HostedServices.IServiceCollectionExtensions.AddHostedServices(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration,System.Action\u003CLogging.HostedServices.Models.AppConfiguration\u003E)",
           "Name": "AddHostedServices",
-          "LineNumber": 13,
+          "LineNumber": 17,
           "Inputs": [
             {
               "Name": "services",
@@ -114,7 +114,7 @@
     {
       "Name": "Logging.HostedServices.Program",
       "StandardElementType": "App",
-      "LineNumber": 7,
+      "LineNumber": 9,
       "IsPublic": true,
       "Kind": "Class",
       "BaseType": null,
@@ -124,7 +124,7 @@
         {
           "Id": "Logging.HostedServices.Program.Main(System.String[])",
           "Name": "Main",
-          "LineNumber": 9,
+          "LineNumber": 11,
           "Inputs": [
             {
               "Name": "args",
@@ -187,7 +187,7 @@
     {
       "Name": "Logging.HostedServices.WebApplicationExtensions",
       "StandardElementType": "App",
-      "LineNumber": 10,
+      "LineNumber": 15,
       "IsPublic": true,
       "Kind": "Class",
       "BaseType": null,
@@ -197,7 +197,7 @@
         {
           "Id": "Logging.HostedServices.WebApplicationExtensions.UseLoggingHostedServicesApplication(Microsoft.AspNetCore.Builder.WebApplication)",
           "Name": "UseLoggingHostedServicesApplication",
-          "LineNumber": 12,
+          "LineNumber": 17,
           "Inputs": [
             {
               "Name": "app",

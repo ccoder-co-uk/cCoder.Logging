@@ -2,6 +2,9 @@
 // Copyright (c) Paul.Ward@ccoder.co.uk
 // ---------------------------------------------------------------
 
+using Microsoft.Extensions.Logging;
+using System;
+
 namespace cCoder.Logging.Dependencies.Logging;
 
 internal sealed class LoggingLoggerDependency(

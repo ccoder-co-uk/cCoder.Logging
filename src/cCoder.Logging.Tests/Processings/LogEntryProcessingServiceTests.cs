@@ -2,6 +2,13 @@
 // Copyright (c) Paul.Ward@ccoder.co.uk
 // ---------------------------------------------------------------
 
+using System.Linq;
+
+using System;
+using System.Collections.Generic;
+
+using System.Threading.Tasks;
+
 using cCoder.Data.Models.Logging;
 using cCoder.Logging.Models;
 using cCoder.Logging.Services.Foundations;

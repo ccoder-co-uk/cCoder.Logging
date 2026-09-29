@@ -2,6 +2,8 @@
 // Copyright (c) Paul.Ward@ccoder.co.uk
 // ---------------------------------------------------------------
 
+using System;
+
 using cCoder.Logging.Models.Exceptions;
 
 namespace cCoder.Logging.Services.Foundations;

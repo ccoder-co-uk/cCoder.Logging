@@ -2,6 +2,8 @@
 // Copyright (c) Paul.Ward@ccoder.co.uk
 // ---------------------------------------------------------------
 
+using System.Linq;
+
 using System.Reflection;
 using cCoder.CodeAnalysis.Exposures;
 using cCoder.Logging.Brokers.Loggings;

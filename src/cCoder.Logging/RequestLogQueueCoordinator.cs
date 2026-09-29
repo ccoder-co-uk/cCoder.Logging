@@ -2,6 +2,12 @@
 // Copyright (c) Paul.Ward@ccoder.co.uk
 // ---------------------------------------------------------------
 
+using System;
+
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using System.Threading.Tasks;
+
 using cCoder.Logging.Brokers;
 using cCoder.Logging.Models;
 using cCoder.Logging.Services.Processings;

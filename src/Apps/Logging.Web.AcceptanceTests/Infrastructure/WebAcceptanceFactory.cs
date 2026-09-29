@@ -2,6 +2,9 @@
 // Copyright (c) Paul.Ward@ccoder.co.uk
 // ---------------------------------------------------------------
 
+using System;
+using System.Collections.Generic;
+
 using cCoder.Data;
 using cCoder.Data.Models;
 using cCoder.Security.Data.EF;

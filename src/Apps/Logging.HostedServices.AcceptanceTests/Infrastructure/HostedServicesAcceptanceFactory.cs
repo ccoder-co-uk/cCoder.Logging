@@ -2,6 +2,8 @@
 // Copyright (c) Paul.Ward@ccoder.co.uk
 // ---------------------------------------------------------------
 
+using System.Collections.Generic;
+
 using Apps.Shared.Testing;
 using Logging.HostedServices;
 using Microsoft.AspNetCore.Hosting;

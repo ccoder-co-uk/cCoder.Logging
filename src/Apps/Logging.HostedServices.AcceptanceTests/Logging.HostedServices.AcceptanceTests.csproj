@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
+    <ImplicitUsings>disable</ImplicitUsings>
     <Nullable>disable</Nullable>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
@@ -21,7 +21,6 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\Shared\Testing\AcceptanceTestConfiguration.cs" Link="Testing\AcceptanceTestConfiguration.cs" />
     <ProjectReference Include="..\Logging.HostedServices\Logging.HostedServices.csproj" />
   </ItemGroup>
   <ItemGroup>

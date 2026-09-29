@@ -2,6 +2,11 @@
 // Copyright (c) Paul.Ward@ccoder.co.uk
 // ---------------------------------------------------------------
 
+using Microsoft.AspNetCore.Http;
+using System;
+
+using System.Threading.Tasks;
+
 using cCoder.Logging.Brokers.Loggings;
 using cCoder.Logging.Extensions.OData;
 using cCoder.Logging.Brokers.OData;

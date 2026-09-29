@@ -2,6 +2,8 @@
 // Copyright (c) Paul.Ward@ccoder.co.uk
 // ---------------------------------------------------------------
 
+using System.Collections.Generic;
+
 using cCoder.Logging.Brokers.Metadata;
 using cCoder.Logging.Models.OData;
 using cCoder.Data.Models.Logging;

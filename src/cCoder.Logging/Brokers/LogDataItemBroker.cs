@@ -2,6 +2,10 @@
 // Copyright (c) Paul.Ward@ccoder.co.uk
 // ---------------------------------------------------------------
 
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
 using cCoder.Data;
 using Microsoft.EntityFrameworkCore;
 using DataLogDataItem = cCoder.Data.Models.Logging.LogDataItem;

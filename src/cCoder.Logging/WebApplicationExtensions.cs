@@ -2,6 +2,12 @@
 // Copyright (c) Paul.Ward@ccoder.co.uk
 // ---------------------------------------------------------------
 
+using System.Linq;
+using Microsoft.Extensions.DependencyInjection;
+
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.Logging;
+
 using System;
 using System.Text.Json;
 using cCoder.Data.Exposures;

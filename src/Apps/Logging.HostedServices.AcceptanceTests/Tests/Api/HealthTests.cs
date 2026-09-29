@@ -2,6 +2,8 @@
 // Copyright (c) Paul.Ward@ccoder.co.uk
 // ---------------------------------------------------------------
 
+using System.Net.Http;
+
 using Logging.HostedServices.AcceptanceTests.Infrastructure;
 using Xunit;
 

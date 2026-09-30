@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="cCoder.CodeAnalysis" Version="2026.9.30.859">
+    <PackageReference Include="cCoder.CodeAnalysis" Version="2026.9.30.1047">
       <IncludeAssets>analyzers;build;buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>

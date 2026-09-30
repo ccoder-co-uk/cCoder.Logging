@@ -42,7 +42,7 @@
     <InternalsVisibleTo Include="Logging.Web.AcceptanceTests" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="cCoder.CodeAnalysis.Contracts" Version="2026.9.29.1241" />
+    <PackageReference Include="cCoder.CodeAnalysis.Contracts" Version="2026.9.30.859" />
     <PackageReference Include="cCoder.Data" Version="2026.9.29.1916" Condition="'$(UseLocalData)' != 'true'" />
     <PackageReference Include="cCoder.Eventing" Version="2026.9.29.1451" Condition="'$(UseLocalEventing)' != 'true'" />
     <PackageReference Include="Microsoft.AspNetCore.OData" Version="9.5.0" />

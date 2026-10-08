@@ -13,8 +13,8 @@
     <ProjectReference Include="$(LocalDataProject)" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="cCoder.Data" Version="2026.9.30.1214" Condition="'$(UseLocalData)' != 'true'" />
-    <PackageReference Include="cCoder.Eventing" Version="2026.9.30.1112" />
+    <PackageReference Include="cCoder.Data" Version="2026.10.8.1248" Condition="'$(UseLocalData)' != 'true'" />
+    <PackageReference Include="cCoder.Eventing" Version="2026.10.8.1222" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\cCoder.Logging\cCoder.Logging.csproj" AdditionalProperties="UseLocalData=$(UseLocalData)" />

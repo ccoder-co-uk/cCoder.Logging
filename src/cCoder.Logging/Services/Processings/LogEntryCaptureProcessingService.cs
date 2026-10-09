@@ -34,11 +34,15 @@ internal sealed partial class LogEntryCaptureProcessingService(
                 return logEntryCaptureOperation;
             }
 
+            if (!logEntryCaptureRequest.Persist)
+            {
+                return logEntryCaptureOperation;
+            }
+
             string thread = GetThread(
                 logEntryCaptureRequest: logEntryCaptureRequest);
 
-            if (!logEntryService.ShouldStoreLogEntries()
-                || !logEntryCaptureRequest.Persist)
+            if (!logEntryService.ShouldStoreLogEntries())
             {
                 return logEntryCaptureOperation;
             }

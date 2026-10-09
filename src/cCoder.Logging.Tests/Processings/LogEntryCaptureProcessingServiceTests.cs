@@ -123,7 +123,8 @@ public partial class LogEntryCaptureProcessingServiceTests
         {
             CategoryName = "HostedServices",
             Level = LogLevel.Information,
-            Message = "Application started"
+            Message = "Application started",
+            Persist = true
         };
 
         LogEntryCaptureProcessingService processingService = new(
@@ -150,5 +151,39 @@ public partial class LogEntryCaptureProcessingServiceTests
 
         // Then
         logEntryServiceMock.VerifyAll();
+    }
+
+    [Fact]
+    public async Task ShouldNotConsultStorageForNonPersistentLogEntry()
+    {
+        // Given
+        Mock<ILogEntryService> logEntryServiceMock = new(
+            behavior: MockBehavior.Strict);
+
+        LogEntryCaptureRequest logEntryCaptureRequest = new()
+        {
+            CategoryName = "HostedServices",
+            Level = LogLevel.Debug,
+            Message = "Running service",
+            Persist = false
+        };
+
+        LogEntryCaptureProcessingService processingService = new(
+            logEntryService: logEntryServiceMock.Object);
+
+        // When
+        LogEntryCaptureOperation result =
+            await processingService.CaptureLogEntryCaptureOperationAsync(
+                logEntryCaptureOperation: new LogEntryCaptureOperation
+                {
+                    Request = logEntryCaptureRequest
+                });
+
+        // Then
+        result.Result
+            .Should()
+            .BeNull();
+
+        logEntryServiceMock.VerifyNoOtherCalls();
     }
 }

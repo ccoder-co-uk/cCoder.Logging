@@ -20,6 +20,43 @@ namespace cCoder.Core.Services.Tests.Logging;
 public sealed partial class RequestLoggingCoordinatorTests
 {
     [Fact]
+    public async Task ShouldNotPersistInformationRequestBelowDatabaseMinimumLogLevelAsync()
+    {
+        // Given
+        Mock<ILogEntryCaptureQueue> queueMock = new(
+            behavior: MockBehavior.Strict);
+
+        queueMock
+            .Setup(expression: queue => queue.TryEnqueue(
+                logEntryCaptureRequest: It.Is<LogEntryCaptureRequest>(match: request =>
+                    request.Level == LogLevel.Information
+                    && !request.Persist)))
+            .Returns(value: true);
+
+        DefaultHttpContext context = new()
+        {
+            RequestServices = new ServiceCollection().BuildServiceProvider()
+        };
+
+        RequestCoordinator coordinator = new(
+            queue: queueMock.Object,
+            configuration: new LoggingConfiguration
+            {
+                RequestLoggingEnabled = true,
+                DatabaseMinimumLogLevel = LogLevel.Warning
+            },
+            logger: Mock.Of<ILogger<RequestCoordinator>>());
+
+        // When
+        await coordinator.CaptureRequestAsync(
+            context: context,
+            next: _ => Task.CompletedTask);
+
+        // Then
+        queueMock.VerifyAll();
+    }
+
+    [Fact]
     public async Task ShouldSnapshotAuthoritativeRequestContextAsync()
     {
         // Given

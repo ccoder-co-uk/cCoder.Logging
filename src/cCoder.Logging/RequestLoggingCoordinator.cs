@@ -64,7 +64,7 @@ internal sealed class RequestLoggingCoordinator(
             Url = url,
             UserId = userId,
             SessionId = sessionId,
-            Persist = true
+            Persist = LogLevel.Information >= configuration.DatabaseMinimumLogLevel
         };
 
         if (!queue.TryEnqueue(logEntryCaptureRequest: request))

@@ -15,6 +15,9 @@ using Microsoft.AspNetCore.OData;
 using Microsoft.AspNetCore.OData.Batch;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.SignalR;
+using cCoder.Logging.Exposures.Hubs;
+using cCoder.Logging.Dependencies.Authentication;
 using Microsoft.OData.Edm;
 using Microsoft.OData.ModelBuilder;
 using Microsoft.OpenApi;
@@ -213,6 +216,9 @@ public static partial class IServiceCollectionExtensions
         });
 
         services.AddEndpointsApiExplorer();
-        services.AddSignalR();
+        ISignalRServerBuilder signalR = services.AddSignalR();
+
+        signalR.AddHubOptions<LogHub>(configure: options =>
+                options.AddFilter<LogHubAuthenticationDependency>());
     }
 }

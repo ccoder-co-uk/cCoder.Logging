@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 using cCoder.Logging.Brokers;
 using cCoder.Logging.Models;
-using cCoder.Logging.Services.Processings;
+using cCoder.Logging.Services.Orchestrations;
 
 namespace cCoder.Logging;
 
@@ -37,14 +37,11 @@ internal sealed class RequestLogQueueCoordinator(
         {
             using IServiceScope scope = serviceScopeFactory.CreateScope();
 
-            ILogEntryCaptureProcessingService captureService =
-                scope.ServiceProvider.GetRequiredService<ILogEntryCaptureProcessingService>();
+            ILogEntryCaptureOrchestrationService captureService =
+                scope.ServiceProvider.GetRequiredService<ILogEntryCaptureOrchestrationService>();
 
-            await captureService.CaptureLogEntryCaptureOperationAsync(
-                operation: new LogEntryCaptureOperation
-                {
-                    Request = request
-                });
+            await captureService.CaptureLogEntryCaptureRequestAsync(
+                logEntryCaptureRequest: request);
         }
         catch (Exception exception)
         {

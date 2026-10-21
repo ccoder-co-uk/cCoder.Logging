@@ -2,10 +2,12 @@
 // Copyright (c) Paul.Ward@ccoder.co.uk
 // ---------------------------------------------------------------
 
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 using cCoder.Logging.Brokers;
 using cCoder.Logging.Models;
+using cCoder.Logging.Services.Orchestrations;
 using cCoder.Security.Models.Configurations;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Features;
@@ -14,11 +16,54 @@ using Microsoft.Extensions.Logging;
 using Moq;
 using Xunit;
 using RequestCoordinator = cCoder.Logging.RequestLoggingCoordinator;
+using QueueCoordinator = cCoder.Logging.RequestLogQueueCoordinator;
 
 namespace cCoder.Core.Services.Tests.Logging;
 
 public sealed partial class RequestLoggingCoordinatorTests
 {
+    [Fact]
+    public async Task ShouldDispatchQueuedCaptureThroughOrchestrationAsync()
+    {
+        // Given
+        LogEntryCaptureRequest request = new()
+        {
+            Message = "Captured request"
+        };
+
+        Mock<ILogEntryCaptureQueue> queueMock = new(
+            behavior: MockBehavior.Strict);
+
+        queueMock
+            .Setup(expression: queue => queue.ReadAllAsync())
+            .Returns(value: ReadOneAsync(request: request));
+
+        Mock<ILogEntryCaptureOrchestrationService> orchestrationServiceMock =
+            new(behavior: MockBehavior.Strict);
+
+        orchestrationServiceMock
+            .Setup(expression: service =>
+                service.CaptureLogEntryCaptureRequestAsync(
+                    logEntryCaptureRequest: request))
+            .Returns(value: ValueTask.CompletedTask);
+
+        ServiceProvider serviceProvider = new ServiceCollection()
+            .AddSingleton(implementationInstance: orchestrationServiceMock.Object)
+            .BuildServiceProvider();
+
+        QueueCoordinator coordinator = new(
+            queue: queueMock.Object,
+            serviceScopeFactory: serviceProvider.GetRequiredService<IServiceScopeFactory>(),
+            logger: Mock.Of<ILogger<QueueCoordinator>>());
+
+        // When
+        await coordinator.RunAsync();
+
+        // Then
+        queueMock.VerifyAll();
+        orchestrationServiceMock.VerifyAll();
+    }
+
     [Fact]
     public async Task ShouldSnapshotAuthoritativeRequestContextAsync()
     {
@@ -85,5 +130,12 @@ public sealed partial class RequestLoggingCoordinatorTests
         queueMock.VerifyAll();
         sessionMock.VerifyAll();
         sessionFeatureMock.VerifyAll();
+    }
+
+    private static async IAsyncEnumerable<LogEntryCaptureRequest> ReadOneAsync(
+        LogEntryCaptureRequest request)
+    {
+        yield return request;
+        await Task.CompletedTask;
     }
 }

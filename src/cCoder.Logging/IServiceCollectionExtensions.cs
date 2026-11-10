@@ -95,6 +95,10 @@ public static partial class IServiceCollectionExtensions
     private static void AddExposures(
         this IServiceCollection services)
     {
+        services.AddLogging(configure: builder =>
+            builder.AddFilter<LoggingLoggerProvider>(
+                levelFilter: level => level != LogLevel.None));
+
         services.AddSingleton<LogEntryCaptureQueue>(
             implementationFactory: provider =>
             {

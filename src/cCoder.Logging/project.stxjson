@@ -2221,6 +2221,82 @@
       ]
     },
     {
+      "Name": "cCoder.Logging.Dependencies.Authentication.LogHubAuthenticationDependency",
+      "StandardElementType": "Dependency",
+      "LineNumber": 13,
+      "IsPublic": false,
+      "Kind": "Class",
+      "BaseType": null,
+      "Interfaces": [
+        {
+          "Id": "Microsoft.AspNetCore.SignalR.Core:Microsoft.AspNetCore.SignalR.IHubFilter",
+          "FullName": "Microsoft.AspNetCore.SignalR.IHubFilter",
+          "Name": "IHubFilter",
+          "Namespace": "Microsoft.AspNetCore.SignalR",
+          "AssemblyName": "Microsoft.AspNetCore.SignalR.Core",
+          "Kind": "Interface",
+          "IsInCurrentProject": false,
+          "StandardElementType": "Dependency"
+        }
+      ],
+      "Properties": [],
+      "Methods": [
+        {
+          "Id": "cCoder.Logging.Dependencies.Authentication.LogHubAuthenticationDependency.InvokeMethodAsync(Microsoft.AspNetCore.SignalR.HubInvocationContext,System.Func\u003CMicrosoft.AspNetCore.SignalR.HubInvocationContext, System.Threading.Tasks.ValueTask\u003CSystem.Object\u003E\u003E)",
+          "Name": "InvokeMethodAsync",
+          "LineNumber": 15,
+          "Inputs": [
+            {
+              "Name": "invocationContext",
+              "Type": "Microsoft.AspNetCore.SignalR.HubInvocationContext"
+            },
+            {
+              "Name": "next",
+              "Type": "System.Func\u003CMicrosoft.AspNetCore.SignalR.HubInvocationContext, System.Threading.Tasks.ValueTask\u003CSystem.Object\u003E\u003E"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.ValueTask\u003CSystem.Object\u003E",
+          "Implements": [
+            "Microsoft.AspNetCore.SignalR.IHubFilter.InvokeMethodAsync(Microsoft.AspNetCore.SignalR.HubInvocationContext,System.Func\u003CMicrosoft.AspNetCore.SignalR.HubInvocationContext, System.Threading.Tasks.ValueTask\u003CSystem.Object?\u003E\u003E)"
+          ],
+          "Calls": [
+            {
+              "TypeName": "Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions",
+              "MethodName": "GetRequiredService",
+              "MethodId": "Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(System.IServiceProvider)",
+              "StandardElementType": "Dependency",
+              "IsDependencyBoundary": true
+            },
+            {
+              "TypeName": "System.Func\u003CT, TResult\u003E",
+              "MethodName": "Invoke",
+              "MethodId": "System.Func\u003CT, TResult\u003E.Invoke(T)",
+              "StandardElementType": "Dependency",
+              "IsDependencyBoundary": true
+            },
+            {
+              "TypeName": "System.String",
+              "MethodName": "IsNullOrWhiteSpace",
+              "MethodId": "System.String.IsNullOrWhiteSpace(System.String?)",
+              "StandardElementType": "Dependency",
+              "IsDependencyBoundary": true
+            }
+          ],
+          "PossibleExceptionTypes": [],
+          "IncomingExceptionTypes": [],
+          "ThrowsExceptionTypes": [],
+          "HttpMethods": [],
+          "HttpResponses": [],
+          "IsHttpRequestHandler": false,
+          "IsODataControllerAction": false,
+          "HasFromBodyParameter": false,
+          "HasKeyParameter": false,
+          "HandlesNullWithNotFound": false,
+          "HasTryCatch": false
+        }
+      ]
+    },
+    {
       "Name": "cCoder.Logging.Dependencies.Logging.LoggingLoggerDependency",
       "StandardElementType": "Dependency",
       "LineNumber": 10,
@@ -5151,7 +5227,7 @@
     {
       "Name": "cCoder.Logging.IServiceCollectionExtensions",
       "StandardElementType": "App",
-      "LineNumber": 24,
+      "LineNumber": 27,
       "IsPublic": true,
       "Kind": "Class",
       "BaseType": null,

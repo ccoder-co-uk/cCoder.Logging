@@ -55,7 +55,7 @@ internal sealed class RequestLoggingCoordinator(
 
         LogEntryCaptureRequest request = new()
         {
-            Level = LogLevel.Information,
+            Level = SelectLevel(statusCode: context.Response.StatusCode),
             CategoryName = RequestLoggingMiddleware.CategoryName,
             Message = $"{remoteAddress} as {userId}: {method} - {url} "
                 + $"({context.Response.StatusCode}) in {duration.TotalMilliseconds:F1}ms "
@@ -72,6 +72,13 @@ internal sealed class RequestLoggingCoordinator(
             logger.LogWarning(message: "Request logging queue is full; the newest request log was dropped.");
         }
     }
+
+    private static LogLevel SelectLevel(int statusCode) =>
+        statusCode >= StatusCodes.Status500InternalServerError
+            ? LogLevel.Error
+            : statusCode >= StatusCodes.Status400BadRequest
+                ? LogLevel.Warning
+                : LogLevel.Information;
 
     private bool ShouldIgnore(PathString path)
     {

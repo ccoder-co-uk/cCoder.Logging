@@ -132,6 +132,52 @@ public sealed partial class RequestLoggingCoordinatorTests
         sessionFeatureMock.VerifyAll();
     }
 
+    [Theory]
+    [InlineData(StatusCodes.Status400BadRequest, LogLevel.Warning)]
+    [InlineData(StatusCodes.Status404NotFound, LogLevel.Warning)]
+    [InlineData(StatusCodes.Status500InternalServerError, LogLevel.Error)]
+    [InlineData(StatusCodes.Status503ServiceUnavailable, LogLevel.Error)]
+    public async Task ShouldClassifyFailedRequestsByStatusCodeAsync(
+        int statusCode,
+        LogLevel expectedLevel)
+    {
+        // Given
+        Mock<ILogEntryCaptureQueue> queueMock = new(
+            behavior: MockBehavior.Strict);
+
+        queueMock
+            .Setup(expression: queue => queue.TryEnqueue(
+                logEntryCaptureRequest: It.Is<LogEntryCaptureRequest>(match: request =>
+                    request.Level == expectedLevel
+                    && request.Message.Contains(value: $"({statusCode})"))))
+            .Returns(value: true);
+
+        DefaultHttpContext context = new()
+        {
+            RequestServices = new ServiceCollection().BuildServiceProvider()
+        };
+
+        RequestCoordinator coordinator = new(
+            queue: queueMock.Object,
+            configuration: new LoggingConfiguration
+            {
+                RequestLoggingEnabled = true
+            },
+            logger: Mock.Of<ILogger<RequestCoordinator>>());
+
+        // When
+        await coordinator.CaptureRequestAsync(
+            context: context,
+            next: requestContext =>
+            {
+                requestContext.Response.StatusCode = statusCode;
+                return Task.CompletedTask;
+            });
+
+        // Then
+        queueMock.VerifyAll();
+    }
+
     private static async IAsyncEnumerable<LogEntryCaptureRequest> ReadOneAsync(
         LogEntryCaptureRequest request)
     {

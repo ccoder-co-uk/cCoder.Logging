@@ -2446,6 +2446,89 @@
       ]
     },
     {
+      "Name": "cCoder.Logging.Exposures.ControllerFailureLoggingFilter",
+      "StandardElementType": "Exposure",
+      "LineNumber": 15,
+      "IsPublic": false,
+      "Kind": "Class",
+      "BaseType": null,
+      "Interfaces": [
+        {
+          "Id": "Microsoft.AspNetCore.Mvc.Abstractions:Microsoft.AspNetCore.Mvc.Filters.IAsyncResultFilter",
+          "FullName": "Microsoft.AspNetCore.Mvc.Filters.IAsyncResultFilter",
+          "Name": "IAsyncResultFilter",
+          "Namespace": "Microsoft.AspNetCore.Mvc.Filters",
+          "AssemblyName": "Microsoft.AspNetCore.Mvc.Abstractions",
+          "Kind": "Interface",
+          "IsInCurrentProject": false,
+          "StandardElementType": "Dependency"
+        }
+      ],
+      "Properties": [],
+      "Methods": [
+        {
+          "Id": "cCoder.Logging.Exposures.ControllerFailureLoggingFilter.OnResultExecutionAsync(Microsoft.AspNetCore.Mvc.Filters.ResultExecutingContext,Microsoft.AspNetCore.Mvc.Filters.ResultExecutionDelegate)",
+          "Name": "OnResultExecutionAsync",
+          "LineNumber": 20,
+          "Inputs": [
+            {
+              "Name": "context",
+              "Type": "Microsoft.AspNetCore.Mvc.Filters.ResultExecutingContext"
+            },
+            {
+              "Name": "next",
+              "Type": "Microsoft.AspNetCore.Mvc.Filters.ResultExecutionDelegate"
+            }
+          ],
+          "ReturnType": "System.Threading.Tasks.Task",
+          "Implements": [
+            "Microsoft.AspNetCore.Mvc.Filters.IAsyncResultFilter.OnResultExecutionAsync(Microsoft.AspNetCore.Mvc.Filters.ResultExecutingContext,Microsoft.AspNetCore.Mvc.Filters.ResultExecutionDelegate)"
+          ],
+          "Calls": [
+            {
+              "TypeName": "Microsoft.AspNetCore.Mvc.Filters.ResultExecutionDelegate",
+              "MethodName": "Invoke",
+              "MethodId": "Microsoft.AspNetCore.Mvc.Filters.ResultExecutionDelegate.Invoke()",
+              "StandardElementType": "Dependency",
+              "IsDependencyBoundary": true
+            },
+            {
+              "TypeName": "System.ArgumentNullException",
+              "MethodName": "ThrowIfNull",
+              "MethodId": "System.ArgumentNullException.ThrowIfNull(System.Object?,System.String?)",
+              "StandardElementType": "Dependency",
+              "IsDependencyBoundary": true
+            },
+            {
+              "TypeName": "cCoder.Logging.Brokers.Loggings.ILoggingBroker",
+              "MethodName": "LogError",
+              "MethodId": "cCoder.Logging.Brokers.Loggings.ILoggingBroker.LogError(System.String,System.Object[])",
+              "StandardElementType": "Broker",
+              "IsDependencyBoundary": false
+            },
+            {
+              "TypeName": "cCoder.Logging.Brokers.Loggings.ILoggingBroker",
+              "MethodName": "LogWarning",
+              "MethodId": "cCoder.Logging.Brokers.Loggings.ILoggingBroker.LogWarning(System.String,System.Object[])",
+              "StandardElementType": "Broker",
+              "IsDependencyBoundary": false
+            }
+          ],
+          "PossibleExceptionTypes": [],
+          "IncomingExceptionTypes": [],
+          "ThrowsExceptionTypes": [],
+          "HttpMethods": [],
+          "HttpResponses": [],
+          "IsHttpRequestHandler": false,
+          "IsODataControllerAction": false,
+          "HasFromBodyParameter": false,
+          "HasKeyParameter": false,
+          "HandlesNullWithNotFound": false,
+          "HasTryCatch": false
+        }
+      ]
+    },
+    {
       "Name": "cCoder.Logging.Exposures.Controllers.LogDataItemController",
       "StandardElementType": "HttpExposure",
       "LineNumber": 27,
@@ -5237,7 +5320,7 @@
         {
           "Id": "cCoder.Logging.IServiceCollectionExtensions.AddLoggingHostedServices(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action\u003CcCoder.Logging.Models.LoggingConfiguration\u003E)",
           "Name": "AddLoggingHostedServices",
-          "LineNumber": 71,
+          "LineNumber": 72,
           "Inputs": [
             {
               "Name": "services",
@@ -5294,7 +5377,7 @@
         {
           "Id": "cCoder.Logging.IServiceCollectionExtensions.AddLoggingHostedServices(Microsoft.Extensions.DependencyInjection.IServiceCollection,cCoder.Logging.Models.LoggingConfiguration)",
           "Name": "AddLoggingHostedServices",
-          "LineNumber": 80,
+          "LineNumber": 81,
           "Inputs": [
             {
               "Name": "services",
@@ -5336,7 +5419,7 @@
         {
           "Id": "cCoder.Logging.IServiceCollectionExtensions.AddLoggingWeb(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action\u003CcCoder.Logging.Models.LoggingConfiguration\u003E,Microsoft.OData.ModelBuilder.ODataConventionModelBuilder)",
           "Name": "AddLoggingWeb",
-          "LineNumber": 43,
+          "LineNumber": 44,
           "Inputs": [
             {
               "Name": "services",
@@ -5384,7 +5467,7 @@
         {
           "Id": "cCoder.Logging.IServiceCollectionExtensions.AddLoggingWeb(Microsoft.Extensions.DependencyInjection.IServiceCollection,cCoder.Logging.Models.LoggingConfiguration,Microsoft.OData.ModelBuilder.ODataConventionModelBuilder)",
           "Name": "AddLoggingWeb",
-          "LineNumber": 53,
+          "LineNumber": 54,
           "Inputs": [
             {
               "Name": "services",
@@ -15009,6 +15092,10 @@
       "ToType": "System.String"
     },
     {
+      "FromType": "cCoder.Logging.Exposures.ControllerFailureLoggingFilter",
+      "ToType": "cCoder.Logging.Brokers.Loggings.LoggingBroker"
+    },
+    {
       "FromType": "cCoder.Logging.Exposures.Controllers.LogDataItemController",
       "ToType": "cCoder.Logging.Brokers.Loggings.LoggingBroker"
     },
@@ -15210,6 +15297,48 @@
     }
   ],
   "AnalysisItems": [
+    {
+      "Code": "STXE005",
+      "Description": "An exposure must not sequence multiple routine calls.",
+      "Severity": "Warning",
+      "Type": "cCoder.Logging.Exposures.ControllerFailureLoggingFilter",
+      "LineNumber": 20
+    },
+    {
+      "Code": "STXD005",
+      "Description": "External API call \u0027Microsoft.AspNetCore.Mvc.Filters.ResultExecutionDelegate.Invoke()\u0027 must be isolated behind a broker or dependency.",
+      "Severity": "Warning",
+      "Type": "cCoder.Logging.Exposures.ControllerFailureLoggingFilter",
+      "LineNumber": 27
+    },
+    {
+      "Code": "STXD005",
+      "Description": "External API call \u0027Microsoft.AspNetCore.Mvc.Filters.ResultExecutionDelegate.Invoke()\u0027 must be isolated behind a broker or dependency.",
+      "Severity": "Warning",
+      "Type": "cCoder.Logging.Exposures.ControllerFailureLoggingFilter",
+      "LineNumber": 27
+    },
+    {
+      "Code": "STXE001",
+      "Description": "An exposure must not contain branching logic.",
+      "Severity": "Warning",
+      "Type": "cCoder.Logging.Exposures.ControllerFailureLoggingFilter",
+      "LineNumber": 30
+    },
+    {
+      "Code": "STXE001",
+      "Description": "An exposure must not contain branching logic.",
+      "Severity": "Warning",
+      "Type": "cCoder.Logging.Exposures.ControllerFailureLoggingFilter",
+      "LineNumber": 37
+    },
+    {
+      "Code": "STXE001",
+      "Description": "An exposure must not contain branching logic.",
+      "Severity": "Warning",
+      "Type": "cCoder.Logging.Exposures.ControllerFailureLoggingFilter",
+      "LineNumber": 50
+    },
     {
       "Code": "STX0001",
       "Description": "The type is not a valid Standard element type.",

@@ -3,10 +3,11 @@
 // ---------------------------------------------------------------
 
 using System;
+using cCoder.CodeAnalysis.Exposures;
 
 namespace cCoder.Logging.Brokers.Loggings;
 
-public interface ILoggingBroker
+public interface ILoggingBroker : IUtilityBroker
 {
     void LogDebug(string message, params object[] args);
     void LogInformation(string message, params object[] args);

@@ -11950,17 +11950,28 @@
     {
       "Name": "cCoder.Logging.Brokers.Loggings.ILoggingBroker",
       "StandardElementType": "Broker",
-      "LineNumber": 9,
+      "LineNumber": 10,
       "IsPublic": true,
       "Kind": "Interface",
       "BaseType": null,
-      "Interfaces": [],
+      "Interfaces": [
+        {
+          "Id": "cCoder.CodeAnalysis.Contracts:cCoder.CodeAnalysis.Exposures.IUtilityBroker",
+          "FullName": "cCoder.CodeAnalysis.Exposures.IUtilityBroker",
+          "Name": "IUtilityBroker",
+          "Namespace": "cCoder.CodeAnalysis.Exposures",
+          "AssemblyName": "cCoder.CodeAnalysis.Contracts",
+          "Kind": "Interface",
+          "IsInCurrentProject": false,
+          "StandardElementType": "Dependency"
+        }
+      ],
       "Properties": [],
       "Methods": [
         {
           "Id": "cCoder.Logging.Brokers.Loggings.ILoggingBroker.LogDebug(System.String,System.Object[])",
           "Name": "LogDebug",
-          "LineNumber": 11,
+          "LineNumber": 12,
           "Inputs": [
             {
               "Name": "message",
@@ -11989,7 +12000,7 @@
         {
           "Id": "cCoder.Logging.Brokers.Loggings.ILoggingBroker.LogError(System.Exception,System.String,System.Object[])",
           "Name": "LogError",
-          "LineNumber": 15,
+          "LineNumber": 16,
           "Inputs": [
             {
               "Name": "exception",
@@ -12022,7 +12033,7 @@
         {
           "Id": "cCoder.Logging.Brokers.Loggings.ILoggingBroker.LogError(System.String,System.Object[])",
           "Name": "LogError",
-          "LineNumber": 14,
+          "LineNumber": 15,
           "Inputs": [
             {
               "Name": "message",
@@ -12051,7 +12062,7 @@
         {
           "Id": "cCoder.Logging.Brokers.Loggings.ILoggingBroker.LogInformation(System.String,System.Object[])",
           "Name": "LogInformation",
-          "LineNumber": 12,
+          "LineNumber": 13,
           "Inputs": [
             {
               "Name": "message",
@@ -12080,7 +12091,7 @@
         {
           "Id": "cCoder.Logging.Brokers.Loggings.ILoggingBroker.LogWarning(System.String,System.Object[])",
           "Name": "LogWarning",
-          "LineNumber": 13,
+          "LineNumber": 14,
           "Inputs": [
             {
               "Name": "message",

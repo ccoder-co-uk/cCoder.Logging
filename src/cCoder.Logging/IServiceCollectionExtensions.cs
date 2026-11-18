@@ -28,6 +28,7 @@ using cCoder.Eventing;
 using Microsoft.AspNetCore.OData;
 using Microsoft.AspNetCore.OData.Batch;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.OData.Edm;
 using Microsoft.OData.ModelBuilder;
 using Microsoft.OpenApi;
@@ -128,6 +129,9 @@ public static partial class IServiceCollectionExtensions
         services.AddSingleton<IRequestLoggingCoordinator, RequestLoggingCoordinator>();
         services.AddSingleton<IRequestLogQueueCoordinator, RequestLogQueueCoordinator>();
         services.AddTransient<RequestLoggingMiddleware>();
+        services.AddScoped<ControllerFailureLoggingFilter>();
+        services.Configure<MvcOptions>(configureOptions: options =>
+            options.Filters.AddService<ControllerFailureLoggingFilter>());
         services.AddHostedService<LogEntryCaptureWorker>();
         services.AddTransient<ILogDataItemManager, LogDataItemManager>();
         services.AddTransient<ILogEntryManager, LogEntryManager>();

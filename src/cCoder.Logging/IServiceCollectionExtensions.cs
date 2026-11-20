@@ -129,9 +129,6 @@ public static partial class IServiceCollectionExtensions
         services.AddSingleton<IRequestLoggingCoordinator, RequestLoggingCoordinator>();
         services.AddSingleton<IRequestLogQueueCoordinator, RequestLogQueueCoordinator>();
         services.AddTransient<RequestLoggingMiddleware>();
-        services.AddScoped<ControllerFailureLoggingFilter>();
-        services.Configure<MvcOptions>(configureOptions: options =>
-            options.Filters.AddService<ControllerFailureLoggingFilter>());
         services.AddHostedService<LogEntryCaptureWorker>();
         services.AddTransient<ILogDataItemManager, LogDataItemManager>();
         services.AddTransient<ILogEntryManager, LogEntryManager>();

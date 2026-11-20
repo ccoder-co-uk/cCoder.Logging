@@ -4,6 +4,8 @@
 
 using Microsoft.AspNetCore.Http;
 using System;
+using System.Security.Authentication;
+using System.Linq;
 
 using System.Threading.Tasks;
 
@@ -42,17 +44,35 @@ public partial class LogEntryController(
     {
         try
         {
-            return Ok(value: logEntryOrchestrationService.GetAllLogEntries());
+            IQueryable<LogEntry> logEntries =
+                logEntryOrchestrationService.GetAllLogEntries();
+
+            loggingBroker.LogInformation(
+                message: "Log entries retrieved successfully.");
+
+            return Ok(value: logEntries);
         }
         catch (LoggingValidationException exception)
         {
-            loggingBroker.LogError(exception: exception, message: "Controller request failed.");
+            loggingBroker.LogWarning(
+                exception: exception,
+                message: "The log entry request was invalid.");
 
             return BadRequest(error: "The log entry request is invalid.");
         }
+        catch (AuthenticationException exception)
+        {
+            loggingBroker.LogWarning(
+                exception: exception,
+                message: "The log entry request was not authenticated.");
+
+            return Unauthorized(value: "Authentication failed.");
+        }
         catch (System.Security.SecurityException exception)
         {
-            loggingBroker.LogError(exception: exception, message: "Controller request failed.");
+            loggingBroker.LogWarning(
+                exception: exception,
+                message: "The log entry request was forbidden.");
 
             return StatusCode(
                 statusCode: StatusCodes.Status403Forbidden,
@@ -87,20 +107,38 @@ public partial class LogEntryController(
 
             if (logEntry is null)
             {
+                loggingBroker.LogWarning(
+                    message: "The requested log entry was not found.");
+
                 return NotFound();
             }
+
+            loggingBroker.LogInformation(
+                message: "Log entry retrieved successfully.");
 
             return Ok(value: logEntry);
         }
         catch (LoggingValidationException exception)
         {
-            loggingBroker.LogError(exception: exception, message: "Controller request failed.");
+            loggingBroker.LogWarning(
+                exception: exception,
+                message: "The log entry request was invalid.");
 
             return BadRequest(error: "The log entry request is invalid.");
         }
+        catch (AuthenticationException exception)
+        {
+            loggingBroker.LogWarning(
+                exception: exception,
+                message: "The log entry request was not authenticated.");
+
+            return Unauthorized(value: "Authentication failed.");
+        }
         catch (System.Security.SecurityException exception)
         {
-            loggingBroker.LogError(exception: exception, message: "Controller request failed.");
+            loggingBroker.LogWarning(
+                exception: exception,
+                message: "The log entry request was forbidden.");
 
             return StatusCode(
                 statusCode: StatusCodes.Status403Forbidden,
@@ -131,11 +169,17 @@ public partial class LogEntryController(
         {
             if (!ModelState.IsValid)
             {
+                loggingBroker.LogWarning(
+                    message: "The log entry request was invalid.");
+
                 return BadRequest(modelState: ModelState);
             }
 
             LogEntry savedLogEntry = await logEntryOrchestrationService.AddLogEntryAsync(
                 newLogEntry: newLogEntry);
+
+            loggingBroker.LogInformation(
+                message: "Log entry created successfully.");
 
             return StatusCode(
                 statusCode: StatusCodes.Status201Created,
@@ -143,13 +187,25 @@ public partial class LogEntryController(
         }
         catch (LoggingValidationException exception)
         {
-            loggingBroker.LogError(exception: exception, message: "Controller request failed.");
+            loggingBroker.LogWarning(
+                exception: exception,
+                message: "The log entry request was invalid.");
 
             return BadRequest(error: "The log entry request is invalid.");
         }
+        catch (AuthenticationException exception)
+        {
+            loggingBroker.LogWarning(
+                exception: exception,
+                message: "The log entry request was not authenticated.");
+
+            return Unauthorized(value: "Authentication failed.");
+        }
         catch (System.Security.SecurityException exception)
         {
-            loggingBroker.LogError(exception: exception, message: "Controller request failed.");
+            loggingBroker.LogWarning(
+                exception: exception,
+                message: "The log entry request was forbidden.");
 
             return StatusCode(
                 statusCode: StatusCodes.Status403Forbidden,

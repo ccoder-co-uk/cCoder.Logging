@@ -4,6 +4,8 @@
 
 using Microsoft.AspNetCore.Http;
 using System;
+using System.Security.Authentication;
+using System.Linq;
 
 using System.Threading.Tasks;
 
@@ -42,17 +44,35 @@ public partial class LogDataItemController(
     {
         try
         {
-            return Ok(value: logDataItemOrchestrationService.GetAllLogDataItems());
+            IQueryable<LogDataItem> logDataItems =
+                logDataItemOrchestrationService.GetAllLogDataItems();
+
+            loggingBroker.LogInformation(
+                message: "Log data items retrieved successfully.");
+
+            return Ok(value: logDataItems);
         }
         catch (LoggingValidationException exception)
         {
-            loggingBroker.LogError(exception: exception, message: "Controller request failed.");
+            loggingBroker.LogWarning(
+                exception: exception,
+                message: "The log data item request was invalid.");
 
             return BadRequest(error: "The log data item request is invalid.");
         }
+        catch (AuthenticationException exception)
+        {
+            loggingBroker.LogWarning(
+                exception: exception,
+                message: "The log data item request was not authenticated.");
+
+            return Unauthorized(value: "Authentication failed.");
+        }
         catch (System.Security.SecurityException exception)
         {
-            loggingBroker.LogError(exception: exception, message: "Controller request failed.");
+            loggingBroker.LogWarning(
+                exception: exception,
+                message: "The log data item request was forbidden.");
 
             return StatusCode(
                 statusCode: StatusCodes.Status403Forbidden,
@@ -87,20 +107,38 @@ public partial class LogDataItemController(
 
             if (logDataItem is null)
             {
+                loggingBroker.LogWarning(
+                    message: "The requested log data item was not found.");
+
                 return NotFound();
             }
+
+            loggingBroker.LogInformation(
+                message: "Log data item retrieved successfully.");
 
             return Ok(value: logDataItem);
         }
         catch (LoggingValidationException exception)
         {
-            loggingBroker.LogError(exception: exception, message: "Controller request failed.");
+            loggingBroker.LogWarning(
+                exception: exception,
+                message: "The log data item request was invalid.");
 
             return BadRequest(error: "The log data item request is invalid.");
         }
+        catch (AuthenticationException exception)
+        {
+            loggingBroker.LogWarning(
+                exception: exception,
+                message: "The log data item request was not authenticated.");
+
+            return Unauthorized(value: "Authentication failed.");
+        }
         catch (System.Security.SecurityException exception)
         {
-            loggingBroker.LogError(exception: exception, message: "Controller request failed.");
+            loggingBroker.LogWarning(
+                exception: exception,
+                message: "The log data item request was forbidden.");
 
             return StatusCode(
                 statusCode: StatusCodes.Status403Forbidden,
@@ -131,11 +169,17 @@ public partial class LogDataItemController(
         {
             if (!ModelState.IsValid)
             {
+                loggingBroker.LogWarning(
+                    message: "The log data item request was invalid.");
+
                 return BadRequest(modelState: ModelState);
             }
 
             LogDataItem savedLogDataItem = await logDataItemOrchestrationService.AddLogDataItemAsync(
                 newLogDataItem: newLogDataItem);
+
+            loggingBroker.LogInformation(
+                message: "Log data item created successfully.");
 
             return StatusCode(
                 statusCode: StatusCodes.Status201Created,
@@ -143,13 +187,25 @@ public partial class LogDataItemController(
         }
         catch (LoggingValidationException exception)
         {
-            loggingBroker.LogError(exception: exception, message: "Controller request failed.");
+            loggingBroker.LogWarning(
+                exception: exception,
+                message: "The log data item request was invalid.");
 
             return BadRequest(error: "The log data item request is invalid.");
         }
+        catch (AuthenticationException exception)
+        {
+            loggingBroker.LogWarning(
+                exception: exception,
+                message: "The log data item request was not authenticated.");
+
+            return Unauthorized(value: "Authentication failed.");
+        }
         catch (System.Security.SecurityException exception)
         {
-            loggingBroker.LogError(exception: exception, message: "Controller request failed.");
+            loggingBroker.LogWarning(
+                exception: exception,
+                message: "The log data item request was forbidden.");
 
             return StatusCode(
                 statusCode: StatusCodes.Status403Forbidden,

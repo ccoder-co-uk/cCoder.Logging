@@ -7,12 +7,15 @@ using Microsoft.Extensions.Logging;
 
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using System.Diagnostics.Metrics;
+using System.Threading.Channels;
 
 using cCoder.Data.Models.Logging;
 using cCoder.Logging.Extensions.OData;
 using cCoder.Logging.Brokers;
 using cCoder.Logging.Exposures.HostedServices;
 using cCoder.Logging.Dependencies.HostedServices;
+using cCoder.Logging.Dependencies.Authentication;
 using cCoder.Logging.Dependencies.Logging;
 using cCoder.Logging.Models;
 using cCoder.Logging.Brokers.OData;
@@ -20,19 +23,21 @@ using cCoder.Logging.Brokers.Metadata;
 using cCoder.Logging.Brokers.Loggings;
 using cCoder.Logging.Models.OData;
 using cCoder.Logging.Exposures;
+using cCoder.Logging.Exposures.Hubs;
 using cCoder.Logging.Services.Foundations;
 using cCoder.Logging.Services.Foundations.Events;
 using cCoder.Logging.Services.Orchestrations;
 using cCoder.Logging.Services.Processings;
 using cCoder.Eventing;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.OData;
 using Microsoft.AspNetCore.OData.Batch;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.OData.Edm;
 using Microsoft.OData.ModelBuilder;
 using Microsoft.OpenApi;
-using System.Threading.Channels;
 using AuthorizationBroker = cCoder.Logging.Brokers.AuthorizationBroker;
 using IAuthorizationBroker = cCoder.Logging.Brokers.IAuthorizationBroker;
 
@@ -99,33 +104,45 @@ public static partial class IServiceCollectionExtensions
         services.AddLogging(configure: builder =>
             builder.AddFilter<LoggingLoggerProvider>(
                 levelFilter: level => level != LogLevel.None));
+        services.AddHttpContextAccessor();
+        services.AddMetrics();
+        ISignalRServerBuilder signalR = services.AddSignalR();
+        signalR.AddHubOptions<LogHub>(configure: options =>
+            options.AddFilter<LogHubAuthenticationDependency>());
 
-        services.AddSingleton<LogEntryCaptureQueue>(
+        services.AddSingleton<ILogEntryCaptureQueue>(
             implementationFactory: provider =>
             {
                 LoggingConfiguration configuration =
                     provider.GetRequiredService<LoggingConfiguration>();
 
-                BoundedChannelFullMode fullMode =
-                    configuration.RequestLoggingQueueFullBehavior == RequestLoggingQueueFullBehavior.DropOldest
-                        ? BoundedChannelFullMode.DropOldest
-                        : BoundedChannelFullMode.Wait;
+                bool dropsOldest = configuration.RequestLoggingQueueFullBehavior
+                    == RequestLoggingQueueFullBehavior.DropOldest;
+
+                Meter meter = provider.GetRequiredService<IMeterFactory>()
+                    .Create(name: "cCoder.Logging");
+                Counter<long> droppedEntries = meter.CreateCounter<long>(
+                    name: "ccoder.logging.capture.dropped",
+                    unit: "{entry}");
+                string dropReason = dropsOldest ? "drop_oldest" : "drop_newest";
 
                 Channel<LogEntryCaptureRequest> channel =
                     Channel.CreateBounded<LogEntryCaptureRequest>(
                         options: new BoundedChannelOptions(configuration.RequestLoggingQueueCapacity)
                         {
                             AllowSynchronousContinuations = false,
-                            FullMode = fullMode,
+                            FullMode = dropsOldest
+                                ? BoundedChannelFullMode.DropOldest
+                                : BoundedChannelFullMode.DropWrite,
                             SingleReader = true,
                             SingleWriter = false
-                        });
+                        },
+                        itemDropped: _ => droppedEntries.Add(
+                            delta: 1,
+                            tag: new("reason", dropReason)));
 
                 return new LogEntryCaptureQueue(channel: channel);
             });
-        services.AddSingleton<ILogEntryCaptureQueue>(
-            implementationFactory: provider =>
-                provider.GetRequiredService<LogEntryCaptureQueue>());
         services.AddSingleton<IRequestLoggingCoordinator, RequestLoggingCoordinator>();
         services.AddSingleton<IRequestLogQueueCoordinator, RequestLogQueueCoordinator>();
         services.AddTransient<RequestLoggingMiddleware>();
@@ -141,6 +158,9 @@ public static partial class IServiceCollectionExtensions
                 ILogEntryCaptureQueue queue =
                     provider.GetRequiredService<ILogEntryCaptureQueue>();
 
+                IHttpContextAccessor httpContextAccessor =
+                    provider.GetRequiredService<IHttpContextAccessor>();
+
                 LoggingConfiguration configuration =
                     provider.GetRequiredService<LoggingConfiguration>();
 
@@ -155,6 +175,7 @@ public static partial class IServiceCollectionExtensions
                                         CategoryName = capturedCategoryName,
                                         Message = message,
                                         Exception = exception,
+                                        RequestDomain = httpContextAccessor.HttpContext?.Request.Host.Host,
                                         Persist = level >= configuration.DatabaseMinimumLogLevel,
                                     }),
                             categoryName: categoryName));

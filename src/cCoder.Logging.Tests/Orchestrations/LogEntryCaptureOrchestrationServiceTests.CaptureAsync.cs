@@ -24,7 +24,7 @@ public partial class LogEntryCaptureOrchestrationServiceTests
             .Setup(expression: processingService =>
                 processingService.StreamLogEntryCaptureRequestAsync(
                     logEntryCaptureRequest: logEntryCaptureRequest))
-            .Returns(value: ValueTask.CompletedTask);
+            .ReturnsAsync(value: (string)null);
 
         logEntryCaptureProcessingServiceMock
             .Setup(expression: processingService =>
@@ -66,7 +66,7 @@ logEntry: savedLogEntry))
             .Setup(expression: processingService =>
                 processingService.StreamLogEntryCaptureRequestAsync(
                     logEntryCaptureRequest: logEntryCaptureRequest))
-            .Returns(value: ValueTask.CompletedTask);
+            .ReturnsAsync(value: (string)null);
 
         logEntryCaptureProcessingServiceMock
             .Setup(expression: processingService =>

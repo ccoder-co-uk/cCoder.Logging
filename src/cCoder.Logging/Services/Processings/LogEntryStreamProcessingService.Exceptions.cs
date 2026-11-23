@@ -11,11 +11,11 @@ namespace cCoder.Logging.Services.Processings;
 
 internal sealed partial class LogEntryStreamProcessingService
 {
-    private static async ValueTask TryCatch(Func<ValueTask> operation)
+    private static async ValueTask<T> TryCatch<T>(Func<ValueTask<T>> operation)
     {
         try
         {
-            await operation();
+            return await operation();
         }
         catch (ArgumentException innerException)
         {

@@ -3,6 +3,7 @@
 // ---------------------------------------------------------------
 
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 using cCoder.Data.Models.Security;
@@ -122,6 +123,20 @@ internal sealed partial class LogHubService(
                 message:
                     "User {UserId} stopped listening to logs for {Domain}.",
                 args: [user.Id, logHubSession.Thread]);
+        });
+
+    public string[] GetAuthorizedDomains() =>
+        TryCatch(operation: () =>
+        {
+            User user = authorizationBroker.SelectCurrentUser();
+
+            int[] appIds = user?.Roles?
+                .Where(predicate: role => role.Role is not null && user.IsAdminOfApp(appId: role.Role.AppId))
+                .Select(selector: role => role.Role.AppId)
+                .Distinct()
+                .ToArray() ?? [];
+
+            return appIds.Length == 0 ? [] : logHubBroker.SelectAppDomains(appIds: appIds);
         });
 
     public ValueTask DisconnectLogHubSessionAsync(LogHubSession logHubSession) =>

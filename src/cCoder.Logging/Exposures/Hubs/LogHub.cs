@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 using cCoder.Logging.Models;
 using cCoder.Logging.Services.Foundations;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.SignalR;
 
 namespace cCoder.Logging.Exposures.Hubs;
@@ -23,6 +24,10 @@ internal sealed class LogHub(
         logHubService.JoinLogHubSessionAsync(
             logHubSession: CreateLogHubSession(thread: thread))
         .AsTask();
+
+    [Authorize]
+    public string[] AuthorizedDomains() =>
+        logHubService.GetAuthorizedDomains();
 
     public Task Leave(string thread) =>
         logHubService.LeaveLogHubSessionAsync(

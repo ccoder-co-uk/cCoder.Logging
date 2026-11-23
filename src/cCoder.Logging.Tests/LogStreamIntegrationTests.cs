@@ -10,6 +10,8 @@ using System.Threading.Tasks;
 
 using cCoder.Data.Exposures;
 using cCoder.Data.Models.Security;
+using cCoder.Eventing;
+using cCoder.Eventing.Models;
 using cCoder.Logging.Brokers;
 using cCoder.Logging.Exposures.HostedServices;
 using cCoder.Logging.Models;
@@ -57,6 +59,8 @@ public sealed partial class LogStreamIntegrationTests
 
         WebApplicationBuilder builder = WebApplication.CreateBuilder();
         builder.WebHost.UseTestServer();
+        builder.Services.AddEventing();
+        builder.Services.AddAuthorization();
 
         LoggingConfiguration configuration = new()
         {
@@ -103,6 +107,10 @@ public sealed partial class LogStreamIntegrationTests
         hubBroker.Setup(expression: broker => broker.SelectAppIdByDomain(domain: domain))
             .Returns(value: appId);
 
+        hubBroker.Setup(expression: broker => broker.SelectAppDomains(
+                appIds: It.Is<int[]>(match: ids => ids.Length == 1 && ids[0] == appId)))
+            .Returns(value: [domain]);
+
         hubBroker.Setup(expression: broker =>
                 broker.JoinGroupAsync(logHubSession: It.IsAny<LogHubSession>()))
             .Returns(valueFunction: (LogHubSession session) =>
@@ -139,6 +147,11 @@ public sealed partial class LogStreamIntegrationTests
         });
 
         app.StartLoggingWeb();
+
+        if (hostedServices)
+        {
+            app.StartLoggingHostedServices();
+        }
 
         string prefix = $"live-{Guid.NewGuid():N}";
         string[] messages = [$"{prefix}-1", $"{prefix}-2", $"{prefix}-3"];
@@ -181,6 +194,11 @@ public sealed partial class LogStreamIntegrationTests
             });
 
         await connection.StartAsync(cancellationToken: timeout.Token);
+
+        string[] authorizedDomains = await connection.InvokeAsync<string[]>(
+            methodName: "AuthorizedDomains", cancellationToken: timeout.Token);
+
+        Assert.Equal(expected: new[] { domain }, actual: authorizedDomains);
         await connection.InvokeAsync(methodName: "Join", arg1: domain, cancellationToken: timeout.Token);
 
         Assert.Equal(
@@ -211,6 +229,32 @@ public sealed partial class LogStreamIntegrationTests
             Assert.Equal(
                 expected: ("information", message, domain),
                 actual: await received.Reader.ReadAsync(cancellationToken: timeout.Token));
+        }
+
+        if (hostedServices)
+        {
+            string[] relayed = [$"{prefix}-web-1", $"{prefix}-web-2", $"{prefix}-web-3"];
+            IEventHub eventHub = app.Services.GetRequiredService<IEventHub>();
+
+            await eventHub.RaiseEventAsync(
+                name: LogStreamMessage.EventName,
+                message: new EventMessage<LogStreamMessage[]>
+                {
+                    AuthInfo = new EventAuthInfo { SSOUserId = "Guest" },
+                    Data =
+                    [
+                        new LogStreamMessage { Domain = domain, Level = "information", Message = relayed[0] },
+                        new LogStreamMessage { Domain = domain, Level = "information", Message = relayed[1] },
+                        new LogStreamMessage { Domain = domain, Level = "information", Message = relayed[2] }
+                    ]
+                });
+
+            foreach (string message in relayed)
+            {
+                Assert.Equal(
+                    expected: ("information", message, domain),
+                    actual: await received.Reader.ReadAsync(cancellationToken: timeout.Token));
+            }
         }
     }
 }

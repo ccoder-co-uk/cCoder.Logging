@@ -14,4 +14,5 @@ internal interface ILogEntryEventService
     ValueTask RaiseLogEntryAddEventAsync(LogEntry logEntry);
     ValueTask RaiseLogEntryUpdateEventAsync(LogEntry logEntry);
     ValueTask RaiseLogEntryDeleteEventAsync(LogEntry logEntry);
+    ValueTask RaiseLogStreamEventAsync(string thread, string level, string message);
 }

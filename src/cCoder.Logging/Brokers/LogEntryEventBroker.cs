@@ -17,6 +17,7 @@ internal interface ILogEntryEventBroker
     ValueTask RaiseLogEntryAddEventAsync(EventMessage<LogEntry> message);
     ValueTask RaiseLogEntryUpdateEventAsync(EventMessage<LogEntry> message);
     ValueTask RaiseLogEntryDeleteEventAsync(EventMessage<LogEntry> message);
+    ValueTask RaiseLogStreamEventAsync(EventMessage<LogStreamMessage> message);
 }
 
 internal sealed class LogEntryEventBroker(IEventHub eventHub) : ILogEntryEventBroker
@@ -29,4 +30,7 @@ internal sealed class LogEntryEventBroker(IEventHub eventHub) : ILogEntryEventBr
 
     public ValueTask RaiseLogEntryDeleteEventAsync(EventMessage<LogEntry> message) =>
         eventHub.RaiseEventAsync(name: "log_entry_delete", message: message);
+
+    public ValueTask RaiseLogStreamEventAsync(EventMessage<LogStreamMessage> message) =>
+        eventHub.RaiseEventAsync(name: LogStreamMessage.EventName, message: message);
 }

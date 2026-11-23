@@ -183,6 +183,8 @@ public static partial class IServiceCollectionExtensions
     {
         services.AddEventingForType<LogDataItem>();
         services.AddEventingForType<LogEntry>();
+        services.AddEventingForType<LogStreamMessage>();
+        services.AddEventingForType<LogStreamMessage[]>();
     }
 
     private static void AddBrokers(this IServiceCollection services)

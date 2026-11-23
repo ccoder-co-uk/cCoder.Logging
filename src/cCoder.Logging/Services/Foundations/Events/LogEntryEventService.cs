@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using cCoder.Data.Models.Logging;
 using cCoder.Eventing.Models;
 using cCoder.Logging.Brokers;
+using cCoder.Logging.Models;
 
 namespace cCoder.Logging.Services.Foundations.Events;
 
@@ -49,6 +50,24 @@ internal sealed partial class LogEntryEventService(
 
             await logEntryEventBroker.RaiseLogEntryDeleteEventAsync(
                 message: message);
+        });
+
+    public ValueTask RaiseLogStreamEventAsync(string thread, string level, string message) =>
+        TryCatch(operation: async () =>
+        {
+            ValidateInputs(inputs: [thread, level, message]);
+
+            await logEntryEventBroker.RaiseLogStreamEventAsync(
+                message: new EventMessage<LogStreamMessage>
+                {
+                    AuthInfo = new EventAuthInfo { SSOUserId = "Guest" },
+                    Data = new LogStreamMessage
+                    {
+                        Domain = thread,
+                        Level = level,
+                        Message = message
+                    }
+                });
         });
 
     private EventMessage<LogEntry> CreateLogEntryEventMessage(

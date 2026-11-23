@@ -11,6 +11,26 @@ namespace cCoder.Logging.Services.Foundations;
 
 internal sealed partial class LogHubService
 {
+    private static T TryCatch<T>(Func<T> operation)
+    {
+        try
+        {
+            return operation();
+        }
+        catch (LoggingValidationException innerException)
+        {
+            throw new LoggingValidationException(innerException: innerException);
+        }
+        catch (LoggingDependencyException innerException)
+        {
+            throw new LoggingDependencyException(innerException: innerException);
+        }
+        catch (Exception innerException)
+        {
+            throw new LoggingServiceException(innerException: innerException);
+        }
+    }
+
     private static void TryCatch(Action operation)
     {
         try

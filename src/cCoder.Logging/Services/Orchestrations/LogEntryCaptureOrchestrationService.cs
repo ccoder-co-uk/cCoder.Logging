@@ -22,9 +22,18 @@ internal sealed partial class LogEntryCaptureOrchestrationService(
         {
             ValidateInputs(inputs: [logEntryCaptureRequest]);
 
-            await logEntryStreamProcessingService
+            string streamThread = await logEntryStreamProcessingService
                 .StreamLogEntryCaptureRequestAsync(
                     logEntryCaptureRequest: logEntryCaptureRequest);
+
+            if (streamThread is not null)
+            {
+                await logEntryEventProcessingService.ForwardLogStreamEventAsync(
+                    thread: streamThread,
+                    level: logEntryCaptureRequest.Level.ToString()
+                        .ToLowerInvariant(),
+                    message: logEntryCaptureRequest.Message);
+            }
 
             LogEntryCaptureOperation operation =
                 await logEntryCaptureProcessingService

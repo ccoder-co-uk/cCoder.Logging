@@ -69,7 +69,7 @@ internal sealed class RequestLoggingCoordinator(
 
         if (!queue.TryEnqueue(logEntryCaptureRequest: request))
         {
-            logger.LogWarning(message: "Request logging queue is full; the newest request log was dropped.");
+            logger.LogWarning(message: "Request logging queue is closed; the request log was dropped.");
         }
     }
 

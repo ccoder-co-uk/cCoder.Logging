@@ -30,13 +30,12 @@ internal sealed class LogEntryStreamBroker(
         string message) =>
         new(
             task: serviceProvider
-                .GetService<IHubContext<LogHub>>()?
+                .GetRequiredService<IHubContext<LogHub>>()
                 .Clients
-                .Group(groupName: thread)
+                .Group(groupName: thread.ToLowerInvariant())
                 .SendAsync(
                     method: "ConsoleReceive",
                     arg1: level,
                     arg2: message,
-                    arg3: thread)
-                ?? Task.CompletedTask);
+                    arg3: thread));
 }

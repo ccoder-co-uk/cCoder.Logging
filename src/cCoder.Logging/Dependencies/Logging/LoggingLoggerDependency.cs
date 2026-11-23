@@ -26,6 +26,15 @@ internal sealed class LoggingLoggerDependency(
         if (formatter is null
             || categoryName.StartsWith(
                 value: "cCoder.Logging.",
+                comparisonType: StringComparison.Ordinal)
+            || categoryName.StartsWith(
+                value: "Microsoft.AspNetCore.SignalR",
+                comparisonType: StringComparison.Ordinal)
+            || categoryName.StartsWith(
+                value: "Microsoft.AspNetCore.Http.Connections",
+                comparisonType: StringComparison.Ordinal)
+            || categoryName.StartsWith(
+                value: "Microsoft.EntityFrameworkCore",
                 comparisonType: StringComparison.Ordinal))
         {
             return;

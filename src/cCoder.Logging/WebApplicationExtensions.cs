@@ -30,7 +30,9 @@ public static partial class WebApplicationExtensions
     public static WebApplication StartLoggingHostedServices(
         this WebApplication app)
     {
+        app.UseMiddleware<RequestLoggingMiddleware>();
         PopulateMetadataTypeCache(app: app);
+        app.MapHub<LogHub>("/Api/Hubs/Logs");
 
         return app;
     }

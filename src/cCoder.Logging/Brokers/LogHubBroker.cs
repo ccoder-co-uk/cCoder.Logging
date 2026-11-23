@@ -44,12 +44,12 @@ internal sealed class LogHubBroker(
     public Task JoinGroupAsync(LogHubSession logHubSession) =>
         logHubSession.Groups.AddToGroupAsync(
             connectionId: logHubSession.ConnectionId,
-            groupName: logHubSession.Thread);
+            groupName: logHubSession.Thread.ToLowerInvariant());
 
     public Task RemoveFromGroupAsync(LogHubSession logHubSession) =>
         logHubSession.Groups.RemoveFromGroupAsync(
             connectionId: logHubSession.ConnectionId,
-            groupName: logHubSession.Thread);
+            groupName: logHubSession.Thread.ToLowerInvariant());
 
     public Task SendCallerAsync(
         LogHubSession logHubSession,
@@ -65,7 +65,7 @@ internal sealed class LogHubBroker(
         LogHubSession logHubSession,
         string level,
         string message) =>
-        logHubSession.Clients.Group(groupName: logHubSession.Thread)
+        logHubSession.Clients.Group(groupName: logHubSession.Thread.ToLowerInvariant())
             .SendAsync(
                 method: "ConsoleReceive",
                 arg1: level,

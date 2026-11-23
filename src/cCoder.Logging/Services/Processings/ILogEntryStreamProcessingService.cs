@@ -10,6 +10,6 @@ namespace cCoder.Logging.Services.Processings;
 
 internal interface ILogEntryStreamProcessingService
 {
-    ValueTask StreamLogEntryCaptureRequestAsync(
+    ValueTask<string> StreamLogEntryCaptureRequestAsync(
         LogEntryCaptureRequest logEntryCaptureRequest);
 }

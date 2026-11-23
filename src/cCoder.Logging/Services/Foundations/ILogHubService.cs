@@ -12,6 +12,7 @@ internal interface ILogHubService
 {
     ValueTask ConnectLogHubSessionAsync(LogHubSession logHubSession);
     ValueTask JoinLogHubSessionAsync(LogHubSession logHubSession);
+    string[] GetAuthorizedDomains();
     ValueTask LeaveLogHubSessionAsync(LogHubSession logHubSession);
     ValueTask DisconnectLogHubSessionAsync(LogHubSession logHubSession);
     void DebugLogHubSession(LogHubSession logHubSession);

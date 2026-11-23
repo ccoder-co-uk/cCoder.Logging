@@ -3,7 +3,6 @@
 // ---------------------------------------------------------------
 
 using System.Linq;
-
 using System.Threading.Tasks;
 
 using cCoder.Logging.Models;
@@ -15,9 +14,9 @@ internal sealed partial class LogEntryStreamProcessingService(
     ILogEntryStreamService logEntryStreamService)
         : ILogEntryStreamProcessingService
 {
-    public ValueTask StreamLogEntryCaptureRequestAsync(
+    public ValueTask<string> StreamLogEntryCaptureRequestAsync(
         LogEntryCaptureRequest logEntryCaptureRequest) =>
-        TryCatch(operation: async () =>
+        TryCatch<string>(operation: async () =>
         {
             ValidateInputs(inputs: [logEntryCaptureRequest]);
 
@@ -40,7 +39,11 @@ internal sealed partial class LogEntryStreamProcessingService(
                     thread: thread,
                     level: level,
                     message: logEntryCaptureRequest.Message);
+
+                return thread;
             }
+
+            return null;
         });
 
     private static string FirstValue(params string[] values) =>

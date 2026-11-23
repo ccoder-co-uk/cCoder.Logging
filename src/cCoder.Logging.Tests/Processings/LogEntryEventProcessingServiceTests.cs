@@ -3,6 +3,7 @@
 // ---------------------------------------------------------------
 
 using cCoder.Logging.Models;
+using cCoder.Logging.Brokers.Loggings;
 using cCoder.Data.Models.Logging;
 using cCoder.Logging.Services.Foundations.Events;
 using cCoder.Logging.Services.Processings;
@@ -20,7 +21,10 @@ public partial class LogEntryEventProcessingServiceTests
     public LogEntryEventProcessingServiceTests()
     {
         logEntryEventServiceMock = new Mock<ILogEntryEventService>(behavior: MockBehavior.Strict);
-        service = new LogEntryEventProcessingService(eventService: logEntryEventServiceMock.Object);
+        service = new LogEntryEventProcessingService(
+            eventService: logEntryEventServiceMock.Object,
+            log: Mock.Of<ILoggingBroker>(),
+            configuration: new LoggingConfiguration());
     }
 
     private static LogEntry CreateRandomLogEntry() =>

@@ -16,6 +16,7 @@ namespace cCoder.Logging.Brokers;
 internal interface ILogHubBroker
 {
     int? SelectAppIdByDomain(string domain);
+    string[] SelectAppDomains(int[] appIds);
     string SelectHost(LogHubSession logHubSession);
     Task JoinGroupAsync(LogHubSession logHubSession);
     Task RemoveFromGroupAsync(LogHubSession logHubSession);
@@ -40,6 +41,18 @@ internal sealed class LogHubBroker(
 
     public string SelectHost(LogHubSession logHubSession) =>
         logHubSession.Context.GetHttpContext()?.Request.Host.Value;
+
+    public string[] SelectAppDomains(int[] appIds)
+    {
+        using CoreDataContext context = contextFactory.CreateCoreContext();
+
+        return context.Apps
+            .IgnoreQueryFilters()
+            .Where(predicate: app => appIds.Contains(value: app.Id) && app.Domain != "")
+            .Select(selector: app => app.Domain)
+            .Distinct()
+            .ToArray();
+    }
 
     public Task JoinGroupAsync(LogHubSession logHubSession) =>
         logHubSession.Groups.AddToGroupAsync(

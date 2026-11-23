@@ -5,9 +5,12 @@
 using System;
 using System.Threading.Tasks;
 using System.Security.Claims;
+using cCoder.Data.Exposures;
 using cCoder.Data.Models.Security;
+using cCoder.Logging;
 using cCoder.Logging.Brokers;
 using cCoder.Logging.Dependencies.Authentication;
+using cCoder.Logging.Exposures;
 using cCoder.Logging.Exposures.Hubs;
 using cCoder.Logging.Services.Foundations;
 using cCoder.Security.Models.Configurations;
@@ -66,6 +69,35 @@ public sealed partial class HubScopeTests(ITestOutputHelper output)
         builder.Services.AddSingleton(implementationInstance: Mock.Of<HubLog>());
         builder.Services.AddScoped<ILogHubService, LogHubService>();
 
+        Mock<IMetadataTypeCache> metadataCache = new();
+
+        metadataCache
+            .Setup(expression: value => value.Contains(scope: "Logging"))
+            .Returns(value: false);
+
+        builder.Services.AddSingleton(implementationInstance: metadataCache.Object);
+
+        Mock<ILoggingMetadataTypeService> metadataService = new();
+
+        metadataService
+            .Setup(expression: value => value.GetKnownMetadata())
+            .Returns(value: []);
+
+        builder.Services.AddSingleton(implementationInstance: metadataService.Object);
+
+        Mock<IRequestLoggingCoordinator> requestLoggingCoordinator = new();
+
+        requestLoggingCoordinator
+            .Setup(expression: value => value.CaptureRequestAsync(
+                context: It.IsAny<HttpContext>(),
+                next: It.IsAny<RequestDelegate>()))
+            .Returns(valueFunction: (HttpContext context, RequestDelegate next) => next(context: context));
+
+        builder.Services.AddSingleton<IRequestLoggingCoordinator>(
+            implementationInstance: requestLoggingCoordinator.Object);
+
+        builder.Services.AddTransient<RequestLoggingMiddleware>();
+
         builder.Services.AddScoped<IAuthorizationBroker>(implementationFactory: services =>
         {
             var authorization = new Mock<IAuthorizationBroker>();
@@ -90,7 +122,7 @@ public sealed partial class HubScopeTests(ITestOutputHelper output)
             await next(context: context);
         });
 
-        app.MapHub<LogHub>(pattern: "/Api/Hubs/Logs");
+        app.StartLoggingHostedServices();
         await app.StartAsync();
 
         await using HubConnection connection = new HubConnectionBuilder()
